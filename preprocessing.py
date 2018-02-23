@@ -134,9 +134,10 @@ def tok_lem(df):
         answer = answer.replace("_german", "")
         
         # Tokenize
-        #tok_answer = word_tokenize(answer)
         tok_answer = tokenizer.tokenize(answer) # also removes apostrophe
-        df['Tokenized'][i] = tok_answer
+                                       
+        df.at[i, 'Tokenized'] = tok_answer                             
+        #df['Tokenized'][i] = tok_answer
         
         # Lemmatize
         lem_answer = []
@@ -150,11 +151,14 @@ def tok_lem(df):
             
             lem_answer.append(lemma)
         
-        df['Lemmatized'][i] = lem_answer
+        df.at[i, 'Lemmatized'] = lem_answer
+        #df['Lemmatized'][i] = lem_answer
 
         # Remove stop words
         stopped_lemmas = [i for i in lem_answer if not i in stopwords.words('english')]
-        df['NoStops'][i] = stopped_lemmas
+        df.at[i, 'NoStops'] = stopped_lemmas
+        #df['NoStops'][i] = stopped_lemmas
+        
         
     return df
 
@@ -201,8 +205,9 @@ def save_to_file(info, outfile):
 if __name__ == "__main__":
     
     # Read and prepare student data
-    aip_en_unc = open_file('AIP_A_EN_uncorrected.txt') # Read student answers
-    aip_en_prep = preprocess(aip_en_unc) # Preprocess student answers
-    df, cols = create_df(aip_en_prep) # Create dataframe of student answers
+    raw_data = open_file('AIP_A_EN_uncorrected.txt') # Read student answers
+    prep_data = preprocess(raw_data) # Preprocess student answers
+    df, cols = create_df(prep_data) # Create dataframe of student answers
+    #df = df[:10]
     df = tok_lem(df) # Tokenize and lemmatize all answers, and remove stop words
     dictio = dictionary(df) # Create dictionary of vocabulary
