@@ -1,0 +1,856 @@
+Tentamennummer: 3
+Subjectcode:214
+Punten: 0
+Antwoord: Een onderzoek waarbij de proefpersonen een verhaal te lezen kregen over een vrouw in de bijstand. Dit verhaal was levendig verteld. Vervolgens moesten proefpersonen een vragenlijst invullen zodat hun attitude kon worden gemeten. De groep die het verhaal van de vrouw had gelezen, werd vervolgens ook onderverdeeld in twee groepen. Tegen de ene groep werd gezegd dat het verhaal typisch was voor mensen in de bijstand, en tegen de andere groep werd gezegd dat de situatie atypisch was. Bij de atypische groep veranderde de attitude tegenover mensen in de bijstand weinig, wat raar is want het verhaal dat ze hadden gelezen had een steekproef van N=1.
+Tentamennummer: 7
+Subjectcode: ?
+Punten: 10
+Antwoord: Het onderzoek waarbij men de vraag moest beantwoorden welk van_abbreviation de_abbreviation 2 ziekenhuizen de meeste dagen had waarop 60% of meer jongens geboren waren. Werd verteld over twee ziekenhuizen, in de kleine werden gemiddeld_abbreviation 15 baby’s per dag geboren, in de grote gemiddeld_abbreviation 45 baby’s per dag. De meerderheid van_abbreviation de_abbreviation mensen dacht dat dat bij beiden ziekenhuizen gelijk was. De rest van_abbreviation de_abbreviation mensen dacht de helft ervan de grote en de helft ervan de kleine. Ze hielden dus geen rekening met het feit dat hoe groter de steekproef, hoe dichter dat gemiddelde_abbreviation bij het populatiegemiddelde_abbreviation komt te liggen, wat hier dus 50% is voor aantal jongens. Het grotere ziekenhuis heeft dus een grotere n, en ligt dus dichter bij het gemiddelde, dus heeft het kleine ziekenhuis_abbreviation waarschijnlijk_abbreviation de meeste dagen met 60% of meer jongens. Dit onderzoek is in 1973 gedaan.
+Tentamennummer: 9
+Subjectcode: 179
+Punten: 10
+Antwoord: Er is onderzoek gedaan naar de keuze van psychologiestudenten voor bepaalde vakken. Hierbij werd in de ene conditie een verhaal verteld over de vakken om de studenten enthousiast te maken. In de andere conditie werden er statistische gegevens laten zien aan de studenten, zonder een levendig verhaal erbij. \n\n Het resultaat was dat de studenten kozen voor de vakken die levendig gepresenteerd werden. \n\n Dit is ongevoelig voor sample_english size_english, omdat de statistische gegevens op meer informatie zijn gebaseerd en dat geeft een beter beeld over een vak dan een leuk verhaaltje.
+Tentamennummer: 13
+Subjectcode: 200
+Punten:10
+Antwoord: Proefpersonen kregen te horen over 2 ziekenhuizen. Één kleine en één grote. In het grote ziekenhuis bevielen vaker vrouwen dan in het kleine ziekenhuis. Nu werd er aan de proefpersonen gevraagd in welk ziekenhuis vaker méér jongetjes werden geboren dan meisjes. De meeste proefpersonen zeiden dat dit in alletwee de ziekenhuizen even vaak gebeurde. \n Zij hielden hierbij geen rekening met het feit dat hoe groter de steekproef, hoe dichter de scores bij de populatie komen. In het kleine ziekenhuis zullen vaker meer jongens geboren worden aangezien hier de kleinste steekproef is, en deze minder vaak overeenkomt met de scores in de populatie.
+Tentamennummer: 14
+Subjectcode: 198
+Punten: 10
+Antwoord: Het onderzoek waarbij er twee ziekenhuizen waren, één met gemiddeld 15 geboortes per dag en één met gemiddeld 45. Er werd mensen gevraagd bij welk van de ziekenhuizen eerder / het vaakst 60% jongens zouden zijn (van de geboren kinderen). \n Mensen antwoordden ofwel dat dit een gelijke kans was (de meeste mensen), ofwel zij kozen voor het grotere of kleinere ziekenhuis naar deze twee werden ongeveer_abbreviation even vaak genoemd.  \n\n Mensen bleken dus niet door te hebben dat deze kans bij een kleinere sample_english size_english groter is.
+
+Tentamennummer: 15
+Subjectcode: 310
+Punten: 7
+Antwoord: Een groep psychologiestudenten werd verdeeld in 2 groepen. De ene groep kreeg de gemiddelden van een cursusevaluatie op basis van 27 tot 131 studenten. \n De andere groep kreeg commentaar van 2 of studenten. De groep die de gemiddeldes had gekregen, liet zich daar veel minder door beïnvloeden dan de mate waarin de andere groep zich liet beïnvloeden door de persoonlijke beoordelingen van een paar studenten. \n\n De studenten in de groep met de gemiddeldes lieten zich dus niet zozeer beïnvloeden door de gemiddeldes van de cursusevaluaties bij het kiezen van een cursus. De studenten in de groep met de paar studenten lieten zich wel beïnvloeden door de persoonlijke beoordelingen ook al was dat een kleinere steekproef.
+Tentamennummer: 16
+Subjectcode: ?
+Punten: 10
+Antwoord: Studenten kregen voor aanvang van een cursus ofwel de persoonlijkere evaluatie van een klein aantal studenten wat de cursus al gevolgd had, ofwel de meer statistisch benaderde evaluatie van de cursus gebaseerd op een grote steekproef onder studenten die de cursus al gevolgd hadden. Beide beoordelingen waren gescoord op dezelfde schaal. \n De studenten leken hun waardering voor de cursus meer te laten beïnvloeden door de kleinere (en persoonlijkere) steekproef dan door de grotere (en “saaiere”) steekproef. anders hadden ze hun mening wel meer gebaseerd op de grotere steekproef.
+Tentamennummer: 18
+Subjectcode: 272
+Punten: 0
+Antwoord: In het boek staan twee onderzoeken die qua geloofwaardigheid met elkaar vergeleken worden. De een heeft een behoorlijk aantal deelnemers de ander een stuk minder deelnemers, maar heeft wel een overtuigingskracht. Mensen waren sneller geneigd dit laatste onderzoek te geloven in plaats van het onderzoek waar veel meer deelnemers bij betrokken waren en die dus eigenlijk betrouwbaarder is.
+Tentamennummer: 21
+Subjectcode: 285
+Punten: 10
+Antwoord: Er werd verteld over twee ziekenhuizen. In ziekenhuis A werden 45 baby’s per dag geboren. In ziekenhuis B  waren dat er 15. Aan de proefpersonen werd gevraagd in welk ziekenhuis de grootste kans was op een dag waarbij 60% van de geboren baby’s jongens waren. \n\n Het grootste deel van de proefpersonen zeiden dat de kans bij beide ziekenhuizen even groot was. De overige proefpersonen waren ongeveer gelijk verdeeld over ziekenhuis A en ziekenhuis B.
+Tentamennummer: 22
+Subjectcode: 298
+Punten: 10
+Antwoord: In een onderzoek gericht op ongevoeligheid voor steekproefgrootte werden twee ziekenhuizen beschreven voor de participanten. \n\n In een grote ziekenhuis werden er gemiddeld 45 baby’s per dag geboren, in een kleine ziekenhuis werden er gemiddeld 15 per dag geboren. \n\n Aan de participanten werd gevraagd waar de kans groter was dat 60% van de geboren baby’s op een gegeven dag jongens waren. \n\n Meeste participanten zeiden dat er geen verschil was voor beide ziekenhuizen, en er waren ongeveer evenveel mensen die voor het grote ziekenhuis kozen, als mensen die het kleine ziekenhuis kozen. Een groep participanten die voor het experiment een statistiek cursus hadden gehad, maakten deze fout in het algemeen niet.
+Tentamennummer: 24
+Subjectcode: 224
+Punten: 7
+Antwoord: Sample_english size_english: levendige informatie: \n\n Psychologiestudenten kregen de gemiddelde evaluaties van 5 mensen over een bepaald vak daarnaast kreeg men ook van 3 andere mensen een video te zien die over een bepaald vak vertelde. \n\n Hieruit kozen de psychologiestudenten eerder het vak waarbij de video was laten zien. \n\n Men is dus meer gevoelig voor levendige informatie dan dat er rekening met de sample_english size_english wordt gehouden. 
+Tentamennummer: 25
+Subjectcode: 261
+Punten: 10
+Antwoord: Mensen werden gevraagd bij welk ziekenhuis de kans is dat er op een dag 60% jongens worden geboren. Ze kunnen uit 2 ziekenhuizen kiezen: een met ongeveer 65 geboortes op een dag en een met ongeveer 15 geboortes op een dag. De meeste mensen schatten de kans van 60% jongens op een dag even hoog bij alle twee de ziekenhuizen. Ze zijn dus ongevoelig voor steekproefgrootte, want deze kans is niet hetzelfde voor een kleine steekproef. De kans dat een ziekenhuis met minder geboortes en dus een kleinere steekproef op een dag 60% jongens krijgt is groter dan een grotere steekproef.
+Tentamennummer: 26
+Subjectcode:182
+Punten: 10
+Antwoord: cursusevaluaties \n\n Een groep psychologiestudenten moet aan_abbreviation de_abbreviation hand_abbreviation van_abbreviation cursusevaluaties een cursus kiezen. \n De ene evaluatie was gebaseerd op een grote groep ? dus tientallen_abbreviation studenten die de cursus beoordeelden met_abbreviation behulp_abbreviation van_abbreviation een vijfpuntsschaal. De andere evaluatie was gebaseerd op 2 à 3 studenten die de cursus beoordeelden met behulp van een vijfpuntsschaal ÉN dit ook toelichten. \n\n Toen de studenten moesten kiezen, bleek dat ze vooral dat baseerden op de evaluatie van die 2 à 3 studenten mét toelichting.
+Tentamennummer: 30
+Subjectcode: 346
+Punten: 10
+Antwoord: Er zijn 2 verschillende ziekenhuizen 1 grote en 1 kleine. In het grote ziekenhuis worden per dag 45 baby’s geboren. In het kleine ziekenhuis worden per dag 15 baby’s geboren. Er wordt gevraagd aan mensen waar ze de kans groter schatten dat 60% van de baby’s een jongetje zal zijn. Het grootste deel denkt dat deze kans gelijk is. Verder is het deel wat denkt dat de kans groter is in het kleine ziekenhuis of groter in het grote ziekenhuis ongeveer gelijk. \n\n ( Er wordt hier geen rekening gehouden met de wet van grote getallen.)
+
+Tentamennummer: 32
+Subjectcode: 220
+Punten: 10
+Antwoord: Onderzoek van Kahneman & Tversky: proefpersonen (die nooit statistiek hadden gehad) kregen twee ziekenhuizen beschreven. Een groot ziekenhuis waar 45 baby’s per dag werden geboren en een klein ziekenhuis waar 15 baby’s per dag werden geboren. De proefpersonen kregen hierbij de vraag in welk ziekenhuis is het het waarschijnlijkst dat er 60% of meer jongetjes worden geboren. \n De meeste proefpersonen dachten dat de kans voor beide ziekenhuizen even groot was. De rest van de proefpersonen dachten even vaak het grote als het kleine ziekenhuis. \n Hierbij wordt de Wet van de Grote Aantallen dus genegeerd.
+Tentamennummer: 33
+Subjectcode: 343
+Punten: 10
+Antwoord: Het onderzoek beschrijft 2 ziekenhuizen aan proefpersonen een kleinere en een grotere. \n In de kleine zijn 15 geboortes per dag. \n In de grote zijn 40 geboortes per dag. \n\n De vraag: in welke van de twee is de kans groter dat 60% van de die dag geboren baby’s een jongen is. \n\n Het antwoord bij proefpersonen zonder statistiekopleiding was 50/50 verdeeld, de helft had hem dus fout. \n\n Deze fout werd bij statistiek opgeleide personen niet gemaakt. \n\n gedachte hierachter: Het gemiddelde van een grote steekproef zal dichter bij het gemiddelde van de algemene populatie liggen.
+Tentamennummer: 35
+Subjectcode: 339
+Punten: 3
+Antwoord: Er is aan proefpersonen gevraagd in welk ziekenhuis zij denken dat er meer jongetjes dan meisjes worden geboren. Dit getal ligt op 60%. \n In het kleine ziekenhuis worden 15 kinderen per dag geboren. In het grote ziekenhuis worden per dag 45 kinderen geboren. \n De proefpersonen dachten dat het antwoord op de vraag gelijk is: In zowel het kleine als in het grote ziekenhuis worden evenveel jongens als meisjes geboren. Dit antwoord is fout. Het juiste antwoord is, is dat er in het grote ziekenhuis meer jongetjes dan meisjes worden geboren. De steekproefgrootte in het grote ziekenhuis is beter en daarom komt de uitkomst meer bij het populatie gemiddelde te liggen en dat is 60%. De proefpersonen hielden dus geen rekening met de Wet van de Grote Aantallen.
+Tentamennummer: 36
+Subjectcode: 141
+Punten: 10
+Antwoord: Studenten kregen twee cursusevaluaties te zien en moesten kiezen aan welke zij deel wilden nemen. \n Een evaluatie bestond uit een samenvatting van vele meningen, op een vijfpuntsschaal. De andere evaluatie bestond uit video’s van 3 studenten die vertelden over de cursus, gebaseerd op dezelfde vijfpuntsschaal. \n\n Het bleek dat het merendeel van de studenten koos voor de cursus met de evaluatie op video. Dit terwijl de andere evaluatie veel meer meningen bevatte en daarmee betrouwbaarder was.
+Tentamennummer: 38
+Subjectcode: 202
+Punten: 10
+Antwoord: Mensen zijn ongevoelig voor sample_english size_english doordat ze zich niet bewust zijn van de Wet van de Grote Getallen. In een onderzoek hebben de onderzoekers een situatie uitgelegd. Die hield in: Er zijn twee ziekenhuizen, in de ene werden per dag 45 kinderen geboren en in de andere 15. Nu was de vraag aan de proefpersonen: In welk ziekenhuis is de kans dat onder de geboren kinderen 60% jongen is? Uit het onderzoek bleek dat de proefpersonen de kans even groot schatten. Echter geldt dit waarschijnlijk voor het kleine ziekenhuis (met 15 geboren kinderen per dag) omdat het andere ziekenhuis meer zal neigen naar 50%. De kans op jongen of meisje is 50/50. Hoe groter de steekproef, hoe dichter de uitslag bij het populatiegemiddelde ligt.
+Tentamennummer: 39
+Subjectcode: 340
+Punten: 7
+Antwoord: In een onderzoek van Kahneman en Tversky werden mensen gevraagd in welk ziekenhuis waarschijnlijk 60% van de geboren kindjes een jongen waren. De keuzes waren een ziekenhuis waar 45 kinderen geboren worden op een dag en een ziekenhuis waar 15 kinderen geboren worden op een dag. Respectievelijk een groot en klein ziekenhuis. De verdeling van antwoorden was ongeveer gelijk. Velen antwoordden fout. \n\n Het goede antwoord zou zijn: het kleine ziekenhuis, want in het grote ziekenhuis zou het dichter bij een verdeling van 50% jongens en 50% meisjes komen.
+Tentamennummer: 41
+Subjectcode:262
+Punten: 10  
+Antwoord: In de eerste conditie kregen psychologiestudenten een cursusevaluatie, waaraan heel veel studenten meededen. In de tweede conditie konden de psychologiestudenten twee studenten zien en horen, die de cursus op dezelfde schaal beoordeelden als in de cursusevaluatie. Hoewel de twee studenten in tegenstelling tot alle deelnemers aan de cursusevaluatie een hele kleine steekproef zijn, lieten zich de psychologiestudenten door hun veel meer beïnvloeden. 
+Tentamennummer: 43
+Subjectcode: 154
+Punten: 10
+Antwoord: Bij een onderzoek werd aan proefpersonen gevraagd in welk ziekenhuis ze dachten dat er per dag 60% jongens geboren zouden worden van de baby’s die geboren werden: in een groot of een klein ziekenhuis. \n Proefpersonen gaven aan dat ze dachten dat dit bij beide ziekenhuizen hetzelfde zou zijn, maar aangezien je bij een grotere steekproef dichter bij het gemiddelde komt (50% jongens en 50% meisjes) zou het grote ziekenhuis waar meer baby’s geboren worden meer naar 50% jongens neigen. Het kleine ziekenhuis heeft maar een kleiner aantal baby’s dat geboren wordt, dus dat percentage jongens of meisjes kan meer verschillen ten_abbreviation opzichte_abbreviation van_abbreviation het gemiddelde en daarom is de kans op 60% jongens daar groter. Proefpersonen hielden dus geen rekening met de grootte van de steekproef.
+Tentamennummer: 45
+Subjectcode:302
+Punten: 0
+Antwoord: Studenten moesten cursus beoordelen. Daarbij konden ze van 10 studenten die het eerder hadden gedaan de beoordeling zien. Anderen konden gemiddelden van een groot aantal mensen van eerdere jaren zien. De studenten werden meer beïnvloed door de mening van de leeftijdsgenoten dan de gemiddelden. Dit is een ongevoeligheid voor steekproefgrootte, want het is maar de mening van 10 leeftijdsgenoten en de andere scores  waren het gemiddelde van heel veel beoordelingen, dus betrouwbaarder.
+Tentamennummer: 46
+Subjectcode: 264
+Punten: 7
+Antwoord: Studenten moesten een cursus kiezen na het horen van een evaluatie van het vak. In conditie 1. bestond deze info uit een samenvatting van tientallen studenten van een 5-puntsschaal beoordeling. Conditie 2. was een evaluatie op 5-puntsschaal en commentaar van twee à drie studenten, persoonlijke toelichtingen dus. Daarna mochten de studenten een cursus kiezen. \n\n Het bleek dat de evaluatie van conditie 2 meer invloed had op de keuze dan conditie 1, ook al bestond conditie 1 uit informatie van veel meer studenten. Volgens de wet van Grote Getallen zou conditie 1 dus een eerlijker beeld geven over de beoordeling van de cursus. De studenten lieten zich echter meer beïnvloeden door het levendige verhaal dan het abstracte statistische verhaal.
+Tentamennummer: 48
+Subjectcode: 287
+Punten: 10
+Antwoord: Studenten kregen 2 type voorlichtingen over 2 vakken \n bij situatie 1 kregen ze te horen dat er gemiddeldes van enkele tientallen studenten die de opleiding / vak hadden gevolgd berekend waren aan de hand van een ingevulde 5 punten beoordeling. \n\n In situatie 2 kregen ze van 2 à 3 studenten verbale feedback over het vak / de opleiding. \n\n Het bleek dat de studenten veel sterker afgingen op advies uit de verbale gesprekken ook al waren deze groepen veel kleiner dan die van de punten beoordeling.
+Tentamennummer: 50
+Subjectcode: 171
+Punten: 10
+Antwoord: Dat mensen soms ongevoelig zijn voor sample_english size_english blijkt uit het volgende onderzoek: dit onderzoek heeft te maken dat mensen niet bekend zijn met de wet van de grote aantallen. Wat wil zeggen hoe groter je steekproef is, hoe betrouwbaarder de steekproef is. De mensen in dit onderzoek werden de geboortecijfers van jongetjes en meisjes uit twee verschillende ziekenhuizen getoond. Het ene ziekenhuis had een veel kleiner aantal geboren babys. Mensen uit het onderzoek werden gevraagd of de kans gelijk was als in beide ziekenhuizen 60% jongetjes werden geboren veel mensen dachten dat dat zo was. In het ziekenhuis waar een groter totaal aantal werd geboren moet de verhouding natuurlijk dichter bij de 50% liggen.
+Tentamennummer: 51
+Subjectcode: 206
+Punten: 7
+Antwoord: Aan mensen werd de volgende vraag gesteld: “er zijn twee ziekenhuizen, een grote en een kleine. In het grote ziekenhuis worden dagelijks 150 baby’s geboren en in het kleine 45. Bij welk ziekenhuis komt het het vaakst voor dat 60% van de geboren baby’s een jongen is?” De mensen antwoordden meestal dat het niet uitmaakte, dat het voor beide ziekenhuizen gelijk was. Ze hielden geen rekening met de Wet van Grote Aantallen: hoe groter de steekproef des te meer het steekproefgemiddelde op het populatiegemiddelde zal lijken. Het populatiegemiddelde is ongeveer 50%.. Het grote ziekenhuis zal vaker overeenkomen met de populatie en dus meer naar de 50% jongens neigen. Uitzonderingen, zoals 60% jongens, zullen vaker voorkomen bij het kleine ziekenhuis. Toch zeiden de deelnemers vaak dat het bij beide ziekenhuizen even vaak voorkomt, waaruit blijkt dat ze geen rekening houden met de steekproefgrootte.
+Tentamennummer: 53
+Subjectcode: 248
+Punten: 7
+Antwoord: Ziekenhuis-onderzoek \n\n Aan een groep mensen wordt vertelt dat er twee ziekenhuizen zijn. In het ene ziekenhuis (grote) worden gemiddeld 45 baby’s per dag geboren en in het andere (kleine) ziekenhuis gemiddeld 15 babys per dag. \n\n Er wordt gevraagd waar de kans groter is dat aan een dag 60% jongens worden geboren. \n\n De meestaal_nonexisting van de mensen zeggen dat de kans in het grote ziekenhuis groter is. \n\n Dit is een voorbeeld van sample bias want de mensen letten niet op (zijn ongevoelig) dat de grootte van de steekproef van het kleine ziekenhuis te klein is om er iets over te kunnen zeggen. En ten tweede als je iets erover zou zeggen dan zou de kans in het kleine ziekenhuis groter zijn omdat door een kleine steekproef het gemiddelde meer zou afwijken van het populatiegemiddelde.
+Tentamennummer: 54
+Subjectcode: 100
+Punten: 10
+Antwoord: Kahneman en Tversky (1972) hebben een onderzoek gedaan, waarbij de proefpersonen data krijgen over twee ziekenhuizen. Bij de eerste ziekenhuis, een kleine ziekenhuis, worden gemiddeld per week 15 kinderen geboren. Bij het grote ziekenhuis worden gemiddeld 45 kinderen per week geboren. Nu moeten de proefpersonen inschatten in welke ziekenhuis meer jongetjes werden geboren. De grootste deel zegt, dat er waarschijnlijk geen verschil zou zijn. Een evengroot deel zegt dat het ziekenhuis A of B is. Maar dit aanname is statistisch fout, omdat het waarschijnlijk is, dat in het kleine ziekenhuis meer jongetjes worden geboren. Omdat de steekproef veel kleiner is, ligt het gemiddelde verder weg van het populatiegemiddelde.
+Tentamennummer: 56
+Subjectcode: 276
+Punten: 10
+Antwoord: Kahneman & Tversky (1972) \n\n In ziekenhuis A worden gemiddeld 45 kinderen per dag geboren \n In ziekenhuis B worden gemiddeld 15 kinderen per dag geboren. \n\n Vraag aan proefpersonen Welke ziekenhuis heeft vaker een geboorten aantal van 60% of meer jongen per dag \n\n de meesten mensen hebben gezegd dat dit bij alle bij gelijk zou zijn. \n\n de rest verdeelde zich gelijk op A en B met hen antwoorden \n\n studenten die statistiek hebben gehad maakten geen fouten \n\n ? ze kozen B omdat hoe groter de steekproef is hoe groter ook de normaalheid van de verdeling is.
+Tentamennummer: 58
+Subjectcode: 230
+Punten: 10
+Antwoord: Er werd een onderzoek gedaan naar sample_english size_english door één groep een evaluatie over een cursus voor te leggen met daarin de mening van tientallen studenten op een vijfpuntenschaal, en daarna de groep te laten luisteren en kijken naar 3 studenten die hun mening mondeling overbrachten. \n\n Uit de resultaten bleek dat de deelnemers meer voor de cursus kozen waarbij de evaluatie mondeling werd overgebracht dan voor de cursus waar tientallen de cursus schriftelijk hadden geëvalueerd. \n\n Hieruit blijkt dat mensen sneller kiezen voor iets waar ze levendige verhalen over horen, ondanks dat dit de mening representeert van maar 3 mensen. De steekproef voor de schriftelijke enquête was veel groter, dus betrouwbaarder. En toch houden mensen daar geen rekening mee, ze gaan voor de mooie verhalen en denken niet na over de grootte van de steekproef = sample_english size_english.
+Tentamennummer: 59
+Subjectcode: 292
+Punten: 10
+Antwoord: Bij een onderzoek werd aan de proefpersonen gevraagd bij welk ziekenhuis de kans het grootste was dat er op een dag 60% van de baby’s die geboren werden jongetje waren. Men kon kiezen uit: \n\n ziekenhuis 1: gemiddeld 15 baby’s werden hier geboren per dag \n ziekenhuis 2: gemiddeld 45 baby’s werden hier geboren per dag \n\n De meeste mensen zeiden dat de kans dat er 60% jongetjes op een dag werden geboren bij beide ziekenhuizen even groot was. Hieruit blijkt dat mensen ongevoelig zijn voor sample_english size_english. Ziekenhuis 1 is namelijk een kleinere steekproef dus de kans is hier groter dat het aantal jongetjes dat geboren wordt van het populatiegemiddelde van 50% afwijkt. Hoe groter de steekproef hoe dichter dichter het gemiddelde bij het populatiegemiddelde ligt.
+Tentamennummer: 60
+Subjectcode: 265
+Punten: 10
+Antwoord: In het onderzoek waren er proefpersonen, die nog nooit statistiek hadden gehad. Deze mensen werd uitgelegd dat er twee ziekenhuizen waren ( een groot ziekenhuis waar er gemiddeld 45 baby’s per dag werden geboren en een klein ziekenhuis met gemiddeld 15 baby’s per dag. Toen werd er gevraagd: Welk ziekenhuis heeft de meeste dagen waarop 60% of meer van de baby’s jongens zijn? De meeste mensen zeiden dat het hetzelfde was. anderen waren gelijk verdeeld over het grote en kleine ziekenhuis. Hieruit blijkt dat deze mensen geen rekening houden met de wet van grote aantallen, want hoe meer baby’s er geboren worden, hoe dichter het bij de 50% komt. Dus heeft het kleine ziekenhuis de meeste dagen met 60% of meer jongens. 
+Tentamennummer: 61
+Subjectcode: 222
+Punten: 10
+Antwoord: Er is onderzoek gedaan naar wat studenten van een bepaalde cursus vonden. De ene groep studenten kreeg een cursusevaluatie te zien, die onder tussen de 26 en 132 studenten was gehouden met een vijfpuntsschaal bij de antwoorden. \n De andere groep kreeg een interview te zien van drie studenten die commentaar gaven op de cursus. \n Uiteindelijk lieten de studenten hun keuzes op de cursus sterk beïnvloeden door de levendigheid van informatie: namelijk de interviews. Dit terwijl de groep met de cursusevaluatie uit een veel grotere (26-132 studenten) steekproef bestond dan de interviews. \n\n (3 studenten). Dus ze maken hierbij de fout dat ze de interviews zwaarder laten wegen door de levendigheid, terwijl deze steekproef veel kleiner is.
+Tentamennummer: 64
+Subjectcode: 110
+Punten: 10
+Antwoord: onderzoek voor cursusaanbevelingen. Een groep studenten ziet een film waarop 2 of 3 studenten een cursus aanraden. De andere groep studenten ziet een overzicht van feedback over de cursussen gemaakt door 25-138 studenten. Uit de resultaten bleek dat de eerste groep meer was beïnvloedt door de video’s van 2/ 3 studenten dan de tweede groep. Ook al is in groep 1 N dus 2/ 3 en in groep 2 N 25-138, toch speelt de levendigere informatie van de veel kleinere steekproef een grotere rol. Hieruit komt dus naar voren dat mensen soms ongevoelig zijn voor sample_english size_english.
+Tentamennummer: 65
+Subjectcode: 337
+Punten: 10
+Antwoord: Cursuskeuze \n\n Psychologiestudenten wordt gevraagd om een keuze te maken over welke cursus zij graag willen volgen. Vooraf worden zij ingedeeld in 2 groepen. De eerste groep krijgt 10 gemiddelde cursusevaluaties te zien waarin mensen cursussen beoordelen op een 5-puntsschaal. Er wordt bij vermeld dat de resultaten gebaseerd zijn op een groep van 26 tot 132 studenten. De andere groep krijgt twee of drie studenten te zien met hun persoonlijke commentaar, op de door hun gevolgde cursus. Vervolgens  moeten de psychologiestudenten een cursus kiezen. Wat uit de resultaten blijkt is dat de studenten die de persoonlijke beschrijvingen gehad hadden zich veel meer hadden laten beïnvloeden terwijl de evaluaties op een grotere steekproef gebaseerd waren. ? Terwijl de gemiddelde cursusevaluaties op een grotere steekproef gebaseerd waren.
+Tentamennummer:  66
+Subjectcode: 251 
+Punten: 10
+Antwoord: Aan de proefpersonen werd verteld dat er een groot en een klein ziekenhuis was. Per dag werden in het grote ziekenhuis gemiddeld 45 baby’s geboren en in het kleine maar 15. Toen werd er gevraagd in welk ziekenhuis de kans het grootst was dat er op 1 dag 60% of meer jongens werden geboren. Het merendeel van de proefpersonen dacht de kans voor beide ziekenhuizen even groot was. Verder werden het grote en kleine ziekenhuis even vaak genoemd. De proefpersonen hadden geen statistiek gehad, statistiek studenten maakten deze fout dan ook niet. De proefpersonen hielden geen rekening met de wet van grote aantallen en waren ongevoelig voor steekproefgrootte.
+Tentamennummer: 67
+Subjectcode: 187
+Punten: 10
+Antwoord: Kahneman_abbreviation & Tversky_abbreviation deden (een) onderzoek naar de ongevoeligheid van de steekproefgrootte. Proefpersonen die geen kennis van statistiek hadden moesten inschatten of in een heel klein of in een heel groot ziekenhuis die eerder worden beschreven de waarschijnlijkheid groter is dat 60% of meer jongens worden geboren. De meesten mensen dachten dat de waarschijnlijkheid in beide ziekenhuizen gelijk was. De rest splitste zich op en even veel mensen dachten dat de waarschijnlijkheid bij een klein of bij een groot ziekenhuis groter was. \n De mensen waren ongevoelig voor de steekproefgrootte. Ze wisten niet dat de waarden bij een heel grote steekproef het gemiddelde benaderen. Dat betekent dat de waarschijnlijkheid dat 60% of meer (dus een waarde die verder weg ligt van het gemiddelde) jongen worden geboren in een klein ziekenhuis, dus een kleinere steekproef, waarschijnlijker is.
+Tentamennummer: 69
+Subjectcode: 172
+Punten: 10
+Antwoord: Een onderzoek was met betrekking op twee ziekenhuizen. Het ene ziekenhuis was groot en daar werden ongeveer 45 kinderen geboren. Het andere ziekenhuis was klein en daar werden ongeveer 15 kinderen per maand geboren. \n De proefpersonen moesten inschatten in welk ziekenhuis de waarschijnlijkheid dat 60% jongens in een maand worden geboren het grootst zal zijn. \n De meeste mensen dachten, dat de waarschijnlijkheid in beide ziekenhuizen even groot zal zijn, hoewel dat niet juist is. \n Mensen met een opleiding in statistiek deden deze fout niet. 
+Tentamennummer: 71
+Subjectcode:253
+Punten: 10
+Antwoord: studenten kregen in een onderzoek te zien wat de gemiddelde waarderingen voor cursussen waren die zij konden kiezen. \n\n Daarna kregen zij van 2 of 3 andere studenten te horen wat zij van de cursussen vonden. \n\n Daarna moesten ze kiezen welke cursus ze wilden volgen. \n\n Resultaten: het bleek dat de proefpersonen meer waarde hechtten aan het oordeel van de 2 à 3 studenten die levendig erover praatten, dan de gemiddeldes van honderden studenten op papier.
+Tentamennummer: 73
+Subjectcode:327
+Punten: 10
+Antwoord: In het onderzoek kregen mensen twee ziekenhuizen voorgelegd. Een kleiner ziekenhuis, waar per dag 15 baby’s werden geboren en een groter ziekenhuis, waar per dag 45 baby’s werden geboren. Vervolgens kregen zij de vraag bij welk ziekenhuis de kans groter was dat er op een dag 60% jongetjes worden geboren. De meeste mensen dachten dat deze kans bij beide ziekenhuizen hetzelfde was. Dit is echter niet zo. Hoe groter de steekproef namelijk is, hoe meer het steekproefgemiddelde naar het populatiegemiddelde toe trekt (in dit geval dus 50%). Bij het kleine ziekenhuis is de kans op 60% jongetjes dus groter dan bij het grote ziekenhuis. Het onderzoek heeft aangetoond dat de meeste mensen hier dus niet bewust zijn van de steekproefgrootte, en dus ongevoelig zijn voor ‘sample_english size_english’
+Tentamennummer: 74
+Subjectcode: 148
+Punten: 10
+Antwoord: Er wordt aan mensen een voorbeeld van twee ziekenhuizen gegeven. Een kleine, waar per dag 15 baby’s ter wereld komen, en een grote, waar per dag 45 baby’s ter wereld komen. Er wordt gevraagd welk ziekenhuis de grootste kans heeft om op een dag 60% of meer jongetjes ter wereld te brengen. Veel mensen (de helft van de ondervraagden) zei het grote ziekenhuis. De andere helft was verdeeld tussen het kleine ziekenhuis, of beide evenveel kans. Het antwoord is het kleine ziekenhuis, wat de meeste mensen dus fout hadden.
+Tentamennummer: 75
+Subjectcode: 305
+Punten: 10
+Antwoord: onderzoek over twee ziekenhuizen, één ervan was groot en er werden veel kinderen geboren, het andere was klein (dus minder kinderen). Onderzoekers stelden de vraag: in welk ziekenhuis is de kans op 60% jongens groter? velen antwoordden: “Even groot”. Hieruit blijkt dat zij géén rekening met het feit dat in een kleiner ziekenhuis het sowieso makkelijker is om 60% jongens te krijgen, omdat 1 baby relatief gezien veel meer verschil maakt: 10 baby’s, 5 jongens_abbreviation 5 meisje, als er dan 1 jongen wordt geboren, is er procentueel veel meer verschil dan als er 100 baby’s geboren worden. \n\n Het feit dat mensen “allebei evenveel kans” zeggen, wijst erop dat ze niet denken over de grootte van een steekproef
+Tentamennummer: 77
+Subjectcode: 149
+Punten: 10
+Antwoord: In een onderzoek kregen de subjecten in een conditie het gemiddelde van een cursusevaluatie op basis van tientallen eerdere studenten. In de ander conditie hoorden de subjecten twee of drie eerdere studenten, die de cursus op dezelfde schaal evalueerden. \n Uit de resultaten bleek, dat de subjecten zich meer lieten beïnvloeden door de studenten die ze zelf hoorden in plaats van het gemiddelde dat gebaseerd was op een veel groter steekproef. De subjecten hielden dus onvoldoende rekening met de grootte van de steekproef.
+Tentamennummer: 80
+Subjectcode: 268
+Punten: 10
+Antwoord: Niet op de hoogte. Er werd een onderzoek gedaan waar mensen moesten inschatten in welk van twee ziekenhuizen meer jongens worden geboren. \n In het grote ziekenhuis worden iedere dag gemiddeld 60 kinderen geboren (komen iedere dag 60 kinderen in de wereld ? andere omschrijving, omdat ik niet weet of geboren een woord in Nederlands is.) \n en in het kleine ziekenhuis zijn het gemiddeld 15 kinderen per dag. \n De meeste mensen hebben gezegd er is geen verschil tussen de aantal jongens in de ziekenhuizen \n of dat er meer worden geboren in het grote.
+Tentamennummer: 82
+Subjectcode: 241
+Punten: 10
+Antwoord: Dit was een onderzoek gedaan door statistiekdocenten onder hun leerlingen. Hierbij stelde zij de volgende vraag: \n\n Er zijn twee verschillende ziekenhuizen, één groot en één klein. In het grote ziekenhuis worden er gemiddeld 45 baby's geboren, in het kleine gemiddeld 15. In welk ziekenhuis is de kans groter dat er 60% jongens worden geboren? \n\n Veel leerlingen gaven aan dat de kans voor beide ziekenhuizen even groot zou zijn, de rest gaf even vaak het kleine als het grote ziekenhuis als antwoord. Hier is een groot deel zich niet bewust van de Wet van Grote Aantallen, die stelt dat hoe groter de steekproef, hoe dichter het gemiddelde van de steekproef het gemiddelde van de populatie benadert. \n Het goede antwoord was het kleine ziekenhuis.
+Tentamennummer: 83
+Subjectcode: 317
+Punten: 10
+Antwoord: Een onderzoek dat in het boek wordt besproken gaat over cursusevaluaties. De proefpersonen kregen statistische informatie over de evaluaties van tientallen studenten. Ze konden ook auditieve opnamen of filmpjes krijgen over twee à drie studenten die (levendig) vertelden over hun cursusevaluatie. Het bleek dat de proefpersonen dit zwaarder lieten meewegen dan je zou verwachten, want n=2 of n=3 zegt natuurlijk niet zo veel. Je zou verwachten dat ze vooral de statistische informatie van tientallen studenten zwaarder zouden laten meewegen in de keuze voor een cursus want een grotere steekproef zegt veel meer.
+Tentamennummer: 85
+Subjectcode: 118
+Punten: 10
+Antwoord: deelnemers werden verteld dat er 2 ziekenhuizen waren. In één ziekenhuis vonden dagelijks veel meer geboortes plaats (ik geloof 45 vs 15). Vervolgens werd hen de vraag gesteld in welk ziekenhuis er meer dagen voorkwamen waarin het percentage jongens die geboren waren, 60% van het totale aantal geboortes was. Deelnemers meenden dat dit voor beide ziekenhuizen gelijk was. Ze hadden dus geen benul van de wet van grote aantallen en waren dus niet gevoelig voor de steekproefgrootte. Het goede antwoord is immers het kleine ziekenhuis. Aangezien hier minder geboortes plaatsvinden is een kans op een 60-40 verhouding groter als er meer geboortes plaatsvinden wordt vanwege de wet van de grote aantallen de kans op 50-50 steeds groter en de kans op 60-40 steeds kleiner. Dat de deelnemers dit niet wisten getuigt van het feit dat ze de sample_english size_english niet goed meenamen in hun redenatie en dus ongevoelig zijn voor de sample_english size_english.
+Tentamennummer: 86
+Subjectcode: 237
+Punten: 10
+Antwoord: Er is een onderzoek gehouden onder psychologiestudenten. De psychologiestudenten werden verdeeld in twee groepen waarin ze allebei een evaluatie kregen van een cursus. Het enige verschil was dat groep 1 schriftelijke data kreeg van 20-100 mensen en groep 2 kreeg 2 of 3 verhalen te horen van studenten die de cursus hadden gevolgd. Allebei de groepen prezen de cursus aan. Als resultaat kwam hieruit dat er meer aanmeldingen waren bij groep 2 dan bij groep 1, ondanks dat groep 1 groter en dus betrouwbaarder was. Hier komt dus naar voren dat mensen soms ongevoelig zijn voor ‘sample_english size_english’.
+Tentamennummer: 88
+Subjectcode: 325
+Punten: 10
+Antwoord: Onderzoek van Borgida & Nisbett \n\n ? proefpersonen zijn mensen die een cursus wilden volgen. Onderzoekers willen kijken of de personen een cursus kiezen op basis van gemiddelden (van heel veel mensen) of op basis van aanbevelingen (van maar 2 personen). \n\n ? uit onderzoek blijkt dat ondanks dat gemiddelden op veel meer personen is gebaseerd, de proefpersonen kiezen voor de cursus met aanbeveling omdat dit levendige informatie is. Doordat ze dus kiezen voor de levendige informatie en niet voor de grote hoeveelheid van personen informatie is er sprake van ongevoeligheid voor sample_english size_english.
+Tentamennummer: 89
+Subjectcode: 282
+Punten: 7
+Antwoord: psychologiestudenten kregen informatie over cursussen. 1 groep kreeg de gemiddelden van tientallen studenten die hun cursus een score hadden gegeven op een schaal van 1 tot 5. De tweede groep voerde een gesprek met 2 of 3 studenten die hun cursus beoordeelde en hun cijfer toelichtten. Vervolgens moesten de studenten een cursus kiezen. Ze kozen het meest voor de cursus van het gesprek, terwijl de steekproef van de eerste_abbreviation groep veel groter was.
+Tentamennummer: 92
+Subjectcode: 101
+Punten: 10
+Antwoord: Onderzoek van Kahneman & Tversky (1972). Aan de proefpersonen, die geen kennis hadden van statistiek, werd verteld dat er twee ziekenhuizen bestonden. Één groot ziekenhuis, waarin per dag gemiddeld 45 baby’s worden geboren, en één klein ziekenhuis waarin gemiddeld 15 baby’s per dag worden geboren. Vervolgens moesten de proefpersonen inschatten voor welk ziekenhuis de kans het grootst is dat er op een dag 60% jongens werden geboren. Het merendeel van de proefpersonen gaf aan dat deze kans in beide ziekenhuizen gelijk zou zijn. De overige proefpersonen waren verder gelijk verdeeld over het grote en het kleine ziekenhuis. Het blijkt dat naarmate men meer weet van statistiek deze fout minder gemaakt wordt.
+Tentamennummer: 94
+Subjectcode:?
+Punten: 10
+Antwoord: Aan personen, die in hun leven nooit een statistiek cursus zijn gevolgd wordt gevraagd, hoe hoog de kans is dat 60 procent of hoger een jongen wordt geboren in een groot ziekenhuis waar gemiddeld iedere dag 45 baby’s worden geboren of in een ziekenhuis (een klein ziekenhuis) waar iedere dag gemiddeld 15 baby’s worden geboren. [Al deze info werd aan de proefpersonen verteld]. Het merendeel van de proefpervoer_nonexisting schatte de kans op 60% of meer geboorten van jongens per dag voor de kleine, als ook de grote ziekenhuis even groot in. (De overige deel proefpersonen schatte de kans op 60% jongen geboorten, de helft ervan zegt de grote ziekenhuis, de andere helft van de proefpersoen_nonexisting zegt de kleine ziekenhuis.) Dus van de proefpersonen, welke de kans voor het grote ziekenhuis en de kleine niet even groot inschatten noemen 50% de groote en 50% de kleine ziekenhuis voor de kans op 60% jongen per dag.
+Tentamennummer: 96
+Subjectcode: 166
+Punten: 10
+Antwoord: Bij een onderzoek werden proefpersonen verteld over 2 ziekenhuizen. Een ziekenhuis was groot en er werden gemiddeld 45 baby’s per dag geboren. Een ziekenhuis was klein en er werden gemiddeld 15 baby’s per dag geboren. Er werd aan de proefpersonen gevraagd bij welk ziekenhuis het het meest waarschijnlijk was dat 60% of meer van de baby’s een jongen was. Het grootste deel van de proefpersonen gaf aan dat dit even waarschijnlijk was voor beide ziekenhuizen. De rest van de proefpersonen koos even vaak voor het kleine als het grote ziekenhuis. Als de proefpersonen echter bekend waren geweest met de wet van Grote Aantallen hadden ze voor het kleine ziekenhuis gekozen. Hoe groter de steekproef, hoe meer het gemiddelde naar het gemiddelde van de populatie gaat, wat bij aantal jongens 50% is. Bij het kleine ziekenhuis is er dus meer kans op 60% of meer jongens, (want dit ligt verder van het populatiegemiddelde) dan bij het grote ziekenhuis. De proefpersonen waren echter ongevoelig voor sample_english size_english en kozen dus niet het meest voor het kleine ziekenhuis.
+Tentamennummer: 97
+Subjectcode: 316
+Punten: 10
+Antwoord: In een onderzoek moesten studenten een van twee cursussen kiezen. Ze werden gepresenteerd met statistische informatie over de mening van tientallen studenten over de twee cursussen en met een klein nummer studenten die hun mening over de cursussen persoonlijk en levendig vertelden. In het eind bleek dat de meeste studenten hun keuze op het klein aantal persoonlijke meningen en niet de statistische data van een veel grotere steekproef zouden baseren.
+Tentamennummer: 98
+Subjectcode: 245
+Punten: 10
+Antwoord: In een onderzoek werd aan proefpersonen twee ziekenhuizen omschreven. Het ene ziekenhuis was klein, waar dagelijks gemiddeld 15 baby’s werden geboren. Het andere ziekenhuis was groot en dagelijks werden er gemiddeld 45 baby’s geboren. Aan de proefpersonen werd gevraagd waar (in welk ziekenhuis) zij de kans het grootst achtten dat van de geboren baby’s 60% of meer jongetjes waren. De meeste proefpersonen achtten de kans bij beide ziekenhuizen even groot. De rest van de proefpersonen hadden even vaak het kleine als het grote ziekenhuis als antwoord. Dit laat zien dat de proefpersonen geen rekening hielden met de wet van de Grote Aantallen. Een afwijking van het gemiddelde (standaarddeviatie_abbreviation) is namelijk het grootst bij een kleine steekproef.
+Tentamennummer: 99
+Subjectcode: ?
+Punten: 10
+Antwoord: Het onderzoek waarbij twee ziekenhuizen worden vergeleken. Het ene ziekenhuis heeft veel meer geboortes dan het andere ziekenhuis. Proefpersonen kregen de vraag in welk ziekenhuis de grootste kans was dat 60% jongens geboren werden. Mensen dachten dat de kans even groot was.
+Tentamennummer: 100
+Subjectcode: 167
+Punten: 10
+Antwoord: Borgida en Nisbett (1977) gaven gemiddelde cursusevaluaties aan psychologiestudenten en lieten twee tot drie studenten over de cursus vertellen (allebei op een vijf-puntenschaal). Het bleek dat de studenten zich eerder laten beïnvloeden van de informatie, die van een kleine steekproef levendig gepresenteerd wordt dan van de gemiddelde cursusevaluatie van duizenden studenten (een veel grotere steekproef).
+Tentamennummer: 102
+Subjectcode: ?
+Punten: 10
+Antwoord: Het onderzoek over waar het geschatte percentage jongens die wekelijks werden geboren vaker boven de 60% lag. \n\n Opzet: een groep mensen werd gevraagd waar het aantal jongens dat wekelijks op een kraamafdeling wordt geboren vaker hoger ligt dan 60%. \n\n ? in een groot ziekenhuis met wekelijks 45 geboortes \n\n of ? in een klein ziekenhuis met wekelijks 15 geboortes. \n\n Mensen die ongevoelig zijn voor sample_english size_english zeiden vaak (50% van de ondervraagden) dat de kans 50/50 was en dat er dus ongeveer even vaak zo’n situatie voorkwam bij zowel het kleine als het grote ziekenhuis. \n Het antwoord is echter dat het waarschijnlijker is dat 60% jongens vaker voorkomt in het kleine ziekenhuis. Aangezien het hier gaat om een kleinere steekproef is de kans dat het percentage jongens afwijkt van het gemiddelde (50) groter.
+Tentamennummer: 103
+Subjectcode: 284
+Punten: 10
+Antwoord: Er was een groep mensen met basiskennis van statistiek en een groep mensen zonder basiskennis van statistiek. Beide groepen werden gevraagd in welk ziekenhuis de kans groter was dat er op een dag 60% jongetjes werden geboren. In één van de twee ziekenhuizen werden gemiddeld dagelijks 45 baby’s geboren, in het andere ziekenhuis gemiddeld 15. De groep mensen zonder basiskennis van statistiek zei men dat de kans op 60% jongetjes op een dag even groot was in beide ziekenhuizen. De mensen met basiskennis van statistiek wisten echter dat in een kleinere steekproef, ofwel het ziekenhuis met gemiddeld minder baby’s per dag, de kans groter was dat het gemiddelde aantal jongens op een dag minimaal 60% zou zijn. In een grotere steekproef zullen minder snel afwijkende gemiddeldes voorkomen en zal het gemiddelde vaker en dichter bij de ‘normale 50%’ jongetjes zitten.
+Tentamennummer: 104
+Subjectcode: 293
+Punten: 10
+Antwoord: Bij een onderzoek werd gekeken naar hoe een cursusevaluatie de beslissing van studenten om deze cursus te volgen kon beïnvloeden. Hierbij werden de proefpersonen (studenten) opgedeeld in 2 groepen. Eén groep kreeg de mening / evaluatie van 2 of 3 studenten te horen die deze cursus al hadden gedaan en de andere groep kreeg het gemiddelde te horen van een cursusevaluatie gebaseerd op een vijfpuntenschaal en die cursusevaluatie was door tientallen studenten ingevuld. Toch bleek dat de proefpersonen de mening / evaluatie van de 2 of 3 studenten die ze te zien kregen veel meer meewogen bij de beslissing om de cursus te gaan volgen, dan de cijfers die uit de door tientallen ingevulde cursusevaluatie voortkwamen.
+Tentamennummer: 106
+Subjectcode: 342
+Punten: 0
+Antwoord: In een onderzoek is aangetoond dat er een correlatie van 0.72 tussen het zien van een video van een paar seconden waarin non-verbaal gedrag werd getoond van een docent en de eindevaluatie over deze docent. Dit laat zien dat zo’n korte video en dus ook een kleine steekproef uit het gedrag van deze docent er al voor zorgt dat ze deze docent aardig vinden en hem een goede docent vinden. Ze kijken hier dus niet meer naar de rest van zijn gedrag, en passen hun oordeel over deze docent niet meer aan.
+Tentamennummer: 107
+Subjectcode: 199
+Punten: 0
+Antwoord: In het boek wordt een onderzoek beschreven waarbij twee personen een antwoord-vragen-spelletje doen. \n De personen worden at random toegewezen naar antwoordgever en vragensteller. De antwoordgever wist ongeveer 40% van de vragen, die de vragensteller zelf bedacht had. Daarna moet het publiek en de twee participanten inschatten hoe groot de algemene kennis van de twee personen is. \n Uit de resultaten bleek dat de observatoren de algemene kennis van de vragensteller overschatten. Op grond van een kleine steekproef van de algemene kennis van de vragensteller wordt hij overschat. De meeste hadden niet door dat de vragensteller een voordeel tegenover de antwoordgever had door het bepalen van de vragen.
+Tentamennummer: 109
+Subjectcode: ?
+Punten: 10
+Antwoord: Onderzoek naar de conclusie van mensen met en zonder kennis van statistiek \n\n De vraag was welk ziekenhuis meer kans had op 60% jongetjes geboren op 1 dag. Een groot ziekenhuis met veel geboortes of een klein ziekenhuis met weinig geboortes. Statistisch onderlegden zeiden het kleine ziekenhuis. Zonder kennis zeiden gelijke kans.
+Tentamennummer: 112
+Subjectcode: 159
+Punten: 10
+Antwoord: Onderzoek cursusvoorkeur studenten \n\n Conditie 1: studenten kregen de resultaten van een cursusbeoordeling. Hierbij kregen ze de gemiddelden waarden, en de gemiddelden werden getrokken door het samenvatten van evaluaties van tientallen (!) studenten. \n -> beoordelingen op een vijfpuntsschaal_abbreviation. \n\n Conditie 2: 3(!) studenten praten over hun mening en beoordelen de cursus op dezelfde schaal, daarna vertelden ze nog meer over hun mening maar ook dat kwam overeen met hun beoordeling op de schaal. \n\n Studenten uit conditie 2, die naar de 3 studenten luisterden lieten zich meer in hun cursusvoorkeur beïnvloeden dan de studenten die de gemiddelden kregen (conditie 1), alhoewel de steekproef in conditie 2 veel kleiner was.
+Tentamennummer: 114
+Subjectcode: 118
+Punten: 10
+Antwoord:  In een onderzoek werden mensen gevraagd of ze denken dat in een grote of in een kleine ziekenhuis de kans groter zou moeten zijn dat er 60% jongens worden geboren op één dag. In het grote ziekenhuis worden ongeveer 45 baby's per dag geboren en in het kleine ziekenhuis worden ongeveer 15 baby's per dag geboren. Vaak werd het aangenomen, dat in de grote ziekenhuis de kans op een dag met 60% geboren jongens groter zou zijn. Echter houden ze niet ermee rekening dat een grotere steekproef altijd dichter bij het populatiegemiddelde komt (die zou 50% zijn) dan een kleine steekproef. Uiteindelijk zou de kans op een afwijking van de populatiegemiddelde in een kleine steekproef groter moeten zijn, dus is het waarschijnlijker als in het kleine ziekenhuis 60% jongens worden geboren.
+Tentamennummer: 115
+Subjectcode: 104
+Punten: 0
+Antwoord: -
+Tentamennummer: 118
+Subjectcode: 275
+Punten: 7
+Antwoord: In een onderzoek wordt aan personen gevraagd om zowel voor een klein ziekenhuis waar per dag in totaal minder geboorten plaatsvinden als ook voor een groot ziekenhuis waar per dag meer geboorten plaatsvinden te schatten waar per dag vaker dan 60% jongetjes ter wereld komen. \n Uit de resultaten blijkt dat de meeste mensen die kans van 60% jongetjes op een dag voor beide ziekenhuizen gelijk inschatten ofwel dat niet het geval is. Die mensen zijn dus heel ongevoelig voor de grootte van de steekproef en vergeten dat de kans in het kleine ziekenhuis veel groter is omdat er in totaal minder geboorten zijn en de kans voor jongetjes minder is dan voor meisjes.
+Tentamennummer: 119
+Subjectcode: 186
+Punten: 0
+Antwoord: Onderzoek naar meningen over gevangenisbewakers 2 condities waarin in de ene conditie een gespeelde humane gevangenisbewaker was & de ander minder humaan en vervolgens dachten mensen in de eerste groep (heel humaan) dat alle gevangenisbewakers humaner moesten zijn ten opzichte van het eerste maar deze man was niet random gekozen omdat de meeste gevangenisbewakers juist minder humaan moeten zijn zoals in de tweede groep.
+Tentamennummer: 120
+Subjectcode: 299
+Punten: 10
+Antwoord: Kahneman & Tversky (1972) beschreven aan hun proefpersonen twee ziekenhuizen, een grote en een kleine. In het kleine ziekenhuis worden er gemiddeld 15 baby’s per dag geboren en in het grote gemiddeld 45. Vervolgens legden ze hun proefpersonen de volgende vraag voor: welk ziekenhuis zal de meeste dagen hebben met 60% van de geboortes jongetjes? De subjecten gaven aan dat dit voor beide ziekenhuizen even groot zou moeten zijn qua kans. Echter houden zij geen rekening met de Wet van Grote Aantallen. Deze wet geeft namelijk aan dat bij een grotere steekproef het gemiddelde steeds dichter bij het populatiegemiddelde komt te liggen. Het grote ziekenhuis heeft een grotere steekproef (=meer geboortes gemiddeld per dag) en zal dus dichterbij het populatiegemiddelde van 50% liggen dan het kleine ziekenhuis. Het kleine ziekenhuis zal meer fluctuaties hebben en dus meer dagen met 60% van de geboortes jongetjes. De subjecten houden hier geen rekening mee en zijn dus ongevoelig voor ‘sample_english size_english’ / steekproefgrootte.
+Tentamennummer: 121
+Subjectcode: 139
+Punten: 10
+Antwoord: Proefpersonen worden geïnformeerd over twee ziekenhuizen. Een grote ziekenhuis met 45 geboorten per dag en een kleine ziekenhuis met 15 geboorten per dag. De proefpersonen worden nu gevraagd, in welk ziekenhuis een groter waarschijnlijkheid is, dat 60% van de geboorten jongens zijn. \n De meeste zeggen, dat de kans gelijk groot is bij beide ziekenhuizen. \n De mensen weten niets over de Wet van Grote Getallen.
+Tentamennummer: 122
+Subjectcode: 134
+Punten: 10
+Antwoord: In een onderzoek werd aan proefpersonen die geen statistiekcursus hadden gevolgd gevraagd, welk ziekenhuis het meeste aantal dagen heeft waarop 60% van de geboren baby’s jongens was: het grote ziekenhuis met gemiddeld 45 geboren baby’s per dag, of het kleine ziekenhuis met gemiddeld 15 geboren baby’s per dag. \n De meeste mensen dachten dat dit voor beide ziekenhuizen evenveel zou zijn. Van de overige proefpersonen dacht een aantal dat dit het grote ziekenhuis was, en een net zo groot aantal dacht dat dit het kleine ziekenhuis was.
+Tentamennummer: 123
+Subjectcode: 153
+Punten: 10
+Antwoord: Proefpersonen die een simpele statistiekcursus hadden gevolgd en proefpersonen zouden deze cursus moeten redeneren in welk ziekenhuis het vaakst meer dan 60% mannelijke baby’s werden geboren: een ziekenhuis waar per dag 15 baby’s werden geboren, en een ziekenhuis waar per dag 45 baby’s werden geboren. De proefpersonen zonder cursus dacht dat beide ziekenhuizen evenveel procent jongetjesbaby’s kreeg ondanks het verschil in steekproef. Mensen die de cursus hadden gevolgd wisten vaker het goede antwoord.
+Tentamennummer: 125
+Subjectcode: 129
+Punten: 10
+Antwoord: Er was een onderzoek waarin mensen verteld werd over 2 ziekenhuizen, in het ene werden 15 baby's per dag geboren en in de andere 45. \n\n Er werd aan de proefpersonen gevraagd in welk ziekenhuis ze dachten dat de kans groter was dat 60% van de geboren baby’s een jongen zou zijn. \n\n Veel mensen gokten 1 van de 2 of dachten dat de kans gelijk was en niemand koos met een goede reden het ziekenhuis met 15 baby's. Terwijl de kans daar veel groter is. \n\n Immers, de kans op een jongen is 50% en naarmate de steekproef groter wordt komt hij dichter bij die 50% te liggen.
+Tentamennummer: 126
+Subjectcode: 254
+Punten: 0
+Antwoord: Er worden in 2 ziekenhuizen onderzocht hoeveel van de geboren baby’s jongetjes zijn en hoeveel meisjes. Als er aan mensen wordt gevraagd waar ze denken dat de kans groter is dat er een jongetje wordt geboren gaan ze vaak foutief voor het ziekenhuis waar het percentage hoger is (van een jongetje geboren). Ze hadden de keuze uit een ziekenhuis waar er meer kindjes werden geboren met een percentage van ongeveer 50% en een ziekenhuis waar er maar 3 baby’s waren geboren waarvan 2 jongens: 67%. De mensen vergeten echter dat de kans altijd 50% is, en dat het dus waarschijnlijker is dat er sneller een jongetje wordt geboren in het ziekenhuis waar sowieso meer baby’s worden geboren.
+Tentamennummer: 129
+Subjectcode: 174
+Punten: 10
+Antwoord: Kahneman en Tversky deden in 1972 een onderzoek om te kijken of mensen soms ongevoelig zijn voor ‘sample_english size_english’. Ze gebruikte hiervoor als voorbeeld een groot ziekenhuis, waar gemiddeld 45 baby’s geboren werden. En een klein ziekenhuis, waar gemiddeld 15 baby’s geboren werden. Beide aantallen zijn per dag. Vervolgens vroegen ze aan hun deelnemers uit de steekproef waar ze verwachtte dat er meer dagen zouden zijn waarop er 60% of meer jongetjes per dag geboren zouden worden. De meeste deelnemers zeiden dat het voor beide ziekenhuizen gelijk is en de overige deelnemers zeiden even vaak het grote als het kleine ziekenhuis. De fout die hier gemaakt wordt is dat het grote ziekenhuis een grotere steekproef is en daarom dichter bij het gemiddelde van de populatie zal liggen, die 50% is, de kans op een jongen is 1 op 2. Dus het kleine ziekenhuis, dat een kleinere steekproef is, zal vaker van het gemiddelde af liggen en daarom meer dagen hebben waarop er 60% of meer jongetjes geboren worden.
+Tentamennummer: 130
+Subjectcode: 121
+Punten: 7
+Antwoord: In een groot ziekenhuis worden er gemiddeld 45 baby’s per dag geboren en in een klein ziekenhuis ongeveer 15 baby’s per dag. \n\n Met dit gegeven werd er aan de proefpersonen gevraagd waar de kans het grootst is dat 60% van de baby’s een jongen is. In het grote of in het kleine ziekenhuis. \n\n De meeste proefpersonen dachten dat het voor beide ziekenhuizen hetzelfde was en de rest dacht dat dit het geval was bij het grote ziekenhuis. \n\n Het is echter bij het kleine ziekenhuis het geval want bij een kleine steekproef is de kans het grootst dat het van het gemiddelde afwijkt (50%). \n\n Dus in het kleine ziekenhuis is de kans het grootst dat 60% van de baby’s een jongen is.
+Tentamennummer: 131
+Subjectcode: 249
+Punten: 10
+Antwoord: Bij het kiezen voor een cursus zijn er twee opties. 1 cursus werd door 26 van de 132 vorige deelnemers geëvalueerd en dat werd in een vijfpuntenschaal_abbreviation uitgezet. De andere cursus werd door 3 mensen via een video aanbevolen / geëvalueerd. Hierna moesten er mensen die deelnamen aan deze proef kiezen. De meeste mensen kozen voor de cursus die werd aanbevolen door de 3 mensen, terwijl 3 veel minder mensen zijn dan 26. Deze mensen dachten dus niet na over de nadelen van kleine steekproef en voordelen van een grote steekproef. \n\n ? dus zijn ze ongevoelig voor sample_english size_english, ze kozen voor het levendige evaluatie van 3 personen in plaats van de statistische betere keuze.
+Tentamennummer: 132
+Subjectcode: 130
+Punten: 10
+Antwoord: Kahneman & Tversky: 1972 \n\n Er werd een situatie beschreven over één groot ziekenhuis en een klein ziekenhuis, de vraag over de situatie was welk ziekenhuis de meeste dagen in het jaar meer dan 60% babyjongens op de aarde zet. Veel mensen zeiden dat de scores gelijk waren voor het aantal dagen met meer dan 60% pasgeboren babyjongens. Anderen noemden het grote ziekenhuis. \n\n Het is het kleine ziekenhuis omdat minder geboortes in totaal relatief een grotere kans hebben op uitschieters waardoor het percentage babyjongens, ?_illegible, relatief sneller toeneemt bij het kleine ziekenhuis dan bij het grote ziekenhuis. Men is dus ongevoelig voor de steekproefgrootte.
+Tentamennummer: 134
+Subjectcode: 235
+Punten: 7
+Antwoord: Er was een onderzoek gedaan naar cursusevaluaties. De ene groep kreeg eerst tientallen cursusevaluaties op papier te zien en verteld wat het gemiddelde was. Daarna konden ze 2 à 3 studenten horen en zien die een cursusevaluatie gaven. Op het einde werden vragenlijsten uitgedeeld en de meesten kozen voor de cursus waar een levendig verhaal bij was gedaan in plaats van de statistische cursusevaluaties waarbij er een veel grotere groep studenten cursussen hadden geëvalueerd en dus betrouwbaarder is dan de evaluatie van 2 à 3 studenten.
+Tentamennummer: 137
+Subjectcode: 203
+Punten: 0
+Antwoord: -
+Tentamennummer: 139
+Subjectcode: 210
+Punten: 7
+Antwoord: Onderzoek naar 2 ziekenhuizen: een grote en een kleine, en het aantal jongens vergeleken meisjes er werd geboren aan de proefpersonen werd gevraagd in welk ziekenhuis er vaker jongens dan meisjes geboren zouden worden volgenstein_nonexisting.. De meeste proefpersonen hielden hierbij geen rekening met de Wet van Grote aantallen, want als steekproef groter wordt (groter ziekenhuis) dan wordt het gemiddelde 50/50 meer bereikt dus in het grote ziekenhuis zijn de minste dagen dat er meer jongens dan meisjes geboren worden.
+Tentamennummer: 141
+Subjectcode: 344
+Punten: 10
+Antwoord: Studenten krijgen of de gemiddelde evaluatie (op basis van vijfdelige_abbreviation schaal) van veel leerlingen, óf ze krijgen drie of twee leerlingen te zien die de cursus evalueren en vervolgens een score geven op dezelfde evaluatieschaal. De levendige informatie van de 2/3 leerlingen bleek bij het maken van een keuze voor de cursus van grotere invloed dan de statistische gemiddelden. Dit terwijl N hierbij veel kleiner was dan bij de statistische gemiddelden.
+Tentamennummer: 143
+Subjectcode: 209
+Punten: 10
+Antwoord: Het onderzoek waarbij studenten moeten kiezen voor een nieuwe cursus. De studenten zijn opgedeeld in 2 groepen. De ene groep krijgt statistische gemiddelden van de mening van heel veel studenten over cursussen die de studenten moeten gaan kiezen. De andere groep krijgt mondeling de mening van 2 studenten te horen over de betreffende cursussen. \n\n Het blijkt dat de mening van_abbreviation de_abbreviation studenten die een cursus moeten gaan kiezen veel sterker beïnvloed wordt door het mondeling vertelde verhaal van slechts 2 studenten dan van de statistische gemiddelden (op vijfpuntsschaal) van heel veel (een paar dozijn) studenten. \n\n Dit is ongevoeligheid voor sample_english size_english, omdat slechts 2 studenten met hun levendige verhaal veel meer invloed hebben dan de statistische, droge, gemiddelden van veel meer studenten.
+Tentamennummer: 144
+Subjectcode: 111
+Punten: 10
+Antwoord: Bij het kiezen tussen twee cursussen werd in het ene geval aangeboden dat de studenten naar 3 personen luisterden die met behulp van vijfpuntsschalen_abbreviation een cursus beoordeelden en er uitleg bij gaven. In het andere geval kregen de studenten papieren evaluaties met dezelfde vijfpuntsschalen_abbreviation van tientallen personen die een cursus gevolgd hadden.\n De studenten baseerde hun keuze (welke cursus) veel vaker op de levendige ervaring, dus op de vertellende studenten, dan op de vele grotere groep evaluaties die ze op papier kregen. \n Ze keken dus totaal niet naar de grootte van de steekproef.
+Tentamennummer: 146
+Subjectcode: 227
+Punten: 10
+Antwoord: Een groep van proefpersonen kreeg een beschrijving van twee ziekenhuizen. Een heel grote met veel geboorten per dag en een klein met gemiddeld weinig geboorten per dag. Vervolgens stelden de onderzoekers de vraag: in welk ziekenhuis zijn vaker dagen met 60% mannelijke babys? De meeste proefpersonen dachten, dat dit even vaak gebeurt, omdat ze niet rekening houden met de steekproefgrootte, in dit geval het aantal geboorten per dag. Echter, hoe meer geboorten, hoe sterker lijkt het steekproefgemiddelde op het populatiegemiddelde. \n\n Uitgevoerd in 1977. Tversky
+Tentamennummer: 148
+Subjectcode: 257
+Punten: 10
+Antwoord: Er is een onderzoek gedaan waarin aan proefpersonen de volgende situatie wordt verteld: er is een groot ziekenhuis (waar 45 baby’s per dag worden geboren) en een klein ziekenhuis (waar 15 baby’s worden geboren). Ze vragen aan de proefpersonen in welk ziekenhuis de kans het grootst is dat er komende dagen 60% jongetjes worden geboren. 80% zegt dat de kans in beide ziekenhuizen even groot is, terwijl de kans groter is in het kleine ziekenhuis. Ze houden dus geen rekening met de grootte van het ziekenhuis.
+Tentamennummer: 150
+Subjectcode: 218
+Punten: 10
+Antwoord: In een onderzoek werd een groep mensen de vraag gesteld in welk van de twee ziekenhuizen de kans groter is dat er van alle geboortes 60% jongetjes zijn. \n\n Het eerste ziekenhuis was groot en had op een bepaald moment 45 geboortes. Het tweede ziekenhuis was klein en had op een bepaald moment 15 geboortes. \n\n De meerderheid van de groep mensen (die geen statistiek had) veronderstelde dat de kans even groot was voor beide ziekenhuizen. Dit is echter niet zo. Naarmate de doelgroep groter is, des te meer de kans geneigd is om 50% te zijn. Het goede antwoord had dus het kleine ziekenhuis moeten zijn, omdat deze een kleinere doelgroep had.
+Tentamennummer: 152
+Subjectcode: 158
+Punten: 10
+Antwoord: Er wordt onderzoek gedaan in een groot ziekenhuis en in een klein ziekenhuis. De vraag was in welk ziekenhuis meer of gelijk dan 60% jongens per dag geboren werden. Gemiddeld werden in de klein ziekenhuis 15 kinderen per dag geboren en in de groot ziekenhuis 45. \n Nu worden mensen gevraagd in welk ziekenhuis gemiddeld meer of gelijk dan 60% jongens per dag worden geboren. De meesten mensen dachten dat het geen verschil maakt in welk ziekenhuis je bent. Dat toont aan dat zij ongevoelig waren voor ‘sample_english size_english’, omdat zij de wet van aantal genegeerd hebben. Des te groter N is des te meer is het waarschijnlijk dat het gemiddelde 50 wordt. Het is daarom waarschijnlijker dat meer of gelijk dan 60% jongens in de klein ziekenhuis werden geboren.
+Tentamennummer: 153
+Subjectcode: 138
+Punten: 10
+Antwoord: In het boek wordt een onderzoek besproken waarbij aan mensen wordt gevraagd in welk ziekenhuis meer kans is dat er meer dagen 60% van de baby’s een jongetje is die worden geboren. Het gaat hierbij om een groot ziekenhuis (ongeveer 45 kinderen per dag geboren) en een klein ziekenhuis (ongeveer 15 kinderen per dag geboren). Het blijkt dat mensen denken dat deze kans even groot is voor beiden ziekenhuizen óf dat de hoeveelheid mensen even groot is die voor het kleine ziekenhuis kiezen als voor het grote. \n Hierbij wordt niet rekening gehouden dus met de grootte van de steekproef. Hoe groter de steekproef, hoe meer het steekproefgemiddelde naar het gemiddelde trekt.
+Tentamennummer: 154
+Subjectcode: 228
+Punten: 10
+Antwoord: In een onderzoek onder mensen die geen statistiek hebben gehad kregen de deelnemers beschrijvingen van twee ziekenhuizen. Een groot ziekenhuis waar gemiddeld meer baby’s werden geboren en een beschrijving van een klein ziekenhuis waar gemiddeld minder baby’s werden geboren. Aan de deelnemers werd gevraagd in welk ziekenhuis de kans op een dag dat er 60% jongetjes werden geboren het grootste was. De meerderheid antwoordde dat beide ziekenhuizen evenveel dagen zouden tellen waarop 60% van de geboren baby’s een jongetje is. Dit laat zien dat de mensen geen rekening hielden met de wet van grote aantallen. Want volgens deze wet zou de verhouding jongens / meisjes in het grote ziekenhuis dichter bij het gemiddelde moeten liggen en zou de kans op een dag waarop er 60% jongens worden geboren in het kleine ziekenhuis groter zijn. \n Dit laat zien dat de deelnemers ongevoelig zijn voor de sample_english size_english.
+Tentamennummer: 155
+Subjectcode: ?
+Punten: 0
+Antwoord: In het boek werd er een onderzoek besproken waarbij er gesproken werd over lang mensen dachten dat er in de bijstand gezeten werd. In de ene conditie was er een verhaal over een vrouw in de bijstand waarbij haar zoons aan de drugs waren etcetera_abbreviation, maar N=1. In de andere conditie werden er statistieken laten zien met een hogere N. De meningen van mensen werden meer beïnvloed door het verhaal van N=1 dan door de statistieken die verkregen uit een hogere sample_english size_english. Mensen onthielden de info wel, maar deden er niks mee.
+Tentamennummer: 159
+Subjectcode: 191
+Punten: 10
+Antwoord: Aan proefpersonen werden twee ziekenhuizen beschreven. In het eerste ziekenhuis werden 45 baby’s per dag geboren en in het tweede ziekenhuis maar 15 per dag. Het eerste ziekenhuis werd het grote ziekenhuis genoemd, en het tweede het kleine ziekenhuis. Aan proefpersonen werd gevraagd in welk ziekenhuis de meeste dagen waren waar 60% of meer jongetjes werden geboren. \n\n Resultaten: De meeste proefpersonen gaven aan dat dit voor beide ziekenhuizen gelijk was. Daarnaast werd het kleine ziekenhuis even vaak genoemd als het grote ziekenhuis.\n\n Dit was fout, er werd namelijk geen rekening gehouden met de grootte van de steekproef. Een grote steekproef lijkt meer op de echte populatie waar het aantal jongens en meisjes ongeveer 50/50 is. Een kleinere steekproef wijkt dus meer af van de populatie, dus daar zou de kans op 60% jongetjes groter moeten zijn.
+Tentamennummer: 161
+Subjectcode: 165
+Punten: 10
+Antwoord: Er is onderzoek gedaan naar aantal jongetjes dat op een dag in een ziekenhuis werd geboren. Er is een ziekenhuis waar gemiddeld 45 babys per dag worden geboren en een ziekenhuis waar gemiddeld 15 baby’s worden geboren per dag. Er wordt aan proefpersonen gevraagd in welk ziekenhuis de kans groter is dat er op een dag meer dan 60% van de baby’s dat geboren wordt een jongetjes is. Proefpersonen zeggen dat de kans in beide ziekenhuizen gelijk is. Na een cursus statistiek veranderen ze van mening. Ze hebben namelijk niet rekening gehouden met de grootte van de steekproef. In ziekenhuizen waar dagelijks 15 baby’s worden geboren is de kans namelijk veel groter dat het aantal jongetjes een keer afwijkt van het gemiddelde (50%), omdat de steekproef niet groot genoeg is.
+Tentamennummer: 163
+Subjectcode: 226
+Punten: 7
+Antwoord: Er was een groot en een klein ziekenhuis. In het kleine ziekenhuis werden bijvoorbeeld_abbreviation gemiddeld 8 baby’s per dag geboren en in het groter ziekenhuis waren dit er bijvoorbeeld_abbreviation 24. Er werd aan mensen gevraagd in welk ziekenhuis mensen dachten dat er het snelst 60% of meer jongens werden geboren. Veel mensen zonder onderbouwing van statistiek gaven hierop het verkeerde antwoord. Mensen die wel kennis van statistiek hadden maakten deze fout minder snel.
+Tentamennummer: 166
+Subjectcode: 334
+Punten: 10
+Antwoord: In een onderzoek wordt proefpersonen de opgave gegeven te bepalen in welk ziekenhuis de kans groter is dat er op een dag 60% jongen worden geboren. Beschikbaar om uit te kiezen waren 2 ziekenhuizen: Een waar per dag meer dan 100 kindjes geboren worden en een waar maar 15 geboren worden. De meeste mensen schatten de kans groter in bij het ziekenhuis waar veel meer kinderen geboren worden ook als dit fout is. Bij maar 15 kinderen is de kans veel groter dat de geslachten niet gelijk verveeld zijn.
+
+Tentamennummer: 167
+Subjectcode:?
+Punten: 10
+Antwoord: In een onderzoek waarin men benieuwd was of de proefpersonen zich eerder lieten beïnvloeden door abstracte data of persoonlijke aanbevelingen lieten ze de proefpersonen een cursus uitzoeken aan de hand van beoordelingen van eerdere studenten. \n Proefpersonen kregen hierbij de keus uit abstracte die bestond uit de gemiddelde van tientallen studenten en de beoordeling van 2 á 3 studenten waarbij ze hun beoordeling mondeling toelichten. \n Proefpersonen kozen vaker voor de persoonlijke aanbeveling terwijl de geplotte data / gemiddelde van de tientallen studenten eigenlijk betrouwbaarder was. \n Dit komt omdat hierbij het aantal subjecten veel hoger ligt. \n Volgens de wet van de grote getallen worden uitkomsten namelijk nauwkeuriger wanneer er een grotere steekproef is.
+Tentamennummer: 168
+Subjectcode: 289
+Punten: 10
+Antwoord: Bij een onderzoek naar de (on)gevoeligheid van ‘sample_english size_english’ werd onderzocht , beschreven de onderzoekers twee ziekenhuizen aan mensen die geen statistiek hebben gehad. In het grotere ziekenhuis werden per dag ongeveer 45 baby's ter wereld gebracht, en in het kleinere ziekenhuis slechts 15. Wetende dat de kans op een jongen 50% was, werd er aan de deelnemers gevraagd in welk ziekenhuis er de meeste dagen waren waarop 60% van de geboren kinderen jongens waren, of meer dan 60%. De meeste deelnemers dachten dat dit bij beide ziekenhuizen ongeveer hetzelfde zou zijn. De overige deelnemers kozen even vaak voor het grote ziekenhuis als het kleine ziekenhuis.
+Tentamennummer: 169
+Subjectcode: 246
+Punten: 3
+Antwoord: Er is een onderzoek waarbij aan deelnemers verteld werd over twee ziekenhuizen, een grote waar elke dag 45 baby’s geboren worden en een kleine waar elke dag 20 baby’s geboren worden. Vervolgens wordt aan de deelnemers gevraagd in welk ziekenhuis er meer dagen zijn waarop 60% van de geboren baby’s uit jongetjes bestaat. Hierop zeggen de deelnemers dat dat gelijk is in beide ziekenhuizen, terwijl daar in het grote ziekenhuis meer kans op is omdat er veel meer baby’s geboren worden. Ze zijn dus ongevoelig voor sample_english size_english.
+Tentamennummer: 170
+Subjectcode: 122
+Punten: 10
+Antwoord: Onderzoek gedaan bij psychologiestudenten die een cursus moesten kiezen. \n\n Kregen informatie van heel veel verschillende reviews van studenten over de cursussen. \n\n Werden ook 2 a 3 studenten aan het woord gelaten die hun verhaal deden over de cursus. \n\n De vraag was voor welke cursus de studenten zouden kiezen. \n\n Het bleek dus dat de meeste studenten kozen voor de cursus die ‘levendig’ werd gepresenteerd door de medestudenten, Terwijl de andere cursussen eigenlijk met een grotere steekproef waren geëvalueerd.
+Tentamennummer: 171
+Subjectcode: 263
+Punten: 10
+Antwoord:. Er is een onderzoek gedaan naar hoe studenten zich lieten beïnvloeden bij de keuze voor een bepaald vak. Studenten kregen gegevens te zien van andere studenten (waar zij voor gekozen hadden). 1 groep kreeg van een groot aantal studenten te zien waar ze voor gekozen hadden (resultaten van een vragenlijst) en de andere groep kreeg van 2 of 3 studenten een veel uitgebreidere, levendigere reden waarom die het vak gekozen hadden. \n De studenten die weinig (maar wel levendigere) redenen kregen lieten zich veel meer beïnvloeden bij het maken van hun keuze dan de studenten die van veel mensen de keuze hadden gezien. \n Hieruit blijkt dat mensen veel waarde hechten aan kleine steekproeven en weinig waarde aan grote steekproeven.
+Tentamennummer: 172
+Subjectcode: 280
+Punten: 10
+Antwoord: In een groot ziekenhuis worden per dag 15 baby’s geboren en in een klein ziekenhuis worden er per dag 15 baby’s geboren. Er wordt aan mensen die geen statistiek hebben gehad gevraagd welk ziekenhuis er meer kans heeft op meer dan 60% jongetjes. De meeste mensen denken dat dit in beide gevallen gelijk is. Hierbij houden ze er geen rekening mee dat een grotere steekproef dichter bij het populatiegemiddelde ligt.
+Tentamennummer: 173
+Subjectcode: 266
+Punten: 10
+Antwoord: Het ziekenhuisonderzoek: \n Aan proefpersonen werden 2 ziekenhuizen voorgelegd, een groot ziekenhuis waar 45 baby’s per dag geboren worden en een kleiner ziekenhuis waar 15 baby’s per dag geboren worden. \n De vraag aan de proefpersonen was in welk ziekenhuis het meest waarschijnlijk zou zijn dat er 60% of meer jongetjes geboren zouden worden op een dag. \n\n De meeste mensen gaven als antwoord dat de kans voor beide ziekenhuizen even groot was. Het grote en kleine ziekenhuis apart werden even vaak genoemd. \n\n Het goede antwoord moet zijn het kleine ziekenhuis, want in het grote ziekenhuis is het veel waarschijnlijker dat er 50% jongens geboren worden, want er zijn meer baby’s. In het kleine ziekenhuis kunnen meer uitschieters zijn waardoor de kans op >60% jongens eerder haalbaar is. Dit is dus een voorbeeld van ongevoeligheid voor de grootte van de steekproef.
+Tentamennummer: 174
+Subjectcode: 160
+Punten: 10
+Antwoord: Kahneman & Tversky hebben een onderzoek uitgevoerd onder studenten die geen statistiek hebben gevolgd. Er werd hen verteld dat in een groot ziekenhuis gemiddeld 45 jongens werden geboren per dag, en in een klein ziekenhuis 15 jongens per dag. \n De vraag was: als er op een dag een kans zou zijn op 60% of meer jongens, in welk ziekenhuis zou dit dan zijn. De studenten schatten de kans even groot in, voor zowel een groot als klein ziekenhuis. \n\n Echter, het goede antwoord is het kleine ziekenhuis, want de studenten hebben geen rekening gehouden met de Wet van de Grote Aantallen. Dit houdt in dat hoe groter de steekproef, hoe meer het naar het gemiddelde trekt. De kans op een jongen is 50% en in het grote ziekenhuis, is een grotere steekproef genomen en dus zal dit dus meer richting de 50% trekken. In het kleine ziekenhuis is een kleine steekproef genomen en dus is de kans op 60% jongens hier groter.
+Tentamennummer: 175
+Subjectcode: 181
+Punten: 10
+Antwoord: Er is een ziekenhuis waar dagelijks 80 baby’s geboren worden en een ziekenhuis waar dagelijks 15 baby’s geboren worden. De proefpersonen worden gevraagd bij welk ziekenhuis er 60% jongens worden geboren. (De proefpersonen hadden nooit statistiek gehad). \n\n De resultaten zijn dat de meeste proefpersonen het bij beide ziekenhuizen gelijk schatten. De overige proefpersonen hebben ongeveer evenveel ziekenhuis A als ziekenhuis B gekozen.
+Tentamennummer: 176
+Subjectcode: 169
+Punten: 7
+Antwoord: Uit het onderzoek bleek dat mensen dachten dat er meer jongens in ziekenhuizen worden geboren dan meisjes. Hierbij werd er geen rekening gehouden met het feit dat het een klein ziekenhuis was. Als hetzelfde onderzoek in een groter ziekenhuis wordt gedaan, blijkt dat het aantal jongens en meisjes steeds meer richting 50%/50% geldt.
+Tentamennummer: 177
+Subjectcode: 301
+Punten: 10
+Antwoord: Kahneman & Tversky (1972) hebben onderzoek gedaan waarbij ze proefpersonen vroegen bij welk ziekenhuis de meeste dagen zouden voorkomen. waarbij 60% of meer jongetjes werden geboren; het grote ziekenhuis waarbij 45 baby's gemiddeld per dag geboren worden of het kleine ziekenhuis waar gemiddeld 15 baby's per dag geboren worden. De meeste proefpersonen dachten dat dit voor beide ziekenhuizen even waarschijnlijk zou zijn. (De rest had evenveel het grote als het kleine ziekenhuis geantwoord.) \n Dit is een voorbeeld van ongevoeligheid voor sample_english size_english omdat de meerderheid geen rekening houdt met de grootte van de steekproef. Het grote ziekenhuis heeft een grotere steekproef (meer baby's) waardoor de resultaten betrouwbaarder zijn en meer bij het gemiddelde liggen, in dit geval 50%. Het kleine ziekenhuis heeft maar een kleine steekproef waardoor het percentage geboren jongetjes meer kan verschillen en vaker 60% of meer zal zijn. Hier waren de meeste zich niet van bewust.
+Tentamennummer: 178
+Subjectcode: ?
+Punten: 10
+Antwoord: Ongevoeligheid voor steekproefgrootte wordt duidelijk in een onderzoek waarbij een cursusevaluatie met_abbreviation behulp_abbreviation van_abbreviation een vijfpuntenschaal_abbreviation voorgelegd wordt aan 2 groepen studenten. De ene groep krijgt gemiddelden van tientallen studenten op de vijfpuntenschaal_abbreviation te zien. De personen in de andere groep krijgen van 3 studenten mondeling de cursusevaluatie te horen met_abbreviation behulp_abbreviation van_abbreviation dezelfde vijfpuntenschaal_abbreviation. Daarna werd er door alle proefpersonen een cursus gekozen. De personen die de cursusevaluatie mondeling te horen kregen lieten zich meer beïnvloeden door de evaluaties dan de groep die gemiddelde te zien kreeg. Dit laat zien dat men niet goed rekening houdt met de wet van grote aantallen want de N is kleiner in de groep waar de proefpersonen zich het meest lieten beïnvloeden.
+Tentamennummer: 181
+Subjectcode: 221
+Punten: 10
+Antwoord: Onderzoek van Kahneman & Tversky (1972) - \n niet op de hoogte: \n Aan proefpersonen werden twee ziekenhuizen beschreven. Een grote: waar 45 baby’s gemiddeld per dag werden geboren. En een klein ziekenhuis waar gemiddeld 15 baby’s per dag werden geboren. \n Aan de proefpersonen werd gevraagd welk ziekenhuis de meeste dagen had waar 60% of meer van de geboren baby’s een jongetje was. \n De meeste proefpersonen, die geen verstand van statistiek hadden, dachten dat dit  in beide ziekenhuizen een even grote kans was. Het aantal mensen dat het grote ziekenhuis dacht, was ongeveer evenveel als het aantal dat het kleine ziekenhuis dacht. Mensen die iets van statistiek wisten wisten veelal het juiste antwoord. Er is hier sprake van ‘sample_english size_english’, want men houdt niet goed rekening met de grootte van de steekproef (in dit geval het aantal geboren baby’s).
+Tentamennummer: 182
+Subjectcode: 157
+Punten: 7
+Antwoord: Er werd aan deelnemers gevraagd in welk ziekenhuis ze dachten dat de meeste jongetjes geboren werden. Ze kregen te horen dat er in het grote ziekenhuis 40 baby’s werden geboren, en in het kleine ziekenhuis 15. De kans dat er een jongetje wordt geboren is 60%. \n\n Veel deelnemers hielden geen rekening met de grootte van de steekproef en kozen onterecht voor het grote of het kleine ziekenhuis
+Tentamennummer: 184
+Subjectcode: 175e
+Punten: 0
+Antwoord: Onderzoek of mensen met een conversiestoornis vroeger seksueel misbruikt waren. \n * steekproef 26 personen ? 4 misbruikt \n\n 4/26 x 100%= 15% \n\n *een therapeut vertelde levendig over 3 cliënten met de stoornis. 2 daarvan waren misbruikt. 2/3 x 100%=66.7% \n\n In werkelijkheid zou dit alles bij elkaar (6/29) x 100% = 21 zijn. \n\n Het percentage van de therapeut zit hier ver naast. Toch zou men deze kleine steekproef sneller als werkelijkheid beschouwen omdat deze veel levendiger besproken werd. Iemand zijn verhaal zat er achter in plaats van alleen maar statistische gegevens.
+Tentamennummer: 186
+Subjectcode: 177
+Punten: 0
+Antwoord: Wet van de grote aantallen, Tversky. Uit het onderzoek bleek dat mensen een verhaal eerder onthielden als het mooi verteld was dan wanneer ze lazen over een onderzoek met een grote steekproef en statistische gegevens. Er werden dus twee gegevens voorgelegd waarbij de eerste bestond uit levendige informatie over één persoon en de tweede uit statistische informatie over een grote steekproef.
+Tentamennummer: 187
+Subjectcode: 197
+Punten: 10
+Antwoord: Bij het onderzoek naar Borgida en Nisbett waren er twee condities. In de eerste conditie hebben psychologiestudenten de gemiddelde cursusevaluaties (gemeten door een vijfpuntenschaal) gekregen en een samenvatting over de meningen van enkele tientallen eerdere studenten die de cursus hebben gedaan. In de tweede conditie hebben psychologiestudenten 2 tot 3 studenten gezien en gehoord die de cursus hebben geëvalueerd (gemeten met commentaar & vijfpuntenschaal). Vervolgens was het de opdracht van de psychologiestudenten een cursus te kiezen. \n Het bleek dat ze zich meer door de levendige informatie (studenten zien en horen) lieten beïnvloeden dan door de abstracte gemiddelden ofwel de steekproef van de gemiddelden veel groter was. en dus representatiever. Ze hebben te veel aandacht op een kleine steekproef en te weinig aandacht op een grote steekproef gericht.
+Tentamennummer: 188
+Subjectcode: 195
+Punten: 7
+Antwoord: Ziekenhuis \n\n Er is een onderzoek gedaan met 2 ziekenhuizen, waarvan bij de ene ongeveer 15 baby’s per dag worden geboren en bij de andere ongeveer 45. Aan proefpersonen werd verteld dat 60% van geboren baby’s jongens zijn en werd ze vervolgens gevraagd in welk ziekenhuis ze dachten dat meer jongens geboren werden. De meeste mensen geven aan dat het bij beiden gelijk is omdat ze ervan uitgaan dat het bij beiden 60% is. Echter, worden in het kleinere ziekenhuis meer jongens geboren omdat de kans daar groter is. Mensen zijn hier ongevoelig voor sample_english size_english, omdat ze niet weten wat de wet van grote aantallen is of hier gewoon geen rekening meer houden.
+Tentamennummer: 189
+Subjectcode: 208
+Punten: 10
+Antwoord: In onderzoek van Borgida en Nisbett (1977) zijn psychologiestudenten onderzocht. Een deel van de groep kreeg een vijf-score_abbreviation beoordeling van tientallen personen over een cursus. De andere groep kreeg van 2-3 personen een een vijfscorebeoordeling_abbreviation met toelichting. \n\n De psychologiestudenten lieten zich sterker beïnvloeden door de 2-3 personen die een toelichting gaven bij het kiezen van een cursus. Ze kozen dus voor de kleinere groep in_abbreviation plaats_abbreviation van_abbreviation de grote.
+Tentamennummer: 191
+Subjectcode: 140
+Punten: 0
+Antwoord: -
+Tentamennummer: 193
+Subjectcode: ?
+Punten: 10
+Antwoord: In een onderzoek werd een sample studenten random gesplitst in twee groepen. Groep A kreeg een lijst te zien van gemiddelde cursus evaluaties op een vijf-puntsschaal_abbreviation, en werden na het zien / horen hiervan gevraagd om een cursus te kiezen, groep B kreeg van 3 ouderejaars studenten een verhaaltje te horen over wat zij van de cursus vonden, en na het horen hiervan werd ze gevraagd een cursus te kiezen. Zij kregen ook de gemiddelden te zien. \n Uit de resultaten bleek dat groep B hun keuze meer had laten beïnvloeden door de 3 studenten, dan door de gemiddelde statistieken.
+Tentamennummer: 194
+Subjectcode: 332
+Punten: 10
+Antwoord: Er waren 2 ziekenhuizen. Een kleine en een grote, elke dag werden hier kinderen geboren. In het grote ziekenhuis veel meer dan in het kleine. Aan mensen zonder en aan mensen met een statistiekcursus werd dezelfde vraag voorgelegd: In welk ziekenhuis is het waarschijnlijker dat er op meerdere dagen 60% jongens wordt geboren. In het grote of het kleine? Proefpersonen zonder statistiek gehad te hebben in hun leven zeiden bijna allemaal: de kans is gelijk. Mensen met statistiek kozen 1 van de 2. Hierbij zie je dus dat proefpersonen zonder niet nadenken over de grootte van de ‘steekproef’. In dit geval dat er veel meer baby’s zijn in het grote dan in het kleine ziekenhuis. Daarom kiezen zij meteen voor het antwoord gelijk, terwijl dat dus niet zo is.
+Tentamennummer: 195
+Subjectcode: 132
+Punten: 7
+Antwoord: Een groep studenten gaf een evaluatie, en hier kwam een cijfer uit. Daarna waren er ook 3 studenten die mondeling hun mening gaven. Men vond de mondeling evaluatie belangrijker, ook al was de eerste_abbreviation evaluatie of een grotere groep gebaseerd.
+Tentamennummer: 196
+Subjectcode: 341
+Punten: 0
+Antwoord: -
+Tentamennummer: 198
+Subjectcode: 274
+Punten: 7
+Antwoord: Iemand zou een cursus kiezen op grond van cursusevaluatie. Er zijn twee condities: Een keer kan hij vele cursusevaluaties (vijfpuntsschaal_abbreviation) bekijken van studenten die de cursus al gevolgd hebben. Voor het tweede keer luistert hij naar verhalen van enkele weinige studenten. hij kiest voor de cursus waarover hij een verhaal hoorde hoewel de steekproef van de vijfpuntsschaal_abbreviation evaluatie veel groter was. Persoonlijke ervaringen + meningen beïnvloeden de beslissing meer dan de grootte van de steekproef. 
+Tentamennummer: 199
+Subjectcode: 207
+Punten: 10
+Antwoord: Er is een onderzoek gedaan waarbij psychologiestudenten in 2 condities werden verdeeld. In de ene conditie kregen zij van een cursusevaluatie gebaseerd op een vijfpuntenschaal_abbreviation het gemiddelde te zien van tientallen studenten. In de andere conditie kregen zij 2/3 studenten te zien en horen, die de cursus evalueerden op een vijfpuntenschaal_abbreviation met daarna gesproken commentaar passend bij de evaluatie gaven. Achteraf moesten de proefpersonen een cursus kiezen. Het bleek zo dat de meeste studenten zich veel meer lieten beïnvloeden door de levendige informatie van de 2/3 studenten. Ondanks dat de andere gebaseerd was op een veel grotere steekproef.
+Tentamennummer: 201
+Subjectcode: 116
+Punten: 0
+Antwoord: Ongevoeligheid voor sample_english size_english komt voor wanneer men teveel waarde hecht aan informatie onttrokken uit een kleine groep of juist te weinig waarde hecht aan informatie onttrokken uit een grote representatieve groep. \n\n een onderzoek op een universiteit gaf aan dat 10% van de studenten op de campus bij een studievereniging hoort daarna kreeg een groep studenten, 5 recensies te lezen die allemaal waren geschreven door mensen van die studievereniging. \n\n na afloop moest men een vragenlijst invullen over hoeveel studenten er bij de studievereniging zaten. \n\n de studenten die de recensies hadden gelezen schatte dit percentage hoger in dan de studenten die alleen 10% hadden gehoord.
+Tentamennummer: 202
+Subjectcode: 258
+Punten: 10
+Antwoord: Er werd onderzocht door middel van een cursusevaluatie of andere leerlingen de cursus wilde volgen. \n Ze kregen de statistische data te zien over de cursus van meerdere personen of van 3 mensen (niet tegelijk) te horen of de cursus leuk was of niet. \n meerderheid van de kiezers was meer overtuigd door de 3 mensen die tegen hen sprak dan de statistische data (die betrouwbaarder was).
+Tentamennummer: 203
+Subjectcode: 113 
+Punten: 10
+Antwoord: In een onderzoek naar ‘insensitivity_english’ voor ‘sample_english size_english’ werd gebruik van de onwetendheid van de deelnemers gemaakt. Er was een grote en kleine ziekenhuis waar respectievelijk 150 en 50 kinderen gemiddeld per dag worden geboren. Aan de deelnemers werd gevraagd bij welke ziekenhuis de kans groter is dat er op een dag 60% of meer jongens geboren wordt. Er werd even vaak de grote als de kleine ziekenhuis genoemd. Terwijl we eigenlijk dat hoe groter je steekproef is hoe kleiner de kans dat je veel van het gemiddelde (50%) afwijkt. Veel deelnemers geven dus het verkeerde antwoord vanwege hun ongevoeligheid voor de grootte van de steekproef.
+Tentamennummer: 206
+Subjectcode:242
+Punten: 0
+Antwoord: in het tijdschrift Cosmo vertellen 3 vrouwen hun verhaal over hun ziekte dit verhaal is heel aangrijpend en heftig. het zou iedere vrouw kunnen overkomen omdat het verhaal zo levendig is overschatten mensen het krijgen van deze ziekte \n dit is dus een voorbeeld voor ongevoeligheid voor sample_english size_english. 
+Tentamennummer: 209
+Subjectcode: 150
+Punten: 10
+Antwoord: psychologiestudenten moesten een cursus kiezen die ze wilden gaan volgen, ze werden random_english ingedeeld in een van de 2 groepen. \n\n groep 1 kreeg 10 cursusevaluaties te zien van 32-126 studenten. \n\n Groep 2 kreeg 2 tot 3 verhalen over de cursus te horen. Deze werden verteld door studenten die de cursus al hadden gevolgd. \n\n Resultaten van dit onderzoek laten zien dat studenten bij het maken van de keuze geneigd waren om de verhalen meer mee te nemen in hun besluit dan de cursusevaluaties. De cursusevaluaties zijn echter een grotere steekproef. \n Dit laat zien dat er geen rekening wordt  gehouden met de grootte van de steekproef.
+Tentamennummer: 210
+Subjectcode: 152
+Punten: 0
+Antwoord: In het boek wordt een onderzoek beschreven waarin proefpersonen een filmpje te zien krijgen over een bewaker. Deze bewaker laat agressief of normaal gedrag zien. Vervolgens worden de bewakers beoordeeld door de proefpersonen. \n Na de beoordeling wordt verteld of dit gedrag typisch of atypisch was. \n Na opnieuw gevraagd te hebben naar hoe de proefpersonen de bewakers gedrag beoordeelden, werd het duidelijk dat of er werd verteld dat het gedrag typisch of niet was, niets uitmaakt voor de tweede beoordeling \n = \n insensitivity_english to_english sample_english size_english.
+Tentamennummer: 214
+Subjectcode: 109
+Punten: 10
+Antwoord: In onderzoek van Kahneman & Tversky werd aan deelnemers getoond: \n - in een groot ziekenhuis werden 45 baby’s per dag geboren. \n -in een klein ziekenhuis werden 15 baby’s per dag geboren. \n\n De vraag die hierbij werd gesteld aan de deelnemers: Bij welk ziekenhuis waren de meeste dagen 60% van de baby’s jongens geboren? \n\n De deelnemers gaven over het algemeen aan dat er geen verschil zou zijn tussen de ziekenhuizen. hier is sprake van ongevoeligheid van sample_english size_english, want volgens de Wet van de Grote Aantallen wordt de afwijking kleiner naarmate de steekproef groter wordt, dus bij een kleine steekproef is de kans op afwijking groter, dus bij het kleine ziekenhuis is dat het meest waarschijnlijk (10% afwijking).
+Tentamennummer: 215
+Subjectcode: 185
+Punten: 10
+Antwoord: Er werd aan subjecten gevraagd of een groot ziekenhuis waar gemiddeld 45 baby’s per_abbreviation dag_abbreviation geboren werd of juist een klein ziekenhuis waar 5 baby’s per_abbreviation dag_abbreviation geboren werden, vaker dagen zou hebben waarop 60% van_abbreviation de_abbreviation baby’s jongetjes. Je kon ook zeggen: “evenveel”. \n ? het merendeel van_abbreviation de_abbreviation mensen dachten evenveel. \n Dit is volgens de Wet van grote aantallen echter niet waar omdat deze stelt dat hoe groter de steekproef hoe meer het gemiddelde hiervan lijkt op het populatiegemiddelde. Dit is 50%. Volgens deze wet zou het grote ziekenhuis meer dagen met 60% jongens moeten hebben (want 60% is in_abbreviation de_abbreviation buurt van 50%) dan het kleine ziekenhuis. Het grote ziekenhuis is hier immers de grote steekproef. Toch zeiden veel mensen gelijk en hielden ze dus geen rekening met de grootte van _abbreviation de _abbreviation steekproef (insensitivity_english to_english sample_english size_english).
+Tentamennummer: 217
+Subjectcode: 290
+Punten: 10
+Antwoord: Bij een onderzoek werd een groep mensen in twee groepen verdeeld. De ene groep kreeg studenten te zien die hun mening gaven over een cursus. De andere groep kreeg de cursusevaluatie te zien gebaseerd op een grotere groep studenten. \n Na het zien van één van de twee cursusevaluaties mochten de mensen kiezen of ze de cursus wilden volgen of niet. \n\n Wat bleek: de mensen die de ‘levendige’ evaluatie van de studenten die vertelden hadden gezien kozen meer voor het volgen van de cursus dan de mensen die de cijfers hadden gezien. Mensen tellen levendige informatie dus zwaarder mee dan de grootte van een steekproef. Dat is een voorbeeld van de insensitivity_english to_english sample_english size_english.
+Tentamennummer: 218
+Subjectcode: 291
+Punten: 10
+Antwoord: Er werden aan een groep personen twee ziekenhuizen beschreven; een grote waar meer baby's werden geboren per dag en een kleinere, met minder baby's per dag. De vraag was in welk ziekenhuis de kans groter was dat er op een dag 60% of meer jongetjes geboren zouden worden. De meeste personen antwoordden dat de kans gelijk zou zijn voor beiden ziekenhuizen. Er geen rekening mee houdend dat een grote steekproef (het grote ziekenhuis dus) altijd dichter bij het gemiddelde zal liggen, dus 50% in dit geval. De kans dat 60% of meer jongetjes worden is dus groter in het kleine ziekenhuis.
+Tentamennummer: 219
+Subjectcode: 324
+Punten: 10
+Antwoord: In het onderzoek werd de subjecten 2 ziekenhuizen voorgelegd: een groot ziekenhuis en een klein ziekenhuis. Hierbij werd verteld dat in het grote ziekenhuis per dag meer baby's werden geboren dan in het kleine ziekenhuis. Aan de subjecten werd vervolgens gevraagd in welk ziekenhuis het het meest waarschijnlijk is dat op één dag 60% van de geboren kindjes een jongetje zou zijn. \n\n De meeste ondervraagden achtten de kans van beide ziekenhuizen gelijk, van de overige ondervraagden gaven ongeveer net zoveel het grote als het kleine ziekenhuis als antwoord.
+Tentamennummer: 221
+Subjectcode: 321
+Punten: 10
+Antwoord: In het onderzoek kregen studenten twee evaluatie-uitkomsten van twee cursussen. \n\n Bij de eerste evaluatie stond op papier wat 10 studenten van de cursus vonden. \n\n Bij de tweede evaluatie vertelden 3 studenten via een video over hun ervaring van de cursus. \n\n de proefpersonen moesten kiezen welke cursus ze liever gingen doen \n\n Resultaat: De proefpersonen gingen vaker de cursus doen waarover de 2 studenten gepraat hadden.
+Tentamennummer: 223
+Subjectcode: 295
+Punten: 10
+Antwoord: In het onderzoek van Borgida en Nisbett uit 1977 werden psychologie studenten random aan twee groepen toegewezen. De ene groep kreeg van 10 cursussen de gemiddelde cursusevaluaties op een vijfpuntsschaal te zien. Dit was gebaseerd  op 26 tot 132 studenten. De andere groep kreeg twee of drie studenten te zien die hun commentaar op de cursussen gaven. Hierna werd aan de psychologiestudenten de vraag gesteld voor welke cursus zij gingen kiezen en hoe ze tot deze keuze zijn gekomen. Hieruit bleek dat de studenten meer af gingen op de persoonlijke aanbevelingen van de twee of drie studenten en minder op de abstracte gemiddelden van de cursusevaluaties. Maar deze gemiddelden zijn juist gebaseerd op een veel grotere steekproef.
+Tentamennummer: 226
+Subjectcode: 294
+Punten: 10
+Antwoord: Studenten kregen twee cursussen aangeboden: \n -een door middel van een abstracte statistische eindevaluatie van vorige studenten (tientallen) \n -een door middel van de persoonlijk vertelde ervaringen van slechts een paar studenten. beide scores gegeven op een vijfpuntenschaal. \n\n Ondanks dat de abstracte eindevaluatie betrouwbaarder is doordat het meerdere studenten betreft, kozen de nieuwe studenten voor de cursus waarover slechts een paar vorige studenten vertelden. 
+Tentamennummer: 227
+Subjectcode: 279
+Punten: 0
+Antwoord: Onderzoek naar mening over gevangenisbewaarders \n 3 groepen: 1. kreeg filmpje te zien met 1 van de 4 humaanste bewaarders. 2. kreeg filmpje te zien met een onaardige bewaarder 3. controlegroep zonder filmpje, voor en na het filmpje moesten ze hun mening / attitude ten_abbreviation opzichte_abbreviation van_abbreviation bewaarders opschrijven in een vragenlijst. \n De mensen die het filmpje te zien kregen van de humane bewaarder stonden positiever ten_abbreviation opzichte_abbreviation van_abbreviation bewaarders dan eerst. \n Dit komt omdat ze weliswaar rekening hielden met het feit dat de betreffende bewaarder een humane kant liet zien, ze hielden niet rekening met het feit dat dit 1 van de 4 humaanste was. \n De steekproef was dus eigenlijk te klein om te concluderen dat de bewaarders in het algemeen humaan zijn.
+Tentamennummer: 230
+Subjectcode:256
+Punten: 10
+Antwoord: Bij dit onderzoek kregen proefpersonen twee omschrijvingen van ziekenhuizen voorgelegd. Het ene ziekenhuis was een klein ziekenhuis waar gemiddeld 15 baby’s per dag werden geboren. Het andere ziekenhuis was een groot ziekenhuis waar gemiddeld 45 baby’s per dag werden geboren. Nu was vervolgens de vraag in welk ziekenhuis de kans het grootst was dat op een dag meer dan 60% van de geboren baby’s een jongen zou zijn. Een groot deel van de proefpersonen dacht dat de kans even groot zou zijn bij beide ziekenhuizen. Van de overige proefpersonen dachten ongeveer evenveel mensen dat de kans het grootst was bij het kleine ziekenhuis als bij het grote ziekenhuis.
+Tentamennummer: 231
+Subjectcode: 314
+Punten: 7
+Antwoord: psychologiestudenten werden in twee groepen verdeeld, de ene groep kreeg evaluaties op papier over 10 cursussen. Er stond bij dat het op 26 tot 132 studenten was gebaseerd. \n\n De andere groep kreeg 2 of 3 studenten voor zich die kwamen praten over de cursussen. \n\n Hierna moesten ze allemaal een cursus kiezen. \n Het bleek dat mensen zich veel meer laten leiden bij het kiezen van een cursus door de aanbevelingen van 2 studenten dan de evaluaties, die op basis van veel meer studenten was.
+Tentamennummer: 233
+Subjectcode: 314
+Punten: 10
+Antwoord: Er is een groot en een klein ziekenhuis. Gemiddeld worden er per dag in het grote ziekenhuis 45 baby’s geboren. En in het kleine ziekenhuis 15 baby’s per dag geboren. Deelnemers aan dit onderzoek wordt gevraagd in welk ziekenhuis het vaker voorkomt dat er 60% of meer jongens op een dag worden geboren. van de deelnemers zonder een statistische achtergrond zegt het grootste deel dat dit voor beiden ziekenhuizen gelijk is. De rest kiest even vaak voor het grote of kleine ziekenhuis. Echter weten de deelnemers met een statistische achtergrond dat dit het kleine ziekenhuis is. Er worden namelijk gemiddeld evenveel jongens als meisjes geboren, en hoe groter de steekproef is, hoe dichter het bij het gemiddelde ligt. Dus het kleine ziekenhuis, de kleine steekproef, ligt verder van het gemiddelde en heeft dus meer kans op dagen waarop 60% of meer jongens worden geboren. Mensen met een statistische achtergrond zijn niet ongevoelig voor steekproefgrootte, mensen zonder statistische kennis wel.
+Tentamennummer: 236
+Subjectcode: 319
+Punten: 10
+Antwoord: Het onderzoek over levendige informatie: conditie 1: studenten kregen gemiddelde evaluaties van tientallen eerdere studenten op een vijfpuntsschaal_abbreviation. \n Conditie 2: studenten kregen 2/3 studenten te horen en zien die de cursus evalueerden op dezelfde vijfpuntsschaal_abbreviation. \n\n Hierna moesten de studenten een cursus kiezen. Het bleek dat de studenten zich veel meer lieten beïnvloeden door de levendige informatie dan door de abstracte gemiddelden. Terwijl de gemiddeldes gebaseerd waren op de mening van veel meer studenten dus eigenlijk betrouwbaarder.
+Tentamennummer: 237
+Subjectcode: 194
+Punten: 10
+Antwoord: Een onderzoek vond plaats waarbij door mensen een schatting moest worden gemaakt of er in een klein ziekenhuis of in een groot ziekenhuis de grootste kans was dat 60% van_abbreviation de_abbreviation baby’s die geboren werden een jongetje zouden zijn. \n\n De meeste mensen dachten dat de kans even groot was. En een even grote groep dacht dat de kans in klein ziekenhuis groter was als de groep die dacht dat dit in een groot ziekenhuis de kans was. \n\n De uitkomst is dat ‘t kleine ziekenhuis de kans het grootst is (hoe meer mensen, hoe meer richting normaalverdeling ? 50% meisjes / 50% jongens). Men is zich hier dus niet van bewust ? ongevoelig voor sample_english size_english.
+Tentamennummer: 239
+Subjectcode: 336
+Punten: 0
+Antwoord: Aan een groep mensen wordt eerst een negatief maar levendig verhaal verteld over een vrouw die in de bijstand zit. De vrouw is bijvoorbeeld lui, vies en heeft kansloze kinderen. Hierna wordt aan dezelfde groep mensen ook verteld dat het grootste gedeelte van de mensen die in de uitkering zit binnen twee jaar weer een baan vindt. Uit de resultaten blijkt dat mensen na het onderzoek een negatieve houding hebben tegenover mensen in de bijstand, ondanks dat ze ook gehoord hebben dat velen al snel weer een baan vinden.
+Tentamennummer: 240
+Subjectcode: 164
+Punten: 10
+Antwoord: In een onderzoek kregen deelnemers (studenten psychologie) gegevens over cursussen op 2 manieren: 1. gegevens van tientallen studentenevaluaties over de cursussen \n 2. interviews met vijf studenten over de waardering van de cursussen. \n\n Bij het kiezen van een cursus lieten de studenten zich meer beïnvloeden door de interviews, terwijl de studentenevaluatie bij veel meer personen was afgenomen en deze steekproef dus groter was. \n De deelnemers hielden dus geen rekening met de grootte van de steekproef.
+Tentamennummer: 242
+Subjectcode: 255
+Punten: 10
+Antwoord: Er was een onderzoek over ongevoeligheid voor ‘sample_english size_english’ van Nisbett waarbij studenten in twee groepen worden toegewezen. De ene groep heeft een vragenlijst gekregen met een schaal van een tot vijf over hoe leuk ze verschillende cursus vonden. \n De personenaantal die de vragenlijst invulden was heel groot. \n\n De andere groep luisterde naar drie presentaties van studenten, die over de cursus vertelden. \n\n De resultaten wijzen dat mensen zich bij de cursuskeuze later meer lieten beïnvloeden van de kleine, maar levendige presentaties. minder van de vragenlijstresultaten, die een veel grotere steekproef had.
+Tentamennummer: 243
+Subjectcode: 240
+Punten: 10
+Antwoord: In een onderzoek werd aan de proefpersonen gevraagd te beoordelen hoe groot de waarschijnlijkheid was, dat 60% van de op een dag geboren kinderen jongens waren. De deelnemers hadden de keuze uit twee ziekenhuizen: een groot ziekenhuis met veel geboortes of een klein ziekenhuis met minder geboortes per dag. De meeste deelnemers hielden geen rekening met de Wet van Grote aantallen en gaven aan dat het voor beide ziekenhuizen even waarschijnlijk was.
+Tentamennummer: 244
+Subjectcode: 170
+Punten: 10
+Antwoord: In een onderzoek werd de subjecten twee ziekenhuizen uitgelegd. Een groot ziekenhuis en een klein ziekenhuis. In het grote ziekenhuis werden er gemiddeld 45 baby's per dag geboren en in het kleine ziekenhuis werden er gemiddeld 15 baby's geboren. De subjecten werd gevraagd in welk ziekenhuis het het waarschijnlijkst was dat er meer dagen 60% jongens werden geboren. De meeste subjecten dachten dat de kans hierop voor beide ziekenhuizen gelijk was. De overige subjecten waren gelijk verdeeld over het kleine ziekenhuis en het grote ziekenhuis. Zij hielden hierbij dus onvoldoende rekening met de Wet van Grote Aantallen, waaruit blijkt dat in een kleine steekproef de kans op afwijkingen van het populatiegemiddelde veel groter is. Het kleine ziekenhuis was dus het juiste antwoord.
+Tentamennummer: 245
+Subjectcode: 163
+Punten: 10
+Antwoord: Bij een onderzoek werd men een vraag voorgelegd: bij welk ziekenhuis worden de meeste dagen 60% jongens geboren. Er was een klein ziekenhuis, waar gemiddeld 15 baby's werden geboren en een groot ziekenhuis, waar gemiddeld 45 baby's per dag werden geboren. De meeste mensen dachten dat dit gelijk was voor beide ziekenhuizen. Hierbij wordt geen rekening gehouden met de wet van grote aantallen, die voorschrijft dat in een kleine steekproef afwijkingen van de populatie waarschijnlijker zijn dan in een grote steekproef. Men is dus ongevoelig voor de steekproefgrootte. (Het juiste antwoord was dus het kleine ziekenhuis)
+Tentamennummer: 247
+Subjectcode: 271
+Punten: 0
+Antwoord: Bij een psycholoog die een test heeft gemaakt over conversiestoornis. Een psycholoog had een steekproef van 25 mensen waarvan 4 worden misbruikt vroeger. De andere psycholoog had een steekproef van 3 mensen waarvan 2 misbruikt zijn worden. De ene psycholoog geeft aan dat misbruik leidt tot conversiestoornis omdat hij een quota van 75% (ofzo) had. De andere psycholoog met een grotere steekproef had alleen 15%. \n Mensen zullen eerder leiden dat het grotere kans is bij de tweede psycholoog maar die heeft alleen een kleinere steekproef hoezo dem_german zijn percentaal_nonexisting groter was.
+Tentamennummer: 249
+Subjectcode: 309
+Punten: 0
+Antwoord: In een onderzoek naar conversiestoornis krijgen de cliënten een vragenlijst. Er zijn 18 cliënten die meedoen, waarbij iedereen een conversiestoornis heeft. \n\n Uit de resultaten komt naar voren dat er 5 van de cliënten in hun jeugd seksueel misbruikt zijn. \n\n De onderzoekers concluderen dat 5/10 x 100 =27.8% van de mensen met conversiestoornis ooit seksueel misbruikt zijn.
+Tentamennummer: 250
+Subjectcode: ?
+Punten: 10
+Antwoord: Studenten werden een cijferlijst over een cursus laten zien, en ze werden verteld dat dit een gemiddelde score was van tientallen studenten. Ook kregen ze van een andere studie persoonlijk de resultaten verteld, echter maar door een paar mensen. De meeste studenten kozen voor de studie waarbij mensen ze persoonlijk over de studie hebben verteld, terwijl ze echter van veel meer mensen een gemiddelde kregen in de andere studie die had dus een grotere steekproef. Dit laat zien dat ze gevoelig waren voor de steekproefgrootte.
+Tentamennummer: 116
+Subjectcode:?
+Punten:  0
+Antwoord: Ik wist dat ik iets vergeten had.. Het is ‘te’ vaak onderzocht wat het verband is tussen roken en longproblemen. Echter, keer op keer weerleggen mensen deze resultaten met een anekdote uit de eigen kring, vaak n=1: “mijn opa rookte elke dag een pakje en hij is 92 jaar geworden!”
+Tentamennummer: 40
+Subjectcode: ?
+Punten: 10
+Antwoord: Een voorbeeld van ongevoeligheid voor steekproefgrootte is een onderzoek met 2 ziekenhuizen (een grote met gemiddeld 45 baby’s per dag, en een kleine met gemiddeld 15 baby’s per dag). De proefpersonen waren gevraagd bij welk ziekenhuis de kans groter is dat op een dag 60% jongens geboren werden. \n De proefpersonen schatten de kans voor elk van de twee ziekenhuizen gelijk in. Wat fout is, omdat des te minder baby’s des te groter is de kans dat het van het gemiddelde afwijkt. Het is dus waarschijnlijker voor het kleine ziekenhuis op een dag 60% jongens te krijgen. \n De mensen hier hielden onvoldoende rekening met de wet van de grote aantallen.
+Tentamennummer: 68
+Subjectcode: 106
+Punten: 3
+Antwoord: leerlingen / studenten kregen voordat ze een docent hadden gezien een video van twee seconden te zien waarin de docent te zien was (non-verbaal). Vervolgens kregen ze les van de docent en achteraf moesten ze een evaluatie invullen over de docent. \n\n Uit dit onderzoek bleek dat de leerlingen die de video hadden gezien de docent aardiger vonden dan wanneer ze filmpje niet hadden gezien maar “saaie” info over de docent. \n\n De informatie over de docent bevat veel meer dan alleen een filmpje van 2 seconden_abbreviation. Toch gaan mensen op het filmpje af en baseren daar hun oordeel op. \n\n De “size_english”  van de video is veel kleiner dan de andere informatie.
+Tentamennummer: 228
+Subjectcode: 233 
+Punten: 0
+Antwoord: Een onderzoek waarbij iemand in de bijstand zat, en de mensen eerst dachten dat iemand daar ongeveer 10 jaar in zat, daarna zagen ze een verhaal van een vrouw die er 2 jaar in zat, dat zorgde voor een daling, als mensen vervolgens statistieken zagen veranderde dat niks, terwijl ze achteraf wel wisten wat die statistieken zeiden, toch had dat geen invloed, het levende verhaal wel. er was ook nog 1 controlegroep.
+Tentamennummer: 6
+Subjectcode: 137
+Punten: 3
+Antwoord: In een onderzoek van Kahneman en Tversky (1972) werd aan proefpersonen die nog nooit statistiek gehad hadden twee ziekenhuizen beschreven; een grote en een kleine. In het grote ziekenhuis werden 45 baby’s per dag geboren, in het kleine ziekenhuis 15 baby’s per dag. De proefpersonen werd gevraagd in welk ziekenhuis zij dachten dat 60% meer jongetjes geboren werden. De meeste personen dachten dat dit voor allebei de ziekenhuizen even waarschijnlijk was. De overige subjecten zeiden zowel het kleine ziekenhuis als het grote ziekenhuis. Na een statistiektraining werd deze fout niet meer gemaakt (de fout is het kleine ziekenhuis te noemen). Het grote ziekenhuis heeft echter meer kans dat 60% of meer jongetjes in dit ziekenhuis geboren wordt, en dat de steekproef (45 baby’s) veel groter is dan de steekproef van het kleine ziekenhuis (slechts 15 baby’s per dag). Op basis van een te kleine steekproef van minder dan 20 subjecten, zoals bij het kleine ziekenhuis, kunnen geen conclusies getrokken worden. Daar hielden de meeste proefpersonen dus geen rekening mee.
+Tentamennummer: 37
+Subjectcode: 147
+Punten: 6
+Antwoord: Het werd een onderzoek gedaan naar de oordeel van studenten over docenten. Het werd gekeken hoe snel de studenten over een docent oordelen, nadat zij een non-verbaal filmpje hebben gezien en het gemiddelde van het oordeel van andere studenten. Het blijkt, dat studenten al na 2 seconden een oordeel klaar hebben, hoewel dit een heel klein steekproef uit het gedrag van de docent is.
+Tentamennummer: 2
+Subjectcode: 269
+Punten: 10
+Antwoord: Uit een onderzoek van Borgida en Nisbet bleek dat mensen meer aandacht besteden aan een klein hoeveelheid levendige informatie dan aan een groot hoeveelheid statistische data. \n In conditie 1 kregen de proefpersonen een cursusevaluatie op een vijfpuntsschaal_abbreviation te zien. Het waren gemiddelde van enkele tientallen personen. \n In conditie 2 kregen de proefpersonen 2-3 personen te zien en te horen die een cursus op dezelfde schaal beoordeelden en een commentaar geven. \n\n Daarna moesten de proefpersonen een cursus kiezen waar ze mee wilden doen. \n De persoonlijke aanbeveling had meer invloed op de keuze dan de statistische data, maar de statistische data bevat de mening van heel veel personen. \n Dus de proefpersonen houden geen rekening met de grootte van de steekproef. Ze wegen een klein steekproef te zwaar en een groot steekproef juist te licht.
+Tentamennummer: 4
+Subjectcode: ?
+Punten: 10
+Antwoord: Insensitivity_english voor sample_english size_english \n\n Cursusevaluatie \n\n sommige studenten hebben een cursusevaluatie op een vijfpuntenschaal gemaakt en twee studenten hebben dezelfde schaal aangevuld en persoonlijk gerapporteerd \n Als de resultaten gerapporteerd worden wegen de resultaten van de twee studenten welke de resultaten persoonlijk hebben gerapporteerd zwaarder, desondanks de andere evaluatie meer aan het gemiddelde van alle studenten zou liggen, want als Mu groter wordt ligt het bij benadering meer aan het populatiegemiddelde.
+Tentamennummer: 5
+Subjectcode: 322
+Punten: 10
+Antwoord: In een onderzoek werden proefpersonen in 2 groepen verdeeld. Groep 1 kreeg een paar enkele persoonlijke cursusevaluaties te zien. Groep 2 kreeg van een grote steekproef statistische cijfers te zien over dezelfde evaluatie. \n Achteraf werd gekeken hoeveel proefpersonen van de verschillende groepen de cursus van de evaluatie kozen. \n Resultaten: Meer mensen van groep A namen de cursus dan mensen van groep 2. Door een vragenlijst werd gecontroleerd of groep 2 de statistische cijfers onthouden hadden. Dit liet zien dat zij ze onthouden hadden. \n Dit is een typisch voorbeeld dat mensen kleinere steekproeven meer waarden geven dan grote steekproeven, waarbij dit een aandachtsfout is. Mensen zouden meer waarden aan grote steekproeven moeten geven.
+Tentamennummer: 19
+Subjectcode: 273
+Punten: 10
+Antwoord: Een onderzoek waarbij er op 2 verschillende manieren een evaluatie over een bepaalde cursus werd aangeboden, en vervolgens iemand moest bepalen of hij of zij wel of niet mee zou willen doen aan die cursus. De ene manier waarop de evaluatie werd aangeboden was aan de hand van statistische gegevens over wat vele andere studenten ervan vonden. De andere manier was aan de hand van een video waarin 3 studenten vertelden wat ze er van vonden. Mensen bleken veel gevoeliger voor de informatie op de video, terwijl deze steekproef veel kleiner was dan die van de statistische gegevens. Daarom was hierbij duidelijk sprake van sample_english size_english.
+Tentamennummer: 23
+Subjectcode: 315
+Punten: 10
+Antwoord: Een groep studenten wordt verdeeld over twee condities. In de ene conditie laat men resultaten zien van cursusevaluaties van tientallen studenten. De studenten moesten in de cursusevaluatie cursussen een score geven op een schaal van 1 tot 5. Het gemiddelde oordeel per cursus wordt besproken / laten zien. In de andere conditie vertellen 2 of 3 studenten aan de proefpersonen wat ze van de cursus die ze hebben gekozen vonden. Hierna kiezen de proefpersonen een cursus. Uit de resultaten van dit onderzoek bleek dat de proefpersonen in hun keuze meer beïnvloed werden door de 2 of 3 sprekers dan door de resultaten van veel studenten. De kleine steekproef had dus meer invloed dan de grote steekproef terwijl grote steekproeven betrouwbaarder zijn. Dit is een voorbeeld van insensitivity_english to_english sample_english size_english.
+Tentamennummer: 31
+Subjectcode: 312
+Punten: 10
+Antwoord: In het boek wordt er een onderzoek beschreven waarin proefpersonen een vraag moesten beantwoorden over twee ziekenhuizen. De vraag was welk ziekenhuis de meeste kans had om op een dag 60% of meer geboortes van jongetjes te krijgen. Daarbij had ziekenhuis 1, 15 bevallingen per dag, en ziekenhuis 2, zo’n 45. \n Veel proefpersonen dachten dat de kans voor beide ziekenhuizen even groot was. \n\n Dit is een voorbeeld van ongevoeligheid voor sample_english size_english, omdat mensen te weinig waarde hechten aan grote steekproeven. Echter, wordt naarmate de steekproef groter wordt, het onderzoek betrouwbaarder (dus: gaat dichterbij het populatiegemiddelde liggen, wat in dit geval 50% is; er worden evenveel jongens als meisjes geboren.). \n\n Mensen die niet ongevoelig zijn voor steekproefgrootte zouden dus moeten concluderen dat ziekenhuis 1, waarschijnlijk meer geboortes van jongetjes heeft (die heeft een kleinere steekproef).
+Tentamennummer: 34
+Subjectcode: 155
+Punten: 10 
+Antwoord: Het onderzoek van Borgida & Nisbett (1977) waarbij de proefpersonen psychologiestudenten waren die cursusevaluaties ontvingen. In de eerste conditie bestond dit uit de gemiddelde mening van tientallen studenten. In de tweede conditie kregen de studenten slechts enkele, maar zeer gedetailleerde meningen te zien, bijgestaan door commentaar. \n\n Het bleek dat de studenten zich meer lieten beïnvloeden door de enkele, levendige evaluaties, dan de gemiddelde meningen op basis van een veel grotere steekproef. Hier is sprake van ongevoeligheid voor steekproefgrootte omdat de studenten zich meer door de enkele meningen lieten beïnvloeden, dan de samenvatting van de tientallen studenten, terwijl die veel betrouwbaarder is. 
+Tentamennummer: 42
+Subjectcode: 176
+Punten: 10
+Antwoord: Studenten moesten tussen twee cursen_nonexisting kiezen. Een groep van de studenten zag een cursus-evaluatie van de ene cursus van een tiental studenten die deze cursus in het vorige jaar (vroeger) als zijn gevolgd. \n Een andere groep van studenten zag een presentatie van drie studenten die de andere cursus zijn gevolgd. De presentaties waren over hun ervaringen etcetera_abbreviation in deze cursus. \n\n Het bleek uit deze onderzoek dat meer studenten voor de tweede cursus hebben gekozen. Deze persoonlijke ervaring brengt meer ‘levendige ervaring / informatie met zich)
+Tentamennummer: 44
+Subjectcode: 178
+Punten: 10
+Antwoord: Onderzoek: de Wet van Grote Aantallen \n\n Er waren 2 ziekenhuizen: een groot ziekenhuis waar gemiddeld 45 baby's per dag werden geboren en een klein ziekenhuis waar dit aantal gemiddeld 15 was. \n\n Er werd aan mensen gevraagd in welk ziekenhuis de kans groter was dat 60% van de baby's een jongetje was op een dag. \n\n In een populatie zal 50% ongeveer jongen zijn gemiddeld. Hoe groter de steekproef, hoe dichter bij het populatiegemiddelde het steekproefgemiddelde zou moeten liggen ? in het kleine ziekenhuis is er dus meer kans op afwijking en meer kans op 60% jongens ? mensen houden hier geen rekening mee.
+Tentamennummer: 47
+Subjectcode: 103
+Punten: 10
+Antwoord: Er is een onderzoek gedaan onder studenten met betrekking tot het enthousiasme over een vak na voorlichting te hebben gehad. In de ene conditie werden studenten een vijfpuntenschema laten zien die tientallen studenten samen geconcludeerd hadden over een cursus. Studenten wisten ook dat dit gemiddelden waren van meer studenten. In de andere conditie vertelden drie studenten aan de hand van dezelfde punten enthousiast over de cursus. \n Ondanks dat meer studenten (tientallen) het andere vak prezen en aanbevolen, kozen toch veel studenten voor het vak dat in het echt werd aangeprezen door maar 3 studenten. \n Duidelijk een voorbeeld van sample_english size_english insensitivity_english.
+Tentamennummer: 49
+Subjectcode: 193
+Punten: 3
+Antwoord: Onderzoek baby’s \n\n In een groot ziekenhuis worden maandelijks 45 baby’s geboren en in een klein ziekenhuis 15. Onderzoekers vroeger subjecten waar eerder 60% van de geboren baby’s een jongen is. \n Veel subjecten dachten aan het kleine ziekenhuis, omdat zij kleine steekproeven te zwaar meewegen en grote steekproeven te licht. Zij zijn niet bekend met de wet van grote aantallen.
+Tentamennummer: 4
+Subjectcode: 247
+Punten: 0
+Antwoord: Gevoeligheid voor sample_english size_english is naar voren toe gekomen bij een onderzoek. waar ze naar keken we wet van de grote aantallen. Mensen waren gevraagd welke resultaten van enkele bronnen zij eerder geloofden. Het bleek dat mensen resultaten met een hele kleine steekproef eerder geloofden (soms) dan resultaten van onderzoeken met een grote steekproef. Mensen keken of werden beïnvloed door de manier waarop het aan de kijkers werd gepresenteerd. was het leuk of kwam het geloofwaardiger over, dan bleef dit ook eerder hangen. conclusie ? mensen hielden geen rekening met de wet van de grote aantallen.
+Tentamennummer: 62
+Subjectcode: 278
+Punten: 10
+Antwoord: Bij de ziekenhuisvoorbeeld geeft het een grote en een kleine ziekenhuis. In de kleine ziekenhuis worden in een bepaalde tijd een bepaalde (kleine aantal) baby's geboren. In de grote ziekenhuis worden in dezelfde tijd een veel groter aantal aan baby's geboren. De vraag was dan, in welke ziekenhuis de waarschijnlijkheid groter is, dat 60% van de baby's jongen zijn. \n\n Veel mensen zeiden, dat het gelijk is in de ziekenhuizen. De rest zei dat het de grote of de kleine ziekenhuis is (evenveel verdeeld). \n\n De juist antwoord is de kleine ziekenhuis omdat klein steekproeven gevoeliger zijn. Daardoor zijn zij makkelijker door een groot getal afwijken heel sterk te laten. Grote steekproeven laten zich niet door een kleine verandering zo sterk afwijken.
+Tentamennummer: 6
+Subjectcode: 323
+Punten: 7
+Antwoord: Er was een groot en een klein ziekenhuis. In het grote ziekenhuis werden er per dag meer baby’s geboren. Er werd aan de proefpersonen gevraagd waar ze dachten dat de kans het grootste was dat er een jongetje werd geboren. Ongeveer een kwart antwoordde de kleine, een kwart antwoordde de grote, de rest zei dat het niet uitmaakte. 
+Tentamennummer: 78
+Subjectcode: 345
+Punten: 10
+Antwoord: Psychologie studenten werden random verdeeld over 2 condities. Bij de eerste conditie kregen ze een statistische samenvatting van cursusevaluaties te zien, gebaseerd op tientallen meningen. Bij de tweede conditie kregen ze 2/3 studenten te zien en horen die vertelde over hun evaluaties over de cursussen. De proefpersonen konden hierna hun voorkeur voor een van de cursussen aangeven. \n\n Uitkomst: De proefpersonen lieten zich meer leiden door de levendige informatie van de 2/3 studenten dan door de meningen van de tientallen in de samengevatte evaluatie. \n Er werd dus teveel waarde gehecht aan een kleine steekproef. 
+
+Tentamennummer: 81
+Subjectcode: 142
+Punten: 0
+Antwoord: De onderzoek laat twee soorten van datamatrix vergelijken. De eerste is met een kleine steekproef maar meer informatie over de proefpersonen. De tweede is over een grote steekproef met minder informatie. Die mensen kiezen voor de eerste datamatrix omdat meer informationen_german het persoonlijker maakt en dit lijkt dan meer betrouwbaar.
+Tentamennummer: 84
+Subjectcode: 126
+Punten: 10
+Antwoord: Uit het volgende onderzoek blijkt dat mensen soms ongevoelig zijn voor sample_english size_english: Proefpersonen die geen cursus statistiek gevolgd hadden werd het volgende voorgelegd: Er zijn 2 ziekenhuizen: een groot en een klein ziekenhuis: In het grote ziekenhuis worden gemiddeld 45 kinderen geboren per dag, in het kleine ziekenhuis gemiddeld 15.  De vraag die de proefpersonen moesten beantwoorden was: In welk ziekenhuis worden gemiddeld een aantal dagen meer dan 60% jongens geboren? De meeste proefpersonen antwoorden dat deze kans voor allebei de ziekenhuizen even groot was van de overige proefpersonen gaven ongeveer evenveel het grote als kleine ziekenhuis als antwoord. Wie rekening zou houden met de Wet van grote aantallen zou weten dat deze kans in het kleine ziekenhuis groter zou zijn. Hoe groter de steekproef, hoe dichter het steekproefgemiddelde bij het populatiegemiddelde van een 0.5 komt. De kans dat er meer dan 60% jongens geboren worden is in het grote ziekenhuis dus kleiner. De proefpersonen die als antwoord even groot gaven hielden dus geen rekening met de wet van grote aantallen en waren daarom ongevoelig voor sample_english size_english.
+Tentamennummer: 87
+Subjectcode: 196
+Punten: 10
+Antwoord: Psychologiestudenten kregen evaluaties over en les en moesten op basis daarvan een keuze maken. Zij werden opgedeeld in 2 groepen. In de ene conditie kregen zij een verslag te zien op basis van een vijfpuntenschaal_abbreviation waarin de evaluatie van tientallen studenten was verwerkt en in de andere conditie kregen zij een evaluatiegesprek te zien en te horen 2 of 3 studenten. De psychologiestudenten lieten zich veel meer beïnvloeden door de persoonlijke interviews terwijl de statistisch verzamelde informatie meningen van veel meer studenten bevat en dus waarschijnlijk betrouwbaarder is. De psychologie studenten houden hier geen rekening met de grootte van de steekproef en hechten meer waarde aan de levendigheid van de informatie.
+Tentamennummer: 93
+Subjectcode: 330
+Punten: 0
+Antwoord: Interview: \n als mensen een interview hebben met hun toekomstige werkgever. Dan weegt de eerste indruk van het interview veel zwaarder mee dan de rest van de informatie zoals aanbevelingsbrieven. De rest van de informatie is gebaseerd op meerdere dingen en meerdere jaren. Terwijl het interview een eerste indruk is binnen een uur. De interviewer weegt de eerste indruk veel zwaarder mee dan de achtergrondinformatie. Dus het interview, wat maar op weinig is gebaseerd weegt zwaarder mee dan de achtergrondinformatie, wat op meerdere dingen is gebaseerd.
+Tentamennummer: 95
+Subjectcode: 161
+Punten: 10
+Antwoord: In een onderzoek werd de ongevoeligheid voor ‘sample_english size_english’ onderzocht. Mensen die geen statistiek hadden en ook niet bekend waren met de Wet van Grote Aantallen waren de proefpersonen. De onderzoekers hebben twee ziekenhuizen beschreven. Een groot ziekenhuis waar 45 baby's per dag worden geboren en een klein ziekenhuis waar alleen 15 baby's worden geboren, per dag. Toen vroegen ze naar het ziekenhuis met de meeste dagen waarop 60% of meer jongens worden geboren. Daarbij konden ze zien dat de meeste mensen dachten dat er geen verschil zou zijn tussen de ziekenhuizen, vooral in het aantal baby's. \n Maar er bestaat wel een verschil. In een klein ziekenhuis is de kans groter dat op een dag meer jongens, of ook meisjes, worden geboren. Bij een kleine steekproef (hier klein ziekenhuis) is de kans op afwijkingen in het gemiddelde (50%) groter.
+Tentamennummer: 101
+Subjectcode: 234
+Punten: 10
+Antwoord: het gaat om twee ziekenhuizen: een grote waar 40 baby’s per dag geboren werden en een kleine waar 15 baby’s per dag worden geboren. \n De vraag is: in welk ziekenhuis is de kans het grootst dat op één dag 60% van de geboren baby’s een jongetje is. de resultaten laten zien dat de meeste mensen denken dat dit bij beide gelijk is. maar dat is dus niet zo want in het kleine ziekenhuis worden minder baby’s geboren en zo telt elke jongen dus zwaarder mee en is de kans op 60% jongens groter.
+Tentamennummer: 108
+Subjectcode: 277
+Punten: 10
+Antwoord: Bij een onderzoek werd aan psychologiestudenten gevraagd welke cursus ze wilden volgen. Van tevoren kregen zij of \n 1. statistische uitwerkingen over de inhoud van de cursus \n of \n 2. ervaringsverhalen van 2 of 3 studenten. \n\n Het bleek dat studenten meer beïnvloedt werden in hun keuze door de ervaringsverhalen dan door de statistische uitwerkingen. \n\n Echter zijn de statistische uitwerkingen gebaseerd op de evaluatie van tientallen studenten. De steekproef is dus groter dan bij de ervaringsverhalen. grotere steekproef zorgt voor meer betrouwbaarheid van de resultaten. Mensen laten zich dus eerder beïnvloeden door een kleine steekproef en worden weinig beïnvloed door de grote steekproef, al is deze betrouwbaarder.
+Tentamennummer: 111
+Subjectcode: 145
+Punten: 0
+Antwoord: In een onderzoek over docentenbeoordelingen werden personen gevraagd om een docent te beoordelen op basis van 2 seconden non-verbaal gedrag op video (voor de cursus), en op basis van de hele cursus. De resultaten zijn zo, dat er een correlatie van 0,72 naar voren kwam tussen de twee metingen. Het oordeel van de groep mensen was dus grotendeels in overeenstemming op basis van 2 seconden video en een hele cursus. De lengte veranderde het oordeel niet erg.
+Tentamennummer: 113
+Subjectcode: 156
+Punten: 7
+Antwoord: Een onderzoek naar ongevoeligheid voor steekproefgrootte heeft aangetoond dat mensen geen rekening met de grootte van  de steekproef houden. \n De onderzoeker hebben aan studenten gevraagd bij welk ziekenhuis meer dan 60% jongens worden geboren. De twee ziekenhuizen die men ervoor moest bekijken waren aan de ene kant een klein ziekenhuis waar minder kinderen worden geboren en aan de andere kant een groot ziekenhuis waar veel kinderen worden geboren. \n De studenten dachten dat de kans voor beide ziekenhuizen even groot is. Ofwel dat niet klopt: Het kleine ziekenhuis is maar een klein steekproef.
+Tentamennummer: 124
+Subjectcode: 308
+Punten: 0
+Antwoord: Er werd een onderzoek genoemd waar studenten eerst gemiddelden en statistieken te zien kregen over hoeveel mensen er op een studentenvereniging zitten. Dat was ongeveer 10%. Daarna kregen ze van 5 studenten die op een studentenvereniging zitten te horen waarom zij er bij zitten. \n Vervolgens moesten de studenten schatten hoeveel studenten er bij een studentenvereniging horen. \n Dit aantal werd flink overschat. ondanks de gemiddelden en statistieken deze hadden gelezen.
+Tentamennummer: 127
+Subjectcode: 213
+Punten: 10
+Antwoord: Met een onderzoek naar sample_english size_english ongevoeligheid werd aangetoond dat studenten die voor een cursus moesten kiezen af gingen op de informatie uit een kleine steekproef en niet uit een grote steekproef. \n Studenten kregen de kans zich in te schrijven voor een cursus. Ze krijgen hierbij informatie over de cursus uit een statistische bron van een groot aantal studenten en filmpjes van de reactie van 3 studenten op de cursus. De studenten bleken meer af te gaan op de levendige informatie uit de filmpjes (de kleine steekproef) Dan op de statistische informatie (de grote steekproef.
+Tentamennummer: 135
+Subjectcode: 117
+Punten: 7
+Antwoord: Het onderzoek naar levendige informatie: \n Uit dit onderzoek waren er 2 groepen studenten die moesten kiezen of ze een cursus wilden volgen of niet. Om hun te helpen tijdens de keuze hebben een groep studenten de gemiddelden van_abbreviation de_abbreviation cursusevaluatie gekregen van de voorgaande studenten die de studie al hebben gevolgd. De andere groep studenten had een interview met iemand die de cursus al had gevolgd. \n\n resultaat: de studenten die de interview hebben gehad, hebben eerder gekozen voor de cursus dan de studenten die de statistische gemiddelden kregen te zien. Dit laat zien dat mensen soms ongevoelig zijn voor ‘sample_english size_english’. (men geloofde eerder de interviewer dan de statistische gemiddelden).
+Tentamennummer: 136
+Subjectcode: 244
+Punten: 7
+Antwoord: In Kahneman en Tversky (1972) onderzoek worden deelnemers gevraagd, in welke ziekenhuis (een grote met ongeveer 75 geboorten en een kleine met ongeveer 15 geboorten per dag) het vaker voorkomt dat op een dag 60% jongen geboren worden. \n Deelnemers die geen statistiek hebben gehad , vermoedden dat de kans in beide gelijk was of groter in de grote ziekenhuis, omdat zij geen gevoel voor de Wet van N hadden,
+Tentamennummer: 138
+Subjectcode: 252
+Punten: 3
+Antwoord: Tijdens het onderzoek wordt studenten gevraagd hun mening te geven aan de hand van vijf criteria die in conditie één worden verteld door een student aan de hand van data. In de tweede conditie vertellen twee tot drie studenten de vijf criteria mondeling en de deelnemers mogen hierop reageren en mee in discussie gaan. Het resultaat is dat de deelnemers hun keus baseren op de persoonlijke informatie die ze hebben gehoord bij de gesprekken, in plaats van op de data die werd verteld. Dit is een vorm van sample_english size_english omdat er wordt ingegaan op de persoonlijke, kleine steekproef in plaats van op de groter, betrouwbaarder, op data beruste steekproef.
+Tentamennummer: 145
+Subjectcode: 306
+Punten: 10
+Antwoord: Kahneman en Tversky vroegen aan studenten zonder statistiek cursus welk ziekenhuis de meeste dagen zou hebben waar 60% of meer jongetjes geboren werden. Het grote ziekenhuis waar gemiddeld 45 baby’s per dag werden geboren of het kleine ziekenhuis waar gemiddeld 15 baby’s per dag werden geboren. De meeste subjecten gaven als antwoord dat het niet uitmaakt. De rest gaf net zo vaak het grote als het kleine ziekenhuis als antwoord. Mensen met statistiek cursus maakten deze fout veel minder. Gemiddeld worden er evenveel jongens als meisjes geboren. Het grote ziekenhuis is een grotere steekproef en ligt dus dichter bij het gemiddelde. Mensen die zich laten beïnvloeden door steekproefgrootte zouden het kleine ziekenhuis zeggen omdat die meer fluctueert. De meeste mensen zonder statistiek deden dat niet en waren ongevoelig voor de steekproefgrootte.
+Tentamennummer: 147
+Subjectcode: 243
+Punten: 0
+Antwoord: De onderzoek “verandering in attitude” beschrijft de ongevoeligheid voor ‘sample_english size_english’. Er was bij de experimentele en controlegroep een voor- en nameting over de algemene attitude over bijstanders. De experimentele groep moest tussen de voor- en nameting een n=1 verhaal (levendig) over een Puerto Ricaanse bijstander lezen die negatief beschrijven werd. De controlegroep zag statistische abstracte informatie over bijstanders. De levendige verhaal had een significant negatieve invloed op de attitude bij de nameting. De statistische informatie niet. ? N=1 had significante invloed; grote steekproef niet.
+Tentamennummer: 149
+Subjectcode: 189
+Punten: 10
+Antwoord: Bij het onderzoek van Kahneman & Tversky (1972) kregen de proefpersonen uitgelegd dat er twee ziekenhuizen zijn waar baby’s worden geboren. Het ene ziekenhuis is groot en worden per dag 45 baby’s geboren. Het andere ziekenhuis is klein en worden per dag 15 baby’s geboren. Na dit uitgelegd te hebben, vroegen de onderzoekers aan de proefpersonen in welk ziekenhuis de meeste dagen 60% jongetjes worden geboren. De meeste mensen zeiden dat in beide ziekenhuizen het even vaak voorkwam. Sommige mensen noemden het kleine ziekenhuis en sommige weer het grote ziekenhuis. De mensen die zeiden dat in beide ziekenhuizen het even vaak voorkwam, hielden geen rekening met dat in het ene ziekenhuis 45 baby’s worden geboren en in het andere ziekenhuis 15 baby’s worden geboren. Deze proefpersonen zagen beide ziekenhuizen als gelijk en tonen hierdoor ongevoeligheid voor sample_english size_english aan.
+Tentamennummer: 156
+Subjectcode: 232
+Punten: 0
+Antwoord: Ongevoelig voor sample_english size_english (grootte steekproef) \n\n Uit een onderzoek bleek dat mensen die kleinschalig onderzoek met een kleine steekproef dat erg levendig werd verteld méér als waarheid werd gezien / daar meer waarde aan hechtte, dan een onderzoek met een grote(re) steekproef dat minder levendig werd verteld / overgebracht
+Tentamennummer: 162
+Subjectcode: 215
+Punten: 0
+Antwoord: bewaarder van een gevangenis: \n\n er zijn twee condities: de eerste conditie wordt weer gedeelt in twee condities: \n conditie 1a: mensen krijgen een interview te zien met een humaan bewaarder en het wordt gezegd dat hij een van de beste bewaarder van 60 is. \n conditie 1b: dezelfde conditie, maar er wordt gezegd,dat de bewaarder een typisch bewaarder is \n conditie twee: mensen krijgen geen interview te zien \n daarnaast worden vragenlijsten afgenomen over de omstandigheden in een gevangenis: conditie 1a: positief beïnvloedt door interview, maar kritischer dan mensen uit conditie 1b \n conditie 1b: mensen denken positief daarover \n conditie 2: denken minder positief
+Tentamennummer: 164
+Subjectcode: 115
+Punten: 10
+Antwoord: Er werd in een onderzoek aan proefpersonen twee ziekenhuizen beschreven. Een groot ziekenhuis waar gemiddeld 45 baby’s per dag werden geboren. En een klein ziekenhuis waar gemiddeld 15 baby’s per dag werden geboren. Nu werd de proefpersonen gevraagd waar ze dachten dat vaker dagen waren dat er 60% of meer jongens werden geboren. De meeste mensen dachten dat dit bij beide ziekenhuizen even vaak zou voorkomen. Van de overige mensen kozen er evenveel (ongeveer) voor het grote als het kleine ziekenhuis.
+Tentamennummer: 165
+Subjectcode: 135
+Punten: 10
+Antwoord: Het onderzoek waarbij deelnemers werd verteld dat een grote ziekenhuis 20 geboortes per dag heeft en een kleine ziekenhuis 15 geboortes per dag heeft. De deelnemers worden gevraagd bij welke ziekenhuis per dag meer jongens ter wereld komen, als de percentage jongens 60% is. Meeste deelnemers gaven aan dat het bij beide ziekenhuizen gelijk is. de rest van de deelnemers denken dat het evenveel is bij de kleine ziekenhuis zowel de grote ziekenhuis.
+Tentamennummer: 179
+Subjectcode: 143
+Punten: 3
+Antwoord: In een onderzoek wordt beschreven dat vaak de Wet van grote aantallen genegeerd wordt, hierbij worden studenten gevraagd, of per dag meer jongens in een groot ziekenhuis worden geboren of in een klein. \n In de klein ziekenhuis worden gemiddeld 15 kinderen per dag en in de andere 60 per dag geboren. De meeste studenten kiezen voor het kleine ziekenhuis ofwel dat niet klopt. De Wet van grote aantallen stelt namelijk dat als de steekproef groter is het meer aan het populatiegemiddelde komt. Daarom moet het hier ook de grote ziekenhuis zijn.
+Tentamennummer: 185
+Subjectcode: 124
+Punten: 10
+Antwoord: Een onderzoek, bij welk mensen moesten zeggen of de kans dat op één dag 60% jongetjes worden geboren groter is in een klein ziekenhuis of in een groot ziekenhuis. Mensen vonden dat de kans in beide ziekenhuizen even groot is maar dat is niet het geval! De kans is groter in een klein ziekenhuis.
+Tentamennummer: 190
+Subjectcode: 183
+Punten: 7
+Antwoord: In een onderzoek kregen studenten een vragenlijst te zien over de mening van een cursus die door 10 personen, die de cursus gevolgd hebben, wordt ingevuld. \n Vervolgens zagen de studenten drie personen uit de cursus over de cursus praten. Uit dit onderzoek blijkt dat de studenten gevoeliger voor de informatie waren, die hen mondeling verteld wordt, ook als het maar drie personen waren in plaats van een cursusevaluatie die door 10 mensen wordt ingevuld.
+Tentamennummer: 192
+Subjectcode: 326
+Punten: 10
+Antwoord: De onderzoekers legden de proefpersonen de volgende casus voor: stel, er is een groot ziekenhuis waar dagelijks ongeveer 45 baby's worden geboren; er is ook een klein ziekenhuis waar elke dag ongeveer 15 baby's worden geboren. In welk ziekenhuis is de kans groter dat meer dan 60% van de baby's die op die dag geboren zijn, een jongetje is? \n De meeste proefpersonen gaven aan dat de kans in beide ziekenhuizen even groot is. Van de overige proefpersonen kozen net zoveel voor het grote als voor het kleine ziekenhuis. \n Deze resultaten duiden op ongevoeligheid voor sample_english size_english en de Wet van de Grote Aantallen. Deze wet houdt in dat hoe groter een steekproef is, hoe dichter het gemiddelde bij het populatiegemiddelde zit. Het populatiegemiddelde voor jongens zit op 50%. hoe meer baby's er in een ziekenhuis geboren worden, hoe kleiner de kans dus is dat 60% of meer een jongen is.
+Tentamennummer: 197
+Subjectcode: 119
+Punten: 10
+Antwoord: Bij een studie moesten studenten een cursus kiezen. Studenten uit de eerste conditie kregen tientallen evaluaties aangeboden over de cursus. Deze waren op een vijfpuntsschaal_abbreviation. \n\n studenten uit de tweede conditie kregen 3 evaluaties aangeboden die werden toegelicht door degenen die de evaluatie hadden gegeven aan de cursus. Deze personen waren zowel te zien als te horen. Ook deze evaluaties waren op dezelfde vijfpuntsschaal_abbreviation gebaseerd. \n\n De uitkomst van deze studie was dat de studenten meer waarde gaven aan de 3 persoonlijke evaluaties ten opzichte van de tientallen statistische evaluaties.
+Tentamennummer: 204
+Subjectcode: 260
+Punten: 0
+Antwoord: In een onderzoek naar conversiestoornissen en depressie is er een therapeut die zich 4 van zijn cliënten herinnert. Van de 4 cliënten hadden er 3 ook last van depressie. Daarnaast was er een onderzoek met 27 subjecten met conversiestoornis een vragenlijst over depressie invulde. Hiervan bleken maar 12 mensen hoog te scoren op de depressie test. Mensen die niet letten op sample_english size_english, zullen deze 2 onderzoeken even zwaar mee laten wegen en verwachten dat de waarheid ergens in het midden ligt. Dus tussen 75% en 50% in, bij 62,5%. Echter, het grote onderzoek telt veel zwaarder mee, en je kan het beter uitrekenen door alle subjecten met depressie bij elkaar op te tellen en te zien hoeveel procent dit is. Dus (3+12): (27+4)x100= 48,4 %.
+Tentamennummer: 205
+Subjectcode: 300
+Punten: 10
+Antwoord: Op school moesten studenten een cursus kiezen. Er werd een cursusevaluatie afgenomen bij studenten die deze cursus al gedaan hadden. Deze cursusevaluatie bevatte een vijfpuntenschaal van alle studenten die een cursusevaluatie hadden ingevuld werd de data verzameld. De studenten die de cursus moesten kiezen kregen deze data te zien. Ook kregen ze van een paar personen een persoonlijke mening te horen van hoe ze zelf de cursus vonden. De studenten die een cursus moesten kiezen lieten zich makkelijker overhalen door maar een paar studenten met een persoonlijke boodschap, dan door de data die verzameld werd van honderden studenten. Uit dit onderzoek komt naar voren dat de studenten ongevoelig waren voor de sample_english size_english.
+Tentamennummer: 208
+Subjectcode: 123
+Punten: 10
+Antwoord: Een voorbeeld van ongevoeligheid voor ‘sample_english size_english’ baseert op de eigenschap van vele personen meer waarde aan levendige informatie dan aan steekproefgrootte te geven. \n In een onderzoek van Bordiga  & Nisbett (1977) waren er twee groepen studenten. De eerste groep liet men de resultaten van cursusevaluaties van 26 tot 126 studenten zien, deze waren gebaseerd op een vijfpuntenschaal. De tweede groep zag interviews met maar 2 of 3 studenten die hun mening over een cursus vertelden. \n\n Het blijkt dat de studenten (testpersonen) meer waarde aan de interviews dan aan de resultaten van vragenlijsten besteden; als zij later gevraagd worden welk vak zij zullen kiezen. \n Dat is omdat de informatie uit de interviews veel persoonlijker en daardoor levendiger is dan de informatie uit vragenlijsten, hoewel deze gebaseerd op een grotere steekproef zijn. * Het lijkt mij in principe logischer of ten minste mogelijk dat een groep zowel interviews als ook vragenlijsten te zien krijgt. Maar ik ben niet zeker. (ik ben niet zeker wat juiste is).
+Tentamennummer: 212
+Subjectcode: 173
+Punten: 10
+Antwoord: In een onderzoek van Kahneman voor ongevoeligheid voor steekproefgrootte werden er twee ziekenhuizen met elkaar vergeleken. In het grote ziekenhuis worden er op een dag gemiddeld 45 baby’s geboren en in een klein ziekenhuis 15. \n Er werd aan de proefpersonen gevraagd in welk ziekenhuis de kans groter is dat er op een dag 60% of meer jongens worden geboren. \n De meeste mensen hebben de waarschijnlijkheid gelijk ingeschat. \n Dus ze hebben geen rekening mee gehouden, dat het eerste ziekenhuis veel groter is.
+Tentamennummer: 7
+Subjectcode: 188
+Punten: 10
+Antwoord: In het onderzoek van Borgida & Nisbett (1977) moesten psychologiestudenten een cursus kiezen. In de ene conditie kregen ze gemiddelde cursusevaluaties van tientallen studenten die eerder de cursus hadden gevolgd. De cursusevaluaties worden op een vijfpuntenschaal afgebeeld. \n In de andere conditie luisteren de psychologiestudenten de ervaringen van 2 of 3 studenten die eerder de cursus gevolgd hadden en ook de cursusevaluatie op hetzelfde vijfpuntenschaal hadden ingevuld. Het bleek dat de psychologiestudenten zich meer lieten beïnvloeden door de persoonlijke aanbevelingen. \n Hieruit blijkt dat ze ongevoelig voor de steekproefgrootte zijn want ze laten zich beïnvloeden door een kleine steekproef die alleen levendig maar geen representatief informatie levert. Voor de grotere steekproef die meer representatief is hebben ze slechts weinig aandacht.
+Tentamennummer: 222
+Subjectcode: 211
+Punten: 10
+Antwoord: Nisbett & Ross (1977) \n\n Studenten zouden een cursus kiezen op basis van een statistiek van deze cursus. (hoe tevreden waren tientallen van eerdere studenten met de docent / de inhoud van de cursus (etcetera_abbreviation?) en een klein aantal verhalen van ongeveer 3 eerdere studenten en hun mening over de aangeboden cursussen \n\n Het bleek dat de nieuwe studenten zich meer van de verhalen van een klein aantal eerdere studenten uit de cursus lieten leiden dan van de statistieken van tientallen eerdere studenten uit de cursussen. \n Ze lieten zich meer door interessante, persoonlijke verhalen van een klein steekproef (rond 3 personen) leiden dan van een “saaie”, maar statistisch veel waardevollere oordeel uit een statistiek waar de meningen van tientallen eerdere studenten (een grotere steekproef) samengevat waren. [Wet van de grote aantallen].
+Tentamennummer: 224
+Subjectcode: 144
+Punten: 7
+Antwoord: Proefpersonen kregen resultaten / statistieken van een onderzoek te zien waarin studenten hun mening gaven over een cursus. Deze statistieken waren van een steekproef van enkele tientallen studenten. \n Daarna kregen zij face-to-face van 3 studenten te horen wat hun mening was over de cursus (levendig verteld). \n\n Het bleek dat de proefpersonen meer waarde hechtten aan de levendige verhalen dan aan de statistieken, hoewel de steekproef van de verhalen veel kleiner was.
+Tentamennummer: 225
+Subjectcode: 205
+Punten: 0
+Antwoord: Ongevoelig voor de steekproefgrootte: \n\n Onderzoekers zijn erachter gekomen dat mensen vaak niet gevoelig zijn voor de ‘sample_english size_english’ omdat zij mensen een keer een heleboel onderzoeken hebben laten zien dat roken slecht voor je is, maar wanneer zij een voorbeeld kregen dat één iemand 91 is geworden terwijl hij zijn hele leven rookt, geloven zij dat eerder.
+Tentamennummer: 232
+Subjectcode: 297
+Punten: 0
+Antwoord: Er zijn twee onderzoekers, onderzoeker A en onderzoeker B, die onderzoek doen naar conversiestoornissen bij vrouwen. Onderzoeker A had een steekproef van 25 vrouwen, waarvan er 5 een conversiestoornis kreeg na sexual abuse, dat is dus 20%. Onderzoeker B had een steekproef van 3 personen waarvan 2 een conversiestoornis kregen na sexual_english abuse_english, dat is dus 66,7 %. \n\n Nu zullen mensen die geen statistiek gehad hebben, zeggen dat het onderzoek van onderzoeker B het best / betrouwbaarst is, omdat deze het hoogste percentage heeft. maar dit is niet het geval omdat onderzoeker A een grotere steekproef had en dus betrouwbaarder is.
+Tentamennummer: 235
+Subjectcode: 303
+Punten: 0
+Antwoord: Bij mensen die op zoek zijn naar een nieuwe studie was onderzocht dat zij een grotere waarde hechtte aan een gesprek met een aantal studenten van die studie dan aan resultaten van een evaluatie over die studie. Dit bleek ook zo te zijn. \n Dit laat zien dat mensen te veel waarde hechten aan een veel te kleine steekproef (de aantal studenten). En dat mensen te weinig waarde hechtten aan een grote steekproef zoals de evaluatie.
+Tentamennummer: 234
+Subjectcode: 318
+Punten: 10
+Antwoord: Er is een groot ziekenhuis waar elke dag 45 baby’s geboren worden en een klein ziekenhuis waar elke dag ongeveer 15 baby’s geboren worden. \n\n Mensen zonder statistische kennis “beweerde” dat de kans dat er op een dag 60% jongens geboren in beide ziekenhuizen even groot was. \n\n Zij waren ongevoelig voor de sample_english size_english. De kans op een jongen is normaal gesproken 50%. Bij een grotere steekproef zou het percentage jongens waarschijnlijk dus ook meer rond de 50% liggen.
+Tentamennummer: 238
+Subjectcode: ?
+Punten: 10
+Antwoord: Het onderzoek waarbij 2 ziekenhuizen door mensen die nog nooit statistiek gehad hebben, vergeleken werden. \n\n In een ziekenhuis bevielen wekelijks gemiddeld genomen 45 vrouwen van baby's en in het andere ziekenhuis bevielen 15 vrouwen van een baby. De vraag was in welk ziekenhuis men meer kans had om een week te hebben waar 60% een jongetje was. Men antwoordde bijna allemaal dat de kans gelijk was. Dit toont dus aan dat de wet van de grote aantallen niet in overweging was gebracht.
+Tentamennummer: 241
+Subjectcode: 204
+Punten: 7
+Antwoord: Het onderzoek had als vraag: in welk ziekenhuis is 60% van de geboren baby’s jongen? Er waren 2 ziekenhuizen: een grote waar 45 baby’s geboren werden en een kleine waar 15 baby’s per dag geboren werden. Het resultaat van het onderzoek was dat mensen zeiden dat in beide ziekenhuizen 60% van de geboren baby’s jongens waren.
+Tentamennummer: 246
+Subjectcode: 329
+Punten: 3
+Antwoord: Bij een onderzoek was een groot en een klein ziekenhuis betrokken. In het grote ziekenhuis werden 45 baby’s geboren per dag en in het kleine ziekenhuis 15 baby’s per dag. Nu was de vraag in welk ziekenhuis er 60% of meer jongetjes wordt geboren. \n\n De resultaten waren dat het merendeel van de deelnemers het antwoord “allebei” gaf. De rest kozen evenveel groot als klein ziekenhuis. \n\n De mensen houden hier geen rekening met de sample_english size_english. In het grote ziekenhuis worden meer baby’s geboren dus is er meer kans op. \n\n hier is dus ongevoeligheid voor sample_english size_english.
+Tentamennummer: 248
+Subjectcode: 281
+Punten: 7
+Antwoord: Een groep studenten kreeg data over hoe verschillende cursussen worden gevonden van een groot groep studenten. Erna hoorden zij presentaties van een klein getal studenten erover hoe zij de cursus vonden. \n\n Het bleek dat studenten geneigd zijn om een cursus te kiezen die levendig werd beschreven door een student die de cursus leuk vond en niet zoals te vermoeden een cursus te kiezen die gemiddeld een goede cijfer van meer mensen kreeg.
