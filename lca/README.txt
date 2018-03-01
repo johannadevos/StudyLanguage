@@ -49,7 +49,7 @@ lemma_pos
 
 You can use any POS tagger and lemmatizer, as long as the Penn Treebank POS 
 tagset is adopted and the input file is appropriately formatted. In Lu 
-(2012), the following POS tagger and lemmaitzer were used:
+(2012), the following POS tagger and lemmatizer were used:
 
 The Stanford POS tagger: 
 http://nlp.stanford.edu/software/tagger.shtml
