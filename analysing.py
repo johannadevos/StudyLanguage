@@ -41,20 +41,20 @@ print(data_dir)
 if __name__ == "__main__":
     
     # Read and prepare student data
-    #filename = 'AIP_A_EN_uncorrected.txt'
-    #filename = 'AIP_A_EN_corrected.txt'
-    #filename = 'AIP_A_NL_uncorrected.txt'
-    #filename = 'AIP_A_NL_corrected.txt'  
-    #filename = 'STAT_A_EN_uncorrected.txt'
-    #filename = 'STAT_A_EN_corrected.txt'             
-    #filename = 'STAT_A_NL_uncorrected.txt'
-    #filename = 'STAT_A_NL_corrected.txt'
-    #filename = 'STAT_C_EN_uncorrected.txt'
-    filename = data_dir / 'STAT_C_EN_corrected.txt'
+    #filename = data_dir / 'AIP_A_EN_uncorrected.txt'
+    filename = data_dir / 'AIP_A_EN_corrected.txt'
+    #filename = data_dir / 'AIP_A_NL_uncorrected.txt'
+    #filename = data_dir / 'AIP_A_NL_corrected.txt'  
+    #filename = data_dir / 'STAT_A_EN_uncorrected.txt'
+    #filename = data_dir / 'STAT_A_EN_corrected.txt'             
+    #filename = data_dir / 'STAT_A_NL_uncorrected.txt'
+    #filename = data_dir / 'STAT_A_NL_corrected.txt'
+    #filename = data_dir / 'STAT_C_EN_uncorrected.txt'
+    #filename = data_dir / 'STAT_C_EN_corrected.txt'
 
     # TO DO. First, assign grades to the two subquestions of 2a          
-    #filename = 'STAT_C_NL_uncorrected.txt' 
-    #filename = 'STAT_C_NL_corrected.txt'
+    #filename = data_dir / 'STAT_C_NL_uncorrected.txt' 
+    #filename = data_dir / 'STAT_C_NL_corrected.txt'
     
     raw_data = open_file(filename)
     prep_data = preprocess(raw_data) # Preprocess student answers
