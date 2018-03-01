@@ -3,11 +3,8 @@
 # Script written by Johanna de Vos, U908153
 
 # Standard library imports
-import os
 import random
 import re
-
-from pathlib import Path
 
 # Third-party imports
 import nltk
@@ -20,27 +17,6 @@ from nltk.corpus import stopwords
 
 # Set seed for reproducability of results
 random.seed(2017)
-
-
-### ------------------
-### DIRECTORIES
-### ------------------
-
-# Set NLTK directory
-#nltk.data.path.append("U:/nltk_data") # On work PC only
-
-# Set working directory to where the data are
-
-def _get_current_file_dir() -> Path:
-    """Returns the directory of the script."""
-    try:
-        return Path(os.path.realpath(__file__)).parent
-    except(NameError):
-        return Path(os.getcwd())
-
-
-data_dir = _get_current_file_dir() / 'data'
-os.chdir(data_dir)
 
 
 ### ------------------
@@ -126,9 +102,9 @@ def create_df(text, filename):
     answers = []
         
     # Extract info    
-    if not "STAT_C" in filename:
+    if not "STAT_C" in str(filename):
         mod = 4
-    elif "STAT_C" in filename:
+    elif "STAT_C" in str(filename):
         mod = 8
         grades_2a_dec = []
         answers_2a_dec = []
@@ -155,7 +131,7 @@ def create_df(text, filename):
             #print(answer)
             answers.append(answer)
         
-        if "STAT_C" in filename:
+        if "STAT_C" in str(filename):
             if i%mod == 4:
                 grade_2a_dec = text[i][8:]
                 grades_2a_dec.append(int(grade_2a_dec))
@@ -172,7 +148,7 @@ def create_df(text, filename):
                 answers_2a_caus.append(answer_2a_caus)
                                                     
     # Create dataframe
-    if not "STAT_C" in filename:
+    if not "STAT_C" in str(filename):
         df = pd.DataFrame({'ExamNumber': exam_numbers, 'SubjectCode': subject_codes, 'Grade': grades, 'Answer': answers})      
     
         # Add empty columns that can later contain tokenized and lemmatized data
@@ -184,7 +160,7 @@ def create_df(text, filename):
         cols = ['SubjectCode', 'ExamNumber', 'Grade', 'Answer', 'Tokenized', 'Lemmatized', 'NoStops']    
         df = df[cols]
         
-    elif "STAT_C" in filename:
+    elif "STAT_C" in str(filename):
         df = pd.DataFrame({'ExamNumber': exam_numbers, 'SubjectCode': subject_codes, 'Grade4a': grades, 'Answer4a': answers, 'Grade2aDec': grades_2a_dec, 'Answer2aDec': answers_2a_dec, 'Grade2aCaus': grades_2a_caus, 'Answer2aCaus': answers_2a_caus}) 
     
         # Add empty columns that can later contain tokenized and lemmatized data
@@ -212,9 +188,9 @@ def tok_lem(df, filename):
     tokenizer = RegexpTokenizer(r'\w+')
     lemmatizer = WordNetLemmatizer()    
     
-    if not "STAT_C_EN" in filename:
+    if not "STAT_C_EN" in str(filename):
         answers = ['Answer']
-    elif "STAT_C_EN" in filename:
+    elif "STAT_C_EN" in str(filename):
         answers = ['Answer4a', 'Answer2aDec', 'Answer2aCaus']
         
     for question in answers:
@@ -296,35 +272,3 @@ def save_to_file(info, outfile):
     f.close() #close and "save" the output file
         
 
-### --------
-### RUN CODE
-### --------
-
-if __name__ == "__main__":
-    
-    # Read and prepare student data
-    #filename = 'AIP_A_EN_uncorrected.txt'
-    #filename = 'AIP_A_EN_corrected.txt'
-    #filename = 'AIP_A_NL_uncorrected.txt'
-    #filename = 'AIP_A_NL_corrected.txt'  
-    #filename = 'STAT_A_EN_uncorrected.txt'
-    #filename = 'STAT_A_EN_corrected.txt'             
-    #filename = 'STAT_A_NL_uncorrected.txt'
-    #filename = 'STAT_A_NL_corrected.txt'
-    #filename = 'STAT_C_EN_uncorrected.txt'
-    filename = 'STAT_C_EN_corrected.txt'
-
-    # TO DO. First, assign grades to the two subquestions of 2a          
-    #filename = 'STAT_C_NL_uncorrected.txt' 
-    #filename = 'STAT_C_NL_corrected.txt'
-    
-    raw_data = open_file(filename)
-    prep_data = preprocess(raw_data) # Preprocess student answers
-    df, cols = create_df(prep_data, filename) # Create dataframe of student answers
-    
-    #pd.set_option('display.max_rows', None) # Print the whole pandas table, don't truncate
-    #print(df)
-    
-    df = df[:10]
-    df = tok_lem(df, filename) # Tokenize and lemmatize all answers, and remove stop words
-    #dictio = dictionary(df) # Create dictionary of vocabulary --> currently, doesn't work for STAT_C_EN
