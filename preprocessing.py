@@ -214,22 +214,29 @@ def tok_lem(df, filename):
             df.at[i, 'Tokenized%s' % question[6:]] = tok_answer                             
             
             # Lemmatize
-            lem_answer = []
+            lem_v = []
             
             for word in tok_answer:
                 lemma = lemmatizer.lemmatize(word, pos = 'v') # default POS is 'n'
-                # TO DO: Look into the lemmatizer. When pos is set to 'v', nouns, are not lemmatised, for example: 'situations' remains unchanged.
+                # TO DO: Lemmatisation for Dutch words
                 
-                # Hand-crafted rules for words not handled well by lemmatizer
+                lem_v.append(lemma)
+            
+            lem_n = []
+            
+            for word in lem_v:
+                lemma = lemmatizer.lemmatize(word, pos = 'n')
+                
+                # Hand-crafted rule for words not handled well by lemmatizer
                 if lemma.startswith("whorf"):
                     lemma = "whorf"
                 
-                lem_answer.append(lemma)
+                lem_n.append(lemma)
             
-            df.at[i, 'Lemmatized%s' % question[6:]] = lem_answer
+            df.at[i, 'Lemmatized%s' % question[6:]] = lem_n
             
             # Remove stop words
-            stopped_lemmas = [i for i in lem_answer if not i in stopwords.words('english')]
+            stopped_lemmas = [i for i in lem_n if not i in stopwords.words('english')]
             df.at[i, 'NoStops%s' % question[6:]] = stopped_lemmas
         
     return df
