@@ -1,16 +1,20 @@
 # -*- coding: utf-8 -*-
 
-# Script written by Johanna de Vos, U908153
+# Script written by Johanna de Vos (2018)
 
 # Standard library imports
 import random
 import re
 
 # Third-party imports
-import nltk
 import pandas as pd
 
 from gensim import corpora
+
+from nltk.tag import pos_tag
+from nltk.tag.stanford import CoreNLPPOSTagger
+from nltk.tag.stanford import StanfordPOSTagger
+
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
@@ -153,11 +157,12 @@ def create_df(text, filename):
     
         # Add empty columns that can later contain tokenized and lemmatized data
         df['Tokenized'] = ""
+        df['POS'] = ""
         df['Lemmatized'] = ""
-        df['NoStops'] = ""     
+        df['NoStops'] = ""
         
         # Change order of columns
-        cols = ['SubjectCode', 'ExamNumber', 'Grade', 'Answer', 'Tokenized', 'Lemmatized', 'NoStops']    
+        cols = ['SubjectCode', 'ExamNumber', 'Grade', 'Answer', 'Tokenized', 'POS', 'Lemmatized', 'NoStops']    
         df = df[cols]
         
     elif "STAT_C" in str(filename):
@@ -165,83 +170,113 @@ def create_df(text, filename):
     
         # Add empty columns that can later contain tokenized and lemmatized data
         df['Tokenized4a'] = ""
+        df['POS4a'] = ""
         df['Lemmatized4a'] = ""
         df['NoStops4a'] = ""  
         df['Tokenized2aDec'] = ""
+        df['POS2aDec'] = ""
         df['Lemmatized2aDec'] = ""
         df['NoStops2aDec'] = ""            
         df['Tokenized2aCaus'] = ""
+        df['POS2aCaus'] = ""
         df['Lemmatized2aCaus'] = ""
         df['NoStops2aCaus'] = ""           
           
-        cols = ['SubjectCode', 'ExamNumber', 'Grade4a', 'Answer4a', 'Tokenized4a', 'Lemmatized4a', 'NoStops4a', 'Grade2aDec', 'Answer2aDec', 'Tokenized2aDec', 'Lemmatized2aDec', 'NoStops2aDec', 'Grade2aCaus', 'Answer2aCaus', 'Tokenized2aCaus', 'Lemmatized2aCaus', 'NoStops2aCaus']
+        cols = ['SubjectCode', 'ExamNumber', 'Grade4a', 'Answer4a', 'Tokenized4a', 'POS4a', 'Lemmatized4a', 'NoStops4a', 'Grade2aDec', 'Answer2aDec', 'Tokenized2aDec', 'POS2aDec', 'Lemmatized2aDec', 'NoStops2aDec', 'Grade2aCaus', 'Answer2aCaus', 'Tokenized2aCaus', 'POS2aCaus', 'Lemmatized2aCaus', 'NoStops2aCaus']
         df = df[cols]
     
     return df, cols
 
 
-# Tokenize, lemmatize, and remove stop words
-def tok_lem(df, filename):
-    print("Tokenizing, lemmatizing, and removing stop words...")
-    
-    # Set up tokenizer and lemmatizer
+# Tokenize
+def tokenize(df, filename):
+    print("Tokenizing...")
+
     tokenizer = RegexpTokenizer(r'\w+')
-    lemmatizer = WordNetLemmatizer()    
-    
+        
     if not "STAT_C_EN" in str(filename):
         answers = ['Answer']
     elif "STAT_C_EN" in str(filename):
         answers = ['Answer4a', 'Answer2aDec', 'Answer2aCaus']
         
-    for question in answers:
-        for i in range(len(df)):
-            answer = df[question][i]
+    for question_type in answers:
+        for word_counter in range(len(df)):
+            word_in_answer = df[question_type][word_counter]
             
-            # Preprocess     
-            answer = answer.replace("'s", "") # Remove possessive 's
-            answer = answer.lower() # Make lowercase
-            answer = re.sub("\d+", "", answer) # Remove numbers
+            # Remove unnecessary features
+            word_in_answer = word_in_answer.replace("'s", "") # Remove possessive 's
+            word_in_answer = word_in_answer.lower() # Make lowercase
+            word_in_answer = re.sub("\d+", "", word_in_answer) # Remove numbers
      
             # Preprocess when using spelling-corrected data
-            answer = answer.replace("_abbreviation", "")
-            answer = answer.replace("_nonexistent", "")
-            answer = answer.replace("_dutch", "")
-            answer = answer.replace("_german", "")
+            word_in_answer = word_in_answer.replace("_abbreviation", "")
+            word_in_answer = word_in_answer.replace("_nonexistent", "")
+            word_in_answer = word_in_answer.replace("_dutch", "")
+            word_in_answer = word_in_answer.replace("_german", "")
             
             # Tokenize
-            tok_answer = tokenizer.tokenize(answer) # also removes apostrophe
+            tok_answer = tokenizer.tokenize(word_in_answer) # also removes apostrophe
                                            
-            df.at[i, 'Tokenized%s' % question[6:]] = tok_answer                             
+            df.at[word_counter, 'Tokenized%s' % question_type[6:]] = tok_answer                             
             
-            # Lemmatize
-            lem_v = []
-            
-            for word in tok_answer:
-                lemma = lemmatizer.lemmatize(word, pos = 'v') # default POS is 'n'
-                # TO DO: Lemmatisation for Dutch words
-                
-                lem_v.append(lemma)
-            
-            lem_n = []
-            
-            for word in lem_v:
-                lemma = lemmatizer.lemmatize(word, pos = 'n')
-                
-                # Hand-crafted rule for words not handled well by lemmatizer
-                if lemma.startswith("whorf"):
-                    lemma = "whorf"
-                
-                lem_n.append(lemma)
-            
-            df.at[i, 'Lemmatized%s' % question[6:]] = lem_n
-            
-            # Remove stop words
-            stopped_lemmas = [i for i in lem_n if not i in stopwords.words('english')]
-            df.at[i, 'NoStops%s' % question[6:]] = stopped_lemmas
-        
     return df
 
 # TO DO: standardise British/American spelling?
+
+
+# POS tagging
+def pos_tagging(df, filename):
+    
+    print("POS tagging all tokenized answers...")
+    
+    if not "STAT_C_EN" in str(filename):
+        tok_answers = ['Tokenized']
+    elif "STAT_C_EN" in str(filename):
+        tok_answers = ['Tokenized4a', 'Tokenized2aDec', 'Tokenized2aCaus']
+    
+    for question_type in tok_answers:
+        answer_counter = 0
+        
+        for tok_answer in df[question_type]:
+            pos_answer = pos_tag(tok_answer)
+            df.at[answer_counter, 'POS%s' % question_type[9:]] = pos_answer
+            
+            answer_counter += 1
+        
+    return df    
+        
+        
+'''
+# Lemmatizing
+lemmatizer = WordNetLemmatizer() 
+
+lem_v = []
+
+for word in tok_answer:
+    lemma = lemmatizer.lemmatize(word, pos = 'v') # default POS is 'n'
+    # TO DO: Lemmatisation for Dutch words
+    
+    lem_v.append(lemma)
+
+lem_n = []
+
+for word in lem_v:
+    lemma = lemmatizer.lemmatize(word, pos = 'n')
+    
+    # Hand-crafted rule for words not handled well by lemmatizer
+    if lemma.startswith("whorf"):
+        lemma = "whorf"
+    
+    lem_n.append(lemma)
+
+df.at[i, 'Lemmatized%s' % question[6:]] = lem_n
+
+# Remove stop words
+stopped_lemmas = [i for i in lem_n if not i in stopwords.words('english')]
+df.at[i, 'NoStops%s' % question[6:]] = stopped_lemmas
+
+# Removing stop words
+'''
 
 
 # Create dictionary of vocabulary

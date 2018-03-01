@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Mar  1 09:55:43 2018
 
-@author: johan
-"""
+# Script written by Johanna de Vos (2018)
 
+# Standard library imports
 import os
 from pathlib import Path
 
+# Own module
 from preprocessing import *
 
 ### ------------------
@@ -42,14 +41,14 @@ if __name__ == "__main__":
     
     # Read and prepare student data
     #filename = data_dir / 'AIP_A_EN_uncorrected.txt'
-    filename = data_dir / 'AIP_A_EN_corrected.txt'
+    #filename = data_dir / 'AIP_A_EN_corrected.txt'
     #filename = data_dir / 'AIP_A_NL_uncorrected.txt'
     #filename = data_dir / 'AIP_A_NL_corrected.txt'  
     #filename = data_dir / 'STAT_A_EN_uncorrected.txt'
     #filename = data_dir / 'STAT_A_EN_corrected.txt'             
     #filename = data_dir / 'STAT_A_NL_uncorrected.txt'
     #filename = data_dir / 'STAT_A_NL_corrected.txt'
-    #filename = data_dir / 'STAT_C_EN_uncorrected.txt'
+    filename = data_dir / 'STAT_C_EN_uncorrected.txt'
     #filename = data_dir / 'STAT_C_EN_corrected.txt'
 
     # TO DO. First, assign grades to the two subquestions of 2a          
@@ -64,5 +63,9 @@ if __name__ == "__main__":
     #print(df)
     
     df = df[:10]
-    df = tok_lem(df, filename) # Tokenize and lemmatize all answers, and remove stop words
+    df = tokenize(df, filename) # Tokenize 
+    df = pos_tagging(df, filename)
+    
+    
+    #and lemmatize all answers, and remove stop words
     #dictio = dictionary(df) # Create dictionary of vocabulary --> currently, doesn't work for STAT_C_EN
