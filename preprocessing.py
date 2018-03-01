@@ -7,6 +7,8 @@ import os
 import random
 import re
 
+from pathlib import Path
+
 # Third-party imports
 import nltk
 import pandas as pd
@@ -19,12 +21,26 @@ from nltk.corpus import stopwords
 # Set seed for reproducability of results
 random.seed(2017)
 
-# Set NLTK directory
-nltk.data.path.append("U:/nltk_data")
 
-# Set working directory
-path = "C:/Users/U908153/Desktop/GitHub/StudyLanguage/data"
-os.chdir(path)
+### ------------------
+### DIRECTORIES
+### ------------------
+
+# Set NLTK directory
+#nltk.data.path.append("U:/nltk_data") # On work PC only
+
+# Set working directory to where the data are
+
+def _get_current_file_dir() -> Path:
+    """Returns the directory of the script."""
+    try:
+        return Path(os.path.realpath(__file__)).parent
+    except(NameError):
+        return Path(os.getcwd())
+
+
+data_dir = _get_current_file_dir() / 'data'
+os.chdir(data_dir)
 
 
 ### ------------------
