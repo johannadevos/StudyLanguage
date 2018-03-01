@@ -154,7 +154,7 @@ for lemline in lemlines:
                 if not word in wordranks[-2000:]:
                     slextypes[word]=1
                     slextokens+=1
-            elif pos[0]=="r" and (adjdict.has_key(word) or (word[-2:]=="ly" and adjdict.has_key(word[:-2]))):
+            elif pos[0]=="r" and (word in adjdict or (word[-2:]=="ly" and word[:-2] in adjdict)):
                 lextypes[word]=1
                 advtypes[word]=1
                 lextokens+=1
@@ -219,11 +219,11 @@ adjv=len(adjtypes.keys())/float(lextokens)
 advv=len(advtypes.keys())/float(lextokens)
 modv=(len(advtypes.keys())+len(adjtypes.keys()))/float(lextokens)
 
-print "filename, sentences, wordtypes, swordtypes, lextypes, slextypes, wordtokens, swordtokens, lextokens, slextokens, ld, ls1, ls2, vs1, vs2, cvs1, ndw, ndwz, ndwerz, ndwesz, ttr, msttr, cttr, rttr, logttr, uber, lv, vv1, svv1, cvv1, vv2, nv, adjv, advv, modv"
+print("filename, sentences, wordtypes, swordtypes, lextypes, slextypes, wordtokens, swordtokens, lextokens, slextokens, ld, ls1, ls2, vs1, vs2, cvs1, ndw, ndwz, ndwerz, ndwesz, ttr, msttr, cttr, rttr, logttr, uber, lv, vv1, svv1, cvv1, vv2, nv, adjv, advv, modv")
 
 output=filename
 for measure in [sentences, len(wordtypes.keys()), len(swordtypes.keys()), len(lextypes.keys()), len(slextypes.keys()), wordtokens, swordtokens, lextokens, slextokens, ld, ls1, ls2, vs1, vs2, cvs1, ndw, ndwz, ndwerz, ndwesz, ttr, msttr, cttr, rttr, logttr, uber, lv, vv1, svv1, cvv1, vv2, nv, adjv, advv, modv]: 
     if type(measure)==type(0.0):
         measure="%.2f" % measure
     output+=", "+str(measure)
-print output
+print(output)
