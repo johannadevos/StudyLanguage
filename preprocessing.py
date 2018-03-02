@@ -225,8 +225,7 @@ def tokenize(df, filename):
 
 
 # POS tagging
-def pos_tagging(df, filename):
-    
+def pos_tagging(df, filename):    
     print("POS tagging all tokenized answers...")
     
     if not "STAT_C_EN" in str(filename):

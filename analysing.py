@@ -64,7 +64,7 @@ if __name__ == "__main__":
     
     df = df[:10]
     df = tokenize(df, filename) # Tokenize 
-    df = pos_tagging(df, filename)
+    df = pos_tagging(df, filename) # Part-of-speech tagging
     
     
     #and lemmatize all answers, and remove stop words
