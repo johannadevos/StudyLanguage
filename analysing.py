@@ -6,15 +6,18 @@
 import os
 from pathlib import Path
 
+# Third-party libraries
+import nltk
+
 # Own module
-from preprocessing import *
+import preprocessing as prep
 
 ### ------------------
 ### DIRECTORIES
 ### ------------------
 
 # Set NLTK directory
-#nltk.data.path.append("U:/nltk_data") # On work PC only
+nltk.data.path.append("U:/nltk_data") # On work PC only
 
 # Set working directory to where the data are
 
@@ -48,24 +51,21 @@ if __name__ == "__main__":
     #filename = data_dir / 'STAT_A_EN_corrected.txt'             
     #filename = data_dir / 'STAT_A_NL_uncorrected.txt'
     #filename = data_dir / 'STAT_A_NL_corrected.txt'
-    filename = data_dir / 'STAT_C_EN_uncorrected.txt'
-    #filename = data_dir / 'STAT_C_EN_corrected.txt'
+    #filename = data_dir / 'STAT_C_EN_uncorrected.txt'
+    filename = data_dir / 'STAT_C_EN_corrected.txt'
 
     # TO DO. First, assign grades to the two subquestions of 2a          
     #filename = data_dir / 'STAT_C_NL_uncorrected.txt' 
     #filename = data_dir / 'STAT_C_NL_corrected.txt'
     
-    raw_data = open_file(filename)
-    prep_data = preprocess(raw_data) # Preprocess student answers
-    df, cols = create_df(prep_data, filename) # Create dataframe of student answers
+    raw_data = prep.open_file(filename) # Read data from file
+    prep_data = prep.make_readable(raw_data) # Make student answers readable
+    df, cols = prep.create_df(prep_data, filename) # Create and fill dataframe with student data
+    
+    #df = df[:10] # Make df smaller to try things out
+    df = prep.preprocess(df, filename) # Tokenize, POS tag, lemmatize, and remove stop words
     
     #pd.set_option('display.max_rows', None) # Print the whole pandas table, don't truncate
     #print(df)
-    
-    df = df[:10]
-    df = tokenize(df, filename) # Tokenize 
-    df = pos_tagging(df, filename)
-    
-    
-    #and lemmatize all answers, and remove stop words
+        
     #dictio = dictionary(df) # Create dictionary of vocabulary --> currently, doesn't work for STAT_C_EN
