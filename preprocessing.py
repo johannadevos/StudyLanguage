@@ -2,34 +2,25 @@
 
 # Script written by Johanna de Vos (2018)
 
-# Standard library imports
-import random
+import os
 import re
 
-# Third-party imports
-import pandas as pd
-
-from gensim import corpora
-
+from nltk.corpus import stopwords, wordnet
+from nltk.stem import WordNetLemmatizer
 from nltk.tag import pos_tag
 from nltk.tokenize import RegexpTokenizer
-from nltk.stem import WordNetLemmatizer
-from nltk.corpus import stopwords, wordnet
-
-# Set seed for reproducability of results
-random.seed(2017)
-
+import pandas as pd
 
 ### ------------------
 ### PREPARING THE DATA
 ### ------------------
 
 # Open file
-def open_file(file):
+def open_file(filename):
     print("Opening file...")
     
-    with open (file) as file:
-        raw_text = file.read()
+    with open (filename, 'r') as f:
+        raw_text = f.read()
         
         return raw_text
 
@@ -233,8 +224,9 @@ def preprocess(df, filename):
             
             # Tokenize and write to df
             tok_answer = tokenizer.tokenize(word_in_answer) # also removes apostrophe
-            df.at[word_counter, 'Tokenized%s' % question_type[6:]] = tok_answer                             
-            
+            #df.at[word_counter, 'Tokenized%s' % question_type[6:]] = tok_answer                             
+            df.at[word_counter, 'Tokenized{}'.format(question_type[6:])] = tok_answer                             
+                        
             # POS tag and write to df
             pos_answer = pos_tag(tok_answer)
             
@@ -242,7 +234,7 @@ def preprocess(df, filename):
             for word, tag in pos_answer:
                 pos_tags.append(tag)
             
-            df.at[word_counter, 'POS%s' % question_type[6:]] = pos_tags
+            df.at[word_counter, 'POS{}'.format(question_type[6:])] = pos_tags
             
             # Lemmatize and write to df
             lemmas = []
@@ -250,15 +242,22 @@ def preprocess(df, filename):
             for word, tag in pos_answer:
                 lemma = lemmatizer.lemmatize(word, pos = get_wordnet_pos(tag)) 
                 lemmas.append(lemma)
-                df.at[word_counter, 'Lemmatized%s' % question_type[6:]] = lemmas
+                df.at[word_counter, 'Lemmatized{}'.format(question_type[6:])] = lemmas
             
             # Remove stop words
             stopped_lemmas = [i for i in lemmas if not i in stopwords.words('english')]
-            df.at[word_counter, 'NoStops%s' % question_type[6:]] = stopped_lemmas
+            df.at[word_counter, 'NoStops{}'.format(question_type[6:])] = stopped_lemmas
                         
     return df
 
 # TO DO: standardise British/American spelling?
+
+
+def remove_unknown_subjects(df):
+    print("Removing rows where the subject code is unknown...")
+    df = df[df.SubjectCode != '?']
+    
+    return df
 
 
 '''
@@ -270,29 +269,68 @@ def dictionary(df):
     #print(dictionary.token2id)
     
     return dictionary
-
-
-### --------
-### SAVING RESULTS
-### --------
-
-# Set up output file
-def setup_outfile():
-    outfile = path
-    headers = ["Header1", "Header2"]
-    headers2 = "\t".join(headers)
-    f = open(outfile, 'w') 
-    f.write(headers2)
-    f.close()
-    
-    return outfile
-
-
-# Save to output file
-def save_to_file(info, outfile):
-    info2 = "\t".join(info)
-    f = open(outfile, 'a') #open our results file in append mode so we don't overwrite anything
-    f.write('\n') # write a line ending
-    f.write(info2) #write the string they typed
-    f.close() #close and "save" the output file
 '''
+
+
+### --------
+### WRITE EACH ANSWER TO AN INDIVIDUAL FILE
+### --------
+
+# List the names of the files associated with each exam
+def filenames(raw_data_dir):
+    dir_contents = os.listdir(raw_data_dir)
+    files = [file[:-4] for file in dir_contents] # [:-4] to remove '.txt' from filename
+    
+    return files
+
+
+# Create a directory for each exam
+def create_lca_dirs(data_dir):
+    indiv_data_dir = data_dir / 'indiv_files'
+
+    if not os.path.exists(indiv_data_dir):
+        os.makedirs(indiv_data_dir)
+    
+        exam_names = filenames(data_dir / 'raw_data')
+        questions_stat_c = ['4a', '2aDec', '2aCaus']
+        
+        for exam in exam_names:
+            os.makedirs(indiv_data_dir / exam)
+            
+            # Make subdirectories for each question for STAT_C
+            if 'STAT_C' in exam:
+                
+                for question in questions_stat_c:
+                    os.makedirs(indiv_data_dir / exam / question)
+                    
+
+# Write the lemmatized and POS-tagged student answers to files
+def prepare_for_lca(data_dir, df, filename):
+    print("Writing lemmatized and POS-tagged words to files...")
+    
+    indiv_data_dir = data_dir / 'indiv_files'
+
+    for index, row in df.iterrows():
+        subject_code = str(row['SubjectCode'] + ".txt")
+                    
+        if not "STAT_C_EN" in str(filename):
+            outfile = indiv_data_dir / filename[:-4] / subject_code # :-4 to cut off '.txt'
+            
+            with open(outfile, 'w') as f:
+                for word_counter in range(len(row['POS'])):
+    
+                    lem_pos = row['Lemmatized'][word_counter], "_", row['POS'][word_counter]
+                    f.write('{} {}'.format(''.join(lem_pos), ''))
+   
+        elif "STAT_C_EN" in str(filename):
+            questions = ['4a', '2aDec', '2aCaus']
+            
+            for question in questions:
+                outfile = indiv_data_dir / filename[:-4] / question / subject_code # :-4 to cut off '.txt'
+                
+                with open(outfile, 'w') as f:
+                    
+                    for word_counter in range(len(row['POS{}'.format(question)])):
+    
+                        lem_pos = row['Lemmatized{}'.format(question)][word_counter], "_", row['POS{}'.format(question)][word_counter]
+                        f.write('{} {}'.format(''.join(lem_pos), ''))
