@@ -72,7 +72,7 @@ if __name__ == "__main__":
     
     #pd.set_option('display.max_rows', None) # Print the whole pandas table, don't truncate
     #print(df)
-        
+
     #dictio = dictionary(df) # Create dictionary of vocabulary --> currently, doesn't work for STAT_C_EN
     
     # Apply the Lexical Complexity Analyzer to the student answers
