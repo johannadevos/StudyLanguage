@@ -47,7 +47,7 @@ Beslissing:  H0 wordt verworpen. Het populatiegemiddelde van de nameting op ‘int
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-Causale Interpretatie: Causale interpretatie: Het is een niet-experimenteel onderzoek, dus er zijn meerdere verklaringen. De primaire verklaring is, dat het trainingsprogramma een positief effect heeft op de ‘integratiemotivatie’ score. Een alternatieve verklaring is dat de vergane tijd tussen de voor-en de nameting invloed had op de “integratiemotivatie_abbreviation”-score. Doordat ze bij de nameting langer in Nederland waren dan tijdens de voormeting, kunnen zij zich hierdoor geïntegreerder voelen.
+Causale Interpretatie: Het is een niet-experimenteel onderzoek, dus er zijn meerdere verklaringen. De primaire verklaring is, dat het trainingsprogramma een positief effect heeft op de ‘integratiemotivatie’ score. Een alternatieve verklaring is dat de vergane tijd tussen de voor-en de nameting invloed had op de “integratiemotivatie_abbreviation”-score. Doordat ze bij de nameting langer in Nederland waren dan tijdens de voormeting, kunnen zij zich hierdoor geïntegreerder voelen.
 
 
 Tentamennummer: 7
@@ -63,7 +63,7 @@ Beslissing:  H0 verwerpen, het populatiegemiddelde op de integratiemotivatie van
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
-Causale Interpretatie: Dit is geen experiment, er zijn dus meerdere verklaringen mogelijk voor het gevonden verschil. De primaire verklaring is dat de training invloed heeft op de integratiemotivatie. Een mogelijke alternatieve verklaring is dat de taalkennis van Nederlandse invloed heeft op de integratiemotivatie_abbreviation en invloed heeft op de training. Als men de taal niet spreekt krijgt men een stuk minder mee van Nederland, dus ook van hoe fijn het hier bijvoorbeeld_abbreviation is / hoe goed dingen geregeld zijn. Hierdoor is de integratiemotivatie mogelijk lager. Daarnaast heeft het ook invloed op de training. Deze wordt dan moeilijker te volgen.
+Causale interpretatie: Dit is geen experiment, er zijn dus meerdere verklaringen mogelijk voor het gevonden verschil. De primaire verklaring is dat de training invloed heeft op de integratiemotivatie. Een mogelijke alternatieve verklaring is dat de taalkennis van Nederlandse invloed heeft op de integratiemotivatie_abbreviation en invloed heeft op de training. Als men de taal niet spreekt krijgt men een stuk minder mee van Nederland, dus ook van hoe fijn het hier bijvoorbeeld_abbreviation is / hoe goed dingen geregeld zijn. Hierdoor is de integratiemotivatie mogelijk lager. Daarnaast heeft het ook invloed op de training. Deze wordt dan moeilijker te volgen.
 
 Tentamennummer: 9
 Subjectcode: 179
@@ -79,22 +79,22 @@ Beslissing:  p<0,05, dus H0 wordt verworpen. Het populatiegemiddelde van ‘Integr
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
-Causale Interpretatie: Het was geen experiment, dus er zijn meerdere verklaringen mogelijk. De primaire verklaring is dat het trainingsprogramma invloed heeft op de ‘integratiemotivatie’. Een alternatieve verklaring is dat de school waar ze naartoe gaan invloed heeft op de ‘integratiemotivatie’ en samenhangt met het volgen van het trainingsprogramma.
+Causale interpretatie: Het was geen experiment, dus er zijn meerdere verklaringen mogelijk. De primaire verklaring is dat het trainingsprogramma invloed heeft op de ‘integratiemotivatie’. Een alternatieve verklaring is dat de school waar ze naartoe gaan invloed heeft op de ‘integratiemotivatie’ en samenhangt met het volgen van het trainingsprogramma.
 
 Tentamennummer: 11
 Subjectcode: ?
 Punten 4a: 0
 Antwoord: 
 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: 0
+Punten: 10
 Antwoord:
 Beslissing:  H0 wordt verworpen, want p<0,05. Het gemiddelde is hoger na het trainingsprogramma dan het gemiddelde IRM score voor het trainingsprogramma in de populatie. 
 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: -2
+Punten: 8
 Antwoord:
-Causale Interpretatie: Het is een niet-experimenteel onderzoek, want het is niet gecounterbalanced_english. Dit betekent dat er meerdere verklaringen zijn. De primaire verklaring is dat het trainingsprogramma wel positief invloed heeft op de gemiddelde motivatie. Een alternatieve verklaring zou kunnen zijn dat de jongens ouder zijn geworden in de nameting. 
+Causale interpretatie: Het is een niet-experimenteel onderzoek, want het is niet gecounterbalanced_english. Dit betekent dat er meerdere verklaringen zijn. De primaire verklaring is dat het trainingsprogramma wel positief invloed heeft op de gemiddelde motivatie. Een alternatieve verklaring zou kunnen zijn dat de jongens ouder zijn geworden in de nameting. 
 
 Tentamennummer: 13
 Subjectcode: 200
@@ -110,7 +110,7 @@ Beslissing:  De nulhypothese moet worden verworpen, want p is kleiner dan 0,05. 
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-Causale Interpretatie: Het was een niet-experimenteel onderzoek dus er zijn meerdere verklaringen mogelijk. De primaire verklaring is dat het trainingsprogramma een hogere integratiemotivatie veroorzaakt. Een alternatieve verklaring is dat het feit dat de jongeren langer in Nederland wonen ervoor heeft gezorgd dat zij een groter integratiemotivatie hebben.
+Causale interpretatie: Het was een niet-experimenteel onderzoek dus er zijn meerdere verklaringen mogelijk. De primaire verklaring is dat het trainingsprogramma een hogere integratiemotivatie veroorzaakt. Een alternatieve verklaring is dat het feit dat de jongeren langer in Nederland wonen ervoor heeft gezorgd dat zij een groter integratiemotivatie hebben.
 
 Tentamennummer: 14
 Subjectcode: 198
@@ -128,7 +128,7 @@ Beslissing:  H0 wordt verworpen, het populatiegemiddelde van integratiemotivatie
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
-Causale Interpretatie: De primaire verklaringen voor het gevonden effect is dat de training integratiemotivatie_abbreviation verbetert. De alternatieve verklaring is dat de groep allochtone jongeren uit zichzelf over een verloop van tijd meer integratiemotivatie_abbreviation kregen (mogelijk door het verblijf in Nederland).
+Causale interpretatie: De primaire verklaringen voor het gevonden effect is dat de training integratiemotivatie_abbreviation verbetert. De alternatieve verklaring is dat de groep allochtone jongeren uit zichzelf over een verloop van tijd meer integratiemotivatie_abbreviation kregen (mogelijk door het verblijf in Nederland).
 
 Tentamennummer: 15
 Subjectcode: 310
@@ -144,7 +144,7 @@ Beslissing:  p<0,0025 dus H0 verwerpen; het populatiegemiddelde van de integrati
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-Causale Interpretatie: Dit was geen experimenteel onderzoek waardoor er meerdere verklaringen mogelijk zijn. De primaire verklaring is dat de training invloed heeft op de integratiemotivatie. Een alternatieve verklaring is dat de allochtone jongeren steun vinden bij elkaar gedurende het trainingsprogramma en dat het onderlinge begrip en de onderlinge hulp ervoor zorgt dat de integratie motivatie stijgt.
+Causale interpretatie: Dit was geen experimenteel onderzoek waardoor er meerdere verklaringen mogelijk zijn. De primaire verklaring is dat de training invloed heeft op de integratiemotivatie. Een alternatieve verklaring is dat de allochtone jongeren steun vinden bij elkaar gedurende het trainingsprogramma en dat het onderlinge begrip en de onderlinge hulp ervoor zorgt dat de integratie motivatie stijgt.
 
 Tentamennummer: 16
 Subjectcode: ?
@@ -161,7 +161,7 @@ Beslissing: De nulhypothese wordt verworpen, het populatiegemiddelde op integrat
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-Causale Interpretatie: Het onderzoek is passief-observerend. Er zijn dus meerdere verklaringen mogelijk. De primaire verklaring is dat het trainingsprogramma invloed heeft op de integratiemotivatie. Een secundaire verklaring zou kunnen zijn dat de jongeren meer integratiemotivatie hebben na het programma doordat zij inmiddels alweer een langere tijd deel uitmaken van de Nederlandse samenleving. 
+Causale interpretatie: Het onderzoek is passief-observerend. Er zijn dus meerdere verklaringen mogelijk. De primaire verklaring is dat het trainingsprogramma invloed heeft op de integratiemotivatie. Een secundaire verklaring zou kunnen zijn dat de jongeren meer integratiemotivatie hebben na het programma doordat zij inmiddels alweer een langere tijd deel uitmaken van de Nederlandse samenleving. 
 
 Tentamennummer: 18
 Subjectcode: 272
@@ -2966,7 +2966,7 @@ Beslissing: p<0,005, de nulhypothese wordt verworpen. Het populatiegemiddelde op
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-Causale interpretatie: Het gevonden verschil is significant. Het is geen experiment, er zijn meerdere verklaring mogelijk. De primaire verklaring is dat het trainingsprogramma zorgt voor een hogere integratiemotivatie. De alternatieve verklaring is spontaan hersteltijd, omdat het mogelijk zo kan zijn dat wanneer allochtonen langer in Nederland zijn ze ook zonder het trainingsprogramma al meer motivatie tonen om te integreren. 
+Causale interpretatie: Het gevonden verschil is significant. Het is geen experiment, er zijn meerdere verklaring mogelijk. De primaire verklaring is dat het trainingsprogramma zorgt voor een hogere integratiemotivatie. De alternatieve verklaring is spontaan herstel / tijd, omdat het mogelijk zo kan zijn dat wanneer allochtonen langer in Nederland zijn ze ook zonder het trainingsprogramma al meer motivatie tonen om te integreren. 
 
 Tentamennummer: 6
 Subjectcode: 323
@@ -3086,7 +3086,7 @@ Beslissing: p<0.05 dus H0 verwerpen, het populatiegemiddelde op integratiemotiva
 Aftrekpunten 2a: -4
 Punten: 5
 Antwoord:
-Causale interpretatie: Er is een significant verschil aangetoond. Maar dit onderzoek is geen experiment, je kunt er dus niet zomaar vanuit gaan dat het trainingsprogramma positief bijdraagt aan integratiemotivatie. Een andere verklaring zou kunnen zijn dat de tijd die tussen de voor en nameting zit zowel actief deelnemen aan de training als het actief deelnemen aan de na-meting beïnvloed. 
+Causale interpretatie: Er is een significant verschil aangetoond. Maar dit onderzoek is geen experiment, je kunt er dus niet zomaar vanuit gaan dat het trainingsprogramma positief bijdraagt aan integratiemotivatie. Een andere verklaring zou kunnen zijn dat de tijd die tussen de voor en nameting zit zowel actief deelnemen aan de training als het actief deelnemen aan de na-meting beïnvloedt. 
 
 Tentamennummer: 3
 Subjectcode: 320
@@ -3098,7 +3098,7 @@ Antwoord: 1) Causale interpretatie, bij het opschrijven van de relaties tussen d
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-Beslissing: H0 verwerpen (p<.05). Het populatiegemiddelde op de integratiemotivatie vragenlijst voor het trainingsprogramma is kleiner dan de integratiemotivatie in de nameting bij de populatie. 
+Beslissing: H0 verwerpen (p<.05). Het populatiegemiddelde op de integratiemotivatievragenlijst voor het trainingsprogramma is kleiner dan de integratiemotivatie in de nameting bij de populatie. 
 
 Aftrekpunten 2a: 0
 Punten: 10
@@ -3111,6 +3111,7 @@ Punten 4a: 10
 Antwoord: 1) Het gaat over het onderdeel causale interpretatie.
 2) De student zal na het geven van de primaire verklaring niet snel verder nadenken over een alternatieve verklaring. Vaak stopt het denken daar.
 3) De primaire verklaring kan kloppen, maar het antwoord is niet volledig zonder alternatieve verklaringen. 
+
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
@@ -3119,17 +3120,7 @@ Beslissing: p-waarde <.05, dus H0 wordt verworpen. Ha wordt aangenomen. Het popu
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
-Causale interpretatie: De primaire verklaring voor deze bevinding is dat de training zijn werk heeft gedaan (integratiemotivatie_abbreviation verhoogt). Een alternatieve verklaring is dat door de tijd die de jongeren in Nederland verblijven steeds langer is en naarmate de jongeren langer in Nederland zijn, hun integratiemotivatie_abbreviation ook omhoog gaat.
-
-Aftrekpunten 2a:
-Punten:
-Antwoord:
-Beslissing:
-
-Aftrekpunten 2a:
-Punten:
-Antwoord:
-Causale Interpretatie: 
+Causale interpretatie: De primaire verklaring voor deze bevinding is dat de training zijn werk heeft gedaan (integratiemotivatie_abbreviation verhoogd). Een alternatieve verklaring is dat door de tijd die de jongeren in Nederland verblijven steeds langer is en naarmate de jongeren langer in Nederland zijn, hun integratiemotivatie_abbreviation ook omhoog gaat.
 
 
 Tentamennummer: 4
@@ -3197,4 +3188,6 @@ Beslissing: De nulhypothese wordt verworpen. Het populatiegemiddelde van de name
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
-Causale interpretatie: Het was geen experiment, dus zijn er meerdere verklaringen mogelijk. De primaire verklaring is dat het volgen van de trainingsprogramma invloed op de integratiemotivatie heeft. Een alternatieve verklaring is dat integratiemotivatie invloed heeft op het volgen van de trainingsprogramma. Dat is plausibel omdat integratiemotivatie al bestaat voor het volgen van de trainingsprogramma en de motivatie ook beïnvloedt hoe enthousiast men het trainingsprogramma volgt.
+Causale interpretatie: Het was geen experiment, dus zijn er meerdere verklaringen mogelijk. De primaire verklaring is dat het volgen van de trainingsprogramma invloed op de integratiemotivatie heeft. Een alternatieve verklaring is dat integratiemotivatie invloed heeft op het volgen van de trainingsprogramma. Dat is plausibel omdat integratiemotivatie al bestaat voor het volgen van de trainingsprogramma en de motivatie ook beïnvloedt hoe enthousiast men het trainingsprogramma volgt. 
+
+
