@@ -69,17 +69,17 @@ Punten: 0
 Antwoord: -
 
 Tentamennummer: 32
-Subjectcode:676
+Subjectcode: 676
 Punten: 0
 Antwoord: -
 
 Tentamennummer: 33
-Subjectcode:670
+Subjectcode: 670
 Punten: 0
 Antwoord: There was a study where people were shown samples from different sizes in percentage scores. These were expressions of a total of sexually abused woman from therapists. While one was a study with a higher number of participants it had a lower percentage of total sexual abuse while the second one had a lower number of participants but a higher number of sexual abuses in percentage. The second one was more influencing.
 
 Tentamennummer: 34
-Subjectcode:743
+Subjectcode: 743
 Punten: 10
 Antwoord: A study that highlights the insensitivity to sample size was conducted in an university in which students had to choose between certain courses they want to participate in. One group of students received a course evaluation that was completed by 26 out of 127 students. The other group received an oral presentation of three students that took part in the courses. \n\n Results indicated that the written course evaluation had less influenced the participants than the presentations. This is an example of insensitivity to sample size because although, the written evaluation had a much larger sample than the oral presentations and is therefore more reliable, participants were more influenced and put more weight on the three presentations.
 
@@ -99,7 +99,7 @@ Punten: 7
 Antwoord: Circa 130 evaluated courses at their university. Three students did this separately. The participants should look at the evaluation of the students and should choose the courses they would like to participate. \n Most of the participants chose the courses that the 3 students liked the most. ? small sample is more vivid & interesting. \n\n ? the amount of data that comes with large samples is overwhelming and less interesting but more reliable!
 
 Tentamennummer: 44
-Subjectcode: 465
+Subjectcode: 765
 Punten: 0
 Antwoord: v wat?
 
@@ -909,7 +909,7 @@ Punten: 10
 Antwoord: Psychology students were allocated to two groups. In the first group they were shown the mean course evaluation of 10 courses on a five-point scale. These evaluations were based on 26 out of 134 students. In the second group they were shown interviews from 2-3 students who were talking about their courses. \n After that the psychology students had to choose which course they would like to take. \n The results show that most of the students chose a course based on the few interviews they saw. They were influenced in their choice by a small vivid information. \n The statistical information had few influence on their choice, even if it had a much larger sample. \n The students ignored the ‘Law of large numbers’ and therefore it is a good example of the ‘insensitivity to sample size’.
 
 Tentamennummer: 354
-Subjectcode: 363
+Subjectcode: 636
 Punten: 3
 Antwoord: The study was about the birth rate of a small hospital (mean_abbreviation 15) and a large hospital (mean_abbreviation 45) Participants were asked where they expect that 65% of the baby rate will increase (more babies than the mean born). Almost everyone of the participants answered that it doesn’t matter and both hospitals had the same chance or likelihood to get 65% more children. That means that the participants haven’t been aware of the sample size (big hospital, small hospital)
 

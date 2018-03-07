@@ -606,8 +606,8 @@ Subjectcode: ?
 Punten: 10
 Antwoord: Studenten werden een cijferlijst over een cursus laten zien, en ze werden verteld dat dit een gemiddelde score was van tientallen studenten. Ook kregen ze van een andere studie persoonlijk de resultaten verteld, echter maar door een paar mensen. De meeste studenten kozen voor de studie waarbij mensen ze persoonlijk over de studie hebben verteld, terwijl ze echter van veel meer mensen een gemiddelde kregen in de andere studie die had dus een grotere steekproef. Dit laat zien dat ze gevoelig waren voor de steekproefgrootte.
 Tentamennummer: 116
-Subjectcode:?
-Punten:  0
+Subjectcode: ?
+Punten: 0
 Antwoord: Ik wist dat ik iets vergeten had.. Het is ‘te’ vaak onderzocht wat het verband is tussen roken en longproblemen. Echter, keer op keer weerleggen mensen deze resultaten met een anekdote uit de eigen kring, vaak n=1: “mijn opa rookte elke dag een pakje en hij is 92 jaar geworden!”
 Tentamennummer: 40
 Subjectcode: ?

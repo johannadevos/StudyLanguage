@@ -267,7 +267,7 @@ Subjectcode: ?
 Punten: 6
 Antwoord: De Whorfiaanse hypothese van taal gaat over taal en denken. \n De zwakke variant zegt dat als je complexe processen genuanceerder kunt verwoorden dan kun je er ook genuanceerder over nadenken. Complexere vaardigheden in taal en denken correleren dus. Deze variant wordt door meer onderzoeken ondersteunt. \n De sterke variant zegt in principe dat taal beperkend werkt voor denken, dus als je geen taal vaardigheden hebt kun je alleen beperkt denken
 Tentamennummer: 111
-Subjectcode:
+Subjectcode: 114
 Punten: 8
 Antwoord: Volgens de (Sapir)-Whorfiaanse hypothese is taal van grote invloed op ons denken. Volgens de sterke variant bepaalt taal zelfs wat we kunnen denken, in de zin dat taal beperkend werkt. De zwakke variant zegt dat het hebben van meer genuanceerder concepten leidt tot genuanceerder kunnen denken. Taal is dus een instrument om ons denken tot expressie te laten komen. De sterke variant wordt weinig aangehangen, we kunnen immers ook denken in beelden of geuren. De zwakke variant daarentegen wordt veelal aangehangen. \n\n Volgens de Whorfiaanse hypothese is taal dus heel erg bepalend voor ons denken. Het is een instrument om ons denken tot expressie te laten komen (in ons hoofd). De twee varianten worden hierboven besproken.
 Tentamennummer: 112
@@ -415,7 +415,7 @@ Subjectcode: 152
 Punten: 3
 Antwoord: De Whorfiaanse hypothese stelt dat hoe genuanceerder je met taal omgaat, hoe genuanceerder je je kan uitdrukken; dit is de zwakke variant en wordt het meest besproken \n De sterke variant is
 Tentamennummer: 258
-Subjectcode: 4558852
+Subjectcode: ?
 Punten: 0
 Antwoord: -
 Tentamennummer: 260

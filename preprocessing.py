@@ -3,8 +3,11 @@
 # Script written by Johanna de Vos (2018)
 
 import os
+from pathlib import Path
+import random
 import re
 
+import nltk
 from nltk.corpus import stopwords, wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.tag import pos_tag
@@ -256,7 +259,7 @@ def preprocess(df, filename):
 # TO DO: standardise British/American spelling?
 
 
-def remove_unknown_subjects(df):
+def remove_subjects(df):
     print("Removing rows where the subject code is unknown...")
     df = df[df.SubjectCode != '?']
     
@@ -282,7 +285,7 @@ def dictionary(df):
 # List the names of the files associated with each exam
 def filenames(raw_data_dir):
     dir_contents = os.listdir(raw_data_dir)
-    files = [file[:-4] for file in dir_contents] # [:-4] to remove '.txt' from filename
+    files = [file for file in dir_contents]
     
     return files
 
@@ -298,7 +301,7 @@ def create_lca_dirs(data_dir):
         questions_stat_c = ['4a', '2aDec', '2aCaus']
         
         for exam in exam_names:
-            os.makedirs(indiv_data_dir / exam)
+            os.makedirs(indiv_data_dir / exam[:-4]) # [:-4] to cut off '.txt'
             
             # Make subdirectories for each question for STAT_C
             if 'STAT_C' in exam:
@@ -337,3 +340,67 @@ def prepare_for_lca(data_dir, df, filename):
     
                         lem_pos = row['Lemmatized{}'.format(question)][word_counter], "_", row['POS{}'.format(question)][word_counter]
                         f.write('{} {}'.format(''.join(lem_pos), ''))
+                        
+                        
+### ------------------
+### DIRECTORIES
+### ------------------
+
+# Set NLTK directory
+if os.path.exists("U:/nltk_data"):
+    nltk.data.path.append("U:/nltk_data") # On work PC only
+
+# Set working directory to where the data are
+def get_current_file_dir() -> Path:
+    """Returns the directory of the script."""
+    try:
+        return Path(os.path.realpath(__file__)).parent
+    except(NameError):
+        return Path(os.getcwd())
+
+# Define directories
+src_dir = get_current_file_dir()
+data_dir = src_dir / 'data'
+indiv_data_dir = data_dir / 'indiv_files'
+raw_data_dir = data_dir / 'raw_data'
+
+
+### --------
+### RUN CODE
+### --------
+
+if __name__ == "__main__":
+    
+    # Read and prepare student data (select individual files)
+    #filename = 'AIP_A_EN_uncorrected.txt'
+    #filename = 'AIP_A_EN_corrected.txt'
+    #filename = 'AIP_A_NL_uncorrected.txt'
+    #filename = 'AIP_A_NL_corrected.txt'  
+    #filename = 'STAT_A_EN_uncorrected.txt'
+    #filename = 'STAT_A_EN_corrected.txt'             
+    #filename = 'STAT_A_NL_uncorrected.txt'
+    #filename = 'STAT_A_NL_corrected.txt'
+    #filename = 'STAT_C_EN_uncorrected.txt'
+    #filename = 'STAT_C_EN_corrected.txt'        
+    #filename = 'STAT_C_NL_uncorrected.txt' 
+    #filename = 'STAT_C_NL_corrected.txt'
+    
+    # Read and prepare student data (all at once)
+    create_lca_dirs(data_dir) # Create folders to store the individual student answers
+    files = filenames(raw_data_dir)
+    
+    for filename in files:
+        if "EN" in filename: # For the time being, only work with English data
+        
+            print("\n{}\n".format(filename))
+            raw_data = open_file(raw_data_dir / filename) # Read data from file
+            prep_data = make_readable(raw_data) # Make student answers readable
+            df, cols = create_df(prep_data, filename) # Create and fill dataframe with student data
+            
+            df = df[:10] # Make df smaller to try things out
+            df = preprocess(df, filename) # Tokenize, POS tag, lemmatize, and remove stop words
+            df = remove_subjects(df) # Remove entries where the subject code is unknown or students did not give permission for their data to be used
+                
+            #dictio = dictionary(df) # Create dictionary of vocabulary --> currently, doesn't work for STAT_C
+            
+            prepare_for_lca(data_dir, df, filename) # Apply the Lexical Complexity Analyzer to the student answers
