@@ -99,7 +99,7 @@ verbranks=sort_by_value(verbdict)
 
 directoryPath=sys.argv[1]
 
-print "filename, sentences, wordtypes, swordtypes, lextypes, slextypes, wordtokens, swordtokens, lextokens, slextokens, ld, ls1, ls2, vs1, vs2, cvs1, ndw, ndwz, ndwerz, ndwesz, ttr, msttr, cttr, rttr, logttr, uber, lv, vv1, svv1, cvv1, vv2, nv, adjv, advv, modv"
+print("filename, sentences, wordtypes, swordtypes, lextypes, slextypes, wordtokens, swordtokens, lextokens, slextokens, ld, ls1, ls2, vs1, vs2, cvs1, ndw, ndwz, ndwerz, ndwesz, ttr, msttr, cttr, rttr, logttr, uber, lv, vv1, svv1, cvv1, vv2, nv, adjv, advv, modv")
 
 for filename in glob.glob( os.path.join(directoryPath, '*') ):
     lemfile=open(filename,"r")
@@ -110,7 +110,7 @@ for filename in glob.glob( os.path.join(directoryPath, '*') ):
     output=filename
     if not lemlines:
         output+=",0.0"*31
-        print output
+        print(output)
         continue
 
     # process input file
@@ -237,4 +237,4 @@ for filename in glob.glob( os.path.join(directoryPath, '*') ):
         if type(measure)==type(0.0):
             measure="%.2f" % measure
         output+=", "+str(measure)
-    print output
+    print(output)
