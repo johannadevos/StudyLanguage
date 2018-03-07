@@ -26,15 +26,18 @@ def open_file(filename):
 
 
 # Make the raw text readable
-def make_readable(raw_text):
+def make_readable(raw_data):
     print("Making the raw text readable...")
     
+    text = raw_data
+    
     # For empty anwers, insert a dash
-    text = raw_text.replace("Antwoord:\n", "Antwoord: -\n")
+    text = text.replace("Antwoord:\n\n", "Antwoord: -\n")
     
     # Preprocessing for STAT_C, which has a different format than the other transcriptions
     text = text.replace("\n2)", " 2)") # Put the 3-part answer on one line
     text = text.replace("\n3)", " 3)") # Idem
+    text = text.replace("\n2&3)", " 2&3)")
     text = re.sub(r'-{2,}', "", text) # Remove two or more dashes
     
     # Preprocessing for STAT_C_EN
@@ -75,7 +78,7 @@ def make_readable(raw_text):
     text = text.replace("n't", " not")
     
     # Other
-    text = text.replace("???", "?")
+    text = text.replace("???", "?") # One question mark for missing subject codes
     
     return text
 
@@ -198,9 +201,9 @@ def preprocess(df, filename):
     tokenizer = RegexpTokenizer(r'\w+')
     lemmatizer = WordNetLemmatizer() 
 
-    if not "STAT_C_EN" in str(filename):
+    if not "STAT_C" in str(filename):
         answers = ['Answer']
-    elif "STAT_C_EN" in str(filename):
+    elif "STAT_C" in str(filename):
         answers = ['Answer4a', 'Answer2aDec', 'Answer2aCaus']
         
     for question_type in answers:
@@ -313,7 +316,7 @@ def prepare_for_lca(data_dir, df, filename):
     for index, row in df.iterrows():
         subject_code = str(row['SubjectCode'] + ".txt")
                     
-        if not "STAT_C_EN" in str(filename):
+        if not "STAT_C" in str(filename):
             outfile = indiv_data_dir / filename[:-4] / subject_code # :-4 to cut off '.txt'
             
             with open(outfile, 'w') as f:
@@ -322,7 +325,7 @@ def prepare_for_lca(data_dir, df, filename):
                     lem_pos = row['Lemmatized'][word_counter], "_", row['POS'][word_counter]
                     f.write('{} {}'.format(''.join(lem_pos), ''))
    
-        elif "STAT_C_EN" in str(filename):
+        elif "STAT_C" in str(filename):
             questions = ['4a', '2aDec', '2aCaus']
             
             for question in questions:

@@ -235,8 +235,7 @@ Beslissing: p<0,05 dus H0 verwerpen. Het trainingsprogramma leidt gemiddeld tot 
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
-Causale Interpretatie: Het is geen experiment dus een primaire en alternatieve verklaring. primaire verklaring: Het trainingsprogramma is van invloed op je motivatie, het zorgt namelijk voor een hogere motivatie.
-Alternatieve verklaring: Hun motivatie kan van tevoren al hoog zijn, en daardoor doen ze eerder mee aan het trainingsprogramma en wordt hun motivatie alleen maar hoger doordat ze denken dat ze nu een kans hebben, en niet door het trainingsprogramma. 
+Causale Interpretatie: Het is geen experiment dus een primaire en alternatieve verklaring. primaire verklaring: Het trainingsprogramma is van invloed op je motivatie, het zorgt namelijk voor een hogere motivatie. Alternatieve verklaring: Hun motivatie kan van tevoren al hoog zijn, en daardoor doen ze eerder mee aan het trainingsprogramma en wordt hun motivatie alleen maar hoger doordat ze denken dat ze nu een kans hebben, en niet door het trainingsprogramma. 
 
 Tentamennummer: 25
 Subjectcode: 261
@@ -537,16 +536,11 @@ Antwoord: 1) Het gaat over het onderdeel causale interpretatie en nog precieser 
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-
 Beslissing: p<0,05 dus de Nullhypothese wordt verworpen. Het populatie gemiddelde op de Integratie Motivatie vragenlijst was voor het trainingsprogramma kleiner dan na het trainingsprogramma. 
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
 Causale Interpretatie: Er is een significant verschil gevonden. Het onderzoek was geen experiment. Daardoor is de oorzaak onbekend. Er zijn meerdere verklaringen mogelijk. De primaire verklaring is dat het trainingsprogramma invloed had op de Integratie Motivatie. Een alternatieve verklaring is dat de score op Integratie Motivatie verandert en op grond van innerlijke rijping van de jongeren over de tijd tussen voor en nameting. 
-
-
-
-
 
 Tentamennummer: 55
 Subjectcode: 100
@@ -559,8 +553,9 @@ Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
 Beslissing: De nulhypothese wordt verworpen. Het populatiegemiddelde op “IM” is bij de nameting groter dan het populatiegemiddelde bij de voormeting. 
-Aftrekpunten 2a: 
-Punten: 
+
+Aftrekpunten 2a: -4
+Punten: 5
 Antwoord:
 Causale Interpretatie: Dit was geen experiment, want er was geen counterbalancing van de steekproef. De primaire oorzaak voor het gevonden verschil is dat het trainingsprogramma invloed heeft op de nameting en de Integratie Motivatie toeneemt. Een alternatieve verklaring is, dat alleen allochtone jongeren hebben deelgenomen, die intrinsiek gemotiveerder waren, om aan het trainingsprogramma deel te nemen. 
 
@@ -826,12 +821,12 @@ Subjectcode: 345
 Punten 4a: 0
 Antwoord:
 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: 0
+Punten: 10
 Antwoord:
 Beslissing: H0 behouden, het populatiegemiddelden van integratiemotivatie is niet hoger na het trainingsprogramma dan ervoor. 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: 0
+Punten: 10
 Antwoord:
 Causale Interpretatie: Er is geen significant verschil gevonden. Er zou geconcludeerd kunnen worden dat het trainingsprogramma geen invloed heeft op integratie motivatie. Omdat dit geen experiment was is er ook een alternatieve verklaring mogelijk, namelijk: de allochtone jongeren beheersen de Nederlandse taal niet goed genoeg om iets aan het trainingsprogramma te hebben en deze taal vermindert ook de integratie motivatie. 
 
@@ -893,8 +888,8 @@ Antwoord: 1) De heuristiek van het mooie verhaal heeft betrekking op het onderde
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
-
 Beslissing: P<0,0025 is significant dus H0 verwerpen. Het populatiegemiddelde van de nameting op de integratie motivatie is groter dan het populatiegemiddelde op de voormeting. 
+
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
@@ -988,8 +983,8 @@ Antwoord: 1) Bij causale interpretatie, bij een niet experimenteel onderzoek, wa
 2) Ze stoppen met denken bij het eerste beste antwoord (mooie verhaal), waardoor ze niet meer verder zullen denken. 
 3) Hun antwoord zal minder goed zijn, want vaak als je nog verder nadenkt komt er een beter antwoord uit. 
 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: 0
+Punten: 10
 Antwoord:
 Beslissing: De nulhypothese wordt verworpen. De gemiddelde van het wel volgen van het trainingsprogramma zijn hoger dan het niet volgen van het trainingsprogramma, wanneer er gekeken wordt naar motivatie.
 Aftrekpunten 2a: -8
@@ -1113,7 +1108,7 @@ Antwoord: 1) De inschatting van causaliteit?
 
 
 Aftrekpunten 2a: -2
-Punten: 
+Punten: 8
 Antwoord:
 Beslissing: H0 verwerpen, Ha aannemen. De Integratie Motivatie is hoger na de training dan voor de training. 
 Aftrekpunten 2a: -8
@@ -1918,9 +1913,7 @@ Beslissing: p<0,005 (0,005<0,05 dus verwerpen). H0 wordt verworpen. Het populati
 Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
-Causale interpretatie: Meerdere verklaringen mogelijk, want het is een niet-experimenteel onderzoek: De training heeft invloed op de integratie motivatie van jongeren
-De na-meting vindt op een ander tijdstip plaats--> later op de dag. 
-De jongeren zien de vragenlijst bij de nameting voor de 2e keer en kunnen daardoor beïnvloed zijn. 
+Causale interpretatie: Meerdere verklaringen mogelijk, want het is een niet-experimenteel onderzoek: De training heeft invloed op de integratie motivatie van jongeren. De na-meting vindt op een ander tijdstip plaats--> later op de dag. De jongeren zien de vragenlijst bij de nameting voor de 2e keer en kunnen daardoor beïnvloed zijn. 
 
 Tentamennummer: 175
 Subjectcode: 160
@@ -2248,8 +2241,8 @@ Antwoord: 1) Het gaat om de causale interpretatie in het elementair rapport
 2) Er wordt minder abstract gedacht bij het verhaaltje dan bij X,Y,Z.
 3) Mensen die x,y,z zien geven meer verklaringen dan mensen die een verhaal zien. Deze mensen geven er te weinig vaak (wat minder goed is).
 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: 0
+Punten: 10
 Antwoord:
 Beslissing: Ik verwerp H0; het gemiddelde van Im-na de trainingsprogramma is groter dan dat van Im-voor het trainingsprogramma, in de populatie. 
 Aftrekpunten 2a: -2
@@ -2299,8 +2292,8 @@ Antwoord: 1) De causale interpretatie en dan vooral de alternatieve verklaring
 2) De heuristiek zegt dat heel veel mensen stoppen met denken bij het eerste antwoord wat in hun op komt en dat moeten zij niet doen.
 3) Hun antwoord zal minder goed zijn omdat ze niet verder denken over andere mogelijke antwoorden.
 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: 0
+Punten: 10
 Antwoord:
 Beslissing: De nulhypothese is verworpen, dus na het trainigsprogramma is de gemiddelde Intigratie Motivatie hoger dan voor het trainingsprogramma, in de populatie. 
 Aftrekpunten 2a: -2
@@ -2347,10 +2340,15 @@ Antwoord: 1) Het gaat hier bij het onderdeel waar studenten verklaringen moeten 
 2) We hebben de alternatieve verklaringen schematisch geleerd: als we een concreet voorbeeld krijgen zijn we tevreden met 1 alternatieve verklaring. We vergeten verder te denken.
 3) in feite mis je een deel van je verklaring. Het antwoord zal minder volledig zijn.
 
-Aftrekpunten 2a: --
-Antwoord:---
-Beslissing: ---
-Causale interpretatie: ---
+Aftrekpunten 2a: -8
+Punten: 0
+Antwoord:
+Beslissing:
+
+Aftrekpunten 2a: -8
+Punten: 0
+Antwoord:
+Causale interpretatie:
 
 Tentamennummer: 213
 Subjectcode: 173
@@ -2390,8 +2388,8 @@ Antwoord: 1) Bij de causale interpretatie
 2) Deze zorgt dat men bij de verklaring i/d vorm v/e mooi verhaal (wanneer die gegeven wordt) daarna gelijk stopt met nadenken
 3) Het antwoordt zal maar een verklaring zijn terwijl (indien geen experiment) meerdere verklaringen mogelijk zijn (y-->z & z-->storende)
 
-Aftrekpunten 2a: 
-Punten: 
+Aftrekpunten 2a: 0
+Punten: 10
 Antwoord:
 Beslissing: p<0,05 H0 verwerpen. De gemiddelde integratie motivatie is in de populatie groter na, dan voor de training. 
 Aftrekpunten 2a: -2
@@ -2786,33 +2784,6 @@ Punten: 5
 Antwoord:
 Causale interpretatie: Dit was geen experiment, maar wel een significant verschil. Een primaire verklaring hiervoor: het programma had wel effect op de IM. Een alternatieve verklaring hiervoor: de jongeren die hoger scoorden hadden waarschijnlijk al een gedachte om beter te willen integreren. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Stat 1c 2017 (envelop 6)
-
 Tentamennummer: 1
 Subjectcode: 328
 Punten 4a: 0
@@ -3055,11 +3026,10 @@ Punten: 8
 Antwoord:
 Causale interpretatie: Het is geen experiment dus er zijn meerdere verklaringen mogelijk. Primaire verklaring is dat het trainingsprogramma invloed heeft op de integratie motivatie. Een alternatieve verklaring is dat de jongeren die meedoen al gemotiveerd worden om te integreren dus dat het niet per se door de training komt. 
 
-Tentamennummer: ?? (heeft een bijgevoegd Word-document)
+Tentamennummer: ?
 Subjectcode: ???
 Punten 4a: 10
-Antwoord: 1)
-De heuristiek van het ‘mooie verhaal’ kan een negatieve invloed op de antwoorden van studenten bij en tentmane statistiek 1 deel C hebben, als zij de causale interpretatie bij een elementair rapport schrijven. Zij hadden voorafgaand in methoden van onderzoek geleerd dat x invloed heeft op y of in een omgekeerd causale verband y invloed op x heeft of bij een storende variabele z die invloed heeft/ samengaat met zowel x als ook y. Nu in de praktische toepassing van deze relaties bij de causale interpretatie in statistiek falen vele studenten daaraan deze relaties toe te passen. Zij denken dan aan een primaire verklaring en misschien nog aan een alternatieve verklaring die op de hand ligt (beschikbaar is) maar ze passen niet deze schemas uit methoden van onderzoek toe. Maar als ze de verklaringen opgeschreven hebben, denken ze niet verder daarover naar en sluiten de opgave meteen af. Hun antwoord zal dan minder goed omdat hun antwoord niet goed overdacht hebben en niet precies alle schemas probeerden toe te passen. Het kan dan ook zijn dat hun rederingen of de benoeming van de storende variabele niet plausibel is.
+Antwoord: De heuristiek van het ‘mooie verhaal’ kan een negatieve invloed op de antwoorden van studenten bij en tentmane statistiek 1 deel C hebben, als zij de causale interpretatie bij een elementair rapport schrijven. Zij hadden voorafgaand in methoden van onderzoek geleerd dat x invloed heeft op y of in een omgekeerd causale verband y invloed op x heeft of bij een storende variabele z die invloed heeft/ samengaat met zowel x als ook y. Nu in de praktische toepassing van deze relaties bij de causale interpretatie in statistiek falen vele studenten daaraan deze relaties toe te passen. Zij denken dan aan een primaire verklaring en misschien nog aan een alternatieve verklaring die op de hand ligt (beschikbaar is) maar ze passen niet deze schemas uit methoden van onderzoek toe. Maar als ze de verklaringen opgeschreven hebben, denken ze niet verder daarover naar en sluiten de opgave meteen af. Hun antwoord zal dan minder goed omdat hun antwoord niet goed overdacht hebben en niet precies alle schemas probeerden toe te passen. Het kan dan ook zijn dat hun rederingen of de benoeming van de storende variabele niet plausibel is.
 Aftrekpunten 2a: 0
 Punten: 10
 Antwoord:
@@ -3069,4 +3039,3 @@ Aftrekpunten 2a: -2
 Punten: 8
 Antwoord:
 Causale interpretatie: Het was geen experiement, dus zijn er meerdere verklaringen mogelijk. De primaire verklaring is dat het volgen van de trainingsprogramma invloed op de Integratie Motivatie heeft. Een alternatieve verklaring is dat Integratie Motivatie invloed heeft op het volgen van de trainingsprogramma. Dat is plausibel omdat Integratie Motivatie al bestaat voor het volgen van de trainingsprogramma en de motivatie ook beïnvloedt hoe enthusiast men het trainingsprogramma volgt. 
-
