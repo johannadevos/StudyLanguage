@@ -217,7 +217,10 @@ for filename in glob.glob( os.path.join(directoryPath, '*') ):
     cttr=division(len(wordtypes.keys()),sqrt(2*wordtokens))
     rttr=division(len(wordtypes.keys()),sqrt(wordtokens))
     logttr=division(log(len(wordtypes.keys())),log(wordtokens))
-    uber=(log(wordtokens,10)*log(wordtokens,10))/log(wordtokens/float(len(wordtypes.keys())),10)
+    try:
+        uber=(log(wordtokens,10)*log(wordtokens,10))/log(wordtokens/float(len(wordtypes.keys())),10)
+    except ZeroDivisionError:
+        uber="N/A"        
 
     # 3.3 verb diversity
     vv1=division(len(verbtypes.keys()),verbtokens)
