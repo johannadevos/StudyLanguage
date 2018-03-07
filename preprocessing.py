@@ -311,7 +311,7 @@ def create_lca_dirs(data_dir):
                     
 
 # Write the lemmatized and POS-tagged student answers to files
-def prepare_for_lca(data_dir, df, filename):
+def create_lca_input(data_dir, df, filename):
     print("Writing lemmatized and POS-tagged words to files...")
     
     indiv_data_dir = data_dir / 'indiv_files'
@@ -403,4 +403,4 @@ if __name__ == "__main__":
                 
             #dictio = dictionary(df) # Create dictionary of vocabulary --> currently, doesn't work for STAT_C
             
-            prepare_for_lca(data_dir, df, filename) # Apply the Lexical Complexity Analyzer to the student answers
+            create_lca_input(data_dir, df, filename) # Create the input files that the LCA needs
