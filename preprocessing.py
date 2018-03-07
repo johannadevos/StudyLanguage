@@ -307,7 +307,7 @@ def create_lca_dirs(data_dir):
             if 'STAT_C' in exam:
                 
                 for question in questions_stat_c:
-                    os.makedirs(indiv_data_dir / exam / question)
+                    os.makedirs(indiv_data_dir / exam[:-4] / question)
                     
 
 # Write the lemmatized and POS-tagged student answers to files
@@ -397,7 +397,7 @@ if __name__ == "__main__":
             prep_data = make_readable(raw_data) # Make student answers readable
             df, cols = create_df(prep_data, filename) # Create and fill dataframe with student data
             
-            df = df[:10] # Make df smaller to try things out
+            #df = df[:10] # Make df smaller to try things out
             df = preprocess(df, filename) # Tokenize, POS tag, lemmatize, and remove stop words
             df = remove_subjects(df) # Remove entries where the subject code is unknown or students did not give permission for their data to be used
                 
