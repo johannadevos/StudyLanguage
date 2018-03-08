@@ -40,22 +40,31 @@ def create_pandas_df(filename):
     
     # Check whether all subject codes are unique
     if len(set(list(df.index))) != len(df):
-        print("WARNING: Some subject codes are used more than once.")
+        print("WARNING: Some subject codes occur more than once.")
         
     return df
 
 
-aip = create_pandas_df('lca_AIP_A_EN_corrected.txt')
-stat_a = create_pandas_df('lca_STAT_A_EN_corrected.txt')
+def create_df_diff(df1, df2):
+    subs = [index for index in list(aip.index) if index in list(stat_a.index)] # List of subject codes that are present in both datasets
+    df_diff = pd.DataFrame(index=subs, columns = df1.columns[1:]) # All columns except 'filename'
+    
+    for subj in df_diff.index:
+        for col in df_diff.columns:
+            diff = df2.loc[subj, col] - df1.loc[subj, col]     
+            df_diff.at[subj, col] = diff
+    
+    return df_diff
     
 
-
-
+#pd.set_option('display.max_columns', None)
 
 ### --------
 ### RUN CODE
 ### --------
 
 #if __name__ == "__main__":
-    
+aip = create_pandas_df('lca_AIP_A_EN_corrected.txt')
+stat_a = create_pandas_df('lca_STAT_A_EN_corrected.txt')
+aip_stat_a = create_df_diff(aip, stat_a)
     

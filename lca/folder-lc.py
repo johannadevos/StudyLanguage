@@ -220,7 +220,7 @@ for filename in glob.glob( os.path.join(directoryPath,'*') ):
     try:
         uber=(log(wordtokens,10)*log(wordtokens,10))/log(wordtokens/float(len(wordtypes.keys())),10)
     except ZeroDivisionError:
-        uber="DividedByZero"        
+        uber="NaN"        
 
     # 3.3 verb diversity
     vv1=division(len(verbtypes.keys()),verbtokens)
