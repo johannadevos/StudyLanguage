@@ -99,9 +99,9 @@ verbranks=sort_by_value(verbdict)
 
 directoryPath=sys.argv[1]
 
-print("filename, sentences, wordtypes, swordtypes, lextypes, slextypes, wordtokens, swordtokens, lextokens, slextokens, ld, ls1, ls2, vs1, vs2, cvs1, ndw, ndwz, ndwerz, ndwesz, ttr, msttr, cttr, rttr, logttr, uber, lv, vv1, svv1, cvv1, vv2, nv, adjv, advv, modv")
+print("filename,sentences,wordtypes,swordtypes,lextypes,slextypes,wordtokens,swordtokens,lextokens,slextokens,ld,ls1,ls2,vs1,vs2,cvs1,ndw,ndwz,ndwerz,ndwesz,ttr,msttr,cttr,rttr,logttr,uber,lv,vv1,svv1,cvv1,vv2,nv,adjv,advv,modv")
 
-for filename in glob.glob( os.path.join(directoryPath, '*') ):
+for filename in glob.glob( os.path.join(directoryPath,'*') ):
     lemfile=open(filename,"r")
     lemlines=lemfile.readlines()
     lemfile.close()
@@ -109,7 +109,7 @@ for filename in glob.glob( os.path.join(directoryPath, '*') ):
 
     output=filename
     if not lemlines:
-        output+=",0.0"*31
+        output+=",0"*34
         print(output)
         continue
 
@@ -168,7 +168,7 @@ for filename in glob.glob( os.path.join(directoryPath, '*') ):
                     if not word in wordranks[-2000:]:
                         slextypes[word]=1
                         slextokens+=1
-                elif pos[0]=="r" and (adjdict.has_key(word) or (word[-2:]=="ly" and adjdict.has_key(word[:-2]))):
+                elif pos[0]=="r" and (word in adjdict or (word[-2:]=="ly" and word[:-2] in adjdict)):
                     lextypes[word]=1
                     advtypes[word]=1
                     lextokens+=1
@@ -236,8 +236,8 @@ for filename in glob.glob( os.path.join(directoryPath, '*') ):
     modv=division((len(advtypes.keys())+len(adjtypes.keys())),lextokens)
 
     output=filename
-    for measure in [sentences, len(wordtypes.keys()), len(swordtypes.keys()), len(lextypes.keys()), len(slextypes.keys()), wordtokens, swordtokens, lextokens, slextokens, ld, ls1, ls2, vs1, vs2, cvs1, ndw, ndwz, ndwerz, ndwesz, ttr, msttr, cttr, rttr, logttr, uber, lv, vv1, svv1, cvv1, vv2, nv, adjv, advv, modv]: 
+    for measure in [sentences,len(wordtypes.keys()),len(swordtypes.keys()),len(lextypes.keys()),len(slextypes.keys()),wordtokens,swordtokens,lextokens,slextokens,ld,ls1,ls2,vs1,vs2,cvs1,ndw,ndwz,ndwerz,ndwesz,ttr,msttr,cttr,rttr,logttr,uber,lv,vv1,svv1,cvv1,vv2,nv,adjv,advv,modv]: 
         if type(measure)==type(0.0):
             measure="%.2f" % measure
-        output+=", "+str(measure)
+        output+=","+str(measure)
     print(output)
