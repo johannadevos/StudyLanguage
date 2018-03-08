@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # Script written by Johanna de Vos (2018)
+# Requires Python 3.6
 
 import os
 from pathlib import Path
@@ -358,8 +359,8 @@ def get_current_file_dir() -> Path:
         return Path(os.getcwd())
 
 # Define directories
-src_dir = get_current_file_dir()
-data_dir = src_dir / 'data'
+root_dir = get_current_file_dir().parent
+data_dir = root_dir / 'data'
 indiv_data_dir = data_dir / 'indiv_files'
 raw_data_dir = data_dir / 'raw_data'
 
