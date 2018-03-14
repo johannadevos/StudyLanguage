@@ -88,21 +88,7 @@ def select_comp_length(df):
     df = df[(df['wordtokens'] >= -20) & (df['wordtokens'] <= 20)]
 
     return df
-    
-
-#pd.set_option('display.max_columns', None)
-
-def create_df_diff(df1, df2):
-    subs = [index for index in list(aip.index) if index in list(stat_a.index)] # List of subject codes that are present in both datasets
-    df_diff = pd.DataFrame(index=subs, columns = df1.columns[1:]) # All columns except 'filename'
-    
-    for subj in df_diff.index:
-        for col in df_diff.columns:
-            diff = df2.loc[subj, col] - df1.loc[subj, col]     
-            df_diff.at[subj, col] = diff
-    
-    return df_diff
-    
+       
 
 #pd.set_option('display.max_columns', None)
 
