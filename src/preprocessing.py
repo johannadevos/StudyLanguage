@@ -1,18 +1,16 @@
+#!usr/bin/en/python3
 # -*- coding: utf-8 -*-
 
 # Script written by Johanna de Vos (2018)
 # Requires Python 3.6
 
+import argparse
 import os
-from pathlib import Path
 import re
 
-import nltk
-from nltk.corpus import stopwords, wordnet
-from nltk.stem import WordNetLemmatizer
-from nltk.tag import pos_tag
-from nltk.tokenize import RegexpTokenizer
 import pandas as pd
+
+import lca
 
 ### ------------------
 ### PREPARING THE DATA
@@ -153,37 +151,159 @@ def create_df(text, filename):
         df['Tokenized'] = ""
         df['POS'] = ""
         df['Lemmatized'] = ""
-        df['NoStops'] = ""
         
         # Change order of columns
-        cols = ['SubjectCode', 'ExamNumber', 'Grade', 'Answer', 'Tokenized', 'POS', 'Lemmatized', 'NoStops']    
+        cols = ['SubjectCode', 'ExamNumber', 'Grade', 'Answer', 'Tokenized', 'POS', 'Lemmatized']    
         df = df[cols]
         
     elif "STAT_C" in str(filename):
         df = pd.DataFrame({'ExamNumber': exam_numbers, 'SubjectCode': subject_codes, 'Grade4a': grades, 'Answer4a': answers, 'Grade2aDec': grades_2a_dec, 'Answer2aDec': answers_2a_dec, 'Grade2aCaus': grades_2a_caus, 'Answer2aCaus': answers_2a_caus}) 
     
-        # Add empty columns that can later contain tokenized and lemmatized data
+        # Add empty columns that can later contain tokenized, POS-tagged and lemmatized data
         df['Tokenized4a'] = ""
         df['POS4a'] = ""
         df['Lemmatized4a'] = ""
-        df['NoStops4a'] = ""  
         df['Tokenized2aDec'] = ""
         df['POS2aDec'] = ""
         df['Lemmatized2aDec'] = ""
-        df['NoStops2aDec'] = ""            
         df['Tokenized2aCaus'] = ""
         df['POS2aCaus'] = ""
         df['Lemmatized2aCaus'] = ""
-        df['NoStops2aCaus'] = ""           
           
-        cols = ['SubjectCode', 'ExamNumber', 'Grade4a', 'Answer4a', 'Tokenized4a', 'POS4a', 'Lemmatized4a', 'NoStops4a', 'Grade2aDec', 'Answer2aDec', 'Tokenized2aDec', 'POS2aDec', 'Lemmatized2aDec', 'NoStops2aDec', 'Grade2aCaus', 'Answer2aCaus', 'Tokenized2aCaus', 'POS2aCaus', 'Lemmatized2aCaus', 'NoStops2aCaus']
+        cols = ['SubjectCode', 'ExamNumber', 'Grade4a', 'Answer4a', 'Tokenized4a', 'POS4a', 'Lemmatized4a', 'Grade2aDec', 'Answer2aDec', 'Tokenized2aDec', 'POS2aDec', 'Lemmatized2aDec', 'Grade2aCaus', 'Answer2aCaus', 'Tokenized2aCaus', 'POS2aCaus', 'Lemmatized2aCaus']
         df = df[cols]
     
     return df, cols
 
 
-# Convert POS tag to Wordnet POS tags (needed for later lemmatization)
+# Preprocess the Dutch data with Frog
+def prep_nl(df, filename):
+    from frog import Frog, FrogOptions
+
+    print("Tokenizing, POS tagging, and lemmatizing the Dutch data...")
+    
+    # Create 'frog' instance. Turn off various options to save time.
+    frog = Frog(FrogOptions(parser=False, morph=False, chunking=False, ner=False))
+    
+    # Define set of possible answers
+    if not "STAT_C" in str(filename):
+        answers = ['Answer']
+    elif "STAT_C" in str(filename):
+        answers = ['Answer4a', 'Answer2aDec', 'Answer2aCaus']
+        
+    # Loop through answers
+    for question_type in answers:
+
+        for index in df.index:
+            ans = df.loc[index, question_type]
+
+            # Logging
+            if index%20 == 0:
+                print(index, "/", len(df), question_type[6:])
+
+            # Remove numbers
+            ans = re.sub("\d+", "", ans)
+     
+            # Remove tags in spelling-corrected data
+            ans = ans.replace("_abbreviation", "")
+            ans = ans.replace("_nonexistent", "")
+            ans = ans.replace("_dutch", "")
+            ans = ans.replace("_german", "")
+
+            # Preprocess the data with Frog
+            ans_dict = frog.process(ans)
+
+            tok_answer = []
+            lem_answer = []
+            pos_tags = []
+
+            # Append outcomes to list
+            for word_index in range(len(ans_dict)):
+                if ans_dict[word_index]['pos'] != "LET()": # Exclude punctuation
+                    tok_answer.append(ans_dict[word_index]['text'].lower())
+                    lem_answer.append(ans_dict[word_index]['lemma'])
+                    pos_tags.append(ans_dict[word_index]['pos'])
+
+            # Fill in the dataframe
+            df.at[index, 'Tokenized{}'.format(question_type[6:])] = tok_answer
+            df.at[index, 'Lemmatized{}'.format(question_type[6:])] = lem_answer
+            df.at[index, 'POS{}'.format(question_type[6:])] = pos_tags
+
+    return df
+
+
+# Preprocess the English data with NLTK
+def prep_en(df, filename):
+    print("Tokenizing, POS tagging, lemmatizing, and removing stop words in the English data...")
+    
+    # Import NTLK modules and correct path to NLTK data
+    import nltk
+    from nltk.stem import WordNetLemmatizer
+    from nltk.tag import pos_tag
+    from nltk.tokenize import RegexpTokenizer
+    
+    # Set NLTK directory
+    if os.path.exists("U:/nltk_data"):
+        nltk.data.path.append("U:/nltk_data") # On work PC only
+
+    # Define tokenizer and lemmatizer
+    tokenizer = RegexpTokenizer(r'\w+')
+    lemmatizer = WordNetLemmatizer() 
+
+    # Define set of possible answers
+    if not "STAT_C" in str(filename):
+        answers = ['Answer']
+    elif "STAT_C" in str(filename):
+        answers = ['Answer4a', 'Answer2aDec', 'Answer2aCaus']
+    
+    # Loop through answers
+    for question_type in answers:
+        
+        for index in df.index:
+            ans = df.loc[index, question_type]
+            
+            # Logging
+            if index%20 == 0:
+                print(index, "/", len(df), question_type[6:])
+            
+            # Remove numbers
+            ans = re.sub("\d+", "", ans)
+     
+            # Remove tags in spelling-corrected data
+            ans = ans.replace("_abbreviation", "")
+            ans = ans.replace("_nonexistent", "")
+            ans = ans.replace("_dutch", "")
+            ans = ans.replace("_german", "")
+            
+            # Tokenize and write to df
+            tok_answer = tokenizer.tokenize(ans.lower())
+            df.at[index, 'Tokenized{}'.format(question_type[6:])] = tok_answer
+                        
+            # POS tag and write to df
+            pos_answer = pos_tag(tok_answer)
+            
+            pos_tags = []
+            for word, tag in pos_answer:
+                pos_tags.append(tag)
+            
+            df.at[index, 'POS{}'.format(question_type[6:])] = pos_tags
+            
+            # Lemmatize and write to df
+            lemmas = []
+            
+            for word, tag in pos_answer:
+                lemma = lemmatizer.lemmatize(word, pos = get_wordnet_pos(tag)) 
+                lemmas.append(lemma)
+                df.at[index, 'Lemmatized{}'.format(question_type[6:])] = lemmas
+                        
+    return df
+
+# TO DO: standardise British/American spelling?
+
+
+# Convert POS tag to Wordnet POS tags (needed for later lemmatization of English data)
 def get_wordnet_pos(treebank_tag):
+    from nltk.corpus import wordnet
 
     if treebank_tag.startswith('J'):
         return wordnet.ADJ
@@ -195,68 +315,6 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.ADV
     else:
         return wordnet.NOUN # Because nouns are the default POS tag in the Wordnet lemmatizer
-    
-
-# Tokenize, POS tag, lemmatize
-def preprocess(df, filename):
-    print("Tokenizing, POS tagging, lemmatizing, and removing stop words...")
-
-    tokenizer = RegexpTokenizer(r'\w+')
-    lemmatizer = WordNetLemmatizer() 
-
-    if not "STAT_C" in str(filename):
-        answers = ['Answer']
-    elif "STAT_C" in str(filename):
-        answers = ['Answer4a', 'Answer2aDec', 'Answer2aCaus']
-        
-    for question_type in answers:
-        for word_counter in range(len(df)):
-            word_in_answer = df[question_type][word_counter]
-            
-            # Logging
-            if word_counter%20 == 0:
-                print(word_counter, "/", len(df), question_type[6:])
-            
-            # Remove unnecessary features
-            word_in_answer = word_in_answer.replace("'s", "") # Remove possessive 's
-            word_in_answer = word_in_answer.lower() # Make lowercase
-            word_in_answer = re.sub("\d+", "", word_in_answer) # Remove numbers
-     
-            # Preprocess when using spelling-corrected data
-            word_in_answer = word_in_answer.replace("_abbreviation", "")
-            word_in_answer = word_in_answer.replace("_nonexistent", "")
-            word_in_answer = word_in_answer.replace("_dutch", "")
-            word_in_answer = word_in_answer.replace("_german", "")
-            
-            # Tokenize and write to df
-            tok_answer = tokenizer.tokenize(word_in_answer) # also removes apostrophe
-            #df.at[word_counter, 'Tokenized%s' % question_type[6:]] = tok_answer                             
-            df.at[word_counter, 'Tokenized{}'.format(question_type[6:])] = tok_answer                             
-                        
-            # POS tag and write to df
-            pos_answer = pos_tag(tok_answer)
-            
-            pos_tags = []
-            for word, tag in pos_answer:
-                pos_tags.append(tag)
-            
-            df.at[word_counter, 'POS{}'.format(question_type[6:])] = pos_tags
-            
-            # Lemmatize and write to df
-            lemmas = []
-            
-            for word, tag in pos_answer:
-                lemma = lemmatizer.lemmatize(word, pos = get_wordnet_pos(tag)) 
-                lemmas.append(lemma)
-                df.at[word_counter, 'Lemmatized{}'.format(question_type[6:])] = lemmas
-            
-            # Remove stop words
-            stopped_lemmas = [i for i in lemmas if not i in stopwords.words('english')]
-            df.at[word_counter, 'NoStops{}'.format(question_type[6:])] = stopped_lemmas
-                        
-    return df
-
-# TO DO: standardise British/American spelling?
 
 
 def remove_subjects(df):
@@ -266,61 +324,53 @@ def remove_subjects(df):
     return df
 
 
-'''
-# Create dictionary of vocabulary
-def dictionary(df):
-    print("Creating a dictionary...")
-    
-    dictionary = corpora.Dictionary(df['NoStops'])
-    #print(dictionary.token2id)
-    
-    return dictionary
-'''
-
-
 ### --------
 ### WRITE EACH ANSWER TO AN INDIVIDUAL FILE
 ### --------
 
 # List the names of the files associated with each exam
-def filenames(raw_data_dir):
+def filenames(raw_data_dir, language):
     dir_contents = os.listdir(raw_data_dir)
-    files = [file for file in dir_contents]
+    if language == "NL":
+        files = [file for file in dir_contents if 'NL' in file]
+    elif language == "EN":
+        files = [file for file in dir_contents if 'EN' in file]
     
     return files
 
 
 # Create a directory for each exam
-def create_lca_dirs(data_dir):
-    indiv_data_dir = data_dir / 'indiv_files'
-
+def create_lca_dirs(data_dir, language):
+    indiv_data_dir = os.path.join(data_dir, 'indiv_files')
+    
     if not os.path.exists(indiv_data_dir):
         os.makedirs(indiv_data_dir)
+
+    exam_names = filenames(os.path.join(data_dir, 'raw_data'), language)
+    questions_stat_c = ['4a', '2aDec', '2aCaus']
     
-        exam_names = filenames(data_dir / 'raw_data')
-        questions_stat_c = ['4a', '2aDec', '2aCaus']
-        
-        for exam in exam_names:
-            os.makedirs(indiv_data_dir / exam[:-4]) # [:-4] to cut off '.txt'
+    for exam in exam_names:
+        if not os.path.exists(os.path.join(indiv_data_dir, exam[:-4])):
+            os.makedirs(os.path.join(indiv_data_dir, exam[:-4])) # [:-4] to cut off '.txt'
             
             # Make subdirectories for each question for STAT_C
             if 'STAT_C' in exam:
                 
                 for question in questions_stat_c:
-                    os.makedirs(indiv_data_dir / exam[:-4] / question)
-                    
+                    os.makedirs(os.path.join(indiv_data_dir, exam[:-4], question))
+                        
 
 # Write the lemmatized and POS-tagged student answers to files
 def create_lca_input(data_dir, df, filename):
     print("Writing lemmatized and POS-tagged words to files...")
     
-    indiv_data_dir = data_dir / 'indiv_files'
+    indiv_data_dir = os.path.join(data_dir, 'indiv_files')
 
     for index, row in df.iterrows():
         subject_code = str(row['SubjectCode'] + ".txt")
                     
         if not "STAT_C" in str(filename):
-            outfile = indiv_data_dir / filename[:-4] / subject_code # :-4 to cut off '.txt'
+            outfile = os.path.join(indiv_data_dir, filename[:-4], subject_code) # :-4 to cut off '.txt'
             
             with open(outfile, 'w') as f:
                 for word_counter in range(len(row['POS'])):
@@ -332,7 +382,7 @@ def create_lca_input(data_dir, df, filename):
             questions = ['4a', '2aDec', '2aCaus']
             
             for question in questions:
-                outfile = indiv_data_dir / filename[:-4] / question / subject_code # :-4 to cut off '.txt'
+                outfile = os.path.join(indiv_data_dir, filename[:-4], question, subject_code) # :-4 to cut off '.txt'
                 
                 with open(outfile, 'w') as f:
                     
@@ -342,36 +392,36 @@ def create_lca_input(data_dir, df, filename):
                         f.write('{} {}'.format(''.join(lem_pos), ''))
                         
                         
-### ------------------
-### DIRECTORIES
-### ------------------
-
-# Set NLTK directory
-if os.path.exists("U:/nltk_data"):
-    nltk.data.path.append("U:/nltk_data") # On work PC only
-
-# Set working directory to where the data are
-def get_current_file_dir() -> Path:
-    """Returns the directory of the script."""
-    try:
-        return Path(os.path.realpath(__file__)).parent
-    except(NameError):
-        return Path(os.getcwd())
-
-# Define directories
-root_dir = get_current_file_dir().parent
-data_dir = root_dir / 'data'
-indiv_data_dir = data_dir / 'indiv_files'
-raw_data_dir = data_dir / 'raw_data'
-
-
 ### --------
 ### RUN CODE
 ### --------
 
 if __name__ == "__main__":
     
-    # Read and prepare student data (select individual files)
+    # Define directories
+    src_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(src_dir, '..', 'data')
+    raw_data_dir = os.path.join(data_dir, 'raw_data')
+
+    # Set up argparse
+    parser = argparse.ArgumentParser()
+    
+    parser.add_argument("language", help = "Choose the study language: 'EN' or 'NL'.", choices = ["EN", "NL"])
+    parser.add_argument("lca_min_sam", help = "Choose the minimal sample size that the LCA uses to calculate the number of different words (NDW) and the type-token ratio (TTR).")
+    
+    args = parser.parse_args()
+    language = args.language
+    lca_min_sam = int(args.lca_min_sam)
+    
+    print("Study language is:", language)
+    print("The minimal sample size for the LCA is:", lca_min_sam)
+
+
+    ### --------
+    ### WORKING WITH INDIVIDUAL FILES
+    ### --------
+    
+    # Select file
     #filename = 'AIP_A_EN_uncorrected.txt'
     #filename = 'AIP_A_EN_corrected.txt'
     #filename = 'AIP_A_NL_uncorrected.txt'
@@ -385,22 +435,77 @@ if __name__ == "__main__":
     #filename = 'STAT_C_NL_uncorrected.txt' 
     #filename = 'STAT_C_NL_corrected.txt'
     
-    # Read and prepare student data (all at once)
-    create_lca_dirs(data_dir) # Create folders to store the individual student answers
-    files = filenames(raw_data_dir)
+    # Read and preprocess data
+    #raw_data = open_file(os.path.join(raw_data_dir, filename))
+    #prep_data = make_readable(raw_data)
+    #df, cols = create_df(prep_data, filename)
+    #df = remove_subjects(df)
+    #df = df[:10]
+    #df = prep_nl(df, filename)
+    #df = prep_en(df, filename)
+    #print(df)
     
-    for filename in files:
-        if "EN" in filename: # For the time being, only work with English data
+    # Write to file
+    #create_lca_dirs(data_dir)
+    #create_lca_input(data_dir, df, filename)
+
+
+    ### --------
+    ### LOOPING THROUGH ALL FILES
+    ### --------
+    
+    # Read and prepare student data (all at once)
+    if language == "EN":
+        files = filenames(raw_data_dir, "EN")
+    elif language == "NL":
+        files = filenames(raw_data_dir, "NL")
+    
+    create_lca_dirs(data_dir, language) # Create folders to store the data
+    
+    if not os.path.exists(os.path.join(data_dir, "lca_results")):
+        os.makedirs(os.path.join(data_dir, "lca_results"))
         
-            print("\n{}\n".format(filename))
-            raw_data = open_file(raw_data_dir / filename) # Read data from file
-            prep_data = make_readable(raw_data) # Make student answers readable
-            df, cols = create_df(prep_data, filename) # Create and fill dataframe with student data
+    for filename in files:
+
+        print("\n{}\n".format(filename))
+        
+        # Read and preprocess data
+        raw_data = open_file(os.path.join(raw_data_dir, filename)) # Read data from file
+        prep_data = make_readable(raw_data) # Make student answers readable
+        df, cols = create_df(prep_data, filename) # Create and fill dataframe with student data
+        df = remove_subjects(df) # Remove entries where the subject code is unknown
+        #df = df[:10] # To try things out
+        
+        if language == "EN":
+            df = prep_en(df, filename) # Tokenize, POS tag, and lemmatize
+        elif language == "NL":
+            df = prep_nl(df, filename) # Tokenize, POS tag, and lemmatize
+        
+        if not "STAT_C" in str(filename):
+            directory = os.path.join("..", "data", "indiv_files", filename[:-4])
             
-            #df = df[:10] # Make df smaller to try things out
-            df = preprocess(df, filename) # Tokenize, POS tag, lemmatize, and remove stop words
-            df = remove_subjects(df) # Remove entries where the subject code is unknown or students did not give permission for their data to be used
+            # Run LCA
+            results = lca.run_lca(lca_min_sam, directory, language)
+            
+            # Write LCA results to outputfile
+            outfile = os.path.join("..", "data", "lca_results", str("lca_" + filename[:-4] + ".txt"))
+            
+            with open (outfile, "w") as f:
+                for result in results:
+                    f.write(str(result))
+                    
+        elif "STAT_C" in str(filename):
+            questions = ["2aCaus", "2aDec", "4a"]
+            
+            for question in questions:
+                directory = os.path.join("..", "data", "indiv_files", filename[:-4], question)
                 
-            #dictio = dictionary(df) # Create dictionary of vocabulary --> currently, doesn't work for STAT_C
-            
-            create_lca_input(data_dir, df, filename) # Create the input files that the LCA needs
+                # Run LCA
+                results = lca.run_lca(lca_min_sam, directory, language)
+                
+                # Write LCA results to outputfile
+                outfile = os.path.join("..", "data", "lca_results", str("lca_" + filename[:-4] + "_" + question + ".txt"))
+                
+                with open (outfile, "w") as f:
+                    for result in results:
+                        f.write(str(result))
