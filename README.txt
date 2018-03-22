@@ -12,3 +12,5 @@ For example:
 python3 preprocessing.py EN 50
 
 As it stands, I'm using the Windows environment on my work PC to preprocess the English data, as it contains the required nltk corpora. The Dutch data can only be preprocessed from Bash on Windows (work PC), where LaMachine is installed. Before running preprocessing.py, LaMachine should be activated. On my work PC, I can do this by typing 'lm'.
+
+The English preprocessing can also be done from within Spyder, as long as the command line options have been entered in Run>Configuration per file.
