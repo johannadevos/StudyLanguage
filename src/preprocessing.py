@@ -12,6 +12,7 @@ import pandas as pd
 
 import lca
 
+
 ### ------------------
 ### PREPARING THE DATA
 ### ------------------
@@ -317,6 +318,7 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN # Because nouns are the default POS tag in the Wordnet lemmatizer
 
 
+# Remove subjects with unknown subject codes
 def remove_subjects(df):
     print("Removing rows where the subject code is unknown...")
     df = df[df.SubjectCode != '?']
@@ -418,39 +420,6 @@ if __name__ == "__main__":
 
 
     ### --------
-    ### WORKING WITH INDIVIDUAL FILES
-    ### --------
-    
-    # Select file
-    #filename = 'AIP_A_EN_uncorrected.txt'
-    #filename = 'AIP_A_EN_corrected.txt'
-    #filename = 'AIP_A_NL_uncorrected.txt'
-    #filename = 'AIP_A_NL_corrected.txt'  
-    #filename = 'STAT_A_EN_uncorrected.txt'
-    #filename = 'STAT_A_EN_corrected.txt'             
-    #filename = 'STAT_A_NL_uncorrected.txt'
-    #filename = 'STAT_A_NL_corrected.txt'
-    #filename = 'STAT_C_EN_uncorrected.txt'
-    #filename = 'STAT_C_EN_corrected.txt'        
-    #filename = 'STAT_C_NL_uncorrected.txt' 
-    #filename = 'STAT_C_NL_corrected.txt'
-    
-    # Read and preprocess data
-    #raw_data = open_file(os.path.join(raw_data_dir, filename))
-    #prep_data = make_readable(raw_data)
-    #df, cols = create_df(prep_data, filename)
-    #df = remove_subjects(df)
-    #df = df[:10]
-    #df = prep_nl(df, filename)
-    #df = prep_en(df, filename)
-    #print(df)
-    
-    # Write to file
-    #create_lca_dirs(data_dir)
-    #create_lca_input(data_dir, df, filename)
-
-
-    ### --------
     ### LOOPING THROUGH ALL FILES
     ### --------
     
@@ -481,6 +450,8 @@ if __name__ == "__main__":
         elif language == "NL":
             df = prep_nl(df, filename) # Tokenize, POS tag, and lemmatize
         
+        create_lca_input(data_dir, df, filename)
+
         if not "STAT_C" in str(filename):
             directory = os.path.join("..", "data", "indiv_files", filename[:-4])
             
