@@ -1,37 +1,18 @@
 # -*- coding: utf-8 -*-
-
 # Copyright: Johanna de Vos (2018)
 
-# Standard library imports
+import argparse
 import os
-from pathlib import Path
 
 import pandas as pd
 
-### ------------------
-### DIRECTORIES
-### ------------------
 
-# Set working directory to where the data are
-def get_current_file_dir() -> Path:
-    """Returns the directory of the script."""
-    try:
-        return Path(os.path.realpath(__file__)).parent
-    except(NameError):
-        return Path(os.getcwd())
-
-# Define directories
-root_dir = get_current_file_dir().parent
-data_dir = root_dir / 'data'
-results_dir = data_dir / 'lca_results'
-
-
-def create_pandas_df(filename):
+def create_pandas_df(lca_results_dir, filename):
     """A function that reads the LCA results (per exam) from a CSV file into
     a pandas DataFrame."""
     
     # NB: Make sure that the text file is encoded in UTF-8    
-    df = pd.read_csv(results_dir / filename, sep=",")
+    df = pd.read_csv(os.path.join(lca_results_dir, filename), sep = ",")
     
     subj_counter = 0
     for subj in range(len(df)):
@@ -66,8 +47,8 @@ def create_df_diff(df1, df2, measures):
     difference on the selected LCA measures between two exams."""
     
     # Create list of subject codes that are present in both datasets
-    subs = [index for index in list(filtered_aip.index) if index in 
-        list(filtered_stat_a.index)]
+    subs = [index for index in list(df1.index) if index in 
+        list(df2.index)]
     
     # Create empty dataframe
     df_diff = pd.DataFrame(index=subs, columns = measures)
@@ -96,19 +77,34 @@ def select_comp_length(df):
 ### RUN CODE
 ### --------
 
+#def main():
 #if __name__ == "__main__":
+    
+# Parse arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("exam1", help = "The first exam in the comparison.")
+parser.add_argument("exam2", help = "The second exam in the comparison.")
+args = parser.parse_args()
+exam1 = args.exam1
+exam2 = args.exam2
+    
+# Define directories
+src_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(src_dir, '..', 'data')
+lca_results_dir = os.path.join(data_dir, 'lca_results')
+
 measures = ['wordtokens', 'ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
 
-aip = create_pandas_df('lca_AIP_A_EN_corrected.txt')
-filtered_aip = filter_df(aip, measures)
+raw_exam1 = create_pandas_df(lca_results_dir, exam1)
+filtered_exam1 = filter_df(raw_exam1, measures)
 
-stat_a = create_pandas_df('lca_STAT_A_EN_corrected.txt')
-filtered_stat_a = filter_df(stat_a, measures)
+raw_exam2 = create_pandas_df(lca_results_dir, exam2)
+filtered_exam2 = filter_df(raw_exam2, measures)
 
-aip_stat_a = create_df_diff(filtered_aip, filtered_stat_a, measures)
-aip_stat_a[measures].mean()
+diff = create_df_diff(filtered_exam1, filtered_exam2, measures)
+print(diff[measures].mean())
 
-aip_stat_a_comp_len = select_comp_length(aip_stat_a)
-aip_stat_a_comp_len[measures].mean() # Means are not very different as compared
+diff_comp_len = select_comp_length(diff)
+print(diff_comp_len[measures].mean()) # Means are not very different as compared
 # to a df where entries are not comparable in length. It seems like the 
 # measures are quite length-independent.
