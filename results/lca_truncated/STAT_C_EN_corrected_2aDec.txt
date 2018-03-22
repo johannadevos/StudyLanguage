@@ -1,0 +1,3 @@
+filename,sentences,wordtypes,swordtypes,lextypes,slextypes,wordtokens,swordtokens,lextokens,slextokens,ld,ls1,ls2,vs1,vs2,cvs1,ndw,ndwz,ndwerz,ndwesz,ttr,msttr,cttr,rttr,logttr,uber,lv,vv1,svv1,cvv1,vv2,nv,adjv,advv,modv
+U:\GitHub\StudyLanguage\src\..\data\indiv_files_truncated\STAT_C_EN_corrected\2aDec\798.txt,1,38,7,24,7,50,7,25,7,0.50,0.28,0.18,0.00,0.00,0.00,38,38,38.00,38.00,0.76,0.76,3.80,5.37,0.93,24.22,0.96,1.00,2.00,1.00,0.08,1.00,0.20,0.12,0.32
+U:\GitHub\StudyLanguage\src\..\data\indiv_files_truncated\STAT_C_EN_corrected\2aDec\767.txt,1,27,5,18,5,50,7,23,7,0.46,0.30,0.19,0.00,0.00,0.00,27,27,27.00,27.00,0.54,0.54,2.70,3.82,0.84,10.79,0.78,0.67,1.33,0.82,0.09,0.75,0.17,0.00,0.17
