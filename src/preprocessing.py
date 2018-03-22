@@ -5,6 +5,7 @@
 # Requires Python 3.6
 
 import argparse
+import glob
 import os
 import re
 
@@ -341,25 +342,29 @@ def filenames(raw_data_dir, language):
     return files
 
 
-# Create a directory for each exam
-def create_lca_dirs(data_dir, language):
-    indiv_data_dir = os.path.join(data_dir, 'indiv_files')
+# Create a directory for the individual files from each exam
+def create_new_dirs(data_dir, language, cut_off = "no"):
+    
+    if cut_off == "no":
+        new_dir = os.path.join(data_dir, 'indiv_files')
+    elif cut_off == "yes":
+        new_dir = os.path.join(data_dir, 'indiv_files_fixed_length')
 
-    if not os.path.exists(indiv_data_dir):
-        os.makedirs(indiv_data_dir)
+    if not os.path.exists(new_dir):
+        os.makedirs(new_dir)
 
     exam_names = filenames(os.path.join(data_dir, 'raw_data'), language)
     questions_stat_c = ['4a', '2aDec', '2aCaus']
 
     for exam in exam_names:
-        if not os.path.exists(os.path.join(indiv_data_dir, exam[:-4])):
-            os.makedirs(os.path.join(indiv_data_dir, exam[:-4])) # [:-4] to cut off '.txt'
+        if not os.path.exists(os.path.join(new_dir, exam[:-4])):
+            os.makedirs(os.path.join(new_dir, exam[:-4])) # [:-4] to cut off '.txt'
 
             # Make subdirectories for each question for STAT_C
             if 'STAT_C' in exam:
 
                 for question in questions_stat_c:
-                    os.makedirs(os.path.join(indiv_data_dir, exam[:-4], question))
+                    os.makedirs(os.path.join(new_dir, exam[:-4], question))
 
 
 # Write the lemmatized and POS-tagged student answers to files
@@ -392,6 +397,58 @@ def create_lca_input(data_dir, df, filename):
 
                         lem_pos = row['Lemmatized{}'.format(question)][word_counter], "_", row['POS{}'.format(question)][word_counter]
                         f.write('{} {}'.format(''.join(lem_pos), ''))
+
+
+def cut_off_indiv_files(filename, data_dir, language, lca_min_sam):
+    print("Cutting off the student answers at", str(lca_min_sam), "words and writing these truncated answers to files...")
+
+    # Create directories to contain the cut-off data
+    create_new_dirs(data_dir, language, cut_off = "yes")
+    
+    # Loop over all the individual files of a given exam
+    exam = filename[:-4]
+    
+    if not "STAT_C" in exam:
+        indiv_files = os.path.join(data_dir, 'indiv_files', exam)
+        
+        for filename in glob.glob(os.path.join(indiv_files,'*')):
+            
+            with open(filename, 'r') as file:
+                lemmas = file.readlines()
+                
+                if lemmas: # If the file is not empty
+                    split_lemmas = lemmas[0].split()
+                    
+                    if len(split_lemmas) >= lca_min_sam:
+                        
+                        outfile = os.path.join(data_dir, "indiv_files_fixed_length", exam, filename[-7:])
+                        
+                        with open (outfile, 'w') as f:
+                            for lemma in split_lemmas[:lca_min_sam]:
+                                f.write(lemma + " ")
+    
+    elif "STAT_C" in exam:
+        questions = ["2aCaus", "2aDec", "4a"]
+
+        for question in questions:
+            
+            indiv_files = os.path.join(data_dir, 'indiv_files', exam, question)
+            
+            for filename in glob.glob(os.path.join(indiv_files,'*')):
+                
+                with open(filename, 'r') as file:
+                    lemmas = file.readlines()
+                    
+                    if lemmas: # If the file is not empty
+                        split_lemmas = lemmas[0].split()
+                        
+                        if len(split_lemmas) >= lca_min_sam:
+                            
+                            outfile = os.path.join(data_dir, "indiv_files_fixed_length", exam, question, filename[-7:])
+                            
+                            with open (outfile, 'w') as f:
+                                for lemma in split_lemmas[:lca_min_sam]:
+                                    f.write(lemma + " ")
 
 
 ### -------------
@@ -429,11 +486,14 @@ def main():
     elif language == "NL":
         files = filenames(raw_data_dir, "NL")
 
-    create_lca_dirs(data_dir, language) # Create folders to store the data
-
+    # Create directories to store the data
+    create_new_dirs(data_dir, language, cut_off = "no") 
     if not os.path.exists(os.path.join(data_dir, "lca_results")):
         os.makedirs(os.path.join(data_dir, "lca_results"))
+    if not os.path.exists(os.path.join(data_dir, "lca_results_fixed_length")):
+        os.makedirs(os.path.join(data_dir, "lca_results_fixed_length"))
 
+    # Loop through files to read, analyze and write
     for filename in files:
 
         print("\n{}\n".format(filename))
@@ -450,38 +510,61 @@ def main():
         elif language == "NL":
             df = prep_nl(df, filename) # Tokenize, POS tag, and lemmatize
 
+        # Create uncut LCA input files
         create_lca_input(data_dir, df, filename)
+        
+        # Create LCA input files that are cut off at a certain number of words
+        cut_off_indiv_files(filename, data_dir, language, lca_min_sam)
 
+        # Run the LCA and write to file
         if not "STAT_C" in str(filename):
-            directory = os.path.join("..", "data", "indiv_files", filename[:-4])
+            uncut_directory = os.path.join("..", "data", "indiv_files", filename[:-4])
+            cut_directory = os.path.join("..", "data", "indiv_files_fixed_length", filename[:-4])
 
             # Run LCA
-            results = lca.run_lca(lca_min_sam, directory, language)
+            uncut_results = lca.run_lca(lca_min_sam, uncut_directory, language)
+            cut_results = lca.run_lca(lca_min_sam, cut_directory, language)
 
-            # Write LCA results to outputfile
-            outfile = os.path.join("..", "data", "lca_results", str("lca_" + filename[:-4] + ".txt"))
+            # Write uncut LCA results to output file
+            uncut_outfile = os.path.join("..", "data", "lca_results", str("lca_" + filename[:-4] + ".txt"))
 
-            with open (outfile, "w") as f:
-                for result in results:
+            with open (uncut_outfile, "w") as f:
+                for result in uncut_results:
+                    f.write(str(result))
+            
+            # Write cut LCA results to output file
+            cut_outfile = os.path.join("..", "data", "lca_results_fixed_length", str("lca_" + filename[:-4] + ".txt"))
+
+            with open (cut_outfile, "w") as f:
+                for result in cut_results:
                     f.write(str(result))
 
         elif "STAT_C" in str(filename):
             questions = ["2aCaus", "2aDec", "4a"]
 
             for question in questions:
-                directory = os.path.join("..", "data", "indiv_files", filename[:-4], question)
-
+                uncut_directory = os.path.join("..", "data", "indiv_files", filename[:-4], question)
+                cut_directory = os.path.join("..", "data", "indiv_files_fixed_length", filename[:-4], question)
+                
                 # Run LCA
-                results = lca.run_lca(lca_min_sam, directory, language)
+                uncut_results = lca.run_lca(lca_min_sam, uncut_directory, language)
+                cut_results = lca.run_lca(lca_min_sam, cut_directory, language)
 
-                # Write LCA results to outputfile
-                outfile = os.path.join("..", "data", "lca_results", str("lca_" + filename[:-4] + "_" + question + ".txt"))
+                # Write uncut LCA results to output file
+                uncut_outfile = os.path.join("..", "data", "lca_results", str("lca_" + filename[:-4] + "_" + question + ".txt"))
 
-                with open (outfile, "w") as f:
-                    for result in results:
+                with open (uncut_outfile, "w") as f:
+                    for result in uncut_results:
                         f.write(str(result))
                         
+                # Write cut LCA results to output file
+                cut_outfile = os.path.join("..", "data", "lca_results_fixed_length", str("lca_" + filename[:-4] + "_" + question + ".txt"))
 
+                with open (cut_outfile, "w") as f:
+                    for result in cut_results:
+                        f.write(str(result))
+                        
+                        
 ### --------
 ### RUN CODE
 ### --------          
