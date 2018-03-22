@@ -16,7 +16,8 @@ def create_pandas_df(lca_results_dir, filename):
     
     subj_counter = 0
     for subj in range(len(df)):
-        df.at[subj_counter, 'subjcode'] = df.loc[subj_counter, 'filename'][-7:-4] # Indexing to extract subject code
+        df.at[subj_counter, 'subjcode'] = df.loc[subj_counter, 
+             'filename'][-7:-4] # Indexing to extract subject code
         subj_counter += 1
     
     df.set_index('subjcode', inplace = True) # Set subject code as index
@@ -37,12 +38,12 @@ def filter_df(df, measures):
     df = df.loc[: , measures]
     
     # Remove empty entries
-    df = df[df.wordtokens >= 50]
+    #df = df[df.wordtokens >= 50]
     
     return df
 
 
-def create_df_diff(df1, df2, measures):
+def diff_same_lang(df1, df2, measures):
     """A function that creates a new pandas DataFrame which contains the
     difference on the selected LCA measures between two exams."""
     
@@ -58,8 +59,20 @@ def create_df_diff(df1, df2, measures):
             diff = df2.loc[subj, col] - df1.loc[subj, col]     
             df_diff.at[subj, col] = diff
     
+    print(df_diff[measures].mean())
+    
     return df_diff
 
+
+def diff_other_lang(df1, df2, measures):
+    """A function that calculates the mean on all measures for both exams, 
+    and then calculates the difference between the means."""
+    
+    means1 = df1[measures].mean()
+    means2 = df2[measures].mean()
+    
+    diff_means = means2 - means1
+    print(diff_means)
 
 #pd.set_option('display.max_columns', None)
 
@@ -76,8 +89,8 @@ parser = argparse.ArgumentParser()
 parser.add_argument("exam1", help = "The first exam in the comparison.")
 parser.add_argument("exam2", help = "The second exam in the comparison.")
 args = parser.parse_args()
-exam1 = args.exam1
-exam2 = args.exam2
+name_exam1 = args.exam1
+name_exam2 = args.exam2
     
 # Define directories
 src_dir = os.path.dirname(os.path.abspath(__file__))
@@ -86,21 +99,26 @@ results_dir = os.path.join(src_dir, '..', 'results')
 truncated_results_dir = os.path.join(results_dir, 'lca_truncated')
 untruncated_results_dir = os.path.join(results_dir, 'lca_untruncated')
 
-raw_exam1 = create_pandas_df(truncated_results_dir, exam1)
-raw_exam2 = create_pandas_df(truncated_results_dir, exam2)
+# Create dataframes with LCA results for the two exams
+exam1 = create_pandas_df(truncated_results_dir, name_exam1)
+exam2 = create_pandas_df(truncated_results_dir, name_exam2)
+
+lang1 = name_exam1[7:9]
+lang2 = name_exam2[7:9]
 
 # Define required measures
-sel_measures = ['wordtokens', 'ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
-all_measures = list(raw_exam1.columns[1:]) # [1:] to exclude filename
+sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
+all_measures = list(exam1.columns[1:]) # [1:] to exclude filename
 
 # Optionally, apply filters
-filtered_exam1 = filter_df(raw_exam1, sel_measures)
-filtered_exam2 = filter_df(raw_exam2, sel_measures)
+filtered_exam1 = filter_df(exam1, sel_measures)
+filtered_exam2 = filter_df(exam2, sel_measures)
 
-# Inspect selected measures
-diff_selected = create_df_diff(raw_exam1, raw_exam2, sel_measures)
-print(diff_selected[sel_measures].mean())
+# Compare the two exams
+print("Calculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
 
-# Inspect all measures
-diff_all = create_df_diff(raw_exam1, raw_exam2, all_measures)
-print("\n", diff_all[all_measures].mean())
+if lang1 == lang2:
+    diff_same_lang(exam1, exam2, sel_measures)
+    #diff_same_lang(exam1, exam2, all_measures)
+elif lang1 != lang2:
+    diff_other_lang(exam1, exam2, all_measures)
