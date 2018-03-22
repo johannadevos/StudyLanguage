@@ -332,8 +332,8 @@ def remove_subjects(df):
 ### -------------------------------------
 
 # List the names of the files associated with each exam
-def filenames(raw_data_dir, language):
-    dir_contents = os.listdir(raw_data_dir)
+def filenames(directory, language):
+    dir_contents = os.listdir(directory)
     if language == "NL":
         files = [file for file in dir_contents if 'NL' in file]
     elif language == "EN":
