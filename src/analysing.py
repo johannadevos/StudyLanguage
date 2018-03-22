@@ -61,17 +61,8 @@ def create_df_diff(df1, df2, measures):
     return df_diff
 
 
-def select_comp_length(df):
-    """A function that creates a subset of entries of the dataframe of
-    differences, where the entries are comparable in terms of wordtokens
-    (i.e., length)."""
-    
-    df = df[(df['wordtokens'] >= -20) & (df['wordtokens'] <= 20)]
-
-    return df
-       
-
 #pd.set_option('display.max_columns', None)
+
 
 ### --------
 ### RUN CODE
@@ -91,20 +82,25 @@ exam2 = args.exam2
 # Define directories
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data')
-lca_results_dir = os.path.join(data_dir, 'lca_results')
+results_dir = os.path.join(src_dir, '..', 'results')
+truncated_results_dir = os.path.join(results_dir, 'lca_truncated')
+untruncated_results_dir = os.path.join(results_dir, 'lca_untruncated')
 
-measures = ['wordtokens', 'ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
+raw_exam1 = create_pandas_df(truncated_results_dir, exam1)
+raw_exam2 = create_pandas_df(truncated_results_dir, exam2)
 
-raw_exam1 = create_pandas_df(lca_results_dir, exam1)
-filtered_exam1 = filter_df(raw_exam1, measures)
+# Define required measures
+sel_measures = ['wordtokens', 'ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
+all_measures = list(raw_exam1.columns[1:]) # [1:] to exclude filename
 
-raw_exam2 = create_pandas_df(lca_results_dir, exam2)
-filtered_exam2 = filter_df(raw_exam2, measures)
+# Optionally, apply filters
+filtered_exam1 = filter_df(raw_exam1, sel_measures)
+filtered_exam2 = filter_df(raw_exam2, sel_measures)
 
-diff = create_df_diff(filtered_exam1, filtered_exam2, measures)
-print(diff[measures].mean())
+# Inspect selected measures
+diff_selected = create_df_diff(raw_exam1, raw_exam2, sel_measures)
+print(diff_selected[sel_measures].mean())
 
-diff_comp_len = select_comp_length(diff)
-print(diff_comp_len[measures].mean()) # Means are not very different as compared
-# to a df where entries are not comparable in length. It seems like the 
-# measures are quite length-independent.
+# Inspect all measures
+diff_all = create_df_diff(raw_exam1, raw_exam2, all_measures)
+print("\n", diff_all[all_measures].mean())
