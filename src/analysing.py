@@ -88,20 +88,27 @@ def diff_other_lang(df1, df2, measures):
 parser = argparse.ArgumentParser()
 parser.add_argument("exam1", help = "The first exam in the comparison.")
 parser.add_argument("exam2", help = "The second exam in the comparison.")
+parser.add_argument("trunc", help = "Should the LCA be performed on samples \
+                    that were truncated at the same length?", choices = 
+                    ["trunc", "untrunc"])
 args = parser.parse_args()
 name_exam1 = args.exam1
 name_exam2 = args.exam2
+trunc = args.trunc
     
 # Define directories
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data')
 results_dir = os.path.join(src_dir, '..', 'results')
-truncated_results_dir = os.path.join(results_dir, 'lca_truncated')
-untruncated_results_dir = os.path.join(results_dir, 'lca_untruncated')
+
+if trunc == "trunc":
+    lca_results_dir = os.path.join(results_dir, 'lca_truncated')
+elif trunc == "untrunc":
+    lca_results_dir = os.path.join(results_dir, 'lca_untruncated')
 
 # Create dataframes with LCA results for the two exams
-exam1 = create_pandas_df(truncated_results_dir, name_exam1)
-exam2 = create_pandas_df(truncated_results_dir, name_exam2)
+exam1 = create_pandas_df(lca_results_dir, name_exam1)
+exam2 = create_pandas_df(lca_results_dir, name_exam2)
 
 lang1 = name_exam1[7:9]
 lang2 = name_exam2[7:9]
@@ -121,4 +128,4 @@ if lang1 == lang2:
     diff_same_lang(exam1, exam2, sel_measures)
     #diff_same_lang(exam1, exam2, all_measures)
 elif lang1 != lang2:
-    diff_other_lang(exam1, exam2, all_measures)
+    diff_other_lang(exam1, exam2, sel_measures)
