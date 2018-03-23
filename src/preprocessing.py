@@ -319,11 +319,19 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN # Because nouns are the default POS tag in the Wordnet lemmatizer
 
 
-# Remove subjects with unknown subject codes
-def remove_subjects(df):
-    print("Removing rows where the subject code is unknown...")
+# Remove subjects for various reasons
+def remove_subjects(df, good_subjects):
+    print("Removing some subjects...")
+    
+    # Remove subjects with unknown subject code
     df = df[df.SubjectCode != '?']
 
+    # Convert the integers in good_subjects to strings, so that they can be compared to the subject codes in the dataframe, which are also strings
+    good_subjects = [str(subject) for subject in good_subjects]
+    
+    # Remove subjects who are not in subject_info (for example because of their nationality, or because they didn't give permission for their data to be used)
+    df = df[df.SubjectCode.isin(good_subjects)]
+    
     return df
 
 
@@ -507,6 +515,18 @@ def run_lca(filename, data_dir, results_dir, language, lca_min_sam):
                     f.write(str(result))                                    
 
 
+### ------------
+### SUBJECT INFO
+### ------------
+
+def subject_info(data_dir):
+    subject_file = os.path.join(data_dir, 'subject_info.txt')
+    subject_df = pd.read_csv(subject_file, sep = '\t')
+    #print(subject_df)
+    
+    return subject_df
+
+
 ### -------------
 ### MAIN FUNCTION
 ### -------------
@@ -532,6 +552,9 @@ def main():
     print("Study language is:", language)
     print("The minimal sample size for the LCA is:", lca_min_sam)
 
+    # Read in subject info
+    subject_df = subject_info(data_dir)
+    good_subjects = list(subject_df.SubjectCode)
 
     ### --------
     ### LOOPING THROUGH ALL FILES
@@ -561,7 +584,7 @@ def main():
         raw_data = open_file(os.path.join(raw_data_dir, filename)) # Read data from file
         prep_data = make_readable(raw_data) # Make student answers readable
         df, cols = create_df(prep_data, filename) # Create and fill dataframe with student data
-        df = remove_subjects(df) # Remove entries where the subject code is unknown
+        df = remove_subjects(df, good_subjects) # Remove entries where the subject code is unknown
         #df = df[:10] # To try things out
 
         if language == "EN":
