@@ -3,62 +3,73 @@
 
 # Script written by Johanna de Vos (2018)
 
-import glob
+import argparse
 import os
 import statistics
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 import preprocessing
 
 
-def calculate_descriptives(files, data_dir):
+def calculate_descriptives(files, data_dir, results_dir):
     for exam in files:
         exam = exam[:-4]
             
         if not "STAT_C" in exam:
             print(exam)
             
-            lengths = []
-            indiv_files = os.path.join(data_dir, 'indiv_files_untruncated', exam)
+            results_file = str(os.path.join(results_dir, 'lca_untruncated', exam)) + '.txt'
             
-            for filename in glob.glob(os.path.join(indiv_files,'*')):
-                
-                with open(filename, 'r') as file:
-                    lemmas = file.readlines()
+            results_df = pd.read_csv(results_file, sep = ',')
+            wordtokens = results_df['wordtokens']
                     
-                    if lemmas: # If the file is not empty
-                        split_lemmas = lemmas[0].split()
-                        length = len(split_lemmas)
-                    if not lemmas:
-                        length = 0
-                        
-                    lengths.append(length)
-                    
-            print("Average length of writing samples: ", statistics.mean(lengths))
-            
+            print("Average length of writing samples:", statistics.mean(wordtokens))
+            print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
+            print("The longest sample is:", max(wordtokens), "words")
+            histogram(results_dir, wordtokens, exam)
+        
         elif "STAT_C" in exam:
-            lengths = []
             questions = ['4a', '2aDec', '2aCaus']
             
             for question in questions:
                 print(exam, question)
                 
-                indiv_files = os.path.join(data_dir, 'indiv_files_untruncated', exam, question)
+                results_file = str(os.path.join(results_dir, 'lca_untruncated', exam)) + '_' + question + '.txt'
                 
-                for filename in glob.glob(os.path.join(indiv_files,'*')):
-                    
-                    with open(filename, 'r') as file:
-                        lemmas = file.readlines()
+                results_df = pd.read_csv(results_file, sep = ',')
+                wordtokens = results_df['wordtokens']
                         
-                        if lemmas: # If the file is not empty
-                            split_lemmas = lemmas[0].split()
-                            length = len(split_lemmas)
-                        if not lemmas:
-                            length = 0
-                            
-                        lengths.append(length)
-                        
-                print("Average length of writing samples: ", statistics.mean(lengths))
-                
+                print("Average length of writing samples:", statistics.mean(wordtokens))
+                print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
+                print("The longest sample is:", max(wordtokens), "words")
+                histogram(results_dir, wordtokens, exam, question)
+    
+
+def histogram(results_dir, wordtokens, exam, question=None):
+    
+    # Directory to save histograms
+    descr_dir = os.path.join(results_dir, 'length_descriptives')
+    if not os.path.exists(descr_dir):
+        os.mkdir(os.path.join(descr_dir))
+    
+    # Draw histogram
+    plt.rcParams["patch.force_edgecolor"] = True
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.hist(wordtokens, bins=np.arange(0, max(wordtokens)+10, 10))
+    ax.set_xlabel('Length (words)')
+    ax.set_ylabel('Counts')
+    if not question:
+        ax.set_title('{}'.format(exam))
+        plt.savefig('{}\{}.png'.format(descr_dir, exam))
+    elif question:
+        ax.set_title('{}_{}'.format(exam, question))
+        plt.savefig('{}\{}_{}.png'.format(descr_dir, exam, question))        
+    #plt.show(fig)
+    
                 
 def main():
     
@@ -68,10 +79,17 @@ def main():
     raw_data_dir = os.path.join(data_dir, 'raw_data')
     results_dir = os.path.join(src_dir, '..', 'results')
     
-    language = "EN"
+    # Parse arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('language', help = "Choose the study language: 'EN' or 'NL'.", choices = ["EN", "NL"])
+    args = parser.parse_args()
+    language = args.language
+    
+    # Compute descriptives
     files = preprocessing.filenames(raw_data_dir, language)
-    calculate_descriptives(files, data_dir)
+    calculate_descriptives(files, data_dir, results_dir)
+        
     
-    
+# Run code
 if __name__ == "__main__":
     main()
