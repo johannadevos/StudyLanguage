@@ -6,6 +6,8 @@ import os
 
 import pandas as pd
 
+import preprocessing as prep
+
 
 def create_pandas_df(lca_results_dir, filename):
     """A function that reads the LCA results (per exam) from a CSV file into
@@ -13,14 +15,7 @@ def create_pandas_df(lca_results_dir, filename):
     
     # NB: Make sure that the text file is encoded in UTF-8    
     df = pd.read_csv(os.path.join(lca_results_dir, filename), sep = ",")
-    
-    subj_counter = 0
-    for subj in range(len(df)):
-        df.at[subj_counter, 'subjcode'] = df.loc[subj_counter, 
-             'filename'][-7:-4] # Indexing to extract subject code
-        subj_counter += 1
-    
-    df.set_index('subjcode', inplace = True) # Set subject code as index
+    df.set_index('subjectcode', inplace = True) # Set subject code as index
     
     # Check whether all subject codes are unique
     if len(set(list(df.index))) != len(df):
@@ -112,6 +107,9 @@ exam2 = create_pandas_df(lca_results_dir, name_exam2)
 
 lang1 = name_exam1[7:9]
 lang2 = name_exam2[7:9]
+
+# Read in subject info
+subject_df = prep.read_subject_info(data_dir)
 
 # Define required measures
 sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
