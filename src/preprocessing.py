@@ -507,6 +507,7 @@ def run_lca(filename, data_dir, results_dir, language, lca_min_sam):
 def read_subject_info(data_dir):
     subject_file = os.path.join(data_dir, 'subject_info.txt')
     subject_df = pd.read_csv(subject_file, sep = '\t')
+    subject_df.set_index('SubjectCode', inplace = True) # Set subject code as index
     
     return subject_df
 
@@ -554,7 +555,7 @@ def main():
 
     # Read in subject info
     subject_df = read_subject_info(data_dir)
-    good_subjects = list(subject_df.SubjectCode)
+    good_subjects = list(subject_df.index)
 
     ### --------
     ### LOOPING THROUGH ALL FILES
