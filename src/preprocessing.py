@@ -319,22 +319,6 @@ def get_wordnet_pos(treebank_tag):
         return wordnet.NOUN # Because nouns are the default POS tag in the Wordnet lemmatizer
 
 
-# Remove subjects for various reasons
-def remove_subjects(df, good_subjects):
-    print("Removing some subjects...")
-    
-    # Remove subjects with unknown subject code
-    df = df[df.SubjectCode != '?']
-
-    # Convert the integers in good_subjects to strings, so that they can be compared to the subject codes in the dataframe, which are also strings
-    good_subjects = [str(subject) for subject in good_subjects]
-    
-    # Remove subjects who are not in subject_info (for example because of their nationality, or because they didn't give permission for their data to be used)
-    df = df[df.SubjectCode.isin(good_subjects)]
-    
-    return df
-
-
 ### -------------------------------------
 ### WRITE THE ANSWERS TO INDIVIDUAL FILES
 ### -------------------------------------
@@ -519,12 +503,28 @@ def run_lca(filename, data_dir, results_dir, language, lca_min_sam):
 ### SUBJECT INFO
 ### ------------
 
-def subject_info(data_dir):
+# Read the text file containing subject info
+def read_subject_info(data_dir):
     subject_file = os.path.join(data_dir, 'subject_info.txt')
     subject_df = pd.read_csv(subject_file, sep = '\t')
-    #print(subject_df)
     
     return subject_df
+
+
+# Remove subjects for various reasons
+def remove_subjects(df, good_subjects):
+    print("Removing some subjects...")
+    
+    # Remove subjects with unknown subject code
+    df = df[df.SubjectCode != '?']
+
+    # Convert the integers in good_subjects to strings, so that they can be compared to the subject codes in the dataframe, which are also strings
+    good_subjects = [str(subject) for subject in good_subjects]
+    
+    # Remove subjects who are not in subject_info (for example because of their nationality, or because they didn't give permission for their data to be used)
+    df = df[df.SubjectCode.isin(good_subjects)]
+    
+    return df
 
 
 ### -------------
@@ -553,7 +553,7 @@ def main():
     print("The minimal sample size for the LCA is:", lca_min_sam)
 
     # Read in subject info
-    subject_df = subject_info(data_dir)
+    subject_df = read_subject_info(data_dir)
     good_subjects = list(subject_df.SubjectCode)
 
     ### --------
@@ -600,8 +600,8 @@ def main():
 
         # Run the LCA and write to file
         run_lca(filename, data_dir, results_dir, language, lca_min_sam)
-                        
-                        
+
+
 ### --------
 ### RUN CODE
 ### --------          

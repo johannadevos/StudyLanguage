@@ -131,7 +131,7 @@ def run_lca(standard, directory, language):
         verbranks=sort_by_value(verbdict)
     
     # define headers
-    headers="filename,sentences,wordtypes,swordtypes,lextypes,slextypes,wordtokens,swordtokens,lextokens,slextokens,ld,ls1,ls2,vs1,vs2,cvs1,ndw,ndwz,ndwerz,ndwesz,ttr,msttr,cttr,rttr,logttr,uber,lv,vv1,svv1,cvv1,vv2,nv,adjv,advv,modv"
+    headers="subjectcode,sentences,wordtypes,swordtypes,lextypes,slextypes,wordtokens,swordtokens,lextokens,slextokens,ld,ls1,ls2,vs1,vs2,cvs1,ndw,ndwz,ndwerz,ndwesz,ttr,msttr,cttr,rttr,logttr,uber,lv,vv1,svv1,cvv1,vv2,nv,adjv,advv,modv"
     
     #print(headers)
     results.append(headers)
@@ -143,7 +143,7 @@ def run_lca(standard, directory, language):
         lemfile.close()
         filename=filename.split("/")[-1]
     
-        output="\n"+filename
+        output="\n"+filename[-7:-4]
         if not lemlines:
             output+=",0"*34
             #print(output)
@@ -274,7 +274,7 @@ def run_lca(standard, directory, language):
         advv=division(len(advtypes.keys()),lextokens)
         modv=division((len(advtypes.keys())+len(adjtypes.keys())),lextokens)
         
-        output="\n"+filename
+        output="\n"+filename[-7:-4]
         for measure in [sentences,len(wordtypes.keys()),len(swordtypes.keys()),len(lextypes.keys()),len(slextypes.keys()),wordtokens,swordtokens,lextokens,slextokens,ld,ls1,ls2,vs1,vs2,cvs1,ndw,ndwz,ndwerz,ndwesz,ttr,msttr,cttr,rttr,logttr,uber,lv,vv1,svv1,cvv1,vv2,nv,adjv,advv,modv]: 
             if type(measure)==type(0.0):
                 measure="%.2f" % measure
