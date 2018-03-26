@@ -83,22 +83,26 @@ def diff_other_lang(df1, df2, measures):
 parser = argparse.ArgumentParser()
 parser.add_argument("exam1", help = "The first exam in the comparison.")
 parser.add_argument("exam2", help = "The second exam in the comparison.")
-parser.add_argument("trunc", help = "Should the LCA be performed on samples \
+parser.add_argument("--truncation", help = "Should the LCA be performed on samples \
                     that were truncated at the same length?", choices = 
-                    ["trunc", "untrunc"])
+                    ["yes", "no"], default = "yes")
+parser.add_argument("--nationality", help = "For which nationality do you \
+                    want to perform the analysis?", choices = ["DU", "NL"], 
+                    default = "NL")
 args = parser.parse_args()
 name_exam1 = args.exam1
 name_exam2 = args.exam2
-trunc = args.trunc
+trunc = args.truncation
+natio = args.nationality
     
 # Define directories
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data')
 results_dir = os.path.join(src_dir, '..', 'results')
 
-if trunc == "trunc":
+if trunc == "yes":
     lca_results_dir = os.path.join(results_dir, 'lca_truncated')
-elif trunc == "untrunc":
+elif trunc == "no":
     lca_results_dir = os.path.join(results_dir, 'lca_untruncated')
 
 # Create dataframes with LCA results for the two exams
@@ -113,7 +117,7 @@ subject_df = prep.read_subject_info(data_dir)
 
 # Define required measures
 sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
-all_measures = list(exam1.columns[1:]) # [1:] to exclude filename
+all_measures = list(exam1.columns)
 
 # Optionally, apply filters
 filtered_exam1 = filter_df(exam1, sel_measures)
