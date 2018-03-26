@@ -28,14 +28,18 @@ def filter_df(df, measures):
     """A function that subsets only those columns (i.e., LCA measures) we are
     interested in, and in addition only includes writing samples with fifty
     words or more.""" 
-            
+    
     # Only use selected measures
     df = df.loc[: , measures]
     
     # Remove empty entries
-    #df = df[df.wordtokens >= 50]
+    #df = df[df.wordtokens != 0]
     
     return df
+
+
+def merge_df(exam, subject_info):
+    pass
 
 
 def diff_same_lang(df1, df2, measures):
@@ -70,6 +74,7 @@ def diff_other_lang(df1, df2, measures):
     print(diff_means)
 
 #pd.set_option('display.max_columns', None)
+#pd.set_option('display.max_rows', None)
 
 
 ### --------
@@ -89,6 +94,7 @@ parser.add_argument("--truncation", help = "Should the LCA be performed on sampl
 parser.add_argument("--nationality", help = "For which nationality do you \
                     want to perform the analysis?", choices = ["DU", "NL"], 
                     default = "NL")
+
 args = parser.parse_args()
 name_exam1 = args.exam1
 name_exam2 = args.exam2
@@ -109,11 +115,12 @@ elif trunc == "no":
 exam1 = create_pandas_df(lca_results_dir, name_exam1)
 exam2 = create_pandas_df(lca_results_dir, name_exam2)
 
+# Establish the language each exam was written in
 lang1 = name_exam1[7:9]
 lang2 = name_exam2[7:9]
 
 # Read in subject info
-subject_df = prep.read_subject_info(data_dir)
+subject_info = prep.read_subject_info(data_dir)
 
 # Define required measures
 sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
@@ -122,6 +129,9 @@ all_measures = list(exam1.columns)
 # Optionally, apply filters
 filtered_exam1 = filter_df(exam1, sel_measures)
 filtered_exam2 = filter_df(exam2, sel_measures)
+
+# Join dataframes
+joined_df = exam1.join(subject_info)
 
 # Compare the two exams
 print("Calculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
