@@ -63,6 +63,8 @@ def diff_same_lang(df1, df2, measures, nationality):
             diff = df2.loc[subj, col] - df1.loc[subj, col]     
             df_diff.at[subj, col] = diff
     
+    print("Sample size:", len(subs), nationality, "students")
+
     print(df_diff[measures].mean())
     
     return df_diff
@@ -72,8 +74,14 @@ def diff_other_lang(df1, df2, measures, nationality):
     """A function that calculates the mean on all measures for both exams, 
     and then calculates the difference between the means."""
     
-    means1 = df1[measures].mean()
-    means2 = df2[measures].mean()
+    means1 = df1[df1.loc[:, 'Natio1'] == nationality][measures].mean()
+    means2 = df2[df2.loc[:, 'Natio1'] == nationality][measures].mean()
+    
+    nr_subj_1 = len(df1[df1.loc[:, 'Natio1'] == nationality])
+    nr_subj_2 = len(df2[df2.loc[:, 'Natio1'] == nationality])
+
+    print("Sample size:", nr_subj_2, nationality, "students in the first \
+exam, and", nr_subj_1, nationality, "students in the second exam")
     
     diff_means = means2 - means1
     print(diff_means)
@@ -93,8 +101,8 @@ def diff_other_lang(df1, df2, measures, nationality):
 parser = argparse.ArgumentParser()
 parser.add_argument("exam1", help = "The first exam in the comparison.")
 parser.add_argument("exam2", help = "The second exam in the comparison.")
-parser.add_argument("--truncation", help = "Should the LCA be performed on samples \
-                    that were truncated at the same length?", choices = 
+parser.add_argument("--truncation", help = "Should the LCA be performed on \
+                    samples that were truncated at the same length?", choices = 
                     ["yes", "no"], default = "yes")
 parser.add_argument("--nationality", help = "For which nationality do you \
                     want to perform the analysis?", choices = ["DU", "NL"], 
