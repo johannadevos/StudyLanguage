@@ -8,6 +8,7 @@ import argparse
 import glob
 import os
 import re
+import shutil
 
 import pandas as pd
 
@@ -335,28 +336,35 @@ def filenames(directory, language):
 
 
 # Create a directory for the individual files from each exam
-def create_new_dirs(data_dir, language, truncated = "no"):
+def create_new_dirs(data_dir, language):
     
-    if truncated == "no":
-        new_dir = os.path.join(data_dir, 'indiv_files_untruncated')
-    elif truncated == "yes":
-        new_dir = os.path.join(data_dir, 'indiv_files_truncated')
-
-    if not os.path.exists(new_dir):
-        os.makedirs(new_dir)
-
-    exam_names = filenames(os.path.join(data_dir, 'raw_data'), language)
-    questions_stat_c = ['4a', '2aDec', '2aCaus']
-
-    for exam in exam_names:
-        if not os.path.exists(os.path.join(new_dir, exam[:-4])):
-            os.makedirs(os.path.join(new_dir, exam[:-4])) # [:-4] to cut off '.txt'
-
-            # Make subdirectories for each question for STAT_C
-            if 'STAT_C' in exam:
-
-                for question in questions_stat_c:
-                    os.makedirs(os.path.join(new_dir, exam[:-4], question))
+    new_dirs = ['indiv_files_untruncated', 'indiv_files_truncated']
+    
+    for new_dir in new_dirs:
+        new_dir = os.path.join(data_dir, new_dir)
+    
+        # If the directory already exists, remove its contents so that a clean new dataset will be produced (otherwise, unused subjects might still have a file here, which would contaminate the results)
+        if os.path.exists(new_dir):
+            print("Removing", new_dir, "...")
+            shutil.rmtree(new_dir)
+        
+        # If the directory does not exist, create it
+        if not os.path.exists(new_dir):
+            os.makedirs(new_dir)
+    
+        # Loop through exams and questions to create subdirectories
+        exam_names = filenames(os.path.join(data_dir, 'raw_data'), language)
+        questions_stat_c = ['4a', '2aDec', '2aCaus']
+    
+        for exam in exam_names:
+            if not os.path.exists(os.path.join(new_dir, exam[:-4])):
+                os.makedirs(os.path.join(new_dir, exam[:-4])) # [:-4] to cut off '.txt'
+    
+                # Make subdirectories for each question for STAT_C
+                if 'STAT_C' in exam:
+    
+                    for question in questions_stat_c:
+                        os.makedirs(os.path.join(new_dir, exam[:-4], question))
 
 
 # Write the lemmatized and POS-tagged student answers to files
@@ -394,9 +402,6 @@ def create_lca_input(data_dir, df, filename):
 def truncate_indiv_files(filename, data_dir, language, lca_min_sam):
     print("Truncating the student answers at", str(lca_min_sam), "words and writing these truncated answers to files...")
 
-    # Create directories to contain the cut-off data
-    create_new_dirs(data_dir, language, truncated = "yes")
-    
     # Loop over all the individual files of a given exam
     exam = filename[:-4]
     
@@ -557,6 +562,7 @@ def main():
     subject_df = read_subject_info(data_dir)
     good_subjects = list(subject_df.index)
 
+
     ### --------
     ### LOOPING THROUGH ALL FILES
     ### --------
@@ -568,7 +574,8 @@ def main():
         files = filenames(raw_data_dir, "NL")
 
     # Create directories to store the data
-    create_new_dirs(data_dir, language, truncated = "no") 
+    create_new_dirs(data_dir, language)
+    
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
     if not os.path.exists(os.path.join(results_dir, "lca_untruncated")):
