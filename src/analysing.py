@@ -42,13 +42,18 @@ def merge_df(exam, subject_info):
     pass
 
 
-def diff_same_lang(df1, df2, measures):
+def diff_same_lang(df1, df2, measures, nationality):
     """A function that creates a new pandas DataFrame which contains the
     difference on the selected LCA measures between two exams."""
     
     # Create list of subject codes that are present in both datasets
-    subs = [index for index in list(df1.index) if index in 
-        list(df2.index)]
+    
+    # Both nationalities together
+    #subs = [index for index in list(df1.index) if index in list(df2.index)]
+    
+    # One selected nationality
+    subs = [index for index in list(df1.index) if index in list(df2.index) and 
+            df1.loc[index, 'Natio1'] == nationality]
     
     # Create empty dataframe
     df_diff = pd.DataFrame(index=subs, columns = measures)
@@ -63,7 +68,7 @@ def diff_same_lang(df1, df2, measures):
     return df_diff
 
 
-def diff_other_lang(df1, df2, measures):
+def diff_other_lang(df1, df2, measures, nationality):
     """A function that calculates the mean on all measures for both exams, 
     and then calculates the difference between the means."""
     
@@ -145,7 +150,6 @@ data2 = exam2.join(subject_info)
 print("Calculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
 
 if lang1 == lang2:
-    diff_same_lang(data1, data2, all_measures)
-    #diff_same_lang(exam1, exam2, all_measures)
+    a = diff_same_lang(data1, data2, sel_measures, natio)
 elif lang1 != lang2:
-    diff_other_lang(data1, data2, sel_measures)
+    diff_other_lang(data1, data2, sel_measures, natio)
