@@ -116,8 +116,15 @@ exam1 = create_pandas_df(lca_results_dir, name_exam1)
 exam2 = create_pandas_df(lca_results_dir, name_exam2)
 
 # Establish the language each exam was written in
-lang1 = name_exam1[7:9]
-lang2 = name_exam2[7:9]
+if "EN" in name_exam1:
+    lang1 = "EN"
+elif "NL" in name_exam1:
+    lang1 = "NL"
+
+if "EN" in name_exam2:
+    lang2 = "EN"
+elif "NL" in name_exam2:
+    lang2 = "NL"
 
 # Read in subject info
 subject_info = prep.read_subject_info(data_dir)
@@ -131,13 +138,14 @@ filtered_exam1 = filter_df(exam1, sel_measures)
 filtered_exam2 = filter_df(exam2, sel_measures)
 
 # Join dataframes
-joined_df = exam1.join(subject_info)
+data1 = exam1.join(subject_info)
+data2 = exam2.join(subject_info)
 
 # Compare the two exams
 print("Calculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
 
 if lang1 == lang2:
-    diff_same_lang(exam1, exam2, sel_measures)
+    diff_same_lang(data1, data2, all_measures)
     #diff_same_lang(exam1, exam2, all_measures)
 elif lang1 != lang2:
-    diff_other_lang(exam1, exam2, sel_measures)
+    diff_other_lang(data1, data2, sel_measures)
