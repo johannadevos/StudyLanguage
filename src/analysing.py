@@ -42,7 +42,7 @@ def merge_df(exam, subject_info):
     pass
 
 
-def diff_same_lang(df1, df2, measures, nationality):
+def same_lang(df1, df2, measures, nationality):
     """A function that creates a new pandas DataFrame which contains the
     difference on the selected LCA measures between two exams."""
     
@@ -55,22 +55,21 @@ def diff_same_lang(df1, df2, measures, nationality):
     subs = [index for index in list(df1.index) if index in list(df2.index) and 
             df1.loc[index, 'Natio1'] == nationality]
     
-    # Create empty dataframe
-    df_diff = pd.DataFrame(index=subs, columns = measures)
+    # Subset df1 and df2 to only contain the 'good' subjects and the selected
+    # measures
+    df_exam1 = df1.loc[subs, measures]
+    df_exam2 = df2.loc[subs, measures]
     
-    for subj in df_diff.index:
-        for col in df_diff.columns:
-            diff = df2.loc[subj, col] - df1.loc[subj, col]     
-            df_diff.at[subj, col] = diff
-    
+    # Create dataframe containing the difference scores
+    df_diff = df_exam2 - df_exam1
+       
     print("Sample size:", len(subs), nationality, "students")
-
     print(df_diff[measures].mean())
     
     return df_diff
 
 
-def diff_other_lang(df1, df2, measures, nationality):
+def other_lang(df1, df2, measures, nationality):
     """A function that calculates the mean on all measures for both exams, 
     and then calculates the difference between the means."""
     
@@ -158,6 +157,6 @@ data2 = exam2.join(subject_info)
 print("Calculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
 
 if lang1 == lang2:
-    a = diff_same_lang(data1, data2, sel_measures, natio)
+    diff_scores = same_lang(data1, data2, sel_measures, natio)
 elif lang1 != lang2:
-    diff_other_lang(data1, data2, sel_measures, natio)
+    other_lang(data1, data2, sel_measures, natio)
