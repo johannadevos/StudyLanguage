@@ -5,7 +5,6 @@ import argparse
 import os
 
 import pandas as pd
-
 import preprocessing as prep
 
 
@@ -36,10 +35,6 @@ def filter_df(df, measures):
     #df = df[df.wordtokens != 0]
     
     return df
-
-
-def merge_df(exam, subject_info):
-    pass
 
 
 def same_lang(df1, df2, measures, nationality):
@@ -145,6 +140,7 @@ subject_info = prep.read_subject_info(data_dir)
 # Define required measures
 sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
 all_measures = list(exam1.columns)
+lca_measures = list(exam1.columns)[exam1.columns.get_loc('ld'):]
 
 # Optionally, apply filters
 filtered_exam1 = filter_df(exam1, sel_measures)
