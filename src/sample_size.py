@@ -110,7 +110,7 @@ def correlations(df, results_dir):
     test_stat, p = normaltest(df['wordtokens'])
     
     # Set up file where results should be stored
-    destination = os.path.join(results_dir, "length_descriptives", "correlations.txt")
+    destination = os.path.join(results_dir, "length_descriptives", "correlations_wordtokens_measures.txt")
     headers = "\t".join(["measure", "r_spearman", "p_value"])
     with open(destination, 'w') as outfile:
         outfile.write(headers)
