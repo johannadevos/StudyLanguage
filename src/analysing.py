@@ -62,7 +62,8 @@ def same_lang(df1, df2, measures, nationality):
     
     # Create dataframe containing the difference scores
     df_diff = df_exam2 - df_exam1
-       
+    
+    # Print some results
     print("Sample size:", len(subs), nationality, "students")
     print(df_diff[measures].mean())
     
