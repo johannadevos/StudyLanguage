@@ -87,8 +87,10 @@ exam, and", nr_subj_1, nationality, "students in the second exam")
 
 def corr_grade_ects(subject_info):
     
-    grades = subject_info['MeanYear1']
-    ects = subject_info['ECTSYear1']
+    subject_info_no_missing_grades = subject_info[subject_info['MeanPsy'].notnull()]
+    
+    grades = subject_info_no_missing_grades['MeanPsy']
+    ects = subject_info_no_missing_grades['ECTSPsyObtained']
     
     # Test whether the variables are normally distributed
 
@@ -105,16 +107,20 @@ def corr_grade_ects(subject_info):
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
     ax.hist(ects, bins=np.arange(-0.5, 60.5, 5))
-    ax.set_xlabel('ECTS')
+    ax.set_xlabel('ECTS obtained')
     ax.set_ylabel('Counts')
 
+    # Relationship between grades and ECTS
+    subject_info_no_missing_grades.plot(kind='scatter', x='MeanPsy', y=
+                                        'ECTSPsyObtained', title=
+                                        'Relationship between grades and ECTS')
+    plt.show()
+    plt.close()
+    
     # Statistical tests
     test_stat_mean, p_mean = normaltest(grades)
     test_stat_ects, p_ects = normaltest(ects)
     
-    print(p_mean)
-    print(p_ects)
-        
     # Calculate correlations
     if p_mean < 0.05 or p_ects < 0.05:
         corr, sig = spearmanr(grades, ects)
@@ -122,12 +128,29 @@ def corr_grade_ects(subject_info):
 
     else:
         print("You should implement Pearson's correlation coefficient.")
-        
-    # Create scatterplot
-    subject_info.plot(kind='scatter', x='MeanYear1', y='ECTSYear1', title=
-                      'Relationship between grades and ECTS in year 1')
-    show()
+    
+    # Relationship between taken and obtained ECTS in year 1
+    subject_info.plot(kind='scatter', x='ECTSPsyTaken', y='ECTSPsyObtained', title=
+                      'Relationship between taken and obtained ECTS')
+    plt.show()
     plt.close()
+    
+    # Statistical tests
+    ects_taken = subject_info['ECTSPsyTaken']
+    ects_obtained = subject_info['ECTSPsyObtained']
+    
+    test_stat_mean, p_mean = normaltest(ects_taken)
+    test_stat_ects, p_ects = normaltest(ects_obtained)
+    
+    # Calculate correlations
+    if p_mean < 0.05 or p_ects < 0.05:
+        corr, sig = spearmanr(ects_taken, ects_obtained)
+        print("Spearman's r =", round(corr, 3), "\tp = ", round(sig, 3))
+
+    else:
+        print("You should implement Pearson's correlation coefficient.")
+    
+    
 
 #pd.set_option('display.max_columns', None)
 #pd.set_option('display.max_rows', None)
@@ -201,10 +224,12 @@ filtered_exam2 = filter_df(exam2, sel_measures)
 data1 = exam1.join(subject_info)
 data2 = exam2.join(subject_info)
 
-# Compare the two exams
-print("Calculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
-
-if lang1 == lang2:
-    diff_scores = same_lang(data1, data2, sel_measures, natio)
-elif lang1 != lang2:
-    other_lang(data1, data2, sel_measures, natio)
+# =============================================================================
+# # Compare the two exams
+# print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
+# 
+# if lang1 == lang2:
+#     diff_scores = same_lang(data1, data2, sel_measures, natio)
+# elif lang1 != lang2:
+#     other_lang(data1, data2, sel_measures, natio)
+# =============================================================================
