@@ -24,13 +24,16 @@ def calculate_descriptives(files, data_dir, results_dir):
         if not "STAT_C" in exam:
             print(exam)
             
-            results_file = str(os.path.join(results_dir, 'lca_untruncated', exam)) + '.txt'
+            results_file = str(os.path.join(results_dir, 'lca_untruncated', 
+                                            exam)) + '.txt'
             
             results_df = pd.read_csv(results_file, sep = ',')
             wordtokens = results_df['wordtokens']
                     
-            print("Average length of writing samples:", statistics.mean(wordtokens))
-            print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
+            print("Average length of writing samples:", statistics.mean
+                  (wordtokens))
+            print("Standard deviation of writing sample length:", statistics.
+                  stdev(wordtokens))
             print("The longest sample is:", max(wordtokens), "words")
             histogram(wordtokens, exam, output_dir=output_dir)
         
@@ -40,13 +43,17 @@ def calculate_descriptives(files, data_dir, results_dir):
             for question in questions:
                 print(exam, question)
                 
-                results_file = str(os.path.join(results_dir, 'lca_untruncated', exam)) + '_' + question + '.txt'
+                results_file = str(os.path.join(results_dir, 'lca_untruncated', 
+                                                exam)) + '_' + question \
+                                                + '.txt'
                 
                 results_df = pd.read_csv(results_file, sep = ',')
                 wordtokens = results_df['wordtokens']
                         
-                print("Average length of writing samples:", statistics.mean(wordtokens))
-                print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
+                print("Average length of writing samples:", statistics.mean
+                      (wordtokens))
+                print("Standard deviation of writing sample length:", 
+                      statistics.stdev(wordtokens))
                 print("The longest sample is:", max(wordtokens), "words")
                 histogram(wordtokens, exam, question, output_dir=output_dir)
     
@@ -67,7 +74,8 @@ def histogram(variable, x_axis_title, question=None, output_dir=None):
     elif question:
         ax.set_title('{}_{}'.format(x_axis_title, question))
         if output_dir:
-            plt.savefig('{}\{}_{}.png'.format(output_dir, x_axis_title, question))        
+            plt.savefig('{}\{}_{}.png'.format(output_dir, x_axis_title, 
+                        question))        
     #plt.show(fig)
     
 
@@ -108,7 +116,8 @@ def correlations(df, results_dir):
     test_stat, p = normaltest(df['wordtokens'])
     
     # Set up file where results should be stored
-    destination = os.path.join(results_dir, "length_descriptives", "correlations_wordtokens_measures.txt")
+    destination = os.path.join(results_dir, "length_descriptives", 
+                               "correlations_wordtokens_measures.txt")
     headers = "\t".join(["measure", "r_spearman", "p_value"])
     with open(destination, 'w') as outfile:
         outfile.write(headers)
@@ -122,7 +131,8 @@ def correlations(df, results_dir):
             for measure in lca_measures:
                 corr, sig = spearmanr(df['wordtokens'], df[measure])
                 #print(measure, "\tSpearman's r =", corr, "\tp = ", sig)
-                outfile.write("\t\t".join((measure, str(round(corr, 3)), str(round(sig, 3)), "\n")))
+                outfile.write("\t\t".join((measure, str(round(corr, 3)), str(
+                        round(sig, 3)), "\n")))
                 
     else:
         print("You should implement Pearson's correlation coefficient.")
@@ -144,7 +154,8 @@ def main():
     
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('language', help = "Choose the study language: 'EN' or 'NL'.", choices = ["EN", "NL"])
+    parser.add_argument('language', help = "Choose the study language: 'EN' \
+                        or 'NL'.", choices = ["EN", "NL"])
     args = parser.parse_args()
     language = args.language
     
