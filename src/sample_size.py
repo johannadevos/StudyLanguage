@@ -30,7 +30,7 @@ def calculate_descriptives(files, data_dir, results_dir):
             print("Average length of writing samples:", statistics.mean(wordtokens))
             print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
             print("The longest sample is:", max(wordtokens), "words")
-            #histogram(results_dir, wordtokens, exam)
+            histogram(results_dir, wordtokens, exam)
         
         elif "STAT_C" in exam:
             questions = ['4a', '2aDec', '2aCaus']
@@ -46,17 +46,15 @@ def calculate_descriptives(files, data_dir, results_dir):
                 print("Average length of writing samples:", statistics.mean(wordtokens))
                 print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
                 print("The longest sample is:", max(wordtokens), "words")
-                #histogram(results_dir, wordtokens, exam, question)
+                histogram(results_dir, wordtokens, exam, question)
     
 
 def histogram(results_dir, wordtokens, exam, question=None):
     
-    # Directory to save histograms
+    # Directory to store the results
     descr_dir = os.path.join(results_dir, 'length_descriptives')
-    if not os.path.exists(descr_dir):
-        os.mkdir(os.path.join(descr_dir))
     
-    # Draw histogram
+    # Histogram
     plt.rcParams["patch.force_edgecolor"] = True
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
@@ -78,7 +76,6 @@ def create_pandas_df(lca_results_dir, filename):
     
     # NB: Make sure that the text file is encoded in UTF-8    
     df = pd.read_csv(os.path.join(lca_results_dir, filename), sep = ",")
-    #df.set_index('subjectcode', inplace = True) # Set subject code as index
         
     return df
 
@@ -123,11 +120,17 @@ def correlations(df, results_dir):
         
             for measure in lca_measures:
                 corr, sig = spearmanr(df['wordtokens'], df[measure])
-                print(measure, "\tSpearman's r =", corr, "\tp = ", sig)
+                #print(measure, "\tSpearman's r =", corr, "\tp = ", sig)
                 outfile.write("\t\t".join((measure, str(round(corr, 3)), str(round(sig, 3)), "\n")))
                 
     else:
         print("You should implement Pearson's correlation coefficient.")
+
+
+def create_descr_dir(results_dir, dir_name):
+    descr_dir = os.path.join(results_dir, dir_name)
+    if not os.path.exists(descr_dir):
+        os.mkdir(os.path.join(descr_dir))
 
 
 def main():
@@ -144,6 +147,9 @@ def main():
     args = parser.parse_args()
     language = args.language
     
+    # Create directory to store results
+    create_descr_dir(results_dir, 'length_descriptives')
+        
     # Compute descriptives
     files = preprocessing.filenames(raw_data_dir, language)
     calculate_descriptives(files, data_dir, results_dir)
