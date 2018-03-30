@@ -124,7 +124,10 @@ def corr_grade_ects(subject_info):
         print("You should implement Pearson's correlation coefficient.")
         
     # Create scatterplot
-        
+    subject_info.plot(kind='scatter', x='MeanYear1', y='ECTSYear1', title=
+                      'Relationship between grades and ECTS in year 1')
+    show()
+    plt.close()
 
 #pd.set_option('display.max_columns', None)
 #pd.set_option('display.max_rows', None)
