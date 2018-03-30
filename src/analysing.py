@@ -4,8 +4,11 @@
 import argparse
 import os
 
+import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 import preprocessing as prep
+from scipy.stats import normaltest, pearsonr, spearmanr
 
 
 def create_pandas_df(lca_results_dir, filename):
@@ -81,6 +84,48 @@ exam, and", nr_subj_1, nationality, "students in the second exam")
     diff_means = means2 - means1
     print(diff_means)
 
+
+def corr_grade_ects(subject_info):
+    
+    grades = subject_info['MeanYear1']
+    ects = subject_info['ECTSYear1']
+    
+    # Test whether the variables are normally distributed
+
+    # Histogram grades
+    plt.rcParams["patch.force_edgecolor"] = True
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.hist(grades, bins=np.arange(-0.5, 10.5, 1))
+    ax.set_xlabel('Grade')
+    ax.set_ylabel('Counts')
+    
+    # Histogram ECTS
+    plt.rcParams["patch.force_edgecolor"] = True
+    fig = plt.figure()
+    ax = fig.add_subplot(1,1,1)
+    ax.hist(ects, bins=np.arange(-0.5, 60.5, 5))
+    ax.set_xlabel('ECTS')
+    ax.set_ylabel('Counts')
+
+    # Statistical tests
+    test_stat_mean, p_mean = normaltest(grades)
+    test_stat_ects, p_ects = normaltest(ects)
+    
+    print(p_mean)
+    print(p_ects)
+        
+    # Calculate correlations
+    if p_mean < 0.05 or p_ects < 0.05:
+        corr, sig = spearmanr(grades, ects)
+        print("Spearman's r =", round(corr, 3), "\tp = ", round(sig, 3))
+
+    else:
+        print("You should implement Pearson's correlation coefficient.")
+        
+    # Create scatterplot
+        
+
 #pd.set_option('display.max_columns', None)
 #pd.set_option('display.max_rows', None)
 
@@ -136,6 +181,9 @@ elif "NL" in name_exam2:
 
 # Read in subject info
 subject_info = prep.read_subject_info(data_dir)
+
+# Calculate correlation between grades and ECTS
+corr_grade_ects(subject_info)
 
 # Define required measures
 sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']

@@ -16,6 +16,8 @@ import preprocessing
 
 
 def calculate_descriptives(files, data_dir, results_dir):
+    output_dir = os.path.join(results_dir, 'length_descriptives')
+    
     for exam in files:
         exam = exam[:-4]
             
@@ -30,7 +32,7 @@ def calculate_descriptives(files, data_dir, results_dir):
             print("Average length of writing samples:", statistics.mean(wordtokens))
             print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
             print("The longest sample is:", max(wordtokens), "words")
-            histogram(results_dir, wordtokens, exam)
+            histogram(wordtokens, exam, output_dir=output_dir)
         
         elif "STAT_C" in exam:
             questions = ['4a', '2aDec', '2aCaus']
@@ -46,27 +48,26 @@ def calculate_descriptives(files, data_dir, results_dir):
                 print("Average length of writing samples:", statistics.mean(wordtokens))
                 print("Standard deviation of writing sample length:", statistics.stdev(wordtokens))
                 print("The longest sample is:", max(wordtokens), "words")
-                histogram(results_dir, wordtokens, exam, question)
+                histogram(wordtokens, exam, question, output_dir=output_dir)
     
 
-def histogram(results_dir, wordtokens, exam, question=None):
-    
-    # Directory to store the results
-    descr_dir = os.path.join(results_dir, 'length_descriptives')
+def histogram(variable, x_axis_title, question=None, output_dir=None):
     
     # Histogram
     plt.rcParams["patch.force_edgecolor"] = True
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
-    ax.hist(wordtokens, bins=np.arange(0, max(wordtokens)+10, 10))
+    ax.hist(variable, bins=np.arange(0, max(variable)+10, 10))
     ax.set_xlabel('Length (words)')
     ax.set_ylabel('Counts')
     if not question:
-        ax.set_title('{}'.format(exam))
-        plt.savefig('{}\{}.png'.format(descr_dir, exam))
+        ax.set_title('{}'.format(x_axis_title))
+        if output_dir:
+            plt.savefig('{}\{}.png'.format(output_dir, x_axis_title))
     elif question:
-        ax.set_title('{}_{}'.format(exam, question))
-        plt.savefig('{}\{}_{}.png'.format(descr_dir, exam, question))        
+        ax.set_title('{}_{}'.format(x_axis_title, question))
+        if output_dir:
+            plt.savefig('{}\{}_{}.png'.format(output_dir, x_axis_title, question))        
     #plt.show(fig)
     
 
