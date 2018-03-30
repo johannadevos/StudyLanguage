@@ -110,10 +110,10 @@ def corr_grade_ects(subject_info):
     ax.set_xlabel('ECTS obtained')
     ax.set_ylabel('Counts')
 
-    # Relationship between grades and ECTS
-    subject_info_no_missing_grades.plot(kind='scatter', x='MeanPsy', y=
-                                        'ECTSPsyObtained', title=
-                                        'Relationship between grades and ECTS')
+    # Relationship between grades and obtained ECTS
+    subject_info_no_missing_grades.plot(kind = 'scatter', x ='ECTSPsyObtained', 
+                                        y = 'MeanPsy', ylim=[-0.3,10.3], title = 
+                                        'Relationship between grades and ECTS obtained')
     plt.show()
     plt.close()
     
@@ -128,10 +128,31 @@ def corr_grade_ects(subject_info):
 
     else:
         print("You should implement Pearson's correlation coefficient.")
+        
+    # Relationship between grades and taken ECTS
+    subject_info_no_missing_grades.plot(kind ='scatter', x ='ECTSPsyTaken', y =
+                                        'MeanPsy', ylim=[-0.3,10.3], title =
+                                        'Relationship between grades and ECTS taken')
+    plt.show()
+    plt.close()
+    
+    # Statistical tests
+    test_stat_mean, p_mean = normaltest(grades)
+    test_stat_ects, p_ects = normaltest(subject_info_no_missing_grades
+                                        ['ECTSPsyTaken'])
+    
+    # Calculate correlations
+    if p_mean < 0.05 or p_ects < 0.05:
+        corr, sig = spearmanr(grades, subject_info_no_missing_grades
+                                        ['ECTSPsyTaken'])
+        print("Spearman's r =", round(corr, 3), "\tp = ", round(sig, 3))
+
+    else:
+        print("You should implement Pearson's correlation coefficient.")
     
     # Relationship between taken and obtained ECTS in year 1
-    subject_info.plot(kind='scatter', x='ECTSPsyTaken', y='ECTSPsyObtained', title=
-                      'Relationship between taken and obtained ECTS')
+    subject_info.plot(kind ='scatter', x ='ECTSPsyTaken', y ='ECTSPsyObtained', 
+                      title = 'Relationship between taken and obtained ECTS')
     plt.show()
     plt.close()
     
