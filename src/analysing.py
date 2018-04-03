@@ -263,22 +263,22 @@ assert lang1 == lang2 == lang3, "Please select exams that are all the same langu
 short_name1 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam1)
 short_name2 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam2)
 short_name3 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam3)
-exams = [short_name1, short_name2, short_name3]
+exam_names = [short_name1, short_name2, short_name3]
+exams = [exam1, exam2, exam3]
 
 # TODO: What if only 2 exams are entered as arguments?
 
 # Create empty dataframe for the given language
-match_index = pd.DataFrame(index = subject_info[subject_info['Track']==lang1].index, columns = exams)
+match_index = pd.DataFrame(index = subject_info[subject_info['Track']==lang1].index, columns = exam_names)
 
-for exam in exams:
-    print(exam)
-    print(exam.index)
-# =============================================================================
-#     for index in exam.index:
-#         print(index)
-#         match_index.at[index, exam] = "Yes"
-# 
-# =============================================================================
+for counter in range(len(exam_names)):
+    exam = exams[counter]
+    exam_name = exam_names[counter]
+    
+    for index in exam.index:
+        #print(index)
+        match_index.at[index, exam_name] = "Yes"
+
 
 # =============================================================================
 # # Compare exams
