@@ -160,11 +160,11 @@ def corr_grade_ects(subject_info):
     ects_taken = subject_info['ECTSPsyTaken']
     ects_obtained = subject_info['ECTSPsyObtained']
     
-    test_stat_mean, p_mean = normaltest(ects_taken)
-    test_stat_ects, p_ects = normaltest(ects_obtained)
+    test_stat_taken, p_taken = normaltest(ects_taken)
+    test_stat_obtained, p_obtained = normaltest(ects_obtained)
     
     # Calculate correlations
-    if p_mean < 0.05 or p_ects < 0.05:
+    if p_taken < 0.05 or p_obtained < 0.05:
         corr, sig = spearmanr(ects_taken, ects_obtained)
         print("Spearman's r =", round(corr, 3), "\tp = ", round(sig, 3))
 
