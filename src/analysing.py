@@ -181,6 +181,75 @@ def exam_language(exam_name):
         
     return lang
 
+
+def overlap_between_exams(exam1, exam2, exam3, name_exam1, name_exam2, 
+                          name_exam3):
+
+    # Exam name without _(un)corrected and .txt
+    short_name1 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam1)
+    short_name2 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam2)
+    short_name3 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam3)
+    exam_names = [short_name1, short_name2, short_name3]
+    exams = [exam1, exam2, exam3]
+    
+    # Establish the language each exam was written in
+    lang1 = exam_language(short_name1)
+    lang2 = exam_language(short_name2)
+    lang3 = exam_language(short_name3)
+
+    # Investigate how many subjects did all exams
+    assert lang1 == lang2 == lang3, "Please select exams that are all the \
+                                    same language."
+    
+    # Create empty dataframe for the given language
+    match_index = pd.DataFrame(index = subject_info
+                               [subject_info['Track']==lang1].index, 
+                               columns = exam_names)
+    
+    # Fill in dataframe with 'Yes's if a subject took part in a particular exam
+    for counter in range(len(exam_names)):
+        exam = exams[counter]
+        exam_name = exam_names[counter]
+        
+        for index in exam.index:
+            match_index.at[index, exam_name] = "Yes"
+    
+    # If an entry exists for each exam, write "Yes" to a new column 'All'
+    for index, row in match_index.iterrows():
+        if row[short_name1] == "Yes" and \
+           row[short_name2] == "Yes" and \
+           row[short_name3] == "Yes":
+            match_index.at[index, 'All'] = "Yes"
+        if row[short_name1] == "Yes" and \
+           row[short_name2] == "Yes":
+            match_index.at[index, '1And2'] = "Yes"
+        if row[short_name1] == "Yes" and \
+           row[short_name3] == "Yes":
+            match_index.at[index, '1And3'] = "Yes"
+        if row[short_name2] == "Yes" and \
+           row[short_name3] == "Yes":
+            match_index.at[index, '2And3'] = "Yes"
+    
+    # Print information
+    num_subs = len(match_index)
+    print(str(match_index[short_name1].value_counts()[0]), "out of", 
+          str(num_subs), "subjects completed", short_name1)   
+    print(str(match_index[short_name2].value_counts()[0]), "out of", 
+          str(num_subs), "subjects completed", short_name2)   
+    print(str(match_index[short_name3].value_counts()[0]), "out of", 
+          str(num_subs), "subjects completed", short_name3)   
+    print(str(match_index['1And2'].value_counts()[0]), "out of", str(num_subs), 
+          "subjects completed both", short_name1, "and", short_name2)   
+    print(str(match_index['1And3'].value_counts()[0]), "out of", str(num_subs), 
+          "subjects completed both", short_name1, "and", short_name3)   
+    print(str(match_index['2And3'].value_counts()[0]), "out of", str(num_subs), 
+          "subjects completed both", short_name2, "and", short_name3)   
+    print(str(match_index['All'].value_counts()[0]), "out of", str(num_subs), 
+          "subjects completed all exams")
+        
+    return match_index
+
+
 #pd.set_option('display.max_columns', None)
 #pd.set_option('display.max_rows', None)
 
@@ -230,8 +299,6 @@ if name_exam3:
 # Establish the language each exam was written in
 lang1 = exam_language(name_exam1)
 lang2 = exam_language(name_exam2)
-if name_exam3:
-    lang3 = exam_language(name_exam3)
 
 # Read in subject info
 subject_info = prep.read_subject_info(data_dir)
@@ -256,36 +323,16 @@ data2 = exam2.join(subject_info)
 if name_exam3:
     data3 = exam3.join(subject_info)
     
-# Investigate how many subjects did all exams
-assert lang1 == lang2 == lang3, "Please select exams that are all the same language."
+# Investigate how many students took part in each exam
+assert exam3, "For the below function, please enter three exams as arguments."
+match_index = overlap_between_exams(exam1, exam2, exam3, name_exam1, 
+                                    name_exam2, name_exam3)
 
-# Exam name without _(un)corrected and .txt
-short_name1 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam1)
-short_name2 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam2)
-short_name3 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam3)
-exam_names = [short_name1, short_name2, short_name3]
-exams = [exam1, exam2, exam3]
+   
+# Compare exams
+print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
 
-# TODO: What if only 2 exams are entered as arguments?
-
-# Create empty dataframe for the given language
-match_index = pd.DataFrame(index = subject_info[subject_info['Track']==lang1].index, columns = exam_names)
-
-for counter in range(len(exam_names)):
-    exam = exams[counter]
-    exam_name = exam_names[counter]
-    
-    for index in exam.index:
-        #print(index)
-        match_index.at[index, exam_name] = "Yes"
-
-
-# =============================================================================
-# # Compare exams
-# print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
-# 
-# if lang1 == lang2:
-#     diff_scores = same_lang(data1, data2, sel_measures, natio)
-# elif lang1 != lang2:
-#     other_lang(data1, data2, sel_measures, natio)
-# =============================================================================
+if lang1 == lang2:
+    diff_scores = same_lang(data1, data2, sel_measures, natio)
+elif lang1 != lang2:
+    other_lang(data1, data2, sel_measures, natio)
