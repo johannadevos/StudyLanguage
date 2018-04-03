@@ -3,6 +3,7 @@
 
 import argparse
 import os
+import re
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -172,6 +173,13 @@ def corr_grade_ects(subject_info):
         print("You should implement Pearson's correlation coefficient.")
     
     
+def exam_language(exam_name):
+    if "EN" in exam_name:
+        lang = "EN"
+    elif "NL" in exam_name:
+        lang = "NL"
+        
+    return lang
 
 #pd.set_option('display.max_columns', None)
 #pd.set_option('display.max_rows', None)
@@ -188,6 +196,7 @@ def corr_grade_ects(subject_info):
 parser = argparse.ArgumentParser()
 parser.add_argument("exam1", help = "The first exam in the comparison.")
 parser.add_argument("exam2", help = "The second exam in the comparison.")
+parser.add_argument("--exam3", help = "The third exam in the comparison.")
 parser.add_argument("--truncation", help = "Should the LCA be performed on \
                     samples that were truncated at the same length?", choices = 
                     ["yes", "no"], default = "yes")
@@ -198,6 +207,7 @@ parser.add_argument("--nationality", help = "For which nationality do you \
 args = parser.parse_args()
 name_exam1 = args.exam1
 name_exam2 = args.exam2
+name_exam3 = args.exam3
 trunc = args.truncation
 natio = args.nationality
     
@@ -214,23 +224,20 @@ elif trunc == "no":
 # Create dataframes with LCA results for the two exams
 exam1 = create_pandas_df(lca_results_dir, name_exam1)
 exam2 = create_pandas_df(lca_results_dir, name_exam2)
+if name_exam3:
+    exam3 = create_pandas_df(lca_results_dir, name_exam3)
 
 # Establish the language each exam was written in
-if "EN" in name_exam1:
-    lang1 = "EN"
-elif "NL" in name_exam1:
-    lang1 = "NL"
-
-if "EN" in name_exam2:
-    lang2 = "EN"
-elif "NL" in name_exam2:
-    lang2 = "NL"
+lang1 = exam_language(name_exam1)
+lang2 = exam_language(name_exam2)
+if name_exam3:
+    lang3 = exam_language(name_exam3)
 
 # Read in subject info
 subject_info = prep.read_subject_info(data_dir)
 
 # Calculate correlation between grades and ECTS
-corr_grade_ects(subject_info)
+#corr_grade_ects(subject_info)
 
 # Define required measures
 sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
@@ -240,13 +247,41 @@ lca_measures = list(exam1.columns)[exam1.columns.get_loc('ld'):]
 # Optionally, apply filters
 filtered_exam1 = filter_df(exam1, sel_measures)
 filtered_exam2 = filter_df(exam2, sel_measures)
+if name_exam3: 
+    filtered_exam3 = filter_df(exam3, sel_measures)
 
 # Join dataframes
 data1 = exam1.join(subject_info)
 data2 = exam2.join(subject_info)
+if name_exam3:
+    data3 = exam3.join(subject_info)
+    
+# Investigate how many subjects did all exams
+assert lang1 == lang2 == lang3, "Please select exams that are all the same language."
+
+# Exam name without _(un)corrected and .txt
+short_name1 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam1)
+short_name2 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam2)
+short_name3 = re.sub("_(?:un)?corrected(?:_\w*)?.txt", "", name_exam3)
+exams = [short_name1, short_name2, short_name3]
+
+# TODO: What if only 2 exams are entered as arguments?
+
+# Create empty dataframe for the given language
+match_index = pd.DataFrame(index = subject_info[subject_info['Track']==lang1].index, columns = exams)
+
+for exam in exams:
+    print(exam)
+    print(exam.index)
+# =============================================================================
+#     for index in exam.index:
+#         print(index)
+#         match_index.at[index, exam] = "Yes"
+# 
+# =============================================================================
 
 # =============================================================================
-# # Compare the two exams
+# # Compare exams
 # print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
 # 
 # if lang1 == lang2:
