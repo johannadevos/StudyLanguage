@@ -143,7 +143,12 @@ def correlations(df, results_dir, lca_min_sam):
     else:
         print("You should implement Pearson's correlation coefficient.")
 
-
+    # Scatter plot
+    df.plot(kind ='scatter', x ='wordtokens', y = 'ld')
+    df.plot(kind ='scatter', x ='wordtokens', y = 'ls2')
+    df.plot(kind ='scatter', x ='wordtokens', y = 'msttr')
+    
+    
 def create_descr_dir(results_dir, dir_name):
     descr_dir = os.path.join(results_dir, dir_name)
     if not os.path.exists(descr_dir):
