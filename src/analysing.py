@@ -33,7 +33,7 @@ def filter_df(df, measures, lca_min_sam):
     words or more.""" 
     
     # Only use selected measures
-    df = df.loc[: , measures]
+    #df = df.loc[: , measures]
     
     # Remove entries under a certain word length
     df = df[df.wordtokens >= lca_min_sam]
@@ -310,7 +310,7 @@ subject_info = prep.read_subject_info(data_dir)
 #corr_grade_ects(subject_info)
 
 # Define required measures
-sel_measures = ['wordtokens', 'ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
+sel_measures = ['wordtokens', 'ld', 'ls2', 'msttr']
 all_measures = list(exam1.columns)
 lca_measures = list(exam1.columns)[exam1.columns.get_loc('ld'):]
 
@@ -321,10 +321,10 @@ if name_exam3:
     filtered_exam3 = filter_df(exam3, sel_measures, lca_min_sam)
 
 # Join dataframes
-data1 = exam1.join(subject_info)
-data2 = exam2.join(subject_info)
+data1 = filtered_exam1.join(subject_info)
+data2 = filtered_exam2.join(subject_info)
 if name_exam3:
-    data3 = exam3.join(subject_info)
+    data3 = filtered_exam3.join(subject_info)
     
 # Investigate how many students took part in each exam
 assert name_exam3, "For the below function, please enter three exams as arguments."
@@ -337,12 +337,10 @@ print("\nTruncating the data at length", str(lca_min_sam), ":")
 match_index = overlap_between_exams(filtered_exam1, filtered_exam2, 
                                     filtered_exam3, name_exam1, name_exam2, 
                                     name_exam3)
-# =============================================================================
-# # Compare exams
-# print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
-# 
-# if lang1 == lang2:
-#     diff_scores = same_lang(data1, data2, sel_measures, natio)
-# elif lang1 != lang2:
-#     other_lang(data1, data2, sel_measures, natio)
-# =============================================================================
+# Compare exams
+print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
+
+if lang1 == lang2:
+    diff_scores = same_lang(data1, data2, sel_measures, natio)
+elif lang1 != lang2:
+    other_lang(data1, data2, sel_measures, natio)
