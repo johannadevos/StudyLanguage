@@ -27,7 +27,7 @@ def create_pandas_df(lca_results_dir, filename):
     return df
 
 
-def filter_df(df, measures):
+def filter_df(df, measures, lca_min_sam):
     """A function that subsets only those columns (i.e., LCA measures) we are
     interested in, and in addition only includes writing samples with fifty
     words or more.""" 
@@ -35,8 +35,8 @@ def filter_df(df, measures):
     # Only use selected measures
     df = df.loc[: , measures]
     
-    # Remove empty entries
-    #df = df[df.wordtokens != 0]
+    # Remove entries under a certain word length
+    df = df[df.wordtokens >= lca_min_sam]
     
     return df
 
@@ -263,6 +263,8 @@ def overlap_between_exams(exam1, exam2, exam3, name_exam1, name_exam2,
     
 # Parse arguments
 parser = argparse.ArgumentParser()
+parser.add_argument("lca_min_sam", help = "Choose the minimal sample size \
+                    with which the data were preprocessed.")
 parser.add_argument("exam1", help = "The first exam in the comparison.")
 parser.add_argument("exam2", help = "The second exam in the comparison.")
 parser.add_argument("--exam3", help = "The third exam in the comparison.")
@@ -274,6 +276,7 @@ parser.add_argument("--nationality", help = "For which nationality do you \
                     default = "NL")
 
 args = parser.parse_args()
+lca_min_sam = int(args.lca_min_sam)
 name_exam1 = args.exam1
 name_exam2 = args.exam2
 name_exam3 = args.exam3
@@ -307,15 +310,15 @@ subject_info = prep.read_subject_info(data_dir)
 #corr_grade_ects(subject_info)
 
 # Define required measures
-sel_measures = ['ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
+sel_measures = ['wordtokens', 'ld', 'ls2', 'vs2', 'ndwesz', 'cttr', 'svv1']
 all_measures = list(exam1.columns)
 lca_measures = list(exam1.columns)[exam1.columns.get_loc('ld'):]
 
 # Optionally, apply filters
-filtered_exam1 = filter_df(exam1, sel_measures)
-filtered_exam2 = filter_df(exam2, sel_measures)
+filtered_exam1 = filter_df(exam1, sel_measures, lca_min_sam)
+filtered_exam2 = filter_df(exam2, sel_measures, lca_min_sam)
 if name_exam3: 
-    filtered_exam3 = filter_df(exam3, sel_measures)
+    filtered_exam3 = filter_df(exam3, sel_measures, lca_min_sam)
 
 # Join dataframes
 data1 = exam1.join(subject_info)
@@ -324,15 +327,22 @@ if name_exam3:
     data3 = exam3.join(subject_info)
     
 # Investigate how many students took part in each exam
-assert exam3, "For the below function, please enter three exams as arguments."
+assert name_exam3, "For the below function, please enter three exams as arguments."
+
+print("Not truncating the data at a certain length:")
 match_index = overlap_between_exams(exam1, exam2, exam3, name_exam1, 
                                     name_exam2, name_exam3)
 
-   
-# Compare exams
-print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
-
-if lang1 == lang2:
-    diff_scores = same_lang(data1, data2, sel_measures, natio)
-elif lang1 != lang2:
-    other_lang(data1, data2, sel_measures, natio)
+print("\nTruncating the data at length", str(lca_min_sam), ":")
+match_index = overlap_between_exams(filtered_exam1, filtered_exam2, 
+                                    filtered_exam3, name_exam1, name_exam2, 
+                                    name_exam3)
+# =============================================================================
+# # Compare exams
+# print("\nCalculating:", name_exam2[:-4], "minus", name_exam1[:-4], "\n")
+# 
+# if lang1 == lang2:
+#     diff_scores = same_lang(data1, data2, sel_measures, natio)
+# elif lang1 != lang2:
+#     other_lang(data1, data2, sel_measures, natio)
+# =============================================================================

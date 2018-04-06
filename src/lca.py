@@ -224,7 +224,7 @@ def run_lca(standard, directory, language):
                             sverbtypes[word]=1
                             slextypes[word]=1
                             slextokens+=1
-    
+                            
         # 0. basic statistics
         mls=division(wordtokens,sentences)
     

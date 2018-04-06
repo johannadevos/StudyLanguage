@@ -458,11 +458,11 @@ def run_lca(filename, data_dir, results_dir, language, lca_min_sam):
     
     if not "STAT_C" in str(filename):
         untrucated_directory = os.path.join(data_dir, "indiv_files_untruncated", filename[:-4])
-        truncated_directory = os.path.join(data_dir, "indiv_files_truncated", filename[:-4])
+        #truncated_directory = os.path.join(data_dir, "indiv_files_truncated", filename[:-4])
 
         # Run LCA
         untrucated_results = lca.run_lca(lca_min_sam, untrucated_directory, language)
-        truncated_results = lca.run_lca(lca_min_sam, truncated_directory, language)
+        #truncated_results = lca.run_lca(lca_min_sam, truncated_directory, language)
 
         # Write untrucated LCA results to output file
         untrucated_outfile = os.path.join(results_dir, "lca_untruncated", str(filename[:-4] + ".txt"))
@@ -471,23 +471,26 @@ def run_lca(filename, data_dir, results_dir, language, lca_min_sam):
             for result in untrucated_results:
                 f.write(str(result))
         
-        # Write truncated LCA results to output file
-        truncated_outfile = os.path.join(results_dir, "lca_truncated", str(filename[:-4] + ".txt"))
-
-        with open (truncated_outfile, "w") as f:
-            for result in truncated_results:
-                f.write(str(result))
-
+# =============================================================================
+#         # Write truncated LCA results to output file
+#         truncated_outfile = os.path.join(results_dir, "lca_truncated", str(filename[:-4] + ".txt"))
+# 
+#         with open (truncated_outfile, "w") as f:
+#             for result in truncated_results:
+#                 f.write(str(result))
+# 
+# =============================================================================
+    
     elif "STAT_C" in str(filename):
         questions = ["2aCaus", "2aDec", "4a"]
 
         for question in questions:
             untrucated_directory = os.path.join(data_dir, "indiv_files_untruncated", filename[:-4], question)
-            truncated_directory = os.path.join(data_dir, "indiv_files_truncated", filename[:-4], question)
+            #truncated_directory = os.path.join(data_dir, "indiv_files_truncated", filename[:-4], question)
             
             # Run LCA
             untrucated_results = lca.run_lca(lca_min_sam, untrucated_directory, language)
-            truncated_results = lca.run_lca(lca_min_sam, truncated_directory, language)
+            #truncated_results = lca.run_lca(lca_min_sam, truncated_directory, language)
 
             # Write untrucated LCA results to output file
             untrucated_outfile = os.path.join(results_dir, "lca_untruncated", str(filename[:-4] + "_" + question + ".txt"))
@@ -496,12 +499,14 @@ def run_lca(filename, data_dir, results_dir, language, lca_min_sam):
                 for result in untrucated_results:
                     f.write(str(result))
                     
-            # Write truncated LCA results to output file
-            truncated_outfile = os.path.join(results_dir, "lca_truncated", str(filename[:-4] + "_" + question + ".txt"))
-
-            with open (truncated_outfile, "w") as f:
-                for result in truncated_results:
-                    f.write(str(result))                                    
+# =============================================================================
+#             # Write truncated LCA results to output file
+#             truncated_outfile = os.path.join(results_dir, "lca_truncated", str(filename[:-4] + "_" + question + ".txt"))
+# 
+#             with open (truncated_outfile, "w") as f:
+#                 for result in truncated_results:
+#                     f.write(str(result))                                    
+# =============================================================================
 
 
 ### ------------
@@ -585,29 +590,30 @@ def main():
 
     # Loop through files to read, analyze and write
     for filename in files:
+        if not "uncorrected" in filename:
 
-        print("\n{}\n".format(filename[:-4]))
-
-        # Read and preprocess data
-        raw_data = open_file(os.path.join(raw_data_dir, filename)) # Read data from file
-        prep_data = make_readable(raw_data) # Make student answers readable
-        df, cols = create_df(prep_data, filename) # Create and fill dataframe with student data
-        df = remove_subjects(df, good_subjects) # Remove entries where the subject code is unknown
-        #df = df[:10] # To try things out
-
-        if language == "EN":
-            df = prep_en(df, filename) # Tokenize, POS tag, and lemmatize
-        elif language == "NL":
-            df = prep_nl(df, filename) # Tokenize, POS tag, and lemmatize
-
-        # Create untrucated LCA input files
-        create_lca_input(data_dir, df, filename)
-        
-        # Create LCA input files that are cut off at a certain number of words
-        truncate_indiv_files(filename, data_dir, language, lca_min_sam)
-
-        # Run the LCA and write to file
-        run_lca(filename, data_dir, results_dir, language, lca_min_sam)
+            print("\n{}\n".format(filename[:-4]))
+    
+            # Read and preprocess data
+            raw_data = open_file(os.path.join(raw_data_dir, filename)) # Read data from file
+            prep_data = make_readable(raw_data) # Make student answers readable
+            df, cols = create_df(prep_data, filename) # Create and fill dataframe with student data
+            df = remove_subjects(df, good_subjects) # Remove entries where the subject code is unknown
+            #df = df[:10] # To try things out
+    
+            if language == "EN":
+                df = prep_en(df, filename) # Tokenize, POS tag, and lemmatize
+            elif language == "NL":
+                df = prep_nl(df, filename) # Tokenize, POS tag, and lemmatize
+    
+            # Create untrucated LCA input files
+            create_lca_input(data_dir, df, filename)
+            
+            # Create LCA input files that are cut off at a certain number of words
+            #truncate_indiv_files(filename, data_dir, language, lca_min_sam)
+    
+            # Run the LCA and write to file
+            run_lca(filename, data_dir, results_dir, language, lca_min_sam)
 
 
 ### --------
