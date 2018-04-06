@@ -102,10 +102,9 @@ def all_results(results_dir):
     
     # Loop through all results from corrected files and append to big dataframe
     for file in all_result_files:
-        if file.endswith("corrected.txt"):
-            df = pd.read_csv(os.path.join(lca_dir, file), sep = ",")
-            appended_data.append(df)
-    
+        df = pd.read_csv(os.path.join(lca_dir, file), sep = ",")
+        appended_data.append(df)
+
     return pd.concat(appended_data)
 
 
@@ -113,6 +112,7 @@ def correlations(df, results_dir, lca_min_sam):
     
     # Only use samples that are longer than the specified cut-off point
     df = df[df.wordtokens >= lca_min_sam]
+    print(df) 
     
     # Find columns that contain LCA measures
     index_ld = df.columns.get_loc('ld')
