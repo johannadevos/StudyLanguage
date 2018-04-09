@@ -287,11 +287,7 @@ natio = args.nationality
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data')
 results_dir = os.path.join(src_dir, '..', 'results')
-
-if trunc == "yes":
-    lca_results_dir = os.path.join(results_dir, 'lca_truncated')
-elif trunc == "no":
-    lca_results_dir = os.path.join(results_dir, 'lca_untruncated')
+lca_results_dir = os.path.join(results_dir, 'lca_untruncated')
 
 # Create dataframes with LCA results for the two exams
 exam1 = create_pandas_df(lca_results_dir, name_exam1)
@@ -333,7 +329,7 @@ print("Not truncating the data at a certain length:")
 match_index = overlap_between_exams(exam1, exam2, exam3, name_exam1, 
                                     name_exam2, name_exam3)
 
-print("\nTruncating the data at length", str(lca_min_sam), ":")
+print("\nOnly using data with a minimum length of", str(lca_min_sam))
 match_index = overlap_between_exams(filtered_exam1, filtered_exam2, 
                                     filtered_exam3, name_exam1, name_exam2, 
                                     name_exam3)
@@ -344,3 +340,4 @@ if lang1 == lang2:
     diff_scores = same_lang(data1, data2, sel_measures, natio)
 elif lang1 != lang2:
     other_lang(data1, data2, sel_measures, natio)
+
