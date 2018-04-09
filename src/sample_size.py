@@ -59,7 +59,7 @@ def calculate_descriptives(files, data_dir, results_dir):
                     #histogram(wordtokens, exam, question, output_dir=output_dir)
     
 
-def histogram(variable, x_axis_title, question=None, output_dir=None):
+def histogram(variable, title, question=None, output_dir=None):
     
     # Histogram
     plt.rcParams["patch.force_edgecolor"] = True
@@ -69,13 +69,13 @@ def histogram(variable, x_axis_title, question=None, output_dir=None):
     ax.set_xlabel('Length (words)')
     ax.set_ylabel('Counts')
     if not question:
-        ax.set_title('{}'.format(x_axis_title))
+        ax.set_title('{}'.format(title))
         if output_dir:
-            plt.savefig('{}\{}.png'.format(output_dir, x_axis_title))
+            plt.savefig('{}\{}.png'.format(output_dir, title))
     elif question:
-        ax.set_title('{}_{}'.format(x_axis_title, question))
+        ax.set_title('{}_{}'.format(title, question))
         if output_dir:
-            plt.savefig('{}\{}_{}.png'.format(output_dir, x_axis_title, 
+            plt.savefig('{}\{}_{}.png'.format(output_dir, title, 
                         question))        
     #plt.show(fig)
     
@@ -119,7 +119,9 @@ def correlations(df, results_dir, lca_min_sam):
     lca_measures = df.columns[index_ld:]
     
     # Test whether the text length is normally distributed
+    histogram(df['wordtokens'], 'Distribution of text lengths')
     test_stat, p = normaltest(df['wordtokens'])
+    print(test_stat, p)
     
     # Set up file where results should be stored
     destination = os.path.join(results_dir, "length_descriptives", 
@@ -146,6 +148,7 @@ def correlations(df, results_dir, lca_min_sam):
     # Scatter plot
     df.plot(kind ='scatter', x ='wordtokens', y = 'ld')
     df.plot(kind ='scatter', x ='wordtokens', y = 'ls2')
+    df.plot(kind ='scatter', x ='wordtokens', y = 'ndwesz')
     df.plot(kind ='scatter', x ='wordtokens', y = 'msttr')
     
     
