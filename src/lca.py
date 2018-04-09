@@ -18,28 +18,30 @@ def getndwfirstz(z,lemmalist):
         ndwfirstztype[lemma]=1
     return len(ndwfirstztype.keys())
 
-# NDW expected random z words, 10 trials
+# NDW expected random z words, 10,000 trials
 def getndwerz(z,lemmalist):
+    print("\tTaking 10,000 samples to calculate NDWERZ...")
     ndwerz=0
-    for i in range(10):
+    for i in range(10000):
         ndwerztype={}
         erzlemmalist=random.sample(lemmalist,z)
         for lemma in erzlemmalist:
             ndwerztype[lemma]=1
         ndwerz+=len(ndwerztype.keys())
-    return ndwerz/10.0
+    return ndwerz/10000.0
 
-# NDW expected random sequences of z words, 10 trials
+# NDW expected random sequences of z words, 10,000 trials
 def getndwesz(z,lemmalist):
+    print("\tTaking 10,000 samples to calculate NDWERS...")
     ndwesz=0
-    for i in range(10):
+    for i in range(10000):
         ndwesztype={}
         startword=random.randint(0,len(lemmalist)-z)
         eszlemmalist=lemmalist[startword:startword+z]
         for lemma in eszlemmalist:
             ndwesztype[lemma]=1
         ndwesz+=len(ndwesztype.keys())
-    return ndwesz/10.0
+    return ndwesz/10000.0
 
 # MSTTR
 def getmsttr(z,lemmalist):
