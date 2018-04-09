@@ -20,7 +20,6 @@ def getndwfirstz(z,lemmalist):
 
 # NDW expected random z words, 10,000 trials
 def getndwerz(z,lemmalist):
-    print("\tTaking 10,000 samples to calculate NDWERZ...")
     ndwerz=0
     for i in range(10000):
         ndwerztype={}
@@ -32,7 +31,6 @@ def getndwerz(z,lemmalist):
 
 # NDW expected random sequences of z words, 10,000 trials
 def getndwesz(z,lemmalist):
-    print("\tTaking 10,000 samples to calculate NDWERS...")
     ndwesz=0
     for i in range(10000):
         ndwesztype={}
