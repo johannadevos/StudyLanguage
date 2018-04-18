@@ -33,7 +33,7 @@ def filter_df(df, measures, lca_min_sam):
     words or more.""" 
     
     # Only use selected measures
-    #df = df.loc[: , measures]
+    df = df.loc[: , measures]
     
     # Remove entries under a certain word length
     df = df[df.wordtokens >= lca_min_sam]
@@ -302,7 +302,7 @@ subject_info = prep.read_subject_info(data_dir)
 #corr_grade_ects(subject_info)
 
 # Define required measures
-sel_measures = ['wordtokens', 'ld', 'ls2', 'msttr']
+sel_measures = ['wordtokens', 'ld', 'ls2', 'ndwesz', 'msttr']
 all_measures = list(exam1.columns)
 lca_measures = list(exam1.columns)[exam1.columns.get_loc('ld'):]
 
