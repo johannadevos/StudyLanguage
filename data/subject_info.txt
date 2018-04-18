@@ -1,0 +1,615 @@
+﻿SubjectCode	Gender	Track	Natio1	TrackNatio1	DropOut	SchoolMean	SchoolDutch	SchoolEnglish	MeanPsy	ECTSPsyObtained	ECTSPsyTaken	ECTSOther	ECTSTotal	AIP_A	AIP_B	AV	PiA	ProfVaardigA	ProfVaardigB	MethvOnd	StatA	OP1	ProefPers	Brein1	Gedrag1	Persoon1	PassedBSA
+100	M	NL	DU	DU_in_NL	AfterYear1				6.3	48	60	0	48	6	6.5	5	6.5	6.5	6.5	7	7	ONV	VLD	6.5	6	7.5	Yes
+101	V	NL	NL	NL_in_NL	AfterYear1				6.9	41	41	60	101	6.5	9.5	8	8	7	8	9	7.5	8	i		ND		No
+102	V	NL	NL	NL_in_NL	AfterYear1	6.07	6	7	5.2	29	53	0	29	7.5	7.5	ONV	6	9.5	7	7	ND	ONV	i	1.5	5	6.5	No
+103	V	NL	NL	NL_in_NL	AfterYear1	6.18	7	8	6.1	33	47	60	93	5	6.5	7	3.5	7.5	7	7	5	6.5	i	6			No
+104	M	NL	NL	NL_in_NL	AfterYear1	6.40	6	8	4.8	25	59	12	37	6.5	6	ONV	3.5	6.5	ONV	4.5	1	ONV	i	6	3	6	No
+105	V	NL	NL	NL_in_NL	No	6.40	6	6	7.9	60	60	0	60	7	7	7.5	6.5	8	8.5	9.5	9	8	VLD	8	7.5	8	Yes
+106	V	NL	NL	NL_in_NL	No	6.20	7	5	6.6	47	59	0	47	6	6.5	5	6.5	7.5	7.5	8.5	8	6.5	i	6.5	4	8	Yes
+108	M	NL	NL	NL_in_NL	DuringYear1	5.93	6	6	5.1	18	32	0	18	VR	4.5	4.5	1.5	6	i	VR	i	i		VR		i	No
+109	M	NL	NL	NL_in_NL	No				8.3	60	60	0	60	7.5	9	8	8	8.5	7.5	8	9	8	VLD	9	9	8	Yes
+110	M	NL	NL	NL_in_NL	AfterYear1	6.50	6	7	6.8	44	59	9	53	7.5	7.5	ONV	6.5	8	5	6	8.5	ONV	i	7	7	8	Yes
+111	V	NL	NL	NL_in_NL	No	6.27	6	6	7.3	60	60	48	108	6	6	6.5	7.5	7	7.5	8.5	8.5	7	VLD	8	7.5	7.5	Yes
+112	V	NL	NL	NL_in_NL	No	5.89	6	6	7.3	60	60	60	120	6	7.5	8	6	8.5	8	8	VR	8	VLD	7	7	8.5	Yes
+113	M	NL	NL	NL_in_NL	No	6.09	6	7	7	47	59	0	47	6.5	6.5	5	7	8.5	7	8	8.5	ONV	i	7	7.5	8	Yes
+114	M	NL	NL	NL_in_NL	No	8.50	9	8	8.2	44	53	28	72	9.5	9.5	9	8.5	8.5	ONV	9	8.5	ONV	i	8.5		8.5	Yes
+115	V	NL	NL	NL_in_NL	No	7.50	8	8	7.9	60	60	0	60	6.5	8.5	8	8.5	8	7.5	8.5	8.5	7	VLD	7	9	8	Yes
+116	V	NL	NL	NL_in_NL	AfterYear1	6.30	6	7	5.7	34	60	24	58	6	4.5	7	5	6	7.5	6	3.5	ONV	VLD	4.5	6.5	7	No
+117	V	NL	NL	NL_in_NL	No	6.00	6	6	6.7	60	60	36	96	6	6	7	6	8	8	7	7.5	7	VLD	6	6	7	Yes
+118	V	NL	DU	DU_in_NL	No				7.8	60	60	0	60	6	8.5	7	8.5	8	7.5	7.5	8	7.5	VLD	8	9	8.5	Yes
+119	V	NL	NL	NL_in_NL	No	6.62	7	6	6.6	54	60	0	54	6.5	6	7.5	7.5	6	7.5	7.5	7.5	7	VLD	6	5	6.5	Yes
+120	M	NL	NL	NL_in_NL	No	6.83	6	7	6.6	60	60	26.5	86.5	6.5	8	6.5	6.5	6.5	6	6.5	6.5	6.5	VLD	6	6.5	7	Yes
+121	V	NL	NL	NL_in_NL	No	6.58	6	6	6.5	54	60	0	54	6	6	6.5	6.5	6.5	7	6.5	8.5	7	VLD	3.5	6.5	7.5	Yes
+122	V	NL	NL	NL_in_NL	No	6.70	7	6	6.8	54	60	0	54	7.5	7	5	6.5	7.5	7.5	7	7	6.5	VLD	6	7	8	Yes
+123	V	NL	DU	DU_in_NL	No				7.1	54	60	0	54	6	8	5	8.5	6	8	7.5	8	7.5	VLD	7	7	8	Yes
+124	V	NL	DU	DU_in_NL	No				7.2	54	60	0	54	7	8.5	8	6.5	6	8	8	7.5	7	VLD	5	6.5	8	Yes
+125	M	NL	NL	NL_in_NL	AfterYear1	6.00	6	7	3.5	13	29	18	31	6.5	6	ONV	5	6.5	ONV	5	ND		i	ND		ND	No
+126	V	NL	NL	NL_in_NL	No	8.00	8	7	8.1	60	60	0	60	6.5	8	7	8.5	9.5	8	8.5	9	8	VLD	7	9.5	9	Yes
+127	V	NL	NL	NL_in_NL	No	7.58	7	7	7.8	60	60	60	120	7	8.5	8	7	9.5	8	8	VR	8	VLD	8	8.5	8	Yes
+128	M	NL	NL	NL_in_NL	DuringYear1	6.17	7	6	2.6	4	9	0	4	5	ND	i	ND	ND		6.5			i				No
+129	M	NL	NL	NL_in_NL	AfterYear1	6.45	6	7	4.5	8	47	12	20	5	8	ONV	2	8.5	ONV	5	4	ONV	i	4		ND	No
+130	M	NL	NL	NL_in_NL	No	6.56	6	7	6.4	48	60	2	50	6	7	ONV	7	6.5	7	7	7	ONV	VLD	6	6	8	Yes
+131	M	NL	NL	NL_in_NL	AfterYear1	6.20	6	6	3.2	8	23	0	8	6	5	ONV	ND	6		4	ND		i	ND			No
+132	V	NL	NL	NL_in_NL	No	6.40	6	7	6.9	60	60	6	66	7	7	7	7	6.5	7.5	7	7.5	6.5	VLD	6	7	7	Yes
+134	M	NL	NL	NL_in_NL	No	7.33	7	8	8.8	60	60	0	60	8.5	9.5	9	8.5	9	7.5	9	9.5	8.5	VLD	8.5	9.5	8.5	Yes
+135	V	NL	NL	NL_in_NL	No	6.09	5	6	6.1	34	60	0	34	5	6	5	4	7.5	6.5	6.5	8	5	VLD	7	5	7	No
+136	V	NL	NL	NL_in_NL	AfterYear1				6	33	54	0	33	6	7	i	3.5	8.5	7	7	5	ONV	VLD	4.5	7	6.5	No
+137	V	NL	NL	NL_in_NL	No	6.09	6	6	7.8	60	60	60	120	6.5	8.5	8.5	7	9.5	7.5	8	8	7	VLD	7.5	8	8	Yes
+138	V	NL	NL	NL_in_NL	AfterYear1	6.83	6	6	6.6	54	60	0	54	6	7.5	7	7.5	9.5	6.5	6	7	ONV	VLD	6	6	7	Yes
+139	V	NL	DU	DU_in_NL	AfterYear1				4.1	7	53	0	7	3.5	2.5	5	2.5	9.5	ONV	6	3	ONV	i	5	ND	5	No
+140	M	NL	DU	DU_in_NL	No				6.3	54	60	0	54	6	6	6	6	6.5	7	6	7	6.5	VLD	7	5	7	Yes
+141	V	NL	NL	NL_in_NL	No				7.9	60	60	60	120	8.5	9	6	8	9	6.5	8	8.5	7	VLD	7.5	8	9	Yes
+142	M	NL	DU	DU_in_NL	No				5.1	17	60	0	17	6.5	7	5	4	6	7	4	5	ONV	VLD	3	4.5	5	No
+143	V	NL	DU	DU_in_NL	No				6.5	48	60	0	48	7.5	7	5	6	8.5	7	7.5	6.5	6.5	VLD	4	6.5	8	Yes
+144	V	NL	NL	NL_in_NL	No	7.82	7	8	7.3	54	60	5	59	VR	8	8	7.5	7	7	8	8	ONV	VLD	7.5	7	8.5	Yes
+145	V	NL	NL	NL_in_NL	No	6.33	6	7	6.5	51	57	0	51	6	6.5	6.5	6.5	6.5		7	7.5	7.5	VLD	4.5	6	7.5	Yes
+146	V	NL	DU	DU_in_NL	DuringYear1					0	0	0	0	i		i	i			i			i				No
+148	V	NL	NL	NL_in_NL	AfterYear1	6.45	7	8	5.4	28	60	0	28	5	6.5	7	6.5	6	5	6	4.5	ONV	VLD	4.5	2	8	No
+149	V	NL	DU	DU_in_NL	No				7	54	60	0	54	7	6.5	5	6	9	7	7	8	7.5	VLD	7	6	8.5	Yes
+150	V	NL	NL	NL_in_NL	No	6.55	7	7	7.5	60	60	0	60	6	8.5	7	7	9	8	8	9	7	VLD	6	7.5	8	Yes
+151	M	NL	DU	DU_in_NL	DuringYear1					0	0	0	0			i							i				No
+152	V	NL	NL	NL_in_NL	No	6.36	6	7	6.3	45	60	0	45	6	6.5	5	4.5	8	7.5	7	7	7	VLD	4.5	6	7	Yes
+153	M	NL	NL	NL_in_NL	No	6.64	6	8	6.5	57	60	0	57	6	6.5	6.5	7	8.5	5	6.5	7.5	7	VLD	6	6	6	Yes
+154	V	NL	NL	NL_in_NL	No	6.45	7	7	7.4	60	60	0	60	6.5	8	7	7.5	8.5	7	8.5	8	7	VLD	6.5	8	7.5	Yes
+155	V	NL	NL	NL_in_NL	No	6.60	6	7	6.8	54	60	0	54	6	7.5	5	6.5	8.5	7	7.5	7	7	VLD	6	6.5	8.5	Yes
+156	V	NL	DU	DU_in_NL	No				7.3	54	60	0	54	7	8.5	5	7.5	8.5	6.5	7	8.5	7	VLD	7	7.5	8	Yes
+157	V	NL	NL	NL_in_NL	No	6.27	7	6	7.1	54	60	0	54	8.5	7.5	7.5	6.5	6.5	7.5	7	8	7.5	VLD	4.5	6.5	8	Yes
+158	V	NL	DU	DU_in_NL	No				6.1	42	60	0	42	7.5	6.5	ONV	7	7	6.5	6	6.5	ONV	VLD	4.5	6	7	Yes
+159	V	NL	DU	DU_in_NL	No				8	60	60	0	60	7	8	7.5	7.5	8.5	7	8	9	8	VLD	7	8.5	9.5	Yes
+160	V	NL	NL	NL_in_NL	No	6.00	6	6	7.6	42	42	0	42	7.5	8	8.5	6.5			7.5	8	7.5	VLD			7	Yes
+161	V	NL	DU	DU_in_NL	No				7.7	60	60	0	60	6.5	8	8.5	6	6	7	6	8.5	8	VLD	7.5	9	9	Yes
+162	M	NL	NL	NL_in_NL	AfterYear1	6.27	6	6	4.8	18	53	0	18	4	6	5	4	6.5	ONV	7.5	5	ONV	i	4.5	ND	6.5	No
+163	V	NL	NL	NL_in_NL	No	7.55	7	8	8.2	60	60	0	60	8	8.5	8.5	8.5	7.5	8	9	8.5	7.5	VLD	7.5	8.5	8.5	Yes
+164	V	NL	NL	NL_in_NL	No	7.50	7	8	7.5	60	60	0	60	7.5	6.5	7.5	7	7.5	7	8.5	9	7	VLD	7	7.5	8	Yes
+165	V	NL	NL	NL_in_NL	No	6.58	6	6	5.9	40	60	0	40	6	4	ONV	4	6	7.5	6	8	7	VLD	6	4.5	6.5	No
+166	V	NL	NL	NL_in_NL	No	8.15	7	8	8.7	60	60	0	60	9	9	8	9	8.5	7.5	8.5	9.5	7.5	VLD	9	9.5	9	Yes
+167	V	NL	DU	DU_in_NL	AfterYear1				8.3	60	60	0	60	8	9.5	8	8.5	8.5	7	8	9	7.5	VLD	9	8	9	Yes
+168	V	NL	NL	NL_in_NL	No	6.55	6	6	7.6	60	60	0	60	6	8	6.5	7	6	7.5	8.5	9	7	VLD	7.5	8	9	Yes
+169	V	NL	NL	NL_in_NL	DuringYear1	6.33	6	6	4.2	3	32	0	3	5	2.5	5	3.5	6.5		4.5	i	i	i	3	i		No
+170	V	NL	NL	NL_in_NL	No	7.27	7	7	8	60	60	0	60	7.5	8.5	7.5	7	8.5	8.5	9	9	7.5	VLD	7.5	7.5	9	Yes
+171	M	NL	NL	NL_in_NL	No	6.20	6	6	6.5	48	60	0	48	6	7.5	5	6.5	6.5	6.5	7.5	6	7	VLD	5	6.5	8	Yes
+172	V	NL	DU	DU_in_NL	AfterYear1				5.7	39	60	0	39	6.5	6	ONV	3.5	7.5	6.5	6	3.5	ONV	VLD	6	6	7.5	No
+173	V	NL	DU	DU_in_NL	AfterYear1				7.1	51	54	0	51	7.5	8	8.5	6	7	ONV	7.5	7.5		VLD	6	6.5	7.5	Yes
+174	V	NL	NL	NL_in_NL	No	6.56	6	7	7.7	60	60	0	60	6.5	8	8	7.5	9	8	9	8.5	7.5	VLD	7	6.5	8.5	Yes
+175	V	NL	NL	NL_in_NL	No	6.36	6	6	6.2	40	60	0	40	5	7.5	7.5	5	7.5	6.5	6	6.5	6.5	VLD	4.5	4	8	No
+176	V	NL	DU	DU_in_NL	No				6.3	48	60	0	48	6	6	7	6	7.5	7	6.5	8	6.5	VLD	5	4.5	6	Yes
+177	V	NL	NL	NL_in_NL	No	6.36	6	6	6.3	48	60	0	48	6	6.5	5	6.5	6.5	6	6.5	8	7	VLD	4.5	6	7.5	Yes
+178	V	NL	NL	NL_in_NL	No	6.50	7	7	7	60	60	0	60	6	7	7	7.5	8	7	8	7	7.5	VLD	6.5	6.5	7	Yes
+179	V	NL	NL	NL_in_NL	No	6.92	7	6	7.6	60	60	0	60	8.5	8	7	7.5	6.5	7.5	8	8.5	7	VLD	7.5	7	8.5	Yes
+180	V	NL	NL	NL_in_NL	DuringYear1	6.27	6	6		0	0	30	30														No
+181	V	NL	NL	NL_in_NL	No	6.64	7	8	5.8	27	59	0	27	5	6	5	2.5	9.5	6.5	6.5	8	ONV	i	5	4.5	6.5	No
+182	V	NL	NL	NL_in_NL	No	6.31	6	6	6.7	60	60	0	60	7	6	7.5	6.5	7	7.5	6.5	7	7	VLD	6	6	6.5	Yes
+183	V	NL	DU	DU_in_NL	No				7.6	60	60	0	60	6.5	8.5	7.5	8	7	7.5	8	8	7.5	VLD	7.5	6.5	8.5	Yes
+184	V	NL	DU	DU_in_NL	DuringYear1				0.1	0	0	0	0	ND	i	i	i	i		ND			i				No
+185	M	NL	NL	NL_in_NL	No	6.10	6	6	7.4	60	60	0	60	6.5	7.5	7.5	7.5	6.5	8	7	8	6.5	VLD	7.5	8	8	Yes
+186	M	NL	NL	NL_in_NL	No	6.25	6	7	7	60	60	0	60	7.5	7.5	7.5	6	7	6.5	8	7.5	6.5	VLD	6.5	6	7	Yes
+187	V	NL	DU	DU_in_NL	No				6.8	48	60	0	48	7	7	ONV	6	7	7.5	7.5	8.5	ONV	VLD	6	7.5	8	Yes
+188	V	NL	DU	DU_in_NL	No				7.3	60	60	0	60	6	8.5	6.5	6.5	7.5	6.5	7	8.5	8	VLD	6.5	6.5	8.5	Yes
+189	M	NL	NL	NL_in_NL	No	6.67	6	6	6.6	54	60	0	54	6.5	6.5	7	6	7.5	6.5	6	8.5	7	VLD	6	5	6.5	Yes
+190	V	NL	NL	NL_in_NL	DuringYear1	6.64	7	6	6.2	17	20	0	17	7.5	6	i	2.5	8.5		6	i	i	i	i			No
+191	V	NL	NL	NL_in_NL	No	6.92	6	7	7.8	60	60	0	60	7	8.5	7.5	7.5	8	7	9.5	9.5	8	VLD	7	6	8.5	Yes
+192	V	NL	NL	NL_in_NL	DuringYear1	6.36	6	8		0	0	0	0														No
+193	V	NL	NL	NL_in_NL	No	6.27	6	7	6.5	48	60	0	48	7	6	8	4.5	7.5	5	7	7.5	7	VLD	6	5	6	Yes
+194	V	NL	NL	NL_in_NL	No	6.38	6	6	7.4	60	60	0	60	7	8.5	8	7	6.5	7	8.5	7	7.5	VLD	7	7.5	7.5	Yes
+195	V	NL	NL	NL_in_NL	No	6.50	6	7	6.3	48	60	0	48	6.5	6	7	7	6.5	7	6	6.5	7	VLD	5	5	7	Yes
+196	V	NL	NL	NL_in_NL	No	6.33	6	7	7.1	60	60	0	60	6.5	8	7	7	6	8	8	8	7	VLD	6.5	6.5	7	Yes
+197	V	NL	DU	DU_in_NL	No				7.9	60	60	0	60	7	9	7.5	8	8	7	8	9	7.5	VLD	6.5	8	9.5	Yes
+198	V	NL	NL	NL_in_NL	No	7.27	8	9	6.8	60	60	0	60	6	7.5	7.5	8	7	6.5	7.5	6.5	7	VLD	6	6.5	6.5	Yes
+199	V	NL	DU	DU_in_NL	No				7.1	60	60	0	60	6.5	9	6.5	6	6.5	7.5	6	7.5	7	VLD	6.5	7	8.5	Yes
+200	V	NL	NL	NL_in_NL	No	7.64	7	7	7.7	60	60	0	60	7.5	8	7	8.5	8.5	6.5	7.5	8.5	6.5	VLD	8.5	7.5	8.5	Yes
+201	V	NL	NL	NL_in_NL	No	6.91	6	7	6.5	48	59	0	48	5	7	6.5	6	6.5	8.5	6.5	7	ONV	i	7	6.5	7	Yes
+202	V	NL	NL	NL_in_NL	No	6.58	7	7	7.3	60	60	0	60	7	6	6.5	6.5	8.5	8	8	8	7	VLD	7	7.5	8	Yes
+203	M	NL	DU	DU_in_NL	No				6.3	50	56	0	50	7	6	6.5		6	8.5	6	7.5	7	i	6	4	6	Yes
+204	V	NL	NL	NL_in_NL	No				6.9	54	60	0	54	7	7.5	5	6	8.5	6.5	7	7.5	7	VLD	7	7	7.5	Yes
+205	V	NL	NL	NL_in_NL	No	6.18	6	6	6.2	42	60	0	42	6.5	6.5	5	6.5	8	7	6	5	ONV	VLD	6	7.5	6.5	Yes
+206	V	NL	NL	NL_in_NL	No	7.75	8	9	9	60	60	0	60	9	9.5	8	9.5	10	8	9.5	9.5	8.5	VLD	9	9.5	9	Yes
+207	V	NL	NL	NL_in_NL	No	6.64	6	6	7.4	60	60	0	60	6	6.5	8	8.5	8.5	7.5	8	8.5	7	VLD	6.5	6.5	8	Yes
+208	V	NL	NL	NL_in_NL	No	6.90	7	6	7.8	60	60	0	60	7.5	8.5	7.5	8.5	9	7.5	9.5	8	7.5	VLD	7	7	7.5	Yes
+209	V	NL	NL	NL_in_NL	No	6.83	7	7	7.5	60	60	0	60	9	8	6	6.5	7.5	7.5	7	8	7.5	VLD	8	6.5	8	Yes
+210	V	NL	NL	NL_in_NL	AfterYear1	6.36	6	6	6	47	53	0	47	6	8	5	7	6.5	8	6	7	7	i	ND	6	7.5	Yes
+211	V	NL	DU	DU_in_NL	No				6.7	48	60	0	48	7.5	8	ONV	6	6.5	8	7	8	ONV	VLD	7	6	7.5	Yes
+212	M	NL	NL	NL_in_NL	No	6.64	6	6	5.3	19	59	0	19	4.5	4.5	5	4	9	ONV	6	7	ONV	i	4	4.5	6	No
+213	V	NL	NL	NL_in_NL	No	7.09	7	8	7.8	60	60	0	60	7.5	8	7.5	7.5	8.5	6.5	8	8.5	7.5	VLD	7.5	8.5	8	Yes
+214	V	NL	NL	NL_in_NL	No	6.27	7	7	7	60	60	0	60	7.5	7	6.5	6	7.5	8	6	7	6.5	VLD	7	6.5	8.5	Yes
+215	V	NL	DU	DU_in_NL	No				5.9	45	60	0	45	6	6	5	6	7	5	6.5	7	6.5	VLD	6	4	6.5	Yes
+216	M	NL	NL	NL_in_NL	No	6.58	6	7	6.4	42	60	0	42	7.5	7	5	7	7	7.5	6.5	7	ONV	VLD	6	5	8	Yes
+217	M	NL	NL	NL_in_NL	AfterYear1	6.42	6	7	6.8	60	60	0	60	6.5	7	6.5	6	7.5	7.5	6	7.5	7	VLD	6.5	6.5	7.5	Yes
+218	M	NL	NL	NL_in_NL	AfterYear1	6.33	6	7	6.7	53	59	0	53	6	6	7.5	6.5	8.5	7.5	6.5	7.5	7.5	i	4.5	6	7	Yes
+219	V	NL	NL	NL_in_NL	No	7.00	6	7	7.1	60	60	0	60	6	7.5	7	6	7	7	8	8	8	VLD	6	7	7.5	Yes
+220	V	NL	NL	NL_in_NL	No	6.73	7	6	7.5	60	60	0	60	6	7.5	7.5	6.5	7.5	6.5	8.5	8.5	7	VLD	7	9	8	Yes
+221	M	NL	NL	NL_in_NL	No	6.73	6	7	8.1	60	60	0	60	6.5	8.5	9	7.5	7.5	7.5	9	8.5	8.5	VLD	8	7.5	8.5	Yes
+222	V	NL	NL	NL_in_NL	No	6.64	7	6	7	60	60	0	60	6	7.5	7.5	7	7	7.5	7.5	8	7.5	VLD	6	6	6.5	Yes
+223	V	NL	NL	NL_in_NL	No	6.44	6	8	4.8	11	17	0	11	8	7.5	ONV	ND			ND	i		VLD	i			No
+224	V	NL	NL	NL_in_NL	No	6.90	7	7	7.9	60	60	0	60	7.5	9	7.5	6.5	8.5	7.5	7.5	9	8	VLD	6.5	7.5	9	Yes
+225	V	NL	NL	NL_in_NL	No	6.30	6	7	7.5	60	60	0	60	8	8	8	6.5	8.5	7	7.5	7	7	VLD	8	6	8.5	Yes
+226	V	NL	NL	NL_in_NL	No	6.58	6	6	6.9	54	60	0	54	6.5	6.5	5	7	7.5	7	7.5	7.5	6.5	VLD	8	7	7.5	Yes
+227	V	NL	DU	DU_in_NL	No				4.1	22	28	0	22	ND	8	i	ND			6	1.5		VLD	ND	8	7.5	No
+228	V	NL	NL	NL_in_NL	No	7.85	8	7	8.7	60	60	0	60	8.5	9.5	7	9	9.5	8	9.5	9.5	8	VLD	9.5	8.5	9	Yes
+229	V	NL	NL	NL_in_NL	DuringYear1	6.36	6	7	5.2	4	9	0	4	4.5	i	i	i	i		6	i		i				No
+230	V	NL	NL	NL_in_NL	No	7.25	7	8	7	54	60	0	54	6	6.5	ONV	7	7.5	7	8	8.5	7.5	VLD	6.5	7	7.5	Yes
+231	V	NL	DU	DU_in_NL	DuringYear1				3.5	0	9	0	0	3.5	i	i	i	i		3.5	i		i				No
+232	V	NL	NL	NL_in_NL	No	7.10	8	7	7.7	60	60	0	60	6.5	8	8	6.5	7.5	8	9	8	7.5	VLD	8	7	8.5	Yes
+233	V	NL	NL	NL_in_NL	No	6.80	7	7	7.2	60	60	0	60	7	8.5	8	7	6	6	8	6.5	7.5	VLD	6.5	7	8	Yes
+234	M	NL	NL	NL_in_NL	No	6.67	7	7	5.7	42	60	0	42	6	6	7	5	7.5	5	7	3	6.5	VLD	4.5	6	6	Yes
+235	V	NL	NL	NL_in_NL	AfterYear1	6.90	7	6	4.7	19	53	0	19	5	4	6	4	7.5	5	7	4.5	ONV	i	3.5	ND	6.5	No
+236	V	NL	DU	DU_in_NL	DuringYear1					0	0	0	0			i	i						i				No
+237	V	NL	NL	NL_in_NL	No	6.92	7	7	7.2	54	60	0	54	7	8.5	5	8.5	8	7	7	9	7	VLD	6	7	8	Yes
+238	V	NL	DU	DU_in_NL	DuringYear1				3.5	0	22	0	0	4.5	4.5	ONV	1.5	4		ND	i	i	i	i			No
+239	V	NL	DU	DU_in_NL	DuringYear1				0.1	0	0	0	0	ND		i	i			ND			i				No
+240	V	NL	NL	NL_in_NL	No				7.2	60	60	0	60	6.5	8	7	7	6	7	8	7	8	VLD	6.5	7	8	Yes
+241	M	NL	NL	NL_in_NL	AfterYear1				7.2	57	60	0	57	6	7	6.5	5	8	8.5	7	8	8	VLD	7	7	8	Yes
+242	V	NL	NL	NL_in_NL	No	6.62	6	6	7	60	60	0	60	6	7	7	7.5	6.5	7.5	8.5	8.5	6.5	VLD	6	7	7	Yes
+243	M	NL	DU	DU_in_NL	No				6.2	48	60	0	48	6.5	7	5	6	8	6.5	6	6.5	ONV	VLD	6	6	6.5	Yes
+244	V	NL	DU	DU_in_NL	No				7.2	42	48	0	42	6	9	7.5	7.5	7.5	7	8	7	ONV	VLD	8			Yes
+245	V	NL	NL	NL_in_NL	No	6.55	6	8	6.4	45	54	0	45	7.5	7	8.5	6	6	ONV	8.5	9	ONV	VLD	ND	7	7.5	Yes
+246	V	NL	NL	NL_in_NL	No	6.10	7	7	7.2	60	60	0	60	6.5	6.5	7	7.5	7	8.5	7.5	8	7.5	VLD	7	6.5	8	Yes
+247	M	NL	NL	NL_in_NL	No	6.00	6	6	6.2	44	59	0	44	9.5	6	ONV	1.5	6.5	7.5	7	7.5	ONV	i	6	6	6.5	Yes
+248	V	NL	DU	DU_in_NL	No				7.3	60	60	0	60	7	7	8.5	7	9.5	7	7.5	8	7.5	VLD	6.5	6	7	Yes
+249	V	NL	NL	NL_in_NL	No	6.58	6	7	7.5	53	59	0	53	8	8.5	5	8.5	9.5	6.5	8	8.5	7	i	6.5	7.5	7.5	Yes
+250	M	NL	NL	NL_in_NL	DuringYear1					0	0	0	0														No
+251	V	NL	NL	NL_in_NL	No	6.45	7	5	7.6	60	60	0	60	6.5	8.5	6.5	8	7	7.5	8.5	9	8	VLD	6	7.5	8.5	Yes
+252	V	NL	NL	NL_in_NL	No				6.4	54	60	0	54	6	6.5	6.5	6.5	7.5	8.5	6	6.5	6.5	VLD	6	5	7	Yes
+253	V	NL	NL	NL_in_NL	No	6.64	7	8	7.5	57	60	0	57	7.5	6.5	7.5	6.5	9.5	5	8	8.5	7	VLD	7.5	7	8.5	Yes
+254	M	NL	NL	NL_in_NL	No	6.40	6	7	6.3	40	60	0	40	5	7	5	6.5	6.5	5	8.5	7.5	ONV	VLD	7	6	7	No
+255	V	NL	DU	DU_in_NL	No				6.4	45	60	0	45	6	8	ONV	4.5	7	8	7	6	7	VLD	5	6	7.5	Yes
+256	V	NL	NL	NL_in_NL	No	7.42	7	6	7.9	60	60	0	60	6.5	8.5	7.5	7.5	9	8.5	8	9.5	7.5	VLD	7	8.5	8	Yes
+257	V	NL	NL	NL_in_NL	No				7.7	60	60	0	60	7	9	6.5	6.5	8	7	8.5	8	7	VLD	8	8.5	8.5	Yes
+258	V	NL	NL	NL_in_NL	No	6.58	6	6	6.7	54	60	0	54	7	6.5	7	6	6	7	7	8.5	ONV	VLD	6	6.5	7.5	Yes
+259	V	NL	NL	NL_in_NL	DuringYear1	6.27	7	6	4.1	0	22	0	0	5	5	ONV	4.5	4		ND	i		i				No
+260	V	NL	NL	NL_in_NL	No	7.00	7	8	7.3	54	60	0	54	7	7.5	5	7	7.5	8.5	7	8.5	6.5	VLD	8	8	8	Yes
+261	V	NL	NL	NL_in_NL	No	7.18	7	7	7.7	60	60	0	60	7.5	8.5	7	9	7.5	7	8	9	6.5	VLD	8	6.5	8.5	Yes
+263	V	NL	NL	NL_in_NL	No	7.36	7	8	7.6	60	60	0	60	6.5	8	7.5	6.5	8.5	7	8.5	9	7	VLD	7	7.5	8	Yes
+264	V	NL	NL	NL_in_NL	No	7.42	6	7	7.9	60	60	0	60	8	8	8	6.5	9.5	8	8	8.5	7	VLD	7.5	7.5	9	Yes
+265	M	NL	NL	NL_in_NL	No	6.55	5	6	7.5	57	60	0	57	6.5	9	7	4	8.5	6.5	8	9	6.5	VLD	7.5	8.5	8	Yes
+266	V	NL	NL	NL_in_NL	No	6.11	6	5	7	60	60	0	60	8	6	7	6.5	6	6.5	8	8	7.5	VLD	6.5	6	7	Yes
+267	M	NL	DU	DU_in_NL	DuringYear1				4.3	0	20	0	0	4.5	3.5	ONV				4	i		i	i			No
+268	V	NL	DU	DU_in_NL	No				5.9	36	60	0	36	7.5	6	5	6	6.5	6.5	6	6.5	ONV	VLD	5	5	6.5	No
+269	V	NL	DU	DU_in_NL	No				8.7	60	60	0	60	8.5	9.5	8	8.5	8.5	6.5	10	9	7.5	VLD	9.5	9.5	9.5	Yes
+270	M	NL	DU	DU_in_NL	DuringYear1				6	9	9	0	9	6	i	i	i	i		6			i				No
+271	V	NL	DU	DU_in_NL	AfterYear1				3.9	8	29	0	8	2.5	6	5		6		4	1						No
+272	V	NL	NL	NL_in_NL	No				6.9	54	60	0	54	9	8	5	7	7	6.5	7.5	7	6.5	VLD	6	7	7	Yes
+273	V	NL	NL	NL_in_NL	No	6.67	6	8	7.2	60	60	0	60	6	8.5	7	7	6.5	6.5	7.5	8.5	7	VLD	6	7	8	Yes
+274	V	NL	DU	DU_in_NL	No				6.8	54	60	0	54	7.5	8.5	5	6.5	7.5	6.5	7	6.5	7.5	VLD	6	6.5	7	Yes
+275	V	NL	DU	DU_in_NL	No				7.7	60	60	0	60	6.5	6.5	7	7	9.5	7	9	9	7	VLD	7.5	8.5	8	Yes
+276	M	NL	DU	DU_in_NL	No				6.9	60	60	0	60	6.5	8	6.5	7.5	6.5	6.5	6	6.5	7	VLD	7	6.5	8	Yes
+277	V	NL	NL	NL_in_NL	No	6.70	7	6	7.9	60	60	0	60	6.5	9	7.5	7.5	9.5	7	8.5	8	7	VLD	8.5	8	8	Yes
+278	M	NL	DU	DU_in_NL	No				6.5	57	60	0	57	6	6	6.5	4.5	6.5	6	6	7	7	VLD	6	6.5	8.5	Yes
+279	V	NL	NL	NL_in_NL	No	7.00	7	6	6.6	55	60	0	55	6	5	7.5	6	7.5	7.5	7	8	7	VLD	6	6	6.5	Yes
+280	V	NL	NL	NL_in_NL	No				5.7	39	60	0	39	6.5	6	6	5	7	7	6	5	ONV	VLD	3.5	6.5	6.5	No
+281	M	NL	DU	DU_in_NL	No				6.5	57	60	0	57	6	6	6.5	6	7.5	ONV	6.5	7	7	VLD	6.5	6	7.5	Yes
+282	V	NL	NL	NL_in_NL	No	6.18	6	7	7.5	54	60	0	54	7.5	9	7.5	8.5	6	7	7.5	8	7	VLD	4.5	8	9	Yes
+283	V	NL	DU	DU_in_NL	DuringYear1					0	0	0	0	i		i	i			i			i				No
+284	M	NL	NL	NL_in_NL	No	6.36	7	8	5.7	35	59	0	35	6.5	7	5	6	6.5	7	6.5	6.5	ONV	i	3.5	5	6	No
+285	V	NL	NL	NL_in_NL	No	6.67	6	6	6.5	49	60	0	49	5	7	6	6.5	6	7.5	9.5	7.5	7	VLD	5	6	6.5	Yes
+286	V	NL	NL	NL_in_NL	DuringYear1	6.57	6	8	2.3	0	4	0	0	ND	i	i	i			5			i				No
+287	M	NL	NL	NL_in_NL	No	6.70	7	8	6.8	54	60	0	54	6	7.5	5	7.5	6.5	7	6.5	7.5	7.5	VLD	6	7	8	Yes
+288	V	NL	NL	NL_in_NL	No	6.40	5	6	7.4	60	60	0	60	6.5	7	7.5	7	8	7	7.5	8.5	7.5	VLD	7.5	7	7.5	Yes
+289	V	NL	NL	NL_in_NL	No	6.36	6	8	6.2	45	60	0	45	6.5	6	7	4	6	7.5	7.5	7	ONV	VLD	5	6	7	Yes
+290	V	NL	NL	NL_in_NL	No	7.31	7	8	7.2	54	60	0	54	7	7.5	8	7.5	8.5	7	7	8.5	ONV	VLD	6.5	6.5	8.5	Yes
+291	V	NL	NL	NL_in_NL	No	6.92	6	7	8.2	60	60	0	60	8	9	8	8.5	8.5	8	8.5	9.5	7	VLD	7.5	8	9	Yes
+292	V	NL	NL	NL_in_NL	AfterYear1	7.00	7	7	7.5	60	60	0	60	7	8	7	7.5	7	7.5	8	7.5	7.5	VLD	7	7.5	8.5	Yes
+293	V	NL	NL	NL_in_NL	No	6.64	7	7	7.4	60	60	0	60	6	7	8.5	7.5	7.5	7	7.5	8	7	VLD	8.5	6	8.5	Yes
+294	V	NL	NL	NL_in_NL	No	6.64	6	6	7.3	60	60	0	60	6	8	7	7.5	7.5	7.5	7	8	7	VLD	7	7.5	8	Yes
+295	M	NL	NL	NL_in_NL	No	6.18	6	6	6.8	44	59	0	44	6	8.5	7	6.5	7	5	8.5	8	ONV	i	7	5	8	Yes
+296	V	NL	NL	NL_in_NL	No				3.4	3	18	0	3	5	ND	ONV	ND	6.5		3.5	i	i	i	i			No
+297	V	NL	NL	NL_in_NL	No	6.94	7	7	7.1	60	60	0	60	7.5	7	6	7	7.5	7	6.5	7.5	7	VLD	8	6.5	8	Yes
+298	V	NL	NL	NL_in_NL	No	6.91	7	8	7.6	60	60	0	60	7.5	8.5	8.5	7.5	7.5	7	7.5	7	7	VLD	6.5	8.5	8	Yes
+299	V	NL	NL	NL_in_NL	No	7.73	8	8	8.4	60	60	0	60	7.5	9	8.5	8.5	9	7	9	9.5	8	VLD	8	8.5	8.5	Yes
+300	V	NL	NL	NL_in_NL	No	6.78	7	7	7.2	60	60	0	60	7.5	7	7.5	6	7	7.5	6	8	7	VLD	7.5	6.5	8.5	Yes
+301	V	NL	NL	NL_in_NL	No	6.91	7	6	7.8	60	60	0	60	7.5	8.5	8.5	7.5	7.5	7	8	8.5	7	VLD	6.5	8.5	8.5	Yes
+302	V	NL	NL	NL_in_NL	No	6.64	7	7	6.5	54	60	0	54	7.5	6	5	7.5	6.5	7	7	7.5	6.5	VLD	6	6	7	Yes
+303	V	NL	NL	NL_in_NL	No	7.42	7	8	6.9	54	60	0	54	6	7.5	7.5	7.5	7.5	8	8.5	7	7	VLD	4.5	6.5	7.5	Yes
+304	V	NL	NL	NL_in_NL	DuringYear1	6.27	6	8	0.1	0	0	0	0	ND						ND							No
+305	V	NL	NL	NL_in_NL	No	6.91	7	8	7.2	54	60	0	54	7.5	8	ONV	6	6	6.5	6.5	7.5	7	VLD	8	8	8.5	Yes
+306	V	NL	NL	NL_in_NL	No	7.92	7	7	8.8	60	60	0	60	9.5	9.5	8	8.5	9	8	9.5	9.5	7.5	VLD	8.5	9.5	9	Yes
+307	V	NL	NL	NL_in_NL	No	6.80	7	7	6.9	60	60	0	60	6	6	7	6	9	8.5	7.5	8.5	7	VLD	6	6	6.5	Yes
+308	M	NL	NL	NL_in_NL	No				7.2	60	60	0	60	7	8.5	7.5	6.5	6.5	6.5	6	7.5	6.5	VLD	7.5	7	8.5	Yes
+309	M	NL	NL	NL_in_NL	No	6.20	5	6	6.4	42	60	0	42	6.5	7.5	5	6.5	6	8.5	6	7.5	5	VLD	4	7	8.5	Yes
+310	V	NL	NL	NL_in_NL	No	7.23	7	8	8	60	60	0	60	8	8	8	8	10	8	9	9.5	7	VLD	6.5	8	8	Yes
+311	V	NL	NL	NL_in_NL	DuringYear1	6.50	6	6	5.7	4	9	0	4	5	i	i	i	i		6.5			i				No
+312	V	NL	NL	NL_in_NL	No	6.36	6	6	7.4	60	60	0	60	8.5	8	6.5	6.5	7.5	6.5	7.5	8.5	7.5	VLD	7.5	6	8	Yes
+313	V	NL	NL	NL_in_NL	AfterYear1	6.27	7	8	5.3	26	53	0	26	6	6	5	8.5	7	5	7.5	1.5	ONV		4		6	No
+314	V	NL	NL	NL_in_NL	No	6.27	7	6	7.3	60	60	0	60	6	6.5	7	8	6.5	7.5	8.5	9	7	VLD	8	6.5	7.5	Yes
+315	V	NL	NL	NL_in_NL	AfterYear1	7.75	7	8	8.2	60	60	0	60	8	9	8	8	8.5	7	9.5	9	8	VLD	7	8	9	Yes
+316	M	NL	DU	DU_in_NL	AfterYear1				7.2	60	60	0	60	6.5	8.5	7.5	6	7.5	6.5	6	7.5	7.5	VLD	6	7.5	8.5	Yes
+317	V	NL	NL	NL_in_NL	No	7.36	8	8	8.1	60	60	0	60	7.5	8.5	7.5	8	8.5	8.5	9	8.5	7	VLD	8.5	8	8.5	Yes
+318	V	NL	NL	NL_in_NL	AfterYear1	6.75	7	6	7.4	60	60	0	60	6	7.5	7	6	9	8	7.5	8.5	7.5	VLD	7	7.5	7.5	Yes
+319	V	NL	NL	NL_in_NL	AfterYear1	6.70	6	7	8.4	60	60	0	60	8.5	9.5	8	9	8.5	9	9	9	7.5	VLD	6.5	9	8.5	Yes
+320	M	NL	NL	NL_in_NL	No	6.57	6	6	7.1	60	60	0	60	6.5	7.5	6.5	6	10	7	7	8.5	6.5	VLD	7	6	7.5	Yes
+321	M	NL	NL	NL_in_NL	No	7.85	7	8	6.7	44	59	0	44	9	7.5	5	6.5	6.5	ONV	8	8	ONV	i	6	6.5	7.5	Yes
+322	V	NL	NL	NL_in_NL	No				7.7	60	60	0	60	8	7.5	7	7.5	10	7	8.5	9	7.5	VLD	7.5	6	8	Yes
+323	V	NL	NL	NL_in_NL	No	7.09	7	8	6.6	48	60	0	48	6.5	6.5	8	7	7	8	8	7.5	6.5	VLD	4.5	5	6	Yes
+324	V	NL	NL	NL_in_NL	AfterYear1	6.42	6	7	7.6	60	60	0	60	6	9.5	7.5	7.5	9.5	7	7.5	9	7	VLD	6.5	6.5	8.5	Yes
+325	V	NL	NL	NL_in_NL	No	6.27	6	6	6.3	45	60	0	45	6	7	ONV	5	6.5	6.5	8	6.5	7.5	VLD	4	6	7.5	Yes
+326	V	NL	NL	NL_in_NL	No	7.69	8	8	7.1	60	60	0	60	6.5	6.5	6.5	6	8.5	9	6.5	7	7	VLD	7	7	8.5	Yes
+327	V	NL	NL	NL_in_NL	No	6.82	7	8	8.1	60	60	0	60	8	6.5	8.5	6.5	8	8.5	9	9	8.5	VLD	8	8.5	8	Yes
+328	M	NL	NL	NL_in_NL	No	6.50	7	6	6.8	60	60	0	60	6	6	7	6.5	8.5	7.5	6.5	7	7.5	VLD	6	6.5	7	Yes
+330	V	NL	NL	NL_in_NL	No	6.18	6	6	7.1	60	60	0	60	8	7.5	7	8	8.5	7	6	7.5	7	VLD	6	6	7.5	Yes
+331	M	NL	NL	NL_in_NL	AfterYear1				0.1	0	0	0	0	ND		ND	ND	ND					i				No
+332	V	NL	NL	NL_in_NL	No	7.00	7	7	7.5	54	60	0	54	6	8.5	8.5	7	6.5	7.5	8.5	9.5	7	VLD	4.5	7.5	8.5	Yes
+333	V	NL	NL	NL_in_NL	No				6.8	54	60	0	54	7.5	7	5	6.5	6.5	7.5	6	7	7	VLD	6	7	8.5	Yes
+334	V	NL	DU	DU_in_NL	No				7.3	60	60	0	60	6	7.5	8	7.5	8	7.5	8	7	7.5	VLD	6	7.5	7.5	Yes
+335	M	NL	NL	NL_in_NL	DuringYear1	6.75	6	7	2.3	0	9	0	0	5	ND	i	ND	ND		5	i		i	i			No
+336	V	NL	NL	NL_in_NL	AfterYear1	6.38	6	7	5.5	20	47	0	20	6	6	5	8	6	ONV	7	4.5	ONV		4.5			No
+337	V	NL	NL	NL_in_NL	No	6.55	6	6	7	54	60	0	54	8.5	6.5	5	7	8.5	8	8.5	8	6.5	VLD	6.5	6	7.5	Yes
+338	M	NL	NL	NL_in_NL	DuringYear1	6.25	5	7	2.4	0	15	0	0	2.5	ND	ONV	ND	ND		4.5			i				No
+339	V	NL	NL	NL_in_NL	No	6.67	6	6	6	42	59	0	42	6.5	4.5	6.5	7	7.5	7	6	7	6.5	i	4	4.5	6.5	Yes
+340	M	NL	NL	NL_in_NL	AfterYear1	7.00	7	9	6.4	47	59	0	47	6.5	6	ONV	6	7	7.5	7.5	8.5	6	i	6	4.5	7	Yes
+341	V	NL	NL	NL_in_NL	DuringYear1	6.91	6	7	3.9	15	26	0	15	6	5	ONV	6.5	6	i	6	i	i	i	ND		ND	No
+342	V	NL	NL	NL_in_NL	No	6.50	6	8	7.2	60	60	0	60	6	7	7.5	7	7.5	6.5	7.5	8	7	VLD	6	7.5	9	Yes
+343	M	NL	NL	NL_in_NL	AfterYear1	6.60	6	7	6.4	47	59	0	47	7.5	7	5	6	8.5	6.5	6.5	7	ONV	i	6	6	7.5	Yes
+344	V	NL	NL	NL_in_NL	No	6.83	6	7	7.4	60	60	0	60	6.5	7.5	8	6.5	8.5	7	8	8.5	7.5	VLD	6	6.5	8	Yes
+345	V	NL	NL	NL_in_NL	No	6.00	6	6	7.1	54	60	0	54	6	6.5	5	8	9.5	7	8.5	7.5	7.5	VLD	7.5	7	7	Yes
+346	V	NL	NL	NL_in_NL	No				6.9	60	60	0	60	7.5	6.5	7	7	9	7	7	8	6.5	VLD	6	6	7	Yes
+500	M	EN	NL	NL_in_EN	DuringYear1	7.50	7	9		0	0	76	76														No
+501	M	EN	NL	NL_in_EN	No	6.08	5	7	5.6	42	60	12	54	6	7	5	4	8	ONV	6	1	6	VLD	6	6	8	Yes
+502	M	EN	NL	NL_in_EN	No	6.50	6	8	6	38	56	0	38	6	6	ONV	6	8		8	3	ONV	i	6	7	8	No
+503	M	EN	NL	NL_in_EN	DuringYear1	6.91	7	7		0	0	60	60														No
+504	V	EN	DU	DU_in_EN	AfterYear1				5.6	38	59	0	38	6	6	6.5	4	6	7.5	6	3.5	ONV	i	4.5	6.5	6.5	No
+505	V	EN	DU	DU_in_EN	No				6.5	51	60	0	51	7.5	7.5	6.5	4.5	6	7	6	6	ONV	VLD	6	7.5	7.5	Yes
+506	V	EN	DU	DU_in_EN	No				8	60	60	0	60	9	9	7	7.5	7.5	8.5	7	8	7.5	VLD	7.5	9.5	8.5	Yes
+507	M	EN	NL	NL_in_EN	No				6.2	22	37	60	82		7.5	5	4.5	8	7	6	5	7.5	VLD				No
+508	V	EN	DU	DU_in_EN	AfterYear1				6.8	42	60	0	42	7.5	8	8	6	10	7	6.5	5	ONV	VLD	7	5	8.5	Yes
+509	V	EN	NL	NL_in_EN	No	6.85	7	8	7.6	57	60	0	57	VR	8.5	8	8.5	9	ONV	7	8	7.5	VLD	6.5	8	8.5	Yes
+511	V	EN	DU	DU_in_EN	No				6.2	45	60	0	45	6.5	7.5	5	4.5	6.5	6.5	6	7	ONV	VLD	6	6	7.5	Yes
+512	M	EN	DU	DU_in_EN	No				7.1	60	60	0	60	6.5	7	7	6.5	8	6.5	8	8.5	7	VLD	7	6	7.5	Yes
+514	V	EN	DU	DU_in_EN	DuringYear1					0	0	0	0	i	i	i	i			i			i				No
+515	M	EN	DU	DU_in_EN	No				7.4	60	60	0	60	7	9	7.5	6.5	6.5	6.5	8	8.5	7.5	VLD	6.5	7	8	Yes
+516	V	EN	DU	DU_in_EN	No				7.8	45	45	0	45	8	7.5	9	6	8		7	7	8	VLD	9			Yes
+517	V	EN	DU	DU_in_EN	No				8.2	60	60	0	60	8.5	9.5	7.5	7	7	8.5	6.5	7	7.5	VLD	9.5	9.5	9	Yes
+518	M	EN	DU	DU_in_EN	DuringYear1				3.1	0	20	0	0	4	2.5	ONV	ND	ND		4.5	i			i			No
+519	M	EN	DU	DU_in_EN	No				6.9	45	60	0	45	8	8	6.5	6.5	10	ONV	6	7.5	ONV	VLD	8	5	8	Yes
+521	M	EN	DU	DU_in_EN	No				7.4	60	60	0	60	6.5	7	8	6	9.5	7	6	8	7.5	VLD	7	7.5	8.5	Yes
+522	V	EN	DU	DU_in_EN	No				3.9	0	26	0	0	2	3.5	ONV	3.5	4.5		5	i	i	i	i		i	No
+523	M	EN	NL	NL_in_EN	No	6.80	7	8	7.2	60	60	42	102	7	8	6.5	7	8	7.5	6	7.5	7	VLD	6.5	8	8	Yes
+524	M	EN	DU	DU_in_EN	No					0	0	0	0														No
+525	V	EN	DU	DU_in_EN	No				5.5	36	60	0	36	7	6	7.5	6	6	7	7	2	ONV	VLD	2.5	4	7.5	No
+526	M	EN	DU	DU_in_EN	AfterYear1				3.2	4	24	0	4	4.5		5		4.5		6	1		i	ND			No
+527	V	EN	DU	DU_in_EN	No				7.1	60	60	0	60	6	7	7.5	6.5	7.5	7	6.5	9	7	VLD	6	7	8	Yes
+528	V	EN	DU	DU_in_EN	DuringYear1				2.2	0	15	0	0	1.5	ND	ONV	ND	ND		4.5			i				No
+529	M	EN	DU	DU_in_EN	No				7.2	56	59	0	56	6.5	8	8	6.5	10	ONV	9	6.5	7	i	7	6	7.5	Yes
+531	V	EN	DU	DU_in_EN	No				6.5	48	60	0	48	6.5	8	6	6	8	8	6.5	7.5	ONV	VLD	3	7	8.5	Yes
+532	V	EN	NL	NL_in_EN	No	7.08	7	7	7.3	60	60	0	60	8	7	7	7	7	7	8	8	7	VLD	6	7.5	8.5	Yes
+534	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	6.5	8	6.5	7	10	7.5	7.5	7.5	7.5	VLD	7	6.5	8.5	Yes
+535	V	EN	DU	DU_in_EN	No				7.7	60	60	0	60	6	8.5	7.5	8	9	6.5	8	7.5	7.5	VLD	8	8	8.5	Yes
+536	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	6.5	8	7.5	6.5	7	7.5	7	9	7.5	VLD	8	8	7.5	Yes
+538	V	EN	DU	DU_in_EN	DuringYear1				4.6	3	23	0	3	4.5	4	ONV	i	6		4	i	i	i	i		i	No
+539	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	7	8	8	7	9.5	7	7	7.5	7.5	VLD	6.5	6	9	Yes
+542	V	EN	NL	NL_in_EN	AfterYear1	6.43	6	7	2.4	0	15	0	0	2.5		ONV	ND	ND		5	ND		i				No
+543	M	EN	DU	DU_in_EN	No				6.4	45	60	0	45	6.5	6.5	7	4.5	8	7.5	7	5	7.5	VLD	3.5	7.5	7	Yes
+544	V	EN	DU	DU_in_EN	No				8	60	60	0	60	7	9.5	8.5	7	10	7.5	8	7.5	8.5	VLD	6.5	8	8.5	Yes
+545	V	EN	NL	NL_in_EN	No	6.45	6	8	7	54	60	0	54	6.5	7.5	7.5	5	7	ONV	6.5	8.5	7.5	VLD	6	7	8	Yes
+546	V	EN	NL	NL_in_EN	No	6.85	7	8	6.7	53	59	0	53	6	6.5	ONV	6.5	8.5	7	7.5	7.5	7	i	6.5	6	7	Yes
+547	V	EN	DU	DU_in_EN	DuringYear1				2.5	0	9	0	0	2.5	i	i	i	i		2.5			i				No
+548	V	EN	DU	DU_in_EN	No				7.6	54	60	0	54	7	9.5	5	8	10	8	8.5	8.5	7	VLD	6	8.5	8	Yes
+549	V	EN	DU	DU_in_EN	No				6	39	57	0	39	6	6	5	4.5	5		7	VR	7.5	VLD	5	6.5	7	No
+550	V	EN	NL	NL_in_EN	DuringYear1	7.18	7	7		0	0	0	0	i		i	i			i			i				No
+551	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	6.5	7.5	8	6	8	7.5	8.5	8	7.5	VLD	6	6	7.5	Yes
+552	M	EN	DU	DU_in_EN	AfterYear1				7.1	59	59	0	59	8	7.5	7.5	6	7	7.5	7.5	6.5	7	i	6	7.5	7	Yes
+554	V	EN	NL	NL_in_EN	No	6.75	6	7	6.7	60	60	0	60	7.5	6	7	7	6.5	7	6.5	7	7	VLD	6	6	7	Yes
+555	V	EN	DU	DU_in_EN	No				7.9	60	60	0	60	7	7.5	9	7.5	9.5	6.5	8	7.5	8	VLD	8	7.5	8.5	Yes
+556	V	EN	DU	DU_in_EN	AfterYear1				5.9	39	60	0	39	6	6.5	7	4	6	7.5	7	5	ONV	VLD	3.5	6	7.5	No
+557	M	EN	DU	DU_in_EN	DuringYear1				1.7	0	10	0	0	ND	ND	ONV	ND	ND		3			i				No
+558	V	EN	DU	DU_in_EN	AfterYear1				7.2	60	60	0	60	7	9	7	7	7.5	6.5	8	7	6.5	VLD	7	7	7.5	Yes
+559	V	EN	DU	DU_in_EN	No				7.8	60	60	0	60	7	9	8.5	6	6	7.5	7.5	8	8.5	VLD	7	8.5	8.5	Yes
+561	V	EN	NL	NL_in_EN	No	6.67	6	7	5.3	24	57	0	24	6	2.5	5	3	4.5		5	7.5	7	VLD	4.5	4.5	6.5	No
+562	M	EN	DU	DU_in_EN	DuringYear1				4	8	22	0	8	1.5	6.5	ONV	7.5	4		ND	i	i		i			No
+563	V	EN	DU	DU_in_EN	No				6.5	54	60	0	54	6	6.5	7	6	6.5	6.5	7.5	7	ONV	VLD	6	6	8	Yes
+564	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	6	8	9	6.5	7	6.5	8	7.5	8	VLD	6	6	8.5	Yes
+565	V	EN	DU	DU_in_EN	No				6.7	60	60	0	60	6	6.5	7	6	6	7	7	7	6.5	VLD	7	6.5	7.5	Yes
+566	V	EN	DU	DU_in_EN	No				6.4	42	60	0	42	6.5	6.5	5	6	6.5	8	8.5	7	7.5	VLD	5	4.5	7	Yes
+567	V	EN	DU	DU_in_EN	DuringYear1					0	0	0	0														No
+568	M	EN	DU	DU_in_EN	No				7.1	60	60	0	60	7.5	8	8	6	7.5	6.5	7	7	7.5	VLD	7	6	6.5	Yes
+569	V	EN	DU	DU_in_EN	DuringYear1				3.4	0	22	0	0	5	2.5	ONV	3.5	3		ND	i		i				No
+571	V	EN	DU	DU_in_EN	No				7.1	60	60	0	60	7.5	7	7	6	7.5	8	6	7	7.5	VLD	6	7	8.5	Yes
+572	V	EN	NL	NL_in_EN	No	7.45	7	8	8.1	60	60	0	60	6.5	8.5	9.5	7	9.5	8	8.5	8.5	8	VLD	6	9	8.5	Yes
+573	V	EN	NL	NL_in_EN	No	6.25	6	7	7.1	60	60	0	60	6	8	7.5	6	9	7.5	6.5	7	7.5	VLD	7.5	7	6	Yes
+574	M	EN	DU	DU_in_EN	AfterYear1				5.9	30	60	0	30	7	6	7.5	5	7.5	5	7	5	ONV	VLD	4.5	4	7.5	No
+575	V	EN	DU	DU_in_EN	AfterYear1				6.6	54	60	0	54	7.5	7	ONV	6.5	6	8.5	7	6.5	6	VLD	6.5	6.5	7.5	Yes
+576	V	EN	NL	NL_in_EN	No	7.17	7	6	6.4	54	60	0	54	6.5	6	5	8	7	6	6.5	7	7	VLD	6	6.5	6.5	Yes
+577	V	EN	DU	DU_in_EN	No				7.4	57	60	0	57	7.5	8	8	6.5	7	5	8	7	7	VLD	7	8	8.5	Yes
+578	M	EN	DU	DU_in_EN	No				8.1	60	60	0	60	7.5	9	8	6	8	7.5	8.5	9	8.5	VLD	7.5	8.5	8.5	Yes
+579	V	EN	DU	DU_in_EN	DuringYear1					0	0	0	0														No
+581	V	EN	NL	NL_in_EN	No	6.83	6	7	7.7	60	60	0	60	7.5	8	7.5	7.5	8	7.5	9.5	8.5	7.5	VLD	6	8	7.5	Yes
+582	V	EN	DU	DU_in_EN	No				6.5	52	60	0	52	5	6	7	4	7.5	6.5	6	8	7.5	VLD	6.5	6.5	6.5	Yes
+583	M	EN	DU	DU_in_EN	No				7.2	54	60	0	54	7.5	7	8	6	8	7	9	7.5	7	VLD	7	5	7.5	Yes
+584	V	EN	DU	DU_in_EN	DuringYear1				0.9	0	6	0	0	ND	ND	ONV	ND	ND		ND	i	i	i	ND		ND	No
+585	M	EN	DU	DU_in_EN	No				8.5	60	60	0	60	9	9.5	8.5	7.5	7.5	7	9	8	8.5	VLD	9	8.5	9.5	Yes
+586	V	EN	DU	DU_in_EN	No				7.5	60	60	0	60	7	7.5	8	7	8	7	7.5	8.5	7.5	VLD	6.5	7.5	8	Yes
+587	V	EN	DU	DU_in_EN	No				7	60	60	0	60	7	6.5	8	6	7	7	6.5	7.5	8	VLD	6	6.5	7.5	Yes
+588	V	EN	DU	DU_in_EN	No				6.2	42	60	0	42	7	6	ONV	6	7	6	7	8	7	VLD	3	5	8	Yes
+589	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	6.5	7.5	7.5	6.5	8	7	8	8.5	8	VLD	7	6.5	8	Yes
+590	V	EN	DU	DU_in_EN	No				6.9	54	60	0	54	6.5	7	7	6.5	8.5	7	6	8.5	ONV	VLD	7	6.5	7.5	Yes
+591	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	8	8	8	6	8.5	8.5	7.5	8	7.5	VLD	7	6	8.5	Yes
+592	V	EN	DU	DU_in_EN	AfterYear1				6.5	48	60	0	48	6	7.5	5	7	7.5	7.5	7.5	7	6.5	VLD	4.5	6	8	Yes
+593	V	EN	DU	DU_in_EN	No				6.9	51	60	0	51	6.5	7.5	7	6	10	ONV	7.5	8	ONV	VLD	6	6.5	8	Yes
+594	V	EN	DU	DU_in_EN	No				8	60	60	0	60	8	8	7.5	7.5	9.5	7	8.5	9.5	7.5	VLD	7.5	7	8.5	Yes
+596	M	EN	DU	DU_in_EN	No				7.7	60	60	0	60	7.5	8.5	7	7	10	7.5	7	8.5	7	VLD	7.5	7.5	8.5	Yes
+597	V	EN	DU	DU_in_EN	DuringYear1				6	17	26	0	17	7	6	ONV	7	5		6.5	i		i	i			No
+598	V	EN	DU	DU_in_EN	AfterYear1				3.7	9	15	0	9	7.5		ONV	ND	ND		7.5	ND		i				No
+600	V	EN	DU	DU_in_EN	No				4.9	24	60	0	24	5	6	6	3.5	6.5	7.5	3	3	ONV	VLD	4.5	4	6	No
+601	V	EN	DU	DU_in_EN	No				7.5	60	60	0	60	7.5	6.5	7.5	6	8	7.5	7	8.5	7.5	VLD	6.5	9	8	Yes
+602	M	EN	NL	NL_in_EN	No	7.00	7	9	6.8	54	60	0	54	8	8	5	6.5	6	8	6.5	7	7	VLD	6	6.5	8	Yes
+603	M	EN	DU	DU_in_EN	AfterYear1				5.7	39	60	0	39	4.5	6.5	7	4.5	6.5	5	3.5	6.5	ONV	VLD	6	6	6	No
+604	V	EN	DU	DU_in_EN	DuringYear1				3.5	0	23	0	0	4	4	ONV	ND	2.5		3	i	i	i	i			No
+605	V	EN	DU	DU_in_EN	No				7.8	60	60	0	60	8	9	7.5	8.5	9	8	8	8	7.5	VLD	7	6.5	8.5	Yes
+606	M	EN	DU	DU_in_EN	AfterYear1				6.6	54	60	0	54	8.5	6	7	6	6.5	7	6	7.5	6.5	VLD	5	6	7	Yes
+607	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	6.5	8.5	7	7	7	7	6	9	7.5	VLD	7	6.5	8.5	Yes
+608	V	EN	NL	NL_in_EN	No	6.64	6	8	6.7	51	60	0	51	8	7.5	6.5	4	6	7.5	7	8	6.5	VLD	4.5	7	7	Yes
+609	V	EN	DU	DU_in_EN	No				6.8	52	60	0	52	7	4.5	7.5	5	6.5	6.5	8	8.5	7.5	VLD	6	6	8	Yes
+610	V	EN	DU	DU_in_EN	No				8.2	60	60	0	60	8.5	9	8	8	10	7	9.5	9	7	VLD	7	8	9	Yes
+611	M	EN	NL	NL_in_EN	No	7.50	7	9	8.6	60	60	0	60	8.5	9	8.5	8	10	8.5	9	9	7.5	VLD	8.5	9	8.5	Yes
+612	M	EN	NL	NL_in_EN	No	6.36	6	8	6.9	59	59	0	59	7	6.5	7	7.5	7.5	6	8.5	6.5	7	i	6	7	7	Yes
+613	V	EN	DU	DU_in_EN	AfterYear1				7.8	60	60	0	60	8	7.5	7	6	8.5	7.5	9	9	6.5	VLD	7.5	8.5	9	Yes
+614	V	EN	DU	DU_in_EN	AfterYear1				7.4	60	60	0	60	6	9	7	7.5	9	7.5	6	9	7	VLD	7	6.5	8	Yes
+616	V	EN	DU	DU_in_EN	No				6.9	57	60	0	57	7	7.5	7.5	2.5	7.5	8	6.5	8	7	VLD	6.5	6	8	Yes
+617	V	EN	DU	DU_in_EN	No				8.3	60	60	0	60	8.5	8.5	9	7.5	7.5	8	9	9	8.5	VLD	7.5	7	9	Yes
+618	M	EN	DU	DU_in_EN	AfterYear1				7	60	60	0	60	6.5	8.5	6	8	8	6.5	7	7.5	6.5	VLD	7.5	6	7.5	Yes
+620	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	6.5	8	8	6	7	7	8.5	7.5	7.5	VLD	6	6.5	8.5	Yes
+621	M	EN	DU	DU_in_EN	No				8.2	54	60	0	54	8	9.5	7.5	7.5	10	7.5	8.5	9	ONV	VLD	9	9	9	Yes
+622	V	EN	DU	DU_in_EN	AfterYear1				6.5	50	60	0	50	7	7	6.5	8.5	8	7.5	4	6.5	7	VLD	3.5	6.5	7.5	Yes
+624	M	EN	DU	DU_in_EN	No				6.7	60	60	0	60	7.5	6	6.5	6.5	7	6.5	6	7.5	7	VLD	6	6	8	Yes
+625	V	EN	DU	DU_in_EN	No				8.7	60	60	0	60	8	10	8	8.5	10	6.5	8.5	9.5	8.5	VLD	9.5	8.5	9	Yes
+626	V	EN	NL	NL_in_EN	DuringYear1	6.50	7	7	0.1	0	0	0	0	ND		ND	ND			ND			i				No
+628	V	EN	DU	DU_in_EN	No				6.9	60	60	0	60	6	7	6	6	7.5	7	6	7.5	7	VLD	6	8	8.5	Yes
+629	M	EN	DU	DU_in_EN	DuringYear1				3	5	23	0	5	6	2.5	ONV	ND	2.5		3.5	i	i	i	ND			No
+630	V	EN	DU	DU_in_EN	No				7.8	60	60	0	60	8	9	7	8.5	10	7.5	8.5	8	6.5	VLD	7	7	8.5	Yes
+631	M	EN	DU	DU_in_EN	AfterYear1				4	13	32	0	13	6	6	5	4.5	7		5	1			ND			No
+632	V	EN	DU	DU_in_EN	No				6.6	47	59	0	47	6	8	7	6.5	9	7.5	6.5	7.5	ONV	i	3	6	9	Yes
+633	V	EN	DU	DU_in_EN	No				8.1	60	60	0	60	7	8	7.5	7.5	8.5	8	9.5	9	7	VLD	9	8.5	8.5	Yes
+634	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	6.5	8.5	7.5	6.5	8	8.5	7.5	8	8	VLD	6.5	7.5	8.5	Yes
+635	V	EN	DU	DU_in_EN	No				6.5	45	60	0	45	7.5	7	7.5	5	7.5	9	6.5	3.5	7.5	VLD	4.5	7	6.5	Yes
+636	M	EN	DU	DU_in_EN	No				6.1	43	60	0	43	7	4.5	5	6	6	6.5	7	7	6.5	VLD	6	4.5	7.5	Yes
+637	V	EN	DU	DU_in_EN	No				7	44	59	0	44	7.5	8.5	ONV	8	10	5	7.5	6.5	ONV	i	6.5	7	9	Yes
+639	M	EN	DU	DU_in_EN	No				7.5	60	60	0	60	7	8.5	7	7	8.5	7.5	6.5	9	7	VLD	7	6.5	8.5	Yes
+640	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	7.5	6.5	7.5	7.5	6	7	9	8	8.5	VLD	6	6	8.5	Yes
+641	V	EN	DU	DU_in_EN	No					0	0	0	0	i		i	i			i			i				No
+642	V	EN	DU	DU_in_EN	AfterYear1				5.8	42	60	0	42	6.5	6	8	6	7	6.5	6	2	7	VLD	5	4.5	6.5	Yes
+643	V	EN	DU	DU_in_EN	No				6.8	51	60	0	51	7	7	7.5	5	8	8	8	7	7	VLD	3	7	8	Yes
+644	V	EN	NL	NL_in_EN	No	7.58	7	9	7.4	60	60	0	60	7	7	8	7.5	9	6.5	6	8.5	7.5	VLD	6	7.5	8.5	Yes
+646	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	6.5	8	7	6	8	8	7	7.5	8	VLD	7	6	7.5	Yes
+647	M	EN	NL	NL_in_EN	No	6.83	6	8	7.9	60	60	0	60	8.5	9.5	7	8	10	7.5	7.5	7.5	7	VLD	8	8	8	Yes
+648	M	EN	DU	DU_in_EN	No				7.1	48	54	0	48	6	9	i	6.5	7	8	6	8	6.5	VLD	5	8	8.5	Yes
+651	M	EN	DU	DU_in_EN	No				8	60	60	0	60	7	7.5	7.5	7.5	10	7.5	8.5	9	7.5	VLD	7	9	9	Yes
+652	M	EN	DU	DU_in_EN	No				7.1	60	60	0	60	7	7.5	7.5	6.5	6	6.5	7.5	7.5	7	VLD	6	7	8	Yes
+653	V	EN	DU	DU_in_EN	No				7.2	57	60	0	57	6	7.5	7	4.5	8.5	8	6.5	7.5	7.5	VLD	8	7.5	7.5	Yes
+654	M	EN	DU	DU_in_EN	No				6.8	54	60	0	54	6.5	8	ONV	6.5	8	6	6	6.5	7	VLD	6.5	7.5	8.5	Yes
+656	V	EN	DU	DU_in_EN	AfterYear1				6.7	38	53	0	38	6.5	7.5	5	6	8	5	7.5	8.5	ONV	i	6		8.5	No
+657	V	EN	DU	DU_in_EN	DuringYear1				3	3	26	0	3	2.5	3.5	5	2.5	6		2.5	i	i	i	ND			No
+659	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	6	7.5	7.5	7.5	6	8.5	6.5	8	7.5	VLD	8.5	8.5	8	Yes
+660	V	EN	DU	DU_in_EN	No				8.2	60	60	0	60	9	9.5	8.5	6.5	9.5	6.5	8.5	9.5	7	VLD	7.5	8	8.5	Yes
+661	M	EN	DU	DU_in_EN	AfterYear1				4.2	17	41	0	17	6	7	ONV	5	8	3.5	6	2		i	2.5	ND		No
+662	M	EN	NL	NL_in_EN	No	6.56	6	7	6.2	48	60	0	48	6	6	ONV	6	6	6.5	6	7.5	6.5	VLD	5	6	8	Yes
+663	M	EN	DU	DU_in_EN	No				7.5	60	60	0	60	6	9	8	6.5	6.5	8.5	7	7.5	7.5	VLD	6.5	8.5	8.5	Yes
+664	V	EN	DU	DU_in_EN	No				8.3	60	60	0	60	7	9.5	8	8	9	7.5	9	9	7.5	VLD	6.5	9	9.5	Yes
+665	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	7	8	7.5	6.5	8	7	8.5	8	6.5	VLD	6	7	8	Yes
+666	V	EN	DU	DU_in_EN	DuringYear1				0.8	0	4	0	0	ND	ND	i	ND	ND		3.5	i		i	i			No
+667	M	EN	DU	DU_in_EN	No				6.8	45	60	0	45	8	7.5	ONV	5	8	7	7.5	8.5	ONV	VLD	7	6.5	7	Yes
+668	M	EN	DU	DU_in_EN	No				6	36	60	0	36	5	7	6.5	6	6	ONV	5	5	ONV	VLD	8	6	6.5	No
+670	M	EN	DU	DU_in_EN	No				5.9	39	60	0	39	7.5	6	8	6	6.5	ONV	6	2	7.5	VLD	4.5	5	6.5	No
+671	V	EN	DU	DU_in_EN	No				8	60	60	0	60	7.5	9	8.5	8	8	7	8.5	8.5	7.5	VLD	7	8	9	Yes
+672	V	EN	DU	DU_in_EN	DuringYear1				1.2	0	6	0	0	ND	ND	ONV	ND	ND		ND			i				No
+673	V	EN	DU	DU_in_EN	DuringYear1				2.3	0	15	0	0	3	ND	ONV	ND	ND		3.5			i				No
+674	V	EN	DU	DU_in_EN	DuringYear1				5.1	9	26	0	9	5	6	ONV	3	4.5		6.5	i		i	i			No
+675	V	EN	DU	DU_in_EN	No				6.8	54	60	0	54	6	7.5	8	3	8	ONV	7	7.5	7	VLD	6.5	6.5	8	Yes
+677	M	EN	DU	DU_in_EN	No				7	60	60	0	60	8.5	7.5	6.5	6	6	7.5	7.5	6.5	6.5	VLD	6.5	6.5	8	Yes
+678	V	EN	DU	DU_in_EN	No				7.5	60	60	0	60	8	8	7.5	7	8	6	7.5	8	7	VLD	7.5	6.5	8.5	Yes
+680	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	6	8	8	7.5	8	7.5	7.5	7.5	7.5	VLD	7	6	9	Yes
+681	M	EN	DU	DU_in_EN	DuringYear1				0.1	0	0	0	0	ND		i				ND			i				No
+682	V	EN	DU	DU_in_EN	No				6.6	50	60	0	50	7.5	7	6.5	6	8	7.5	5	5	7	VLD	6.5	6.5	7.5	Yes
+683	M	EN	DU	DU_in_EN	AfterYear1				5.1	10	17	0	10	6.5	7	i	5	ND		5							No
+684	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	6	8	8	7	7	6.5	8	8	8	VLD	6.5	6.5	8.5	Yes
+685	V	EN	DU	DU_in_EN	No				7.8	60	60	0	60	7.5	8	8.5	6.5	6.5	7.5	8.5	8.5	8	VLD	6.5	8	9	Yes
+686	M	EN	DU	DU_in_EN	No				6.5	45	60	0	45	7	6	ONV	4.5	9.5	7.5	7	5	7.5	VLD	6.5	6.5	7	Yes
+687	V	EN	DU	DU_in_EN	AfterYear1				7.7	60	60	0	60	7	8.5	7.5	7	9.5	7.5	8	8.5	7.5	VLD	7	7	8	Yes
+688	M	EN	DU	DU_in_EN	No				7.7	60	60	0	60	6.5	9	7.5	8.5	9	7.5	7.5	8	7	VLD	8	7	8.5	Yes
+689	V	EN	DU	DU_in_EN	DuringYear1				4.4	8	33	0	8	5	2.5	ONV	2	6	i	6	i	i	VLD	4		i	No
+690	M	EN	DU	DU_in_EN	DuringYear1				1.7	0	9	0	0	2.5	ND	i	ND	ND		5	i		i				No
+691	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	6.5	9	8.5	6	8	8	7.5	9	8	VLD	6	7.5	7.5	Yes
+692	V	EN	DU	DU_in_EN	AfterYear1				6.6	54	60	0	54	6	8	5	6.5	6	7	7	6.5	7.5	VLD	6	6	8	Yes
+693	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	7	7.5	7.5	7	7	7	7	7.5	7.5	VLD	8.5	6	7	Yes
+695	V	EN	DU	DU_in_EN	DuringYear1				3.9	0	26	0	0	4	4.5	ONV	3.5	1		4	i	i	i	i		i	No
+696	V	EN	NL	NL_in_EN	No				7.6	60	60	0	60	7	8.5	7	8	10	7	6.5	8	7	VLD	7.5	7	8.5	Yes
+697	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	7.5	7	7	7.5	8.5	6.5	7	8.5	7.5	VLD	6.5	7	7	Yes
+698	V	EN	DU	DU_in_EN	No				7.9	60	60	0	60	8	9	8	8.5	9	7	8	8.5	7.5	VLD	6.5	7	8.5	Yes
+699	M	EN	DU	DU_in_EN	No				6.8	54	60	0	54	8	7.5	ONV	7	6	6.5	7.5	6.5	6.5	VLD	7	7	7	Yes
+700	V	EN	DU	DU_in_EN	No				6	44	60	0	44	6.5	7	5	6	6.5	7.5	4.5	6	ONV	VLD	6	6	7	Yes
+701	M	EN	DU	DU_in_EN	DuringYear1				5	8	26	0	8	6.5	4.5	ONV	2	7	i	4.5	i	i	i	i		i	No
+702	V	EN	DU	DU_in_EN	No				7	60	60	0	60	6	7	7.5	6	7.5	8	7	7.5	6.5	VLD	6.5	7	7.5	Yes
+703	V	EN	NL	NL_in_EN	No	6.64	7	7	7.2	60	60	0	60	7.5	6.5	7	6	10	7.5	7.5	7.5	6.5	VLD	6.5	8	7.5	Yes
+704	V	EN	DU	DU_in_EN	DuringYear1				2.4	0	9	0	0	2	i	i	i	i		3			i				No
+705	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	7	8	7.5	6	7	6.5	7	7	7	VLD	6	8	9	Yes
+706	V	EN	NL	NL_in_EN	AfterYear1				5	25	60	0	25	6	3.5	ONV	4	6	ONV	6	7	ONV	VLD	3.5	3	6	No
+707	M	EN	DU	DU_in_EN	No				6.7	53	59	0	53	8	6	7	6.5	7.5	7.5	6	7	ONV	i	6	6	8	Yes
+708	V	EN	DU	DU_in_EN	DuringYear1				3.7	4	9	0	4	2.5		i		ND		8	i		i				No
+709	M	EN	DU	DU_in_EN	AfterYear1				2.5	5	26	0	5	6.5	2.5	ND	2.5	4		4	ND		i	4.5	ND		No
+710	V	EN	DU	DU_in_EN	AfterYear1				7.2	54	60	0	54	6	8.5	8	7	9	7	7.5	8.5	ONV	VLD	6	7	7.5	Yes
+711	M	EN	DU	DU_in_EN	No				6.1	36	48	0	36	8	7	ONV	6.5	8.5	7.5	8.5	8	ONV	VLD	ND	6.5		No
+713	V	EN	DU	DU_in_EN	No				6.8	54	60	0	54	7.5	6.5	8	7	8.5	7	6	7	7.5	VLD	3	7	7.5	Yes
+714	V	EN	NL	NL_in_EN	AfterYear1	6.23	7	7	6.3	42	60	0	42	6.5	7	ONV	7	6	7	6	8.5	ONV	VLD	5	6	7.5	Yes
+715	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	6	7	7.5	6.5	8	7.5	6.5	8	7.5	VLD	6.5	7.5	8	Yes
+716	V	EN	DU	DU_in_EN	No				7.7	60	60	0	60	6.5	8	8	6.5	8	7	8	8.5	8	VLD	7	8	8.5	Yes
+717	V	EN	DU	DU_in_EN	No				6.6	48	60	0	48	6	7.5	7	6	8.5	6.5	7	5	7	VLD	4.5	7.5	7.5	Yes
+718	V	EN	DU	DU_in_EN	No				6.1	45	60	0	45	6	6.5	7	4.5	6	6	6	7	7.5	VLD	5	4	6.5	Yes
+719	M	EN	DU	DU_in_EN	AfterYear1				0.1	0	0	0	0			ND	ND			ND			i				No
+720	M	EN	DU	DU_in_EN	No				6.8	54	60	0	54	7	7.5	ONV	6	7	6.5	6	7	7	VLD	6	8	8.5	Yes
+721	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	8	8.5	7	7	9	6	7	7.5	7	VLD	7	6.5	7.5	Yes
+722	M	EN	DU	DU_in_EN	DuringYear1				2.7	0	15	0	0	4	ND	ONV	ND	ND		5			i				No
+723	V	EN	DU	DU_in_EN	No				8.3	60	60	0	60	8.5	9	7.5	8	8.5	7.5	8	9	8	VLD	7	9.5	9	Yes
+724	V	EN	DU	DU_in_EN	No				8.4	54	54	0	54	8.5	9	8.5	7.5	10	8.5	8.5	9	8	VLD	7.5	8.5		Yes
+725	V	EN	DU	DU_in_EN	AfterYear1				6.9	57	60	0	57	7	7.5	7.5	5	8.5	6.5	7.5	7	7.5	VLD	6	6	6.5	Yes
+726	M	EN	DU	DU_in_EN	AfterYear1				6.1	41	57	0	41	6	8.5	6.5	4.5	5		5	6.5	ONV	VLD	6	6	7	No
+727	M	EN	NL	NL_in_EN	No	6.73	6	8	6.7	54	60	0	54	6	8	5	7	6.5	7	7	7.5	7	VLD	6	6	7.5	Yes
+728	V	EN	DU	DU_in_EN	AfterYear1				5.2	22	56	0	22	5	4.5	5	4	5		6.5	7	6.5	i	4.5	3	6	No
+729	V	EN	DU	DU_in_EN	No				8	60	60	0	60	7.5	7.5	7.5	8.5	8.5	7	9	8.5	8	VLD	8.5	VR	9.5	Yes
+730	V	EN	DU	DU_in_EN	No				7.1	60	60	0	60	7.5	8	7	7	6.5	6.5	7.5	7.5	7	VLD	6	6.5	8	Yes
+731	M	EN	DU	DU_in_EN	DuringYear1				1.2	0	4	0	0	ND	i	i	i	i		2.5			i				No
+732	V	EN	DU	DU_in_EN	No				5.6	36	60	0	36	6	6	5	6.5	7	6.5	6	6	ONV	VLD	4.5	4	6	No
+733	V	EN	DU	DU_in_EN	No				8.7	60	60	0	60	8	9	9.5	7.5	10	8.5	8	9	8.5	VLD	8	9	9	Yes
+734	V	EN	DU	DU_in_EN	AfterYear1				4.6	22	60	0	22	6	3.5	5	2.5	6	7.5	6	2	ONV	VLD	4	3	6	No
+735	M	EN	DU	DU_in_EN	No				5.6	35	60	0	35	6	7	6.5	3.5	6.5	6.5	5	5	6.5	VLD	4.5	3.5	6.5	No
+737	V	EN	DU	DU_in_EN	No				7.8	60	60	0	60	7	9	8	7	8	7	6	8.5	7	VLD	9	7.5	8.5	Yes
+739	M	EN	DU	DU_in_EN	No				7.3	59	59	0	59	6	8	7.5	7	6	8	7	7.5	7.5	i	7	7	8	Yes
+740	V	EN	DU	DU_in_EN	No				7.3	54	60	0	54	7.5	7	ONV	6	8	8	9	8.5	8	VLD	6.5	6.5	8	Yes
+741	V	EN	DU	DU_in_EN	No				6.9	54	60	0	54	6	6.5	8	6	10	6	7.5	9	ONV	VLD	6	6	7.5	Yes
+742	M	EN	DU	DU_in_EN	No				7.2	48	60	0	48	6	8.5	5	7	10	7.5	7.5	8.5	ONV	VLD	6.5	8	8.5	Yes
+743	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	7	9	7.5	6	8	7.5	6	6.5	7	VLD	6	8	8	Yes
+744	V	EN	DU	DU_in_EN	No				6.8	56	60	0	56	6	6	7	6	6	7	5	6	7	VLD	8.5	6.5	9	Yes
+745	V	EN	DU	DU_in_EN	No				4.2	0	26	0	0	5	5	ONV	1.5	3.5		3.5	i	i	i	i			No
+746	M	EN	DU	DU_in_EN	DuringYear1				3.1	0	26	0	0	4.5	4	ONV	3	2		3	i	i	i	ND			No
+747	V	EN	DU	DU_in_EN	AfterYear1				5.5	29	60	0	29	4.5	5	7	4	8	7.5	6	6.5	ONV	VLD	3.5	3.5	7	No
+749	M	EN	NL	NL_in_EN	AfterYear1				6.7	47	60	0	47	6.5	9	ONV	5	6	7	4	7.5	7.5	VLD	6	7.5	8	Yes
+750	V	EN	DU	DU_in_EN	No				6.8	57	60	0	57	6.5	7	6.5	4.5	6.5	7.5	7	7.5	7.5	VLD	6.5	6	7.5	Yes
+751	M	EN	DU	DU_in_EN	DuringYear1				4.6	4	23	0	4	5	5	ONV	ND	5		6	i		i	i			No
+752	V	EN	DU	DU_in_EN	No				7.3	57	60	0	57	6	8	6	5	9.5	7.5	7	9.5	7	VLD	7	7	8.5	Yes
+753	V	EN	DU	DU_in_EN	No				7.1	60	60	0	60	6	8	7	6	10	8	6.5	7.5	7	VLD	6.5	6.5	7.5	Yes
+754	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	6	8.5	7.5	6	7.5	8	8.5	7	7.5	VLD	6	6.5	8	Yes
+756	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	6	8	7	7	9.5	7.5	7	8.5	7.5	VLD	6	7.5	7	Yes
+758	V	EN	DU	DU_in_EN	No				8.1	60	60	0	60	7.5	8.5	7.5	8.5	8	8.5	8.5	8.5	8	VLD	7.5	8	9	Yes
+759	M	EN	DU	DU_in_EN	No				8.6	60	60	0	60	8.5	8.5	8	8.5	8.5	8	9	9.5	7.5	VLD	8.5	9	9.5	Yes
+760	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	7.5	7.5	7	6	7	8	7.5	8.5	7.5	VLD	6.5	6.5	9	Yes
+762	M	EN	DU	DU_in_EN	No				6.5	45	60	0	45	6	7	ONV	3.5	6.5	7.5	6	8	7	VLD	5	7.5	7.5	Yes
+763	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	6.5	7	7	6.5	8	7	7	8.5	8	VLD	6	6.5	8.5	Yes
+765	M	EN	DU	DU_in_EN	AfterYear1				4.2	9	56	0	9	5	6	5	4	5		6	1	ONV	i	3	2.5	5	No
+766	M	EN	NL	NL_in_EN	No	6.89	7	7	7.7	60	60	0	60	8	7.5	7	7.5	10	8	7	9	8	VLD	6	6.5	9	Yes
+767	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	8	6.5	8	6	9	7	7.5	9	6.5	VLD	7.5	8	7.5	Yes
+768	M	EN	DU	DU_in_EN	No				6.1	45	60	0	45	7.5	6	6.5	5	6	7	6	7	ONV	VLD	5	6	6	Yes
+769	M	EN	DU	DU_in_EN	No				7.6	60	60	0	60	7.5	8.5	7.5	6	9	6.5	7	8	8	VLD	7	7	8.5	Yes
+770	V	EN	DU	DU_in_EN	DuringYear1				3.3	9	21	0	9	6.5	ND	5	4	2.5		6	i	i	i	ND			No
+771	V	EN	DU	DU_in_EN	No				7.7	60	60	0	60	6	9	8	6	8.5	8	7.5	8	8	VLD	6	8	9	Yes
+772	M	EN	DU	DU_in_EN	No				7.3	60	60	0	60	6.5	8	7	8.5	7	6.5	6.5	7	6.5	VLD	7.5	8	9	Yes
+773	M	EN	DU	DU_in_EN	AfterYear1				4.8	9	38	0	9	7.5	5	ONV	3.5	4.5		6	2.5		i	4.5			No
+774	V	EN	NL	NL_in_EN	No	6.73	7	7	6.8	51	60	0	51	7	7	7.5	5	7	7.5	8	8	7	VLD	5	6	7	Yes
+775	V	EN	DU	DU_in_EN	No				8.1	60	60	0	60	7.5	9.5	8	8	9	7.5	8	8.5	6.5	VLD	8.5	8	9	Yes
+776	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	6	7.5	6.5	8	7.5	7.5	8	7	8	VLD	6	6.5	8.5	Yes
+777	M	EN	DU	DU_in_EN	No				6.8	50	59	0	50	6.5	6.5	ONV	4.5	6.5	7.5	6	7	7	i	8	8.5	7.5	Yes
+778	V	EN	DU	DU_in_EN	AfterYear1				6.4	42	60	0	42	6	7.5	5	6	9	8	8	2	ONV	VLD	7	7.5	8	Yes
+779	V	EN	DU	DU_in_EN	No				8	60	60	0	60	8.5	9	8	7.5	9.5	7	8	8	7	VLD	7	8	9	Yes
+780	M	EN	DU	DU_in_EN	No				8.6	60	60	0	60	8.5	8.5	9	7.5	10	8.5	9.5	9.5	8	VLD	8	7.5	9	Yes
+781	V	EN	DU	DU_in_EN	DuringYear1				0.1	0	0	0	0	ND		i	i			ND			i				No
+782	V	EN	DU	DU_in_EN	AfterYear1				3.6	0	32	0	0	3	4.5	ONV	3.5	5		4	1	i	i				No
+783	V	EN	DU	DU_in_EN	DuringYear1					0	0	0	0	i		i	i			i			i				No
+784	V	EN	DU	DU_in_EN	No				6.7	57	60	0	57	7	8.5	6.5	3.5	6	7	7	7	7	VLD	6	6	7.5	Yes
+785	M	EN	DU	DU_in_EN	No				5.5	27	57	0	27	6.5	7.5	5	4	4		6	4	ONV	VLD	6	4.5	7	No
+787	M	EN	DU	DU_in_EN	No				8	60	60	0	60	8	8.5	9	6	9	7.5	7.5	8.5	8	VLD	7	8.5	8	Yes
+788	M	EN	DU	DU_in_EN	DuringYear1				2.9	0	22	0	0	5	3	ONV	1	1		ND	i		i	i			No
+789	V	EN	DU	DU_in_EN	No				7.5	60	60	0	60	6.5	8	8	6	7	8	6.5	7.5	7.5	VLD	8.5	7	9	Yes
+790	V	EN	DU	DU_in_EN	No				8.2	60	60	0	60	8.5	9	8.5	7	9	7.5	8.5	8.5	7.5	VLD	7.5	8	9	Yes
+791	V	EN	DU	DU_in_EN	No				6.9	60	60	0	60	6	7.5	7	6	7.5	6.5	7.5	VR	7	VLD	6	8.5	7.5	Yes
+792	M	EN	DU	DU_in_EN	No				7.7	60	60	0	60	6	8.5	7	8.5	7.5	8	7	8.5	8	VLD	7.5	8.5	8	Yes
+793	V	EN	DU	DU_in_EN	DuringYear1					0	0	0	0	i		i	i			i			i				No
+794	M	EN	DU	DU_in_EN	AfterYear1				8.8	60	60	0	60	8.5	8.5	9	8	8.5	7.5	9.5	10	9	VLD	7.5	9.5	9	Yes
+795	V	EN	DU	DU_in_EN	No				7.1	60	60	0	60	7.5	8	7	7	7	6.5	7	7	7	VLD	6	6.5	8.5	Yes
+796	V	EN	NL	NL_in_EN	No	6.55	6	7	7	60	60	0	60	7	7.5	7	6	7	7	6.5	8	7	VLD	6	6.5	8.5	Yes
+798	V	EN	NL	NL_in_EN	No	6.18	6	7	6.7	48	60	0	48	8	7	5	7	10	6.5	7	5	6.5	VLD	6.5	6	8	Yes
+799	V	EN	DU	DU_in_EN	No				6.2	43	60	0	43	6	4.5	8	6	8	7.5	6	6	7.5	VLD	4.5	5	6	Yes
+800	V	EN	DU	DU_in_EN	No				8.7	60	60	0	60	8.5	9	9.5	7	7	7.5	9.5	9	8.5	VLD	9	8.5	9.5	Yes
+801	V	EN	DU	DU_in_EN	No				7.7	60	60	0	60	8	8	6.5	7	9	8	7.5	8	7	VLD	7.5	8.5	8.5	Yes
+804	V	EN	DU	DU_in_EN	DuringYear1				2.5	5	10	0	5	4	ND	i	ND	ND		6.5			VLD				No
+805	V	EN	DU	DU_in_EN	DuringYear1				4	3	22	0	3	5	3	ONV	4.5	6.5	i	ND	i	i	i	i		i	No
+806	V	EN	DU	DU_in_EN	No				6.5	57	60	0	57	6	6.5	6.5	5	7	7	6.5	6	7	VLD	6	7	7	Yes
+807	V	EN	NL	NL_in_EN	AfterYear1	6.46	6	7	6	42	60	0	42	8.5	7.5	ONV	6	7	9	6	1.5	ONV	VLD	6	6	7	Yes
+808	V	EN	DU	DU_in_EN	No				7.5	54	60	0	54	6.5	8.5	8.5	7.5	8.5	7.5	8	9.5	ONV	VLD	6	7	8	Yes
+809	M	EN	DU	DU_in_EN	No				6.4	49	60	0	49	6.5	4.5	7	6	7	6	6.5	7.5	7	VLD	6	5	7	Yes
+810	M	EN	DU	DU_in_EN	No				7.3	60	60	0	60	6	6.5	7.5	7	9.5	7	7.5	8	6.5	VLD	7	7.5	8.5	Yes
+811	V	EN	DU	DU_in_EN	AfterYear1				5.4	18	60	0	18	4.5	6	ONV	5	7	6.5	5	4.5	ONV	VLD	4.5	5	7.5	No
+813	V	EN	DU	DU_in_EN	No				6.7	54	60	0	54	7.5	6.5	5	6	8	8	7	7	7	VLD	6	7	7	Yes
+814	V	EN	DU	DU_in_EN	AfterYear1				3.5	6	39	0	6	6	3.5	5	4	4.5		2.5	1.5		VLD	4.5	ND		No
+815	M	EN	DU	DU_in_EN	No				7.4	60	60	0	60	7	8	7	6.5	8.5	6	8.5	8.5	7	VLD	6	7	8.5	Yes
+816	V	EN	DU	DU_in_EN	No				5.7	33	59	0	33	6	4.5	5	3	7	7	6	7	ONV	i	6	5	7	No
+818	M	EN	DU	DU_in_EN	No				6.9	60	60	0	60	6	7.5	6.5	6.5	9.5	7	7	7	6	VLD	6	7.5	7.5	Yes
+819	V	EN	DU	DU_in_EN	AfterYear1				7.5	54	60	0	54	7.5	7	5	6	9	8.5	8	8	7	VLD	8.5	8	8.5	Yes
+820	V	EN	DU	DU_in_EN	No				7.2	54	60	0	54	7	7.5	5	7.5	10	7	7	8.5	7.5	VLD	6	6.5	8.5	Yes
+821	M	EN	NL	NL_in_EN	AfterYear1	6.54	6	8	5.3	27	59	0	27	4.5	7	7.5	6.5	9.5	4	8.5	1.5	ONV	i	3.5	3	6	No
+824	V	EN	DU	DU_in_EN	AfterYear1				7.1	60	60	0	60	7	7.5	8.5	6.5	7	6.5	7	7.5	7	VLD	6	6	8	Yes
+825	V	EN	DU	DU_in_EN	DuringYear1				4.5	4	23	0	4	5	5	ONV	1.5	ND		8	i		i	i			No
+826	V	EN	NL	NL_in_EN	No	6.92	7	7	7	54	60	0	54	6.5	7.5	8	6	8	8.5	6	9	8.5	VLD	3.5	VR	7.5	Yes
+827	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	6	6.5	7.5	7	7	8	8.5	8.5	7.5	VLD	6.5	6.5	8	Yes
+829	V	EN	DU	DU_in_EN	AfterYear1				7.2	54	60	0	54	7	7.5	7	8.5	8.5	7.5	8	7.5	ONV	VLD	6	8	7.5	Yes
+830	V	EN	DU	DU_in_EN	No				7.5	60	60	0	60	6	8.5	7.5	6	8	8	6.5	7.5	8	VLD	8	8	8	Yes
+831	M	EN	DU	DU_in_EN	DuringYear1				4.9	3	26	0	3	4	5	ONV	4	6.5		5	i	i	i				No
+832	V	EN	DU	DU_in_EN	DuringYear1				5.1	4	9	0	4	4	i	i	i	i		6.5			i				No
+833	V	EN	DU	DU_in_EN	No				8.8	60	60	0	60	9	9.5	9	9	8	7.5	9	9.5	8.5	VLD	8	9	9	Yes
+834	V	EN	DU	DU_in_EN	AfterYear1				5.3	33	59	0	33	5	6	7	4.5	6	7.5	6	1	ONV	i	4	6	6.5	No
+835	V	EN	DU	DU_in_EN	AfterYear1				5.3	21	59	0	21	5	6	ONV	4.5	6	6.5	6	5	ONV	i	4	5	6	No
+836	V	EN	DU	DU_in_EN	No				8	60	60	0	60	7	8.5	8	7.5	8	7.5	8.5	8	7.5	VLD	8	8	9	Yes
+837	V	EN	DU	DU_in_EN	No				7.9	60	60	0	60	7	8	7.5	7.5	9.5	8	8.5	8.5	8	VLD	6.5	7.5	9	Yes
+838	M	EN	DU	DU_in_EN	No				6.7	54	60	0	54	7	6.5	7	7	6	6.5	6	8	ONV	VLD	7	6.5	7.5	Yes
+839	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	8.5	7.5	8.5	6.5	8	8	7.5	7.5	8.5	VLD	6	6	8.5	Yes
+840	M	EN	DU	DU_in_EN	AfterYear1				4	6	50	0	6	4	3	ONV	2	3.5		4.5	i	ONV	i	2.5	2.5	6.5	No
+841	M	EN	DU	DU_in_EN	No				8.7	60	60	0	60	9.5	8	8.5	7.5	7	7.5	9	10	9	VLD	9	8	9.5	Yes
+842	V	EN	DU	DU_in_EN	DuringYear1				8.9	9	9	0	9	8		i				10			i				No
+843	V	EN	DU	DU_in_EN	AfterYear1				6	45	60	0	45	6.5	7.5	6	3	6	7.5	6.5	7	ONV	VLD	2.5	7	7.5	Yes
+844	M	EN	DU	DU_in_EN	No				6.2	42	60	0	42	7	6	5	4	8	5	6.5	7.5	ONV	VLD	6	7	6.5	Yes
+845	V	EN	DU	DU_in_EN	No				6	45	60	0	45	7	6	6.5	2	6	7.5	6.5	6.5	ONV	VLD	5	6.5	6.5	Yes
+846	M	EN	DU	DU_in_EN	No				7.5	60	60	0	60	6	8	8	6.5	10	7.5	7	8	8	VLD	7	7	8	Yes
+847	V	EN	DU	DU_in_EN	No				7.3	60	60	0	60	6	8	8	7.5	10	8	7.5	8	7	VLD	6	6	8	Yes
+848	V	EN	DU	DU_in_EN	No				7.9	60	60	0	60	7.5	8.5	8	7	10	7.5	9	8.5	8	VLD	6.5	7	8.5	Yes
+849	V	EN	DU	DU_in_EN	No				6.7	51	60	0	51	6	6.5	7.5	5	8	7	7	7.5	7	VLD	5	6.5	7.5	Yes
+850	V	EN	DU	DU_in_EN	No				7.2	60	60	0	60	6.5	7.5	8	7.5	9.5	7.5	6.5	7.5	7	VLD	6	6	8	Yes
+851	M	EN	NL	NL_in_EN	AfterYear1	6.64	6	8	4.1	3	53	0	3	5	4.5	ONV	2.5	6	ONV	4	2	ONV	i	3.5	3		No
+852	V	EN	DU	DU_in_EN	DuringYear1					0	0	0	0	i		i	i			i			i				No
+853	M	EN	DU	DU_in_EN	No				6.6	47	60	0	47	7.5	6.5	7	4.5	8.5	7	4.5	6.5	ONV	VLD	6.5	7	8	Yes
+854	V	EN	DU	DU_in_EN	No				5.3	33	60	0	33	7	6	ONV	3	6	7	6	7	ONV	VLD	2.5	2.5	7	No
+855	V	EN	NL	NL_in_EN	No	6.83	6	7	7.3	60	60	0	60	7	8	7	7	7	7	8.5	8	6.5	VLD	7.5	7	7.5	Yes
+856	V	EN	DU	DU_in_EN	No				7.1	60	60	0	60	7.5	7.5	7.5	6.5	8	7.5	6.5	8	7	VLD	6	6.5	7	Yes
+857	M	EN	DU	DU_in_EN	No				7.9	60	60	0	60	8	8.5	8	6	9.5	6.5	8	7.5	7.5	VLD	7.5	8	9	Yes
+858	M	EN	DU	DU_in_EN	No				7.1	60	60	0	60	6.5	8.5	7	6	7	7.5	7	8.5	7	VLD	6	6	8	Yes
+859	M	EN	DU	DU_in_EN	No				4.2	0	26	0	0	4.5	4.5	ONV	2	5		3.5	i	i	i	i			No
+860	V	EN	NL	NL_in_EN	No	7.85	7	8	7.9	60	60	0	60	6.5	9	7.5	8	9.5	8.5	9	9	7.5	VLD	8	6.5	7.5	Yes
+861	V	EN	DU	DU_in_EN	No				7.5	60	60	0	60	6	7.5	8	6.5	7.5	8.5	7	9.5	7	VLD	6.5	8	8	Yes
+862	M	EN	DU	DU_in_EN	No				7.7	60	60	0	60	8	8.5	7.5	7	9.5	8.5	7.5	8	7.5	VLD	7	6.5	8.5	Yes
+863	V	EN	DU	DU_in_EN	No				6.6	53	60	0	53	7	7.5	6.5	4	8	6	4	7	7	VLD	7	6.5	7.5	Yes
+864	V	EN	DU	DU_in_EN	No				6.5	45	60	0	45	7	6.5	5	5	7.5	7.5	6	7.5	7.5	VLD	4.5	7	7	Yes
+865	V	EN	DU	DU_in_EN	AfterYear1				5.9	45	60	0	45	6	6	6.5	6	6	ONV	6	7	ONV	VLD	4	6	6.5	Yes
+866	V	EN	DU	DU_in_EN	DuringYear1				4.6	0	26	0	0	5	4	ONV	4.5	5		4	i	i	i	i			No
+867	V	EN	DU	DU_in_EN	No				6.5	48	60	0	48	6	7	ONV	6.5	7	7	7.5	7.5	6.5	VLD	4.5	6.5	7.5	Yes
+868	M	EN	DU	DU_in_EN	No				6.9	60	60	0	60	6	8.5	7	6.5	6	6	6	7	6.5	VLD	7	8	7.5	Yes
+869	M	EN	DU	DU_in_EN	No				7.4	60	60	0	60	7.5	8	7.5	7	8.5	7	7	8	7	VLD	8	6	8	Yes
+870	V	EN	DU	DU_in_EN	No				8	60	60	0	60	7	9	8	8	8	7	8.5	8.5	8	VLD	6.5	8.5	8.5	Yes
+871	M	EN	DU	DU_in_EN	AfterYear1				3.6	3	32	0	3	5	3.5	ONV	4	7.5		4.5	2		i	ND			No
+872	V	EN	DU	DU_in_EN	No				6	38	60	0	38	7	6	7	6.5	8	7	5	4.5	ONV	VLD	5	6	7	No
+873	M	EN	DU	DU_in_EN	DuringYear1				3.9	5	23	0	5	6	3	ONV	ND	3		4	i						No
+874	M	EN	DU	DU_in_EN	DuringYear1				5.7	20	26	0	20	7.5	9	ONV	6	7	i	7.5	i	i	i	ND		i	No
+875	M	EN	DU	DU_in_EN	AfterYear1				8	60	60	0	60	8	7.5	8.5	7	9	8	7.5	8.5	8	VLD	7.5	8	8.5	Yes
+876	M	EN	NL	NL_in_EN	AfterYear1				6.3	41	60	6	47	7.5	6.5	ONV	3	7.5	7.5	4.5	7.5	ONV	VLD	6.5	7.5	6.5	No
+877	V	EN	DU	DU_in_EN	DuringYear1					0	0	0	0	i		i	i			i			i				No
+878	V	EN	DU	DU_in_EN	No				8.3	60	60	0	60	7.5	8.5	8.5	7	10	7.5	8.5	9.5	7	VLD	8.5	8.5	8.5	Yes
+879	V	EN	DU	DU_in_EN	DuringYear1				6.3	20	26	0	20	6	7.5	5	6	6		7.5	i	i	i	i			No
+880	M	EN	DU	DU_in_EN	No				6.6	55	60	0	55	3.5	7	7.5	6	6	7	7.5	7	8	VLD	6	6	7.5	Yes
+881	M	EN	DU	DU_in_EN	AfterYear1				8.1	60	60	0	60	7.5	9.5	6	8	9.5	7.5	9	9	7.5	VLD	8	8.5	8.5	Yes
+883	V	EN	DU	DU_in_EN	No				7.1	60	60	0	60	6	7.5	7	6.5	10	6.5	6	8	7	VLD	6.5	7	7.5	Yes
+884	M	EN	DU	DU_in_EN	No				8.7	60	60	0	60	8.5	9.5	9	8.5	9.5	8.5	9.5	9.5	7.5	VLD	8	8.5	9	Yes
+885	V	EN	DU	DU_in_EN	No				6.2	50	59	0	50	6.5	7.5	ONV	6	7.5	ONV	6.5	6.5	6.5	i	6	6	6	Yes
+886	M	EN	DU	DU_in_EN	DuringYear1				4.3	3	23	0	3	4.5	4	ONV	ND	6		5	i	i	i				No
+888	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	6	8	8	6.5	8.5	8	6.5	8.5	7	VLD	6	8.5	9	Yes
+889	V	EN	DU	DU_in_EN	No				6.7	54	60	0	54	7.5	8	6.5	6	8.5	7.5	7.5	7	6	VLD	4.5	6	7.5	Yes
+890	V	EN	DU	DU_in_EN	AfterYear1				7.8	60	60	0	60	6.5	9	7.5	8	8.5	7.5	8.5	8.5	6.5	VLD	7	8.5	8.5	Yes
+891	V	EN	DU	DU_in_EN	AfterYear1				6.1	41	60	0	41	6	6	ONV	5	6	7	4.5	7	ONV	VLD	6	6.5	8.5	No
+892	V	EN	DU	DU_in_EN	No				7.5	60	60	0	60	6	8.5	7.5	7	10	7	6.5	7	7	VLD	7	8.5	8.5	Yes
+893	V	EN	DU	DU_in_EN	No				7.4	60	60	0	60	7.5	8.5	6.5	7	8	8.5	6	8	7	VLD	6.5	7.5	8	Yes
+894	M	EN	DU	DU_in_EN	DuringYear1					0	0	0	0	i		i	i			i			i				No
+895	M	EN	DU	DU_in_EN	DuringYear1				3	5	18	0	5	7	ND	ONV	ND	4		4.5	i	i	i	ND			No
+897	M	EN	DU	DU_in_EN	No				7.9	60	60	0	60	7.5	9	7.5	7	9.5	7	8	9	7	VLD	7	9	8	Yes
+898	M	EN	DU	DU_in_EN	No				5.5	35	59	0	35	7	6.5	7	7	7	7	6	3.5	ONV	i	3.5	3	6	No
+899	M	EN	NL	NL_in_EN	No	6.64	6	6	6.5	53	59	0	53	7.5	6.5	7	7	6	6	7	7	ONV	i	6	6	7.5	Yes
+901	M	EN	DU	DU_in_EN	AfterYear1				6.9	60	60	0	60	7	6.5	7	6	6.5	6.5	6.5	7.5	7	VLD	6	7	8	Yes
+903	M	EN	DU	DU_in_EN	DuringYear1				3.1	0	9	0	0	4	i	i	i	i		2			i				No
+904	V	EN	DU	DU_in_EN	AfterYear1				4.7	19	60	0	19	4	3.5	7	6	6	ONV	4	1	ONV	VLD	2.5	8	5	No
+905	V	EN	DU	DU_in_EN	AfterYear1				6.8	51	60	0	51	7	6	8	4.5	7	8.5	6	8	7	VLD	5	7	7	Yes
+906	V	EN	DU	DU_in_EN	No				6.7	60	60	0	60	6	7	6.5	6	6.5	8	7	7.5	7	VLD	6	6	7	Yes
+907	V	EN	DU	DU_in_EN	No				6.9	57	60	0	57	6	8	7.5	4.5	9.5	7	7	7	7	VLD	6	6	7.5	Yes
+908	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	6	8.5	7.5	8.5	9.5	8	7	7.5	7.5	VLD	7	8	8	Yes
+909	V	EN	DU	DU_in_EN	DuringYear1				5.2	14	26	0	14	6	6	ONV	3.5	3.5		6	i		i	i			No
+910	V	EN	DU	DU_in_EN	No				7.6	60	60	0	60	7	8.5	7.5	7	7	7	7.5	8.5	8	VLD	7	7	8.5	Yes
+911	V	EN	DU	DU_in_EN	No				8.2	60	60	0	60	8.5	9	8	8	7.5	7	8	9.5	8	VLD	7	8	9.5	Yes
+912	V	EN	DU	DU_in_EN	AfterYear1				3.8	6	56	0	6	2.5	3.5	ONV	1	4.5		4	2.5	5	i	5	2	6	No
+913	V	EN	DU	DU_in_EN	No				7	60	60	0	60	6.5	7	7	6	7	8	8	7	7.5	VLD	6	7.5	7	Yes
+914	V	EN	DU	DU_in_EN	No				7.5	54	60	0	54	8.5	8	5	9	9.5	7	7	8.5	6.5	VLD	6	8.5	8	Yes
+915	V	EN	DU	DU_in_EN	No				5.4	30	60	0	30	6	4	5	4.5	6	7.5	4.5	6.5	ONV	VLD	2.5	6	7.5	No
+916	V	EN	DU	DU_in_EN	No				8.1	60	60	0	60	8	9.5	9	6.5	8	7.5	8.5	8.5	7.5	VLD	7	8	9	Yes
+917	M	EN	DU	DU_in_EN	No				6.1	45	59	0	45	5	6	5	4.5	6.5	7.5	6	7.5	6.5	i	6	6.5	6	Yes
+919	V	EN	DU	DU_in_EN	No				6	48	60	0	48	6.5	7	7	6.5	7.5	7	6	5	6.5	VLD	6	3	6	Yes
+920	V	EN	DU	DU_in_EN	AfterYear1				7.1	54	60	0	54	7.5	7.5	7.5	6	8	6	7	7	ONV	VLD	7	8	8	Yes
+921	V	EN	DU	DU_in_EN	No				6.8	57	60	0	57	8.5	7	7	5	6	7.5	7	8	6.5	VLD	6.5	6	6.5	Yes
+922	M	EN	DU	DU_in_EN	No				5.9	39	60	0	39	7	6.5	7	5	6	7	6	7	ONV	VLD	3.5	4.5	7	No

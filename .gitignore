@@ -1,4 +1,5 @@
 __pycache__
-data/
+data/indiv_files
+data/raw_data
 results/length_descriptives
 src/.RHistory
