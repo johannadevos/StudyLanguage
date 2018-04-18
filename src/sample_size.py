@@ -121,7 +121,7 @@ def correlations_per_exam(results_dir, lca_min_sam):
     all_corrs = []
     
     # Define the LCA measures for which we want to get correlations
-    lca_measures = ['ld', 'ls2', 'ndwerz', 'msttr']
+    lca_measures = ['ld', 'ls2', 'ndwesz', 'msttr']
     
     # Loop through all results from corrected files and append to big dataframe
     for file in all_result_files:
