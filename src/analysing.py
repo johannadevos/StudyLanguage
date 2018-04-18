@@ -268,9 +268,6 @@ parser.add_argument("lca_min_sam", help = "Choose the minimal sample size \
 parser.add_argument("exam1", help = "The first exam in the comparison.")
 parser.add_argument("exam2", help = "The second exam in the comparison.")
 parser.add_argument("--exam3", help = "The third exam in the comparison.")
-parser.add_argument("--truncation", help = "Should the LCA be performed on \
-                    samples that were truncated at the same length?", choices = 
-                    ["yes", "no"], default = "yes")
 parser.add_argument("--nationality", help = "For which nationality do you \
                     want to perform the analysis?", choices = ["DU", "NL"], 
                     default = "NL")
@@ -280,14 +277,13 @@ lca_min_sam = int(args.lca_min_sam)
 name_exam1 = args.exam1
 name_exam2 = args.exam2
 name_exam3 = args.exam3
-trunc = args.truncation
 natio = args.nationality
     
 # Define directories
 src_dir = os.path.dirname(os.path.abspath(__file__))
 data_dir = os.path.join(src_dir, '..', 'data')
 results_dir = os.path.join(src_dir, '..', 'results')
-lca_results_dir = os.path.join(results_dir, 'lca_untruncated')
+lca_results_dir = os.path.join(results_dir, 'lca_results')
 
 # Create dataframes with LCA results for the two exams
 exam1 = create_pandas_df(lca_results_dir, name_exam1)
