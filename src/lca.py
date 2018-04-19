@@ -190,40 +190,78 @@ def run_lca(standard, directory, language):
                     #if (not word in wordranks[-2000:]) and pos != "cd": # original --> remove cardinal numbers. I changed this because all digits are already removed in preprocessing.
                         swordtypes[word]=1
                         swordtokens+=1
-                    if pos[0]=="n": # Works for English and Dutch
-                        lextypes[word]=1
-                        nountypes[word]=1
-                        lextokens+=1
-                        nountokens+=1
-                        if not word in wordranks[-2000:]:
-                            slextypes[word]=1
-                            slextokens+=1
-                    elif pos[0]=="j" or pos[:3]=="adj": # First statement for English, second for Dutch (no CGN tags start with 'j')
-                        lextypes[word]=1
-                        adjtypes[word]=1
-                        lextokens+=1
-                        adjtokens+=1
-                        if not word in wordranks[-2000:]:
-                            slextypes[word]=1
-                            slextokens+=1
-                    elif pos[0]=="r" or pos[:2]=="bw":
-                    #elif pos[0]=="r" and (word in adjdict or (word[-2:]=="ly" and word[:-2] in adjdict)): # original --> I removed part of this statement because Dutch adverbs don't end in 'ly'. This issue could be reinspected, but since I won't be working with adverbs anyway I didn't invest in this.
-                        lextypes[word]=1
-                        advtypes[word]=1
-                        lextokens+=1
-                        advtokens+=1
-                        if not word in wordranks[-2000:]:
-                            slextypes[word]=1
-                            slextokens+=1
-                    elif (pos[0]=="v" and not word in ["be","have"]) or (pos[:2]=="ww" and not word in ["zijn","hebben"]):
-                        verbtypes[word]=1
-                        verbtokens+=1
-                        lextypes[word]=1
-                        lextokens+=1
-                        if not word in wordranks[-2000:]:
-                            sverbtypes[word]=1
-                            slextypes[word]=1
-                            slextokens+=1
+                        
+                    if language == "EN":
+                        
+                        if pos[0]=="n":
+                            lextypes[word]=1
+                            nountypes[word]=1
+                            lextokens+=1
+                            nountokens+=1
+                            if not word in wordranks[-2000:]:
+                                slextypes[word]=1
+                                slextokens+=1
+                        elif pos[0]=="j":
+                            lextypes[word]=1
+                            adjtypes[word]=1
+                            lextokens+=1
+                            adjtokens+=1
+                            if not word in wordranks[-2000:]:
+                                slextypes[word]=1
+                                slextokens+=1
+                        elif pos[0]=="r" and (word in adjdict or (word[-2:]=="ly" and word[:-2] in adjdict)):
+                            lextypes[word]=1
+                            advtypes[word]=1
+                            lextokens+=1
+                            advtokens+=1
+                            if not word in wordranks[-2000:]:
+                                slextypes[word]=1
+                                slextokens+=1
+                        elif pos[0]=="v" and not word in ["be","have"]:
+                            verbtypes[word]=1
+                            verbtokens+=1
+                            lextypes[word]=1
+                            lextokens+=1
+                            if not word in wordranks[-2000:]:
+                                sverbtypes[word]=1
+                                slextypes[word]=1
+                                slextokens+=1
+                                
+                    elif language == "NL":
+                        
+                        if pos[0]=="n":
+                            lextypes[word]=1
+                            nountypes[word]=1
+                            lextokens+=1
+                            nountokens+=1
+                            if not word in wordranks[-2000:]:
+                                slextypes[word]=1
+                                slextokens+=1
+                        elif pos[:3]=="adj":
+                            lextypes[word]=1
+                            adjtypes[word]=1
+                            lextokens+=1
+                            adjtokens+=1
+                            if not word in wordranks[-2000:]:
+                                slextypes[word]=1
+                                slextokens+=1
+                        elif pos[:2]=="bw":
+                            lextypes[word]=1
+                            advtypes[word]=1
+                            lextokens+=1
+                            advtokens+=1
+                            if not word in wordranks[-2000:]:
+                                slextypes[word]=1
+                                slextokens+=1
+                        elif pos[:2]=="ww" and not word in ["zijn","hebben"]:
+                            verbtypes[word]=1
+                            verbtokens+=1
+                            lextypes[word]=1
+                            lextokens+=1
+                            if not word in wordranks[-2000:]:
+                                sverbtypes[word]=1
+                                slextypes[word]=1
+                                slextokens+=1
                             
         # 0. basic statistics
         mls=division(wordtokens,sentences)
