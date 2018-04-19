@@ -8,6 +8,10 @@ setwd("C:/Users/johan/Documents/GitHub/StudyLanguage/")
 subject_info <- read.csv("data/subject_info.txt", header=TRUE, sep="\t")
 lca_data <- read.csv("data/r_data.txt", header=TRUE, sep=",")
 
+# Small changes to the dataset
+colnames(lca_data)[colnames(lca_data)=="Natio1"] <- "Nationality"
+lca_data$Track <- factor(lca_data$Track, levels = c("NL", "EN"))
+
 
 ### Do the 'better' Dutch students choose the English track?
 
@@ -56,15 +60,21 @@ lca_data %>%
   summarise_all("sd")
 
 # Reshape data
-ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "TrackNatio1"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
+ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Month"
 ld_melted$Month <- revalue(ld_melted$Month, c("ld_oct"="October", "ld_jan"="January", "ld_apr" = "April"))
 
 # Visualise
-ggplot(ld_melted, aes(x = Month, y = LD, colour = TrackNatio1, group = TrackNatio1)) +
-  stat_summary(fun.y = mean, geom = "point") + 
-  stat_summary(fun.y = mean, geom = "line") +
-  labs(x = "\nMonth", y = "Lexical Density\n")
+ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+  stat_summary(fun.y = mean, geom = "point", size = 4) + 
+  stat_summary(fun.y = mean, geom = "line", size = 2) +
+  theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
+  labs(x = "\nMonth", y = "Lexical Density\n") +
+  scale_color_manual(values=c("orange", "steelblue3")) +
+  scale_linetype_manual("Track", values=c("NL"=2,"EN"=1)) +
+  guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
+         colour=guide_legend(keywidth = 4, keyheight = 1))
+
 
 # Don't use German students in Dutch track
 three_gr <- lca_data[lca_data$TrackNatio1 != "DU_in_NL",]
