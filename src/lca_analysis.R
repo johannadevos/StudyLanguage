@@ -1,5 +1,5 @@
 # Import libraries
-library(ggplot2); library(dplyr); library(reshape2)
+library(ggplot2); library(dplyr); library(reshape2); library(plyr)
 
 # Set working directory
 setwd("C:/Users/johan/Documents/GitHub/StudyLanguage/")
@@ -56,16 +56,15 @@ lca_data %>%
   summarise_all("sd")
 
 # Reshape data
-ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "TrackNatio1"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "Score")
-colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Measure"
+ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "TrackNatio1"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
+colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Month"
+ld_melted$Month <- revalue(ld_melted$Month, c("ld_oct"="October", "ld_jan"="January", "ld_apr" = "April"))
 
 # Visualise
-ggplot(ld_melted, aes(x = Measure, y = Score, colour = TrackNatio1, group = TrackNatio1)) +
+ggplot(ld_melted, aes(x = Month, y = LD, colour = TrackNatio1, group = TrackNatio1)) +
   stat_summary(fun.y = mean, geom = "point") + 
-  stat_summary(fun.y = mean, geom = "line")
-  
-                        
-                        
+  stat_summary(fun.y = mean, geom = "line") +
+  labs(x = "\nMonth", y = "Lexical Density\n")
 
 # Don't use German students in Dutch track
 three_gr <- lca_data[lca_data$TrackNatio1 != "DU_in_NL",]
