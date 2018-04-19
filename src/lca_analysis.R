@@ -1,3 +1,6 @@
+# Import libraries
+library(ggplot2); library(dplyr); library(reshape2)
+
 # Set working directory
 setwd("C:/Users/johan/Documents/GitHub/StudyLanguage/")
 
@@ -37,4 +40,36 @@ wilcox.test(dutch_data$SchoolEnglish[dutch_data$Track=="EN"], dutch_data$SchoolE
 t.test(dutch_data$SchoolMean[dutch_data$Track=="EN"], dutch_data$SchoolMean[dutch_data$Track=="NL"])
 
 
+### How do L1 and L2 lexical richness develop during the 1st year?
 
+# Descriptives
+tapply(lca_data$ld_oct, lca_data$TrackNatio1, length) # n
+
+lca_data %>%
+  select(TrackNatio1, ld_oct, ld_jan, ld_apr) %>%
+  group_by(TrackNatio1) %>%
+  summarise_all("mean")
+
+lca_data %>%
+  select(TrackNatio1, ld_oct, ld_jan, ld_apr) %>%
+  group_by(TrackNatio1) %>%
+  summarise_all("sd")
+
+# Reshape data
+ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "TrackNatio1"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "Score")
+colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Measure"
+
+# Visualise
+ggplot(ld_melted, aes(x = Measure, y = Score, colour = TrackNatio1, group = TrackNatio1)) +
+  stat_summary(fun.y = mean, geom = "point") + 
+  stat_summary(fun.y = mean, geom = "line")
+  
+                        
+                        
+
+# Don't use German students in Dutch track
+three_gr <- lca_data[lca_data$TrackNatio1 != "DU_in_NL",]
+
+# Investigate how the variables are distributed
+ggplot(data = three_gr, aes(three_gr$ld_oct, fill = three_gr$TrackNatio1)) +
+  geom_histogram()
