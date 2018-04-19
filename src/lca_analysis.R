@@ -105,7 +105,7 @@ colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Month"
 ndwesz_melted$Month <- revalue(ndwesz_melted$Month, c("ndwesz_oct"="October", "ndwesz_jan"="January", "ndwesz_apr" = "April"))
 
 # Visualise
-ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -115,6 +115,9 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ, linetype = Track, colour = Nati
   scale_linetype_manual("Track", values=c("NL"=2,"EN"=1)) +
   guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
          colour=guide_legend(keywidth = 4, keyheight = 1))
+
+#NB: I divided NDWESZ by 20 to obtain TTR. This is not the original measure.
+
 
 # Visualisation: MSTTR
 
