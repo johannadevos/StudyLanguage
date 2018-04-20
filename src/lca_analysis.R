@@ -72,7 +72,7 @@ lca_data %>%
 ## Visualisation: Lexical density
 
 # Reshape data
-ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
+ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Month"
 ld_melted$Month <- revalue(ld_melted$Month, c("ld_oct"="October", "ld_jan"="January", "ld_apr" = "April"))
 
@@ -90,7 +90,7 @@ ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality,
 ## Visualisation: Lexical sophistication
 
 # Reshape data
-ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("ls2_oct", "ls2_jan", "ls2_apr"), value.name = "LS2")
+ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("ls2_oct", "ls2_jan", "ls2_apr"), value.name = "LS2")
 colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Month"
 ls2_melted$Month <- revalue(ls2_melted$Month, c("ls2_oct"="October", "ls2_jan"="January", "ls2_apr" = "April"))
 
@@ -108,7 +108,7 @@ ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationalit
 ## Visualisation: NDWESZ
 
 # Reshape data
-ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("ndwesz_oct", "ndwesz_jan", "ndwesz_apr"), value.name = "NDWESZ")
+ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("ndwesz_oct", "ndwesz_jan", "ndwesz_apr"), value.name = "NDWESZ")
 colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Month"
 ndwesz_melted$Month <- revalue(ndwesz_melted$Month, c("ndwesz_oct"="October", "ndwesz_jan"="January", "ndwesz_apr" = "April"))
 
@@ -128,7 +128,7 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = N
 ## Visualisation: MSTTR
 
 # Reshape data
-msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("msttr_oct", "msttr_jan", "msttr_apr"), value.name = "MSTTR")
+msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("msttr_oct", "msttr_jan", "msttr_apr"), value.name = "MSTTR")
 colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Month"
 msttr_melted$Month <- revalue(msttr_melted$Month, c("msttr_oct"="October", "msttr_jan"="January", "msttr_apr" = "April"))
 
@@ -143,16 +143,14 @@ ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nation
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
-## Statistical models
+## Histograms
 
 # Don't use German students in Dutch track
 three_gr <- lca_data[lca_data$TrackNatio1 != "German_in_Dutch",]
 
 # Investigate how the variables are distributed
-ggplot(data = three_gr, aes(three_gr$ld_oct, fill = three_gr$TrackNatio1)) +
-  geom_histogram()
 
-# Investigate how the variables are distributed
+# Lexical density
 ld_oct <- ggplot(data = three_gr, aes(three_gr$ld_oct)) +
   geom_histogram(fill = "steelblue3") +
   facet_grid(~TrackNatio1) +
@@ -176,3 +174,52 @@ ld_apr <- ggplot(data = three_gr, aes(three_gr$ld_apr)) +
 
 # To plot the three graphs in one picture
 grid.arrange(ld_oct, ld_jan, ld_apr, nrow=1, ncol=3)
+
+# Lexical sophistication
+ls2_oct <- ggplot(data = three_gr, aes(three_gr$ls2_oct)) +
+  geom_histogram(fill = "steelblue3") +
+  facet_grid(~TrackNatio1) +
+  labs(x = "\nOctober", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+ls2_jan <- ggplot(data = three_gr, aes(three_gr$ls2_jan)) +
+  geom_histogram(fill = "orange") +
+  facet_grid(~TrackNatio1) +
+  labs(x = "\nJanuary", y = "Count\n") +
+  ggtitle("Lexical sophistication\n") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
+  geom_histogram(fill = "mediumpurple4") +
+  facet_grid(~TrackNatio1) +
+  labs(x = "\nApril", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# To plot the three graphs in one picture
+grid.arrange(ls2_oct, ls2_jan, ls2_apr, nrow=1, ncol=3)
+
+## Statistical analysis
+
+# Merge long dataframes
+man_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "TrackNatio1", "Month"))
+man_data <- merge(man_data, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "TrackNatio1", "Month"))
+man_data$Month <- factor(man_data$Month, levels = c("October", "January", "April"))
+
+# Exclude Germans in the Dutch track
+man_data <- man_data[man_data$TrackNatio1 != "German_in_Dutch",]
+
+# Define outcome variable
+outcome <- cbind(man_data$LD, man_data$LS2, man_data$NDWESZ)
+
+# Run MANOVA
+manova <- manova(outcome ~ TrackNatio1 + Month, data = man_data)
+summary(manova)
+
+
+
+
+
+
+
