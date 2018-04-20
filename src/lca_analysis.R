@@ -1,5 +1,5 @@
 # Import libraries
-library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc)
+library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra)
 
 # Set working directory
 #setwd("C:/Users/johan/Documents/GitHub/StudyLanguage/")
@@ -14,8 +14,10 @@ colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
 colnames(lca_data)[colnames(lca_data)=="Natio1"] <- "Nationality"
 subject_info$Nationality <- revalue(subject_info$Nationality, c("NL" = "Dutch", "DU" = "German"))
 subject_info$Track <- revalue(subject_info$Track, c("NL" = "Dutch", "EN" = "English"))
+subject_info$TrackNatio1 <- revalue(subject_info$TrackNatio1, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
 lca_data$Nationality <- revalue(lca_data$Nationality, c("NL" = "Dutch", "DU" = "German"))
 lca_data$Track <- revalue(lca_data$Track, c("NL" = "Dutch", "EN" = "English"))
+lca_data$TrackNatio1 <- revalue(lca_data$TrackNatio1, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
 
 # Relevel (for better visualisation)
 lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
@@ -54,7 +56,7 @@ t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean
 
 ### How do L1 and L2 lexical richness develop during the 1st year?
 
-# Descriptives
+## Descriptives
 tapply(lca_data$ld_oct, lca_data$TrackNatio1, length) # n
 
 lca_data %>%
@@ -67,7 +69,7 @@ lca_data %>%
   group_by(TrackNatio1) %>%
   summarise_all("sd")
 
-# Visualisation: Lexical density
+## Visualisation: Lexical density
 
 # Reshape data
 ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
@@ -85,7 +87,7 @@ ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality,
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
-# Visualisation: Lexical sophistication
+## Visualisation: Lexical sophistication
 
 # Reshape data
 ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("ls2_oct", "ls2_jan", "ls2_apr"), value.name = "LS2")
@@ -103,7 +105,7 @@ ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationalit
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
-# Visualisation: NDWESZ
+## Visualisation: NDWESZ
 
 # Reshape data
 ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("ndwesz_oct", "ndwesz_jan", "ndwesz_apr"), value.name = "NDWESZ")
@@ -123,8 +125,7 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = N
 
 #NB: I divided NDWESZ by 20 to obtain TTR. This is not the original measure.
 
-
-# Visualisation: MSTTR
+## Visualisation: MSTTR
 
 # Reshape data
 msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality"), measure.vars = c("msttr_oct", "msttr_jan", "msttr_apr"), value.name = "MSTTR")
@@ -142,9 +143,36 @@ ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nation
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
+## Statistical models
+
 # Don't use German students in Dutch track
-three_gr <- lca_data[lca_data$TrackNatio1 != "DU_in_NL",]
+three_gr <- lca_data[lca_data$TrackNatio1 != "German_in_Dutch",]
 
 # Investigate how the variables are distributed
 ggplot(data = three_gr, aes(three_gr$ld_oct, fill = three_gr$TrackNatio1)) +
   geom_histogram()
+
+# Investigate how the variables are distributed
+ld_oct <- ggplot(data = three_gr, aes(three_gr$ld_oct)) +
+  geom_histogram(fill = "steelblue3") +
+  facet_grid(~TrackNatio1) +
+  labs(x = "\nOctober", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+ld_jan <- ggplot(data = three_gr, aes(three_gr$ld_jan)) +
+  geom_histogram(fill = "orange") +
+  facet_grid(~TrackNatio1) +
+  labs(x = "\nJanuary", y = "Count\n") +
+  ggtitle("Lexical density\n") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+ld_apr <- ggplot(data = three_gr, aes(three_gr$ld_apr)) +
+  geom_histogram(fill = "mediumpurple4") +
+  facet_grid(~TrackNatio1) +
+  labs(x = "\nApril", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# To plot the three graphs in one picture
+grid.arrange(ld_oct, ld_jan, ld_apr, nrow=1, ncol=3)
