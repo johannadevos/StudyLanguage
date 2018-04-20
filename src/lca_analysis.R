@@ -1,22 +1,30 @@
 # Import libraries
-library(ggplot2); library(dplyr); library(reshape2); library(plyr)
+library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc)
 
 # Set working directory
-setwd("C:/Users/johan/Documents/GitHub/StudyLanguage/")
+#setwd("C:/Users/johan/Documents/GitHub/StudyLanguage/")
+setwd("U:/GitHub/StudyLanguage/")
 
 # Read in data
 subject_info <- read.csv("data/subject_info.txt", header=TRUE, sep="\t")
 lca_data <- read.csv("data/r_data.txt", header=TRUE, sep=",")
 
-# Small changes to the dataset
+# Rename columns and colume values
+colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
 colnames(lca_data)[colnames(lca_data)=="Natio1"] <- "Nationality"
-lca_data$Track <- factor(lca_data$Track, levels = c("NL", "EN"))
+subject_info$Nationality <- revalue(subject_info$Nationality, c("NL" = "Dutch", "DU" = "German"))
+subject_info$Track <- revalue(subject_info$Track, c("NL" = "Dutch", "EN" = "English"))
+lca_data$Nationality <- revalue(lca_data$Nationality, c("NL" = "Dutch", "DU" = "German"))
+lca_data$Track <- revalue(lca_data$Track, c("NL" = "Dutch", "EN" = "English"))
 
+# Relevel (for better visualisation)
+lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
+lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
 
 ### Do the 'better' Dutch students choose the English track?
 
 # Select Dutch students only
-dutch_data <- subject_info[subject_info$Natio1 == "NL",]
+dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
 
 # Descriptives per track
 tapply(dutch_data$SchoolMean, dutch_data$Track, length)
@@ -26,22 +34,22 @@ tapply(dutch_data$SchoolEnglish, dutch_data$Track, length)
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, summary)
 
 # Plot distribution of grades
-hist(dutch_data$SchoolMean[dutch_data$Track == "EN"], breaks=12)
-hist(dutch_data$SchoolMean[dutch_data$Track == "NL"], breaks=12)
+hist(dutch_data$SchoolMean[dutch_data$Track == "English"], breaks=12)
+hist(dutch_data$SchoolMean[dutch_data$Track == "Dutch"], breaks=12)
 
-hist(dutch_data$SchoolEnglish[dutch_data$Track == "EN"])
-hist(dutch_data$SchoolEnglish[dutch_data$Track == "NL"])
+hist(dutch_data$SchoolEnglish[dutch_data$Track == "English"])
+hist(dutch_data$SchoolEnglish[dutch_data$Track == "Dutch"])
 
 # Are grades normally distributed? --> Not in the Dutch track
 tapply(dutch_data$SchoolMean, dutch_data$Track, shapiro.test)
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, shapiro.test)
 
 # Use non-parametric testing
-wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="EN"], dutch_data$SchoolMean[dutch_data$Track=="NL"])
-wilcox.test(dutch_data$SchoolEnglish[dutch_data$Track=="EN"], dutch_data$SchoolEnglish[dutch_data$Track=="NL"])
+wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
+wilcox.test(dutch_data$SchoolEnglish[dutch_data$Track=="English"], dutch_data$SchoolEnglish[dutch_data$Track=="Dutch"])
 
 # Since the p-value for SchoolMean is so close to significance (.07), also do a t-test for further exploration
-t.test(dutch_data$SchoolMean[dutch_data$Track=="EN"], dutch_data$SchoolMean[dutch_data$Track=="NL"])
+t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
 
 
 ### How do L1 and L2 lexical richness develop during the 1st year?
@@ -74,9 +82,8 @@ ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality,
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
   labs(x = "\nMonth", y = "Lexical Density\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
-  scale_linetype_manual("Track", values=c("NL"=2,"EN"=1)) +
-  guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
-         colour=guide_legend(keywidth = 4, keyheight = 1))
+  guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
+         colour=guide_legend(keywidth = 2, keyheight = 1))
 
 # Visualisation: Lexical sophistication
 
@@ -93,9 +100,8 @@ ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationalit
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
   labs(x = "\nMonth", y = "Lexical Sophistication\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
-  scale_linetype_manual("Track", values=c("NL"=2,"EN"=1)) +
-  guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
-         colour=guide_legend(keywidth = 4, keyheight = 1))
+  guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
+         colour=guide_legend(keywidth = 2, keyheight = 1))
 
 # Visualisation: NDWESZ
 
@@ -112,9 +118,8 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = N
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
   labs(x = "\nMonth", y = "Lexical Variation 1\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
-  scale_linetype_manual("Track", values=c("NL"=2,"EN"=1)) +
-  guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
-         colour=guide_legend(keywidth = 4, keyheight = 1))
+  guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
+         colour=guide_legend(keywidth = 2, keyheight = 1))
 
 #NB: I divided NDWESZ by 20 to obtain TTR. This is not the original measure.
 
@@ -134,9 +139,8 @@ ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nation
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
   labs(x = "\nMonth", y = "Lexical Variation 2\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
-  scale_linetype_manual("Track", values=c("NL"=2,"EN"=1)) +
-  guides(linetype=guide_legend(keywidth = 4, keyheight = 1),
-         colour=guide_legend(keywidth = 4, keyheight = 1))
+  guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
+         colour=guide_legend(keywidth = 2, keyheight = 1))
 
 # Don't use German students in Dutch track
 three_gr <- lca_data[lca_data$TrackNatio1 != "DU_in_NL",]
