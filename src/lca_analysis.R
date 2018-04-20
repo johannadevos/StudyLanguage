@@ -216,7 +216,8 @@ outcome <- cbind(man_data$LD, man_data$LS2, man_data$NDWESZ)
 # Run MANOVA
 manova <- manova(outcome ~ TrackNatio1 + Month, data = man_data)
 summary(manova)
-
+summary.lm(manova)
+summary.aov(manova)
 
 
 
