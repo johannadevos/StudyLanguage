@@ -23,6 +23,10 @@ lca_data$TrackNatio1 <- revalue(lca_data$TrackNatio1, c("DU_in_NL" = "German_in_
 lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
 lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
 
+
+### How can study success be predicted?
+
+
 ### Do the 'better' Dutch students choose the English track?
 
 # Select Dutch students only
@@ -31,9 +35,11 @@ dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
 # Descriptives per track
 tapply(dutch_data$SchoolMean, dutch_data$Track, length)
 tapply(dutch_data$SchoolMean, dutch_data$Track, summary)
+tapply(dutch_data$SchoolMean, dutch_data$Track, sd, na.rm=TRUE)
 
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, length)
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, summary)
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, sd, na.rm=TRUE)
 
 # Plot distribution of grades
 hist(dutch_data$SchoolMean[dutch_data$Track == "English"], breaks=12)
