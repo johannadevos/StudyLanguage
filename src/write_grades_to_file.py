@@ -91,4 +91,5 @@ english_grades.columns = ['SubjectCode', 'grade_oct', 'grade_jan', 'grade_apr']
 
 grades = pd.concat([dutch_grades, english_grades])
 grades = grades.sort_values('SubjectCode')
+grades = grades.dropna()
 grades.to_csv(os.path.join(data_dir, 'grades.txt'), index=False)
