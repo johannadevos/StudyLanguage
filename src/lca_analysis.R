@@ -225,6 +225,16 @@ ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
 # To plot the three graphs in one picture
 grid.arrange(ls2_oct, ls2_jan, ls2_apr, nrow=1, ncol=3)
 
+## Analyse grades
+grades <- read.csv("data/grades.txt", header=TRUE, sep=",")
+
+# Only use the grades of those students whose writing samples are used
+good_subjects <- lca_data$SubjectCode
+
+# Filter grades
+grades <- grades[grades$SubjectCode %in% good_subjects,] # Probleem: lengte 317 in plaats van 314?
+
+
 ## Statistical analysis
 
 # Merge long dataframes
