@@ -6,25 +6,44 @@ library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmis
 setwd("U:/GitHub/StudyLanguage/")
 
 # Read in data
-subject_info <- read.csv("data/subject_info.txt", header=TRUE, sep="\t")
+subject_info <- read.csv("data/subject_info.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 lca_data <- read.csv("data/r_data.txt", header=TRUE, sep=",")
 
 # Rename columns and colume values
 colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
 colnames(lca_data)[colnames(lca_data)=="Natio1"] <- "Nationality"
+colnames(subject_info)[colnames(subject_info)=="TrackNatio1"] <- "Group"
+colnames(lca_data)[colnames(lca_data)=="TrackNatio1"] <- "Group"
 subject_info$Nationality <- revalue(subject_info$Nationality, c("NL" = "Dutch", "DU" = "German"))
 subject_info$Track <- revalue(subject_info$Track, c("NL" = "Dutch", "EN" = "English"))
-subject_info$TrackNatio1 <- revalue(subject_info$TrackNatio1, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
+subject_info$Group <- revalue(subject_info$Group, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
 lca_data$Nationality <- revalue(lca_data$Nationality, c("NL" = "Dutch", "DU" = "German"))
 lca_data$Track <- revalue(lca_data$Track, c("NL" = "Dutch", "EN" = "English"))
-lca_data$TrackNatio1 <- revalue(lca_data$TrackNatio1, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
+lca_data$Group <- revalue(lca_data$Group, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
 
 # Relevel (for better visualisation)
 lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
 lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
 
+# Recode
+str(subject_info)
+# All first year results are currently coded as factors
+# This is because there are also non-numeric data, such as "ND"
+#subject_info$Stat1 <- as.numeric(subject_info$Stat1) # Doesn't work without preprocessing
+
 
 ### How can study success be predicted?
+all_data <- merge(lca_data, subject_info, all.y = TRUE)
+no_dropout <- all_data[all_data$DropOut!="DuringYear1",]
+
+hist(no_dropout$ECTSTotal, breaks = 120)
+table(no_dropout$ECTSTotal)
+
+model_ects <- lm(ECTSTotal ~ Gender + Track + Nationality + Track:Nationality, data = all_data)
+summary(model_ects)
+
+model_ects2 <- lm(ECTSTotal ~ Gender + Track + Nationality + Track:Nationality + ld_oct + ls2_oct + ndwesz_oct, data = all_data)
+summary(model_ects2)
 
 
 ### Do the 'better' Dutch students choose the English track?
@@ -63,22 +82,22 @@ t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean
 ### How do L1 and L2 lexical richness develop during the 1st year?
 
 ## Descriptives
-tapply(lca_data$ld_oct, lca_data$TrackNatio1, length) # n
+tapply(lca_data$ld_oct, lca_data$Group, length) # n
 
 lca_data %>%
-  select(TrackNatio1, ld_oct, ld_jan, ld_apr) %>%
-  group_by(TrackNatio1) %>%
+  select(Group, ld_oct, ld_jan, ld_apr) %>%
+  group_by(Group) %>%
   summarise_all("mean")
 
 lca_data %>%
-  select(TrackNatio1, ld_oct, ld_jan, ld_apr) %>%
-  group_by(TrackNatio1) %>%
+  select(Group, ld_oct, ld_jan, ld_apr) %>%
+  group_by(Group) %>%
   summarise_all("sd")
 
 ## Visualisation: Lexical density
 
 # Reshape data
-ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
+ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_jan", "ld_apr"), value.name = "LD")
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Month"
 ld_melted$Month <- revalue(ld_melted$Month, c("ld_oct"="October", "ld_jan"="January", "ld_apr" = "April"))
 
@@ -96,7 +115,7 @@ ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality,
 ## Visualisation: Lexical sophistication
 
 # Reshape data
-ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("ls2_oct", "ls2_jan", "ls2_apr"), value.name = "LS2")
+ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_jan", "ls2_apr"), value.name = "LS2")
 colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Month"
 ls2_melted$Month <- revalue(ls2_melted$Month, c("ls2_oct"="October", "ls2_jan"="January", "ls2_apr" = "April"))
 
@@ -114,7 +133,7 @@ ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationalit
 ## Visualisation: NDWESZ
 
 # Reshape data
-ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("ndwesz_oct", "ndwesz_jan", "ndwesz_apr"), value.name = "NDWESZ")
+ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_jan", "ndwesz_apr"), value.name = "NDWESZ")
 colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Month"
 ndwesz_melted$Month <- revalue(ndwesz_melted$Month, c("ndwesz_oct"="October", "ndwesz_jan"="January", "ndwesz_apr" = "April"))
 
@@ -134,7 +153,7 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = N
 ## Visualisation: MSTTR
 
 # Reshape data
-msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "TrackNatio1"), measure.vars = c("msttr_oct", "msttr_jan", "msttr_apr"), value.name = "MSTTR")
+msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("msttr_oct", "msttr_jan", "msttr_apr"), value.name = "MSTTR")
 colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Month"
 msttr_melted$Month <- revalue(msttr_melted$Month, c("msttr_oct"="October", "msttr_jan"="January", "msttr_apr" = "April"))
 
@@ -152,28 +171,28 @@ ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nation
 ## Histograms
 
 # Don't use German students in Dutch track
-three_gr <- lca_data[lca_data$TrackNatio1 != "German_in_Dutch",]
+three_gr <- lca_data[lca_data$Group != "German_in_Dutch",]
 
 # Investigate how the variables are distributed
 
 # Lexical density
 ld_oct <- ggplot(data = three_gr, aes(three_gr$ld_oct)) +
   geom_histogram(fill = "steelblue3") +
-  facet_grid(~TrackNatio1) +
+  facet_grid(~Group) +
   labs(x = "\nOctober", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ld_jan <- ggplot(data = three_gr, aes(three_gr$ld_jan)) +
   geom_histogram(fill = "orange") +
-  facet_grid(~TrackNatio1) +
+  facet_grid(~Group) +
   labs(x = "\nJanuary", y = "Count\n") +
   ggtitle("Lexical density\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ld_apr <- ggplot(data = three_gr, aes(three_gr$ld_apr)) +
   geom_histogram(fill = "mediumpurple4") +
-  facet_grid(~TrackNatio1) +
+  facet_grid(~Group) +
   labs(x = "\nApril", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5))
@@ -184,21 +203,21 @@ grid.arrange(ld_oct, ld_jan, ld_apr, nrow=1, ncol=3)
 # Lexical sophistication
 ls2_oct <- ggplot(data = three_gr, aes(three_gr$ls2_oct)) +
   geom_histogram(fill = "steelblue3") +
-  facet_grid(~TrackNatio1) +
+  facet_grid(~Group) +
   labs(x = "\nOctober", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ls2_jan <- ggplot(data = three_gr, aes(three_gr$ls2_jan)) +
   geom_histogram(fill = "orange") +
-  facet_grid(~TrackNatio1) +
+  facet_grid(~Group) +
   labs(x = "\nJanuary", y = "Count\n") +
   ggtitle("Lexical sophistication\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
   geom_histogram(fill = "mediumpurple4") +
-  facet_grid(~TrackNatio1) +
+  facet_grid(~Group) +
   labs(x = "\nApril", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5))
@@ -209,18 +228,18 @@ grid.arrange(ls2_oct, ls2_jan, ls2_apr, nrow=1, ncol=3)
 ## Statistical analysis
 
 # Merge long dataframes
-man_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "TrackNatio1", "Month"))
-man_data <- merge(man_data, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "TrackNatio1", "Month"))
-man_data$Month <- factor(man_data$Month, levels = c("October", "January", "April"))
+long_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
+long_data <- merge(long_data, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
+long_data$Month <- factor(long_data$Month, levels = c("October", "January", "April"))
 
 # Exclude Germans in the Dutch track
-man_data <- man_data[man_data$TrackNatio1 != "German_in_Dutch",]
+long_data <- long_data[long_data$Group != "German_in_Dutch",]
 
 # Define outcome variable
-outcome <- cbind(man_data$LD, man_data$LS2, man_data$NDWESZ)
+outcome <- cbind(long_data$LD, long_data$LS2, long_data$NDWESZ)
 
 # Run MANOVA
-manova <- manova(outcome ~ TrackNatio1 + Month + TrackNatio1 * Month, data = man_data)
+manova <- manova(outcome ~ Group + Month + Group * Month, data = long_data)
 summary(manova)
 summary.lm(manova)
 summary.aov(manova)

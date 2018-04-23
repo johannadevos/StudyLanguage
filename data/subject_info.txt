@@ -1,4 +1,4 @@
-﻿SubjectCode	Gender	Track	Natio1	TrackNatio1	DropOut	SchoolMean	SchoolDutch	SchoolEnglish	MeanPsy	ECTSPsyObtained	ECTSPsyTaken	ECTSOther	ECTSTotal	AIP_A	AIP_B	AV	PiA	ProfVaardigA	ProfVaardigB	MethvOnd	StatA	OP1	ProefPers	Brein1	Gedrag1	Persoon1	PassedBSA
+﻿SubjectCode	Gender	Track	Natio1	TrackNatio1	DropOut	SchoolMean	SchoolDutch	SchoolEnglish	MeanPsy	ECTSPsyObtained	ECTSPsyTaken	ECTSOther	ECTSTotal	AIP_A	AIP_B	AV	PiA	ProfVaardigA	ProfVaardigB	MethvOnd	Stat1	OP1	ProefPers	Brein1	Gedrag1	Persoon1	PassedBSA
 100	M	NL	DU	DU_in_NL	AfterYear1				6.3	48	60	0	48	6	6.5	5	6.5	6.5	6.5	7	7	ONV	VLD	6.5	6	7.5	Yes
 101	V	NL	NL	NL_in_NL	AfterYear1				6.9	41	41	60	101	6.5	9.5	8	8	7	8	9	7.5	8	i		ND		No
 102	V	NL	NL	NL_in_NL	AfterYear1	6.07	6	7	5.2	29	53	0	29	7.5	7.5	ONV	6	9.5	7	7	ND	ONV	i	1.5	5	6.5	No
