@@ -1,5 +1,6 @@
 # Import libraries
-library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra)
+library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra); library(fBasics)
+library(pastecs)
 
 # Clear workspace
 rm(list=ls())
@@ -51,7 +52,7 @@ model_ects2 <- lm(ECTSTotal ~ Gender + Track + Nationality + Track:Nationality +
 summary(model_ects2)
 
 
-### Study success descriptives
+### Study success: descriptive statistics
 
 # All students
 tapply(all_data$ECTSTotal, all_data$Group, mean)
@@ -81,6 +82,30 @@ for (i in groups) {
 print(nrow(all_data[all_data$DropOut=="DuringYear1",]) / nrow(all_data)*100)
 print(nrow(all_data[all_data$DropOut=="AfterYear1",]) / nrow(all_data)*100)
 print(nrow(all_data[all_data$DropOut!="No",]) / nrow(all_data)*100)
+
+# Histogram of total number of ECTS obtained
+ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
+  geom_histogram(col = "white", binwidth = 5) +
+  facet_grid(~Group) +
+  labs(x = "\nTotal number of ECTS obtained", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=5)) +
+  scale_y_continuous(breaks=pretty_breaks(n=10))
+
+
+### Study success: inferential statistics
+
+# Is ECTSTotal different between the groups?
+ects_lm <- lm(ECTSTotal ~ Group, data = no_dropout)
+summary(ects_lm)
+
+ects_aov <- aov(ECTSTotal ~ Group, data = no_dropout)
+summary(ects_aov)
+plot(ects_aov)
+
+
+
 
 
 ### Do the 'better' Dutch students choose the English track?
