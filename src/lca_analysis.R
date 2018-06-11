@@ -23,9 +23,15 @@ lca_data$Nationality <- revalue(lca_data$Nationality, c("NL" = "Dutch", "DU" = "
 lca_data$Track <- revalue(lca_data$Track, c("NL" = "Dutch", "EN" = "English"))
 lca_data$Group <- revalue(lca_data$Group, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
 
+# Create new dataframes
+all_data <- merge(lca_data, subject_info, all.y = TRUE)
+no_dropout <- all_data[all_data$DropOut!="DuringYear1",]
+
 # Relevel (for better visualisation)
 lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
 lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
+all_data$Group <- factor(all_data$Group, levels = c("Dutch_in_Dutch", "Dutch_in_English", "German_in_Dutch", "German_in_English"))
+no_dropout$Group <- factor(no_dropout$Group, levels = c("Dutch_in_Dutch", "Dutch_in_English", "German_in_Dutch", "German_in_English"))
 
 # Recode
 str(subject_info)
@@ -35,9 +41,6 @@ str(subject_info)
 
 
 ### How can study success be predicted?
-all_data <- merge(lca_data, subject_info, all.y = TRUE)
-no_dropout <- all_data[all_data$DropOut!="DuringYear1",]
-
 hist(no_dropout$ECTSTotal, breaks = 120)
 table(no_dropout$ECTSTotal)
 
@@ -46,6 +49,38 @@ summary(model_ects)
 
 model_ects2 <- lm(ECTSTotal ~ Gender + Track + Nationality + Track:Nationality + ld_oct + ls2_oct + ndwesz_oct, data = all_data)
 summary(model_ects2)
+
+
+### Study success descriptives
+
+# All students
+tapply(all_data$ECTSTotal, all_data$Group, mean)
+tapply(all_data$ECTSTotal, all_data$Group, sd)
+descr_all <- tapply(all_data$ECTSTotal, all_data$Group, basicStats)
+basicStats(all_data$ECTSTotal)
+
+# No drop-outs
+tapply(no_dropout$ECTSTotal, no_dropout$Group, mean)
+tapply(no_dropout$ECTSTotal, no_dropout$Group, sd)
+descr_sub <- tapply(no_dropout$ECTSTotal, no_dropout$Group, basicStats)
+basicStats(no_dropout$ECTSTotal)
+
+# Calculate drop-out rates per group
+groups <- levels(all_data$Group)
+for (i in groups) {
+  print(i)
+  print("Percentage of drop-outs during year 1:")
+  print(nrow(all_data[all_data$Group==i & all_data$DropOut=="DuringYear1",]) / nrow(all_data[all_data$Group==i,])*100)
+  print("Percentage of drop-outs after year 1:")
+  print(nrow(all_data[all_data$Group==i & all_data$DropOut=="AfterYear1",]) / nrow(all_data[all_data$Group==i,])*100)
+  print("Total percentage of drop-outs:")
+  print(nrow(all_data[all_data$Group==i & all_data$DropOut!="No",]) / nrow(all_data[all_data$Group==i,])*100)
+}
+
+# Calculate overall drop-out rates
+print(nrow(all_data[all_data$DropOut=="DuringYear1",]) / nrow(all_data)*100)
+print(nrow(all_data[all_data$DropOut=="AfterYear1",]) / nrow(all_data)*100)
+print(nrow(all_data[all_data$DropOut!="No",]) / nrow(all_data)*100)
 
 
 ### Do the 'better' Dutch students choose the English track?
