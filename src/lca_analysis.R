@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra); library(fBasics)
-library(pastecs)
+library(car)
 
 # Clear workspace
 rm(list=ls())
@@ -96,6 +96,11 @@ ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
 
 ### Study success: inferential statistics
 
+## Checking assumptions
+
+# Levene's test of homogeneity of variance
+leveneTest(no_dropout$ECTSTotal, no_dropout$Group)
+
 # Is ECTSTotal different between the groups?
 ects_lm <- lm(ECTSTotal ~ Group, data = no_dropout)
 summary(ects_lm)
@@ -104,8 +109,10 @@ ects_aov <- aov(ECTSTotal ~ Group, data = no_dropout)
 summary(ects_aov)
 plot(ects_aov)
 
-
-
+# Kruskal-Wallis test
+kruskal.test(ECTSTotal ~ Group, data = no_dropout)
+no_dropout$Rank <- rank(no_dropout$ECTSTotal)
+by(no_dropout$Rank, no_dropout$Group, mean)
 
 
 ### Do the 'better' Dutch students choose the English track?
