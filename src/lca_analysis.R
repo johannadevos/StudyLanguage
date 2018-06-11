@@ -1,13 +1,15 @@
 # Import libraries
 library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra)
 
-# Set working directory
-#setwd("C:/Users/johan/Documents/GitHub/StudyLanguage/")
-setwd("U:/GitHub/StudyLanguage/")
+# Clear workspace
+rm(list=ls())
+
+# Set working directory to the current file location
+# Can be done through 'Session' tab in RStudio 
 
 # Read in data
-subject_info <- read.csv("data/subject_info.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
-lca_data <- read.csv("data/r_data.txt", header=TRUE, sep=",")
+subject_info <- read.csv("../data/subject_info.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+lca_data <- read.csv("../data/r_data.txt", header=TRUE, sep=",")
 
 # Rename columns and colume values
 colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
