@@ -1,6 +1,6 @@
 # Import libraries
-library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra); library(fBasics)
-library(car)
+library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra)
+library(car); library(WRS2); library(fBasics); library(scales)
 
 # Clear workspace
 rm(list=ls())
