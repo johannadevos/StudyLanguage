@@ -9,7 +9,7 @@ This is a command line script which does the following:
 The script should be called from the command line in the following format: 
 python preprocessing.py {language} {minimal sample size for LCA}
 
-For example: 
+For example:
 python3 preprocessing.py EN 50
 
 The code can also be run from within Spyder, as long as the command line options have been entered in Run>Configuration per file.
