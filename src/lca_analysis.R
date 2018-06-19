@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales)
+library(car); library(fBasics); library(scales); library(MASS)
 
 # Clear workspace
 rm(list=ls())
@@ -94,7 +94,7 @@ ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
   scale_y_continuous(breaks=pretty_breaks(n=10))
 
 
-### Study success: inferential statistics
+### Total number of ECTS: inferential statistics
 
 ## Checking assumptions
 
@@ -130,6 +130,19 @@ t1way(wilcox_wide, tr = 0.1)
 t1way(wilcox_wide, tr = 0.2)
 med1way(wilcox_wide) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 t1waybt(wilcox_wide, tr = 0.1)
+
+
+### Passing the BSA
+
+# All students
+bsa_all <- table(all_data$PassedBSA, all_data$Group); bsa_all
+prop.table(bsa_all, 2)
+chisq.test(bsa_all)
+
+# No drop-outs
+bsa_no_dropout <- table(no_dropout$PassedBSA, no_dropout$Group); bsa_no_dropout
+prop.table(bsa_no_dropout, 2)
+chisq.test(bsa_no_dropout)
 
 
 ### Do the 'better' Dutch students choose the English track?
