@@ -55,6 +55,8 @@ summary(model_ects2)
 
 ### Study success: descriptive statistics
 
+## ECTS
+
 # All students
 tapply(all_data$ECTSTotal, all_data$Group, mean)
 tapply(all_data$ECTSTotal, all_data$Group, sd)
@@ -67,23 +69,6 @@ tapply(no_dropout$ECTSTotal, no_dropout$Group, sd)
 descr_sub <- tapply(no_dropout$ECTSTotal, no_dropout$Group, basicStats)
 basicStats(no_dropout$ECTSTotal)
 
-# Calculate drop-out rates per group
-groups <- levels(all_data$Group)
-for (i in groups) {
-  print(i)
-  print("Percentage of drop-outs during year 1:")
-  print(nrow(all_data[all_data$Group==i & all_data$DropOut=="DuringYear1",]) / nrow(all_data[all_data$Group==i,])*100)
-  print("Percentage of drop-outs after year 1:")
-  print(nrow(all_data[all_data$Group==i & all_data$DropOut=="AfterYear1",]) / nrow(all_data[all_data$Group==i,])*100)
-  print("Total percentage of drop-outs:")
-  print(nrow(all_data[all_data$Group==i & all_data$DropOut!="No",]) / nrow(all_data[all_data$Group==i,])*100)
-}
-
-# Calculate overall drop-out rates
-print(nrow(all_data[all_data$DropOut=="DuringYear1",]) / nrow(all_data)*100)
-print(nrow(all_data[all_data$DropOut=="AfterYear1",]) / nrow(all_data)*100)
-print(nrow(all_data[all_data$DropOut!="No",]) / nrow(all_data)*100)
-
 # Histogram of total number of ECTS obtained
 ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
@@ -93,6 +78,17 @@ ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10))
+
+## Drop-out
+drop <- table(all_data$DropOut, all_data$Group); drop
+prop.table(drop, 2)
+
+# Collapse during and after year 1
+all_data$DropOut2[all_data$DropOut != "No"] <- "Yes"
+all_data$DropOut2[all_data$DropOut == "No"] <- "No"
+
+drop2 <- table(all_data$DropOut2, all_data$Group); drop2
+prop.table(drop2, 2)
 
 
 ### Total number of ECTS: inferential statistics
@@ -148,7 +144,6 @@ chisq.test(bsa_no_dropout)
 
 ### Do certain groups drop out more often?
 drop <- table(all_data$DropOut, all_data$Group); drop
-prop.table(drop, 2)
 chisq.test(drop)
 
 ## Collapse during and after year 1
@@ -156,7 +151,6 @@ all_data$DropOut2[all_data$DropOut != "No"] <- "Yes"
 all_data$DropOut2[all_data$DropOut == "No"] <- "No"
 
 drop2 <- table(all_data$DropOut2, all_data$Group); drop2
-prop.table(drop2, 2)
 chisq.test(drop2)
 
 
