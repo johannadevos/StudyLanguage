@@ -28,6 +28,9 @@ lca_data$Group <- revalue(lca_data$Group, c("DU_in_NL" = "German_in_Dutch", "NL_
 all_data <- merge(lca_data, subject_info, all.y = TRUE)
 no_dropout <- all_data[all_data$DropOut!="DuringYear1",]
 
+# Remove duplicate columns
+all_data$MeanPsy <- NULL
+
 # Relevel (for better visualisation)
 lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
 lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
