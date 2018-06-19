@@ -82,6 +82,30 @@ ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10))
 
+## Grades
+
+# All students
+tapply(all_data$MeanPsyWeighted, all_data$Group, mean, na.rm = TRUE)
+tapply(all_data$MeanPsyWeighted, all_data$Group, sd, na.rm = TRUE)
+descr_all <- tapply(all_data$MeanPsyWeighted, all_data$Group, basicStats)
+basicStats(all_data$MeanPsyWeighted)
+
+# No drop-outs
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, mean, na.rm = TRUE)
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, sd, na.rm = TRUE)
+descr_sub <- tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, basicStats); descr_sub
+basicStats(no_dropout$MeanPsyWeighted)
+
+# Histogram of total number of ECTS obtained
+ects_mean <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
+  geom_histogram(col = "white", binwidth = 0.5) +
+  facet_grid(~Group) +
+  labs(x = "\nHistogram of mean grades", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=6)); ects_mean 
+  
+
 ## Drop-out
 drop <- table(all_data$DropOut, all_data$Group); drop
 prop.table(drop, 2)
