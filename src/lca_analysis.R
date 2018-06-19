@@ -32,6 +32,7 @@ no_dropout <- all_data[all_data$DropOut!="DuringYear1",]
 lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
 lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
 all_data$Group <- factor(all_data$Group, levels = c("Dutch_in_Dutch", "Dutch_in_English", "German_in_Dutch", "German_in_English"))
+all_data$DropOut <- factor(all_data$DropOut, levels = c("DuringYear1", "AfterYear1", "No"))
 no_dropout$Group <- factor(no_dropout$Group, levels = c("Dutch_in_Dutch", "Dutch_in_English", "German_in_Dutch", "German_in_English"))
 
 # Recode
@@ -143,6 +144,20 @@ chisq.test(bsa_all)
 bsa_no_dropout <- table(no_dropout$PassedBSA, no_dropout$Group); bsa_no_dropout
 prop.table(bsa_no_dropout, 2)
 chisq.test(bsa_no_dropout)
+
+
+### Do certain groups drop out more often?
+drop <- table(all_data$DropOut, all_data$Group); drop
+prop.table(drop, 2)
+chisq.test(drop)
+
+## Collapse during and after year 1
+all_data$DropOut2[all_data$DropOut != "No"] <- "Yes"
+all_data$DropOut2[all_data$DropOut == "No"] <- "No"
+
+drop2 <- table(all_data$DropOut2, all_data$Group); drop2
+prop.table(drop2, 2)
+chisq.test(drop2)
 
 
 ### Do the 'better' Dutch students choose the English track?
