@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(dplyr); library(reshape2); library(plyr); library(Hmisc); library(gridExtra)
-library(car); library(WRS2); library(fBasics); library(scales)
+library(car); library(fBasics); library(scales)
 
 # Clear workspace
 rm(list=ls())
@@ -113,6 +113,23 @@ plot(ects_aov)
 kruskal.test(ECTSTotal ~ Group, data = no_dropout)
 no_dropout$Rank <- rank(no_dropout$ECTSTotal)
 by(no_dropout$Rank, no_dropout$Group, mean)
+
+## Robust ANOVA
+
+# Transform data to wide format
+wilcox_wide <- dcast(no_dropout, SubjectCode ~ Group, value.var = "ECTSTotal")
+str(wilcox_wide)
+wilcox_wide$SubjectCode <- NULL
+
+# Load functions from Rand Wilcox
+source("Rallfun-v35.txt")
+
+# Perform robust ANOVA
+t1way(wilcox_wide, tr = 0)
+t1way(wilcox_wide, tr = 0.1)
+t1way(wilcox_wide, tr = 0.2)
+med1way(wilcox_wide) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+t1waybt(wilcox_wide, tr = 0.1)
 
 
 ### Do the 'better' Dutch students choose the English track?
