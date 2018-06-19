@@ -80,7 +80,7 @@ ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
-  scale_y_continuous(breaks=pretty_breaks(n=10))
+  scale_y_continuous(breaks=pretty_breaks(n=10)); ects_hist
 
 ## Mean grade
 
@@ -140,20 +140,12 @@ drop2 <- table(all_data$DropOut2, all_data$Group); drop2
 prop.table(drop2, 2)
 
 
-### Total number of ECTS: inferential statistics
+### Study success: inferential statistics
+
+## Total number of ECTS
 
 ## Checking assumptions
-
-# Levene's test of homogeneity of variance
-leveneTest(no_dropout$ECTSTotal, no_dropout$Group)
-
-# Is ECTSTotal different between the groups?
-ects_lm <- lm(ECTSTotal ~ Group, data = no_dropout)
-summary(ects_lm)
-
-ects_aov <- aov(ECTSTotal ~ Group, data = no_dropout)
-summary(ects_aov)
-plot(ects_aov)
+ects_hist # Data are not normally distributed
 
 # Kruskal-Wallis test
 kruskal.test(ECTSTotal ~ Group, data = no_dropout)
@@ -176,6 +168,28 @@ t1way(wilcox_wide, tr = 0.1)
 t1way(wilcox_wide, tr = 0.2)
 med1way(wilcox_wide) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 t1waybt(wilcox_wide, tr = 0.1)
+
+## Mean grade
+
+## Checking assumptions
+ects_mean # Data seem normally distributed
+tapply(all_data$MeanPsyWeighted, all_data$Group, shapiro.test) # Shapiro test says data are non-normally distributed
+
+# Levene's test of homogeneity of variance
+leveneTest(no_dropout$MeanPsyWeighted, no_dropout$Group) # Not significant
+
+# Is ECTSTotal different between the groups?
+lm_mean <- lm(MeanPsyWeighted ~ Group, data = no_dropout)
+summary(lm_mean)
+
+aov_mean <- aov(MeanPsyWeighted ~ Group, data = no_dropout)
+summary(aov_mean)
+plot(aov_mean)
+
+# Kruskal-Wallis test
+kruskal.test(MeanPsyWeighted ~ Group, data = no_dropout)
+no_dropout$RankMeanPsyWeighted <- rank(no_dropout$MeanPsyWeighted)
+by(no_dropout$RankMeanPsyWeighted, no_dropout$Group, mean)
 
 
 ### Passing the BSA
