@@ -45,17 +45,6 @@ str(subject_info)
 #subject_info$Stat1 <- as.numeric(subject_info$Stat1) # Doesn't work without preprocessing
 
 
-### How can study success be predicted?
-hist(no_dropout$ECTSTotal, breaks = 120)
-table(no_dropout$ECTSTotal)
-
-model_ects <- lm(ECTSTotal ~ Gender + Track + Nationality + Track:Nationality, data = all_data)
-summary(model_ects)
-
-model_ects2 <- lm(ECTSTotal ~ Gender + Track + Nationality + Track:Nationality + ld_oct + ls2_oct + ndwesz_oct, data = all_data)
-summary(model_ects2)
-
-
 ### Study success: descriptive statistics
 
 ## ECTS
@@ -190,6 +179,20 @@ plot(aov_mean)
 kruskal.test(MeanPsyWeighted ~ Group, data = no_dropout)
 no_dropout$RankMeanPsyWeighted <- rank(no_dropout$MeanPsyWeighted)
 by(no_dropout$RankMeanPsyWeighted, no_dropout$Group, mean)
+
+## Weighted grades
+
+## Checking assumptions
+ects_weighted # Data seem skewed
+tapply(all_data$GradesTimesECTS, all_data$Group, shapiro.test) # Data are non-normally distributed
+
+# Levene's test of homogeneity of variance
+leveneTest(no_dropout$GradesTimesECTS, no_dropout$Group) # Not significant
+
+# Kruskal-Wallis test
+kruskal.test(GradesTimesECTS ~ Group, data = no_dropout)
+no_dropout$RankGradesTimesECTS <- rank(no_dropout$GradesTimesECTS)
+by(no_dropout$GradesTimesECTS, no_dropout$Group, mean)
 
 
 ### Passing the BSA
