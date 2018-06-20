@@ -83,11 +83,11 @@ exam3_en_fil = filter_df(exam3_en, sel_measures, lca_min_sam)
 
 # Add timestamp to exam headers
 exam1_nl_fil.rename(columns=lambda x: x + "_oct", inplace=True)
-exam2_nl_fil.rename(columns=lambda x: x + "_jan", inplace=True)
+exam2_nl_fil.rename(columns=lambda x: x + "_feb", inplace=True)
 exam3_nl_fil.rename(columns=lambda x: x + "_apr", inplace=True)
 
 exam1_en_fil.rename(columns=lambda x: x + "_oct", inplace=True)
-exam2_en_fil.rename(columns=lambda x: x + "_jan", inplace=True)
+exam2_en_fil.rename(columns=lambda x: x + "_feb", inplace=True)
 exam3_en_fil.rename(columns=lambda x: x + "_apr", inplace=True)
 
 # Merge subject_info and exam scores
@@ -103,7 +103,7 @@ en_data = en_data.join(exam3_en_fil)
 r_data = nl_data.append(en_data)
 
 # Remove subjects for whom one or more exams are not available
-r_data = r_data.dropna(subset = ['msttr_oct', 'msttr_jan', 'msttr_apr'])
+r_data = r_data.dropna(subset = ['msttr_oct', 'msttr_feb', 'msttr_apr'])
 
 # Write to file
 output = os.path.join(data_dir, 'r_data.txt')
