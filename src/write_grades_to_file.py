@@ -48,7 +48,7 @@ df = remove_subjects(df, good_subjects)
 dutch_grades = pd.merge(dutch_grades, df[['SubjectCode', 'Grade4a']], on = 'SubjectCode', how = 'outer')
 
 # Rename columns
-dutch_grades.columns = ['SubjectCode', 'grade_oct', 'grade_jan', 'grade_apr']
+dutch_grades.columns = ['SubjectCode', 'grade_oct', 'grade_feb', 'grade_apr']
 
 
 ## ENGLISH DATA
@@ -84,7 +84,7 @@ df = remove_subjects(df, good_subjects)
 english_grades = pd.merge(english_grades, df[['SubjectCode', 'Grade4a']], on = 'SubjectCode', how = 'outer')
 
 # Rename columns
-english_grades.columns = ['SubjectCode', 'grade_oct', 'grade_jan', 'grade_apr']
+english_grades.columns = ['SubjectCode', 'grade_oct', 'grade_feb', 'grade_apr']
 
 
 ## MERGE ENGLISH AND DUTCH DATA
