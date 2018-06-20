@@ -37,29 +37,29 @@ str(subject_info)
 ### Study success: Descriptive statistics
 ### -------------------------------------
 
-### ECTS
+### ECs
 
 # All students
-tapply(subject_info$ECTSTotal, subject_info$Group, mean)
-tapply(subject_info$ECTSTotal, subject_info$Group, sd)
-descr_all_ec <- tapply(subject_info$ECTSTotal, subject_info$Group, basicStats); descr_all_ec
-basicStats(subject_info$ECTSTotal)
+tapply(subject_info$ECsTotal, subject_info$Group, mean)
+tapply(subject_info$ECsTotal, subject_info$Group, sd)
+descr_all_ec <- tapply(subject_info$ECsTotal, subject_info$Group, basicStats); descr_all_ec
+basicStats(subject_info$ECsTotal)
 
 # No drop-outs
-tapply(no_dropout$ECTSTotal, no_dropout$Group, mean)
-tapply(no_dropout$ECTSTotal, no_dropout$Group, sd)
-descr_sub_ec <- tapply(no_dropout$ECTSTotal, no_dropout$Group, basicStats); descr_sub_ec
-basicStats(no_dropout$ECTSTotal)
+tapply(no_dropout$ECsTotal, no_dropout$Group, mean)
+tapply(no_dropout$ECsTotal, no_dropout$Group, sd)
+descr_sub_ec <- tapply(no_dropout$ECsTotal, no_dropout$Group, basicStats); descr_sub_ec
+basicStats(no_dropout$ECsTotal)
 
-# Histogram of total number of ECTS obtained
-ects_hist <- ggplot(data = no_dropout, aes(ECTSTotal, fill = Group)) +
+# Histogram of total number of ECs obtained
+ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
   facet_grid(~Group) +
-  labs(x = "\nTotal number of ECTS obtained", y = "Count\n") +
+  labs(x = "\nTotal number of ECs obtained", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
-  scale_y_continuous(breaks=pretty_breaks(n=10)); ects_hist
+  scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist
 
 
 ### Mean grade
@@ -76,7 +76,7 @@ tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, sd, na.rm = TRUE)
 descr_sub_mean <- tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, basicStats); descr_sub_mean
 basicStats(no_dropout$MeanPsyWeighted)
 
-# Histogram of total number of ECTS obtained
+# Histogram of mean grades
 mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
   geom_histogram(col = "white", binwidth = 0.5) +
   facet_grid(~Group) +
@@ -89,19 +89,19 @@ mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
 ### Weighted grade
 
 # All students
-tapply(subject_info$GradesTimesECTS, subject_info$Group, mean, na.rm = TRUE)
-tapply(subject_info$GradesTimesECTS, subject_info$Group, sd, na.rm = TRUE)
-descr_all_weighted <- tapply(subject_info$GradesTimesECTS, subject_info$Group, basicStats); descr_all_weighted
-basicStats(subject_info$GradesTimesECTS)
+tapply(subject_info$WeightedGrade, subject_info$Group, mean, na.rm = TRUE)
+tapply(subject_info$WeightedGrade, subject_info$Group, sd, na.rm = TRUE)
+descr_all_weighted <- tapply(subject_info$WeightedGrade, subject_info$Group, basicStats); descr_all_weighted
+basicStats(subject_info$WeightedGrade)
 
 # No drop-outs
-tapply(no_dropout$GradesTimesECTS, no_dropout$Group, mean, na.rm = TRUE)
-tapply(no_dropout$GradesTimesECTS, no_dropout$Group, sd, na.rm = TRUE)
-descr_sub_weighted <- tapply(no_dropout$GradesTimesECTS, no_dropout$Group, basicStats); descr_sub_weighted
-basicStats(no_dropout$GradesTimesECTS)
+tapply(no_dropout$WeightedGrade, no_dropout$Group, mean, na.rm = TRUE)
+tapply(no_dropout$WeightedGrade, no_dropout$Group, sd, na.rm = TRUE)
+descr_sub_weighted <- tapply(no_dropout$WeightedGrade, no_dropout$Group, basicStats); descr_sub_weighted
+basicStats(no_dropout$WeightedGrade)
 
-# Histogram of total number of ECTS obtained
-weighted_hist <- ggplot(data = no_dropout, aes(GradesTimesECTS, fill = Group)) +
+# Histogram of weighted grades
+weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 50) +
   facet_grid(~Group) +
   labs(x = "\nHistogram of weighted grades", y = "Count\n") +
@@ -126,20 +126,20 @@ prop.table(drop2, 2)
 ### Study success: Inferential statistics
 ### -------------------------------------
 
-### Total number of ECTS
+### Total number of ECs
 
 ## Checking assumptions
-ects_hist # Data are not normally distributed
+ECs_hist # Data are not normally distributed
 
 # Kruskal-Wallis test
-kruskal.test(ECTSTotal ~ Group, data = no_dropout)
-no_dropout$Rank <- rank(no_dropout$ECTSTotal)
+kruskal.test(ECsTotal ~ Group, data = no_dropout)
+no_dropout$Rank <- rank(no_dropout$ECsTotal)
 by(no_dropout$Rank, no_dropout$Group, mean)
 
 ## Robust ANOVA
 
 # Transform data to wide format
-wilcox_wide <- dcast(no_dropout, SubjectCode ~ Group, value.var = "ECTSTotal")
+wilcox_wide <- dcast(no_dropout, SubjectCode ~ Group, value.var = "ECsTotal")
 str(wilcox_wide)
 wilcox_wide$SubjectCode <- NULL
 
@@ -163,7 +163,7 @@ tapply(subject_info$MeanPsyWeighted, subject_info$Group, shapiro.test) # Shapiro
 # Levene's test of homogeneity of variance
 leveneTest(no_dropout$MeanPsyWeighted, no_dropout$Group) # Not significant
 
-# Is ECTSTotal different between the groups?
+# Is ECsTotal different between the groups?
 lm_mean <- lm(MeanPsyWeighted ~ Group, data = no_dropout)
 summary(lm_mean)
 
@@ -181,15 +181,15 @@ by(no_dropout$RankMeanPsyWeighted, no_dropout$Group, mean)
 
 ## Checking assumptions
 weighted_hist # Data seem skewed
-tapply(subject_info$GradesTimesECTS, subject_info$Group, shapiro.test) # Data are non-normally distributed
+tapply(subject_info$WeightedGrade, subject_info$Group, shapiro.test) # Data are non-normally distributed
 
 # Levene's test of homogeneity of variance
-leveneTest(no_dropout$GradesTimesECTS, no_dropout$Group) # Not significant
+leveneTest(no_dropout$WeightedGrade, no_dropout$Group) # Not significant
 
 # Kruskal-Wallis test
-kruskal.test(GradesTimesECTS ~ Group, data = no_dropout)
-no_dropout$RankGradesTimesECTS <- rank(no_dropout$GradesTimesECTS)
-by(no_dropout$GradesTimesECTS, no_dropout$Group, mean)
+kruskal.test(WeightedGrade ~ Group, data = no_dropout)
+no_dropout$RankWeightedGrade <- rank(no_dropout$WeightedGrade)
+by(no_dropout$WeightedGrade, no_dropout$Group, mean)
 
 
 ### Passing the BSA
