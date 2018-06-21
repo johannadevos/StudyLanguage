@@ -79,6 +79,7 @@ def make_readable(raw_data):
 
     # Replace abbreviated verbs
     text = text.replace("can't", "cannot")
+    text = text.replace("can not", "cannot")
     text = text.replace("n't", " not")
 
     # Other
@@ -209,9 +210,13 @@ def prep_nl(df, filename):
 
             # Remove tags in spelling-corrected data
             ans = ans.replace("_abbreviation", "")
-            ans = ans.replace("_nonexistent", "")
-            ans = ans.replace("_dutch", "")
-            ans = ans.replace("_german", "")
+            
+            # Remove non-Dutch and illegible words
+            ans = re.sub("\w+_nonexistent", "", ans)
+            ans = re.sub("\w+_nonexisting", "", ans)
+            ans = re.sub("\w+_english", "", ans)
+            ans = re.sub("\w+_german", "", ans)
+            ans = re.sub("\?+_illegible", "", ans)
 
             # Preprocess the data with Frog
             ans_dict = frog.process(ans)
@@ -274,9 +279,13 @@ def prep_en(df, filename):
 
             # Remove tags in spelling-corrected data
             ans = ans.replace("_abbreviation", "")
-            ans = ans.replace("_nonexistent", "")
-            ans = ans.replace("_dutch", "")
-            ans = ans.replace("_german", "")
+
+            # Remove non-English and illegible words
+            ans = re.sub("\w+_nonexistent", "", ans)
+            ans = re.sub("\w+_nonexisting", "", ans)
+            ans = re.sub("\w+_dutch", "", ans)
+            ans = re.sub("\w+_german", "", ans)
+            ans = re.sub("\?+_illegible", "", ans)
 
             # Tokenize and write to df
             tok_answer = tokenizer.tokenize(ans.lower())
