@@ -55,7 +55,7 @@ basicStats(no_dropout$ECsTotal)
 ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
   facet_grid(~Group) +
-  labs(x = "\nTotal number of ECs obtained", y = "Count\n") +
+  labs(x = "\nHistograms of total number of ECs obtained", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
@@ -80,7 +80,7 @@ basicStats(no_dropout$MeanPsyWeighted)
 mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
   geom_histogram(col = "white", binwidth = 0.5) +
   facet_grid(~Group) +
-  labs(x = "\nHistogram of mean grades", y = "Count\n") +
+  labs(x = "\nHistograms of mean grades", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=6)); mean_hist
@@ -104,7 +104,7 @@ basicStats(no_dropout$WeightedGrade)
 weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 50) +
   facet_grid(~Group) +
-  labs(x = "\nHistogram of weighted grades", y = "Count\n") +
+  labs(x = "\nHistograms of weighted grades", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist
