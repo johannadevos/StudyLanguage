@@ -31,13 +31,11 @@ lca_data$Group <- factor(lca_data$Group, levels = c("Dutch_in_Dutch", "Dutch_in_
 ### Descriptives
 tapply(lca_data$ld_oct, lca_data$Group, length) # n
 
-lca_data %>%
-  select(Group, ld_oct, ld_feb, ld_apr) %>%
+select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
   group_by(Group) %>%
-  summarise_all("mean")
+  summarise_all("mean")  
 
-lca_data %>%
-  select(Group, ld_oct, ld_feb, ld_apr) %>%
+select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
   group_by(Group) %>%
   summarise_all("sd")
 
