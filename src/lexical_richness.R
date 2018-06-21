@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales); library(MASS)
+library(car); library(fBasics); library(scales); library(MASS); library(pastecs)
 
 # Clear workspace
 rm(list=ls())
@@ -31,14 +31,18 @@ lca_data$Group <- factor(lca_data$Group, levels = c("Dutch_in_Dutch", "Dutch_in_
 # Read in grades
 grades <- read.csv("../data/grades.txt", header=TRUE, sep=",")
 
-lca_complete <- merge(lca_data, grades, by=c("SubjectCode"), all.x = FALSE, all.y = FALSE)
+# Merge with LCA file
+lca_data <- merge(lca_data, grades, by=c("SubjectCode"))
 
-# Only use the grades of those students whose writing samples are used
-# (e.g., exclude certain nationalities)
-good_subjects <- lca_data$SubjectCode
+# Text length descriptives
+tapply(lca_data$wordtokens_oct, lca_data$Group, stat.desc); stat.desc(lca_data$wordtokens_oct)
+tapply(lca_data$wordtokens_feb, lca_data$Group, stat.desc); stat.desc(lca_data$wordtokens_feb)
+tapply(lca_data$wordtokens_apr, lca_data$Group, stat.desc); stat.desc(lca_data$wordtokens_apr)
 
-# Filter grades
-grades2 <- grades[grades$SubjectCode %in% good_subjects,]
+# Grade descriptives
+tapply(lca_data$grade_oct, lca_data$Group, stat.desc); stat.desc(lca_data$grade_oct)
+tapply(lca_data$grade_feb, lca_data$Group, stat.desc); stat.desc(lca_data$grade_feb)
+tapply(lca_data$grade_apr, lca_data$Group, stat.desc); stat.desc(lca_data$grade_apr)
 
 
 ### --------------------------------------------------------------
