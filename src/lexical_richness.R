@@ -44,6 +44,31 @@ tapply(lca_data$grade_oct, lca_data$Group, stat.desc); stat.desc(lca_data$grade_
 tapply(lca_data$grade_feb, lca_data$Group, stat.desc); stat.desc(lca_data$grade_feb)
 tapply(lca_data$grade_apr, lca_data$Group, stat.desc); stat.desc(lca_data$grade_apr)
 
+# Visualise grade distributions
+hist_grades_oct <- ggplot(data = lca_data, aes(grade_oct, fill = Group)) +
+  geom_histogram(col = "white", binwidth = 0.5) +
+  facet_grid(~Group) +
+  labs(x = "\nHistograms of grades on Exam 1", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=6)); hist_grades_oct
+
+hist_grades_feb <- ggplot(data = lca_data, aes(grade_feb, fill = Group)) +
+  geom_histogram(col = "white", binwidth = 0.5) +
+  facet_grid(~Group) +
+  labs(x = "\nHistograms of grades on Exam 2", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=6)); hist_grades_feb
+
+hist_grades_apr <- ggplot(data = lca_data, aes(grade_apr, fill = Group)) +
+  geom_histogram(col = "white", binwidth = 0.5) +
+  facet_grid(~Group) +
+  labs(x = "\nHistograms of grades on Exam 3", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=6)); hist_grades_apr
+
 
 ### --------------------------------------------------------------
 ### How do L1 and L2 lexical richness develop during the 1st year?
