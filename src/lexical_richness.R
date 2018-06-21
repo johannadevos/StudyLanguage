@@ -24,6 +24,23 @@ lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German
 lca_data$Group <- factor(lca_data$Group, levels = c("Dutch_in_Dutch", "Dutch_in_English", "German_in_Dutch", "German_in_English"))
 
 
+### -----------------------------------------
+### Exam descriptives: Text length and grades
+### -----------------------------------------
+
+# Read in grades
+grades <- read.csv("../data/grades.txt", header=TRUE, sep=",")
+
+lca_complete <- merge(lca_data, grades, by=c("SubjectCode"), all.x = FALSE, all.y = FALSE)
+
+# Only use the grades of those students whose writing samples are used
+# (e.g., exclude certain nationalities)
+good_subjects <- lca_data$SubjectCode
+
+# Filter grades
+grades2 <- grades[grades$SubjectCode %in% good_subjects,]
+
+
 ### --------------------------------------------------------------
 ### How do L1 and L2 lexical richness develop during the 1st year?
 ### --------------------------------------------------------------
@@ -171,16 +188,6 @@ ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
 
 # To plot the three graphs in one picture
 grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
-
-
-### Analyse grades
-grades <- read.csv("../data/grades.txt", header=TRUE, sep=",")
-
-# Only use the grades of those students whose writing samples are used
-good_subjects <- lca_data$SubjectCode
-
-# Filter grades
-grades <- grades[grades$SubjectCode %in% good_subjects,] # Probleem: lengte 317 in plaats van 314?
 
 
 ### Inferential statistics
