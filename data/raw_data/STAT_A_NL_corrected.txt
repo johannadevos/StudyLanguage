@@ -554,7 +554,7 @@ Subjectcode: 256
 Punten: 10
 Antwoord: Bij dit onderzoek kregen proefpersonen twee omschrijvingen van ziekenhuizen voorgelegd. Het ene ziekenhuis was een klein ziekenhuis waar gemiddeld 15 baby’s per dag werden geboren. Het andere ziekenhuis was een groot ziekenhuis waar gemiddeld 45 baby’s per dag werden geboren. Nu was vervolgens de vraag in welk ziekenhuis de kans het grootst was dat op een dag meer dan 60% van de geboren baby’s een jongen zou zijn. Een groot deel van de proefpersonen dacht dat de kans even groot zou zijn bij beide ziekenhuizen. Van de overige proefpersonen dachten ongeveer evenveel mensen dat de kans het grootst was bij het kleine ziekenhuis als bij het grote ziekenhuis.
 Tentamennummer: 231
-Subjectcode: 314
+Subjectcode: 313
 Punten: 7
 Antwoord: psychologiestudenten werden in twee groepen verdeeld, de ene groep kreeg evaluaties op papier over 10 cursussen. Er stond bij dat het op 26 tot 132 studenten was gebaseerd. \n\n De andere groep kreeg 2 of 3 studenten voor zich die kwamen praten over de cursussen. \n\n Hierna moesten ze allemaal een cursus kiezen. \n Het bleek dat mensen zich veel meer laten leiden bij het kiezen van een cursus door de aanbevelingen van 2 studenten dan de evaluaties, die op basis van veel meer studenten was.
 Tentamennummer: 233

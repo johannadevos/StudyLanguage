@@ -1057,7 +1057,7 @@ Subjectcode: 737
 Punten: 4
 Antwoord: Benjamin Whorf proposed that language is not merely a medium to express our ideas and thoughts, but that our thoughts are actually influenced by the language that we speak and that we thing in words. This theory can be strong or weak depending on the available words a language is providing.
 Tentamennummer: 298
-Subjectcode: 737
+Subjectcode: 870
 Punten: 7
 Antwoord: The weak form of the Worfian’s language theory indicates that if there are several ways and synonyms in language to e.g. describe a certain concept, you are also able to think in a more sophisticated way. The strong form of the theory claims that language limits our thinking. Modern language scientists reject the strong form of the theory, but agree with the weak one. One reason is that there are several thinking processes which we cannot verbalize well, but which are very complex, for example our sensation of smell or emotions and feelings. In these cases our vocabulary is not sufficient for expressing our thoughts which is the opposite case of what the strong form of Whorfian’s theory says.
 Tentamennummer: 299
