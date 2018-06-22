@@ -225,6 +225,63 @@ grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 ### Inferential statistics
 ### ----------------------
 
+# --------------------------------------------------------------------
+# Is Dutch students' lexical richness higher in Dutch than in English?
+# --------------------------------------------------------------------
+
+# Is their a main effect of track on Lexical richness measures for the Dutch students?
+
+# Select Dutch students only
+dutch_lex <- lca_data[lca_data$Nationality == "Dutch",]
+
+# Average lexical richness over the three exams
+dutch_lex$ld <- rowMeans(cbind(dutch_lex$ld_oct, dutch_lex$ld_feb, dutch_lex$ld_apr))
+dutch_lex$ls2 <- rowMeans(cbind(dutch_lex$ls2_oct, dutch_lex$ls2_feb, dutch_lex$ls2_apr))
+dutch_lex$ndwesz <- rowMeans(cbind(dutch_lex$ndwesz_oct, dutch_lex$ndwesz_feb, dutch_lex$ndwesz_apr))
+
+# Descriptives
+tapply(dutch_lex$ld, dutch_lex$Track, stat.desc)
+tapply(dutch_lex$ls2, dutch_lex$Track, stat.desc)
+tapply(dutch_lex$ndwesz, dutch_lex$Track, stat.desc)
+
+## Check assumptions
+
+# Homogeneity of covariance
+by(dutch_lex[, cbind(dutch_lex$ld, dutch_lex$ls2)], dutch_lex$Track, cov)
+by(dutch_lex[, 49:51], dutch_lex$Track, cov)
+
+# Multivariate normality
+dutch_wide <- dutch_lex[dutch_lex$Track=="Dutch", 49:51]
+dutch_wide <- as.matrix(dutch_wide)
+mshapiro.test(dutch_wide) # "System is computationally singular"
+# https://stats.stackexchange.com/questions/76488/error-system-is-computationally-singular-when-running-a-glm
+# "This results from linearly dependent columns, i.e. strongly correlated variables."
+
+# Investigate correlations between dependent variables
+shapiro.test(dutch_lex$ld) # Not significant
+shapiro.test(dutch_lex$ls2) # Not significant
+shapiro.test(dutch_lex$ndwesz) # Not significant
+
+cor(dutch_lex[, 49:51], method = "pearson") # Highest correlation is .20
+
+
+
+
+### KLAD
+
+# Is lexical richness normally distributed in each group?
+tapply(dutch_lex$ld, dutch_lex$Track, shapiro.test) # Yes
+tapply(dutch_lex$ls2, dutch_lex$Track, shapiro.test) # No
+tapply(dutch_lex$ndwesz, dutch_lex$Track, shapiro.test) # Yes
+
+# Comparing two means (NB: no correction for multiple testing)
+t.test(dutch_lex$ld[dutch_lex$Track=="Dutch"], dutch_lex$ld[dutch_lex$Track=="English"])
+wilcox.test(dutch_lex$ls2[dutch_lex$Track=="Dutch"], dutch_lex$ls2[dutch_lex$Track=="English"])
+t.test(dutch_lex$ndwesz[dutch_lex$Track=="Dutch"], dutch_lex$ndwesz[dutch_lex$Track=="English"])
+
+
+
+
 # Merge long dataframes
 long_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
 long_data <- merge(long_data, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
