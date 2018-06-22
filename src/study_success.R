@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales); library(MASS)
+library(car); library(fBasics); library(scales); library(MASS); library(pastecs)
 
 # Clear workspace
 rm(list=ls())
@@ -26,11 +26,6 @@ subject_info$DropOut <- factor(subject_info$DropOut, levels = c("DuringYear1", "
 
 # Data frame without drop-outs
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
-
-# Inspect dataframe
-str(subject_info)
-# All first year results are currently coded as factors
-# This is because there are also non-numeric data, such as "ND"
 
 
 ### -------------------------------------
@@ -225,20 +220,17 @@ chisq.test(drop2)
 dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
 
 # Descriptives per track
-tapply(dutch_data$SchoolMean, dutch_data$Track, length)
-tapply(dutch_data$SchoolMean, dutch_data$Track, summary)
-tapply(dutch_data$SchoolMean, dutch_data$Track, sd, na.rm=TRUE)
-
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, length)
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, summary)
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, sd, na.rm=TRUE)
+tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
+tapply(dutch_data$SchoolMean, dutch_data$Track, t.test) # To obtain 95% CI
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test) # To obtain 95% CI
 
 # Plot distribution of grades
 hist(dutch_data$SchoolMean[dutch_data$Track == "English"], breaks=12)
 hist(dutch_data$SchoolMean[dutch_data$Track == "Dutch"], breaks=12)
 
-hist(dutch_data$SchoolEnglish[dutch_data$Track == "English"])
-hist(dutch_data$SchoolEnglish[dutch_data$Track == "Dutch"])
+hist(dutch_data$SchoolEnglish[dutch_data$Track == "English"], breaks=12)
+hist(dutch_data$SchoolEnglish[dutch_data$Track == "Dutch"], breaks=12)
 
 # Are grades normally distributed? --> Not in the Dutch track
 tapply(dutch_data$SchoolMean, dutch_data$Track, shapiro.test)
