@@ -93,7 +93,7 @@ select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
 # Reshape data
 ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Month"
-ld_melted$Month <- revalue(ld_melted$Month, c("ld_oct"="October", "ld_feb"="February", "ld_apr" = "April"))
+ld_melted$Month <- revalue(ld_melted$Month, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
 
 # Visualise
 ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
@@ -101,7 +101,7 @@ ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality,
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nMonth", y = "Lexical Density\n") +
+  labs(x = "\nExam", y = "Lexical Density\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
@@ -111,7 +111,7 @@ ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality,
 # Reshape data
 ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS2")
 colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Month"
-ls2_melted$Month <- revalue(ls2_melted$Month, c("ls2_oct"="October", "ls2_feb"="February", "ls2_apr" = "April"))
+ls2_melted$Month <- revalue(ls2_melted$Month, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
 
 # Visualise
 ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
@@ -119,7 +119,7 @@ ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationalit
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nMonth", y = "Lexical Sophistication\n") +
+  labs(x = "\nExam", y = "Lexical Sophistication\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
@@ -129,7 +129,7 @@ ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationalit
 # Reshape data
 ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "NDWESZ")
 colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Month"
-ndwesz_melted$Month <- revalue(ndwesz_melted$Month, c("ndwesz_oct"="October", "ndwesz_feb"="February", "ndwesz_apr" = "April"))
+ndwesz_melted$Month <- revalue(ndwesz_melted$Month, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
 
 # Visualise
 ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
@@ -137,7 +137,7 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = N
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nMonth", y = "Lexical Variation 1\n") +
+  labs(x = "\nExam", y = "Lexical variation\n(NDW-ES / 20)\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
@@ -149,7 +149,7 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = N
 # Reshape data
 msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("msttr_oct", "msttr_feb", "msttr_apr"), value.name = "MSTTR")
 colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Month"
-msttr_melted$Month <- revalue(msttr_melted$Month, c("msttr_oct"="October", "msttr_feb"="February", "msttr_apr" = "April"))
+msttr_melted$Month <- revalue(msttr_melted$Month, c("msttr_oct"="1 (Oct)", "msttr_feb"="2 (Feb)", "msttr_apr" = "3 (Apr)"))
 
 # Visualise
 ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
@@ -157,7 +157,7 @@ ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nation
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nMonth", y = "Lexical Variation 2\n") +
+  labs(x = "\nExam", y = "Lexical Variation\n(MSTTR)\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
