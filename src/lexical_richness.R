@@ -163,28 +163,30 @@ ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nation
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
 
-### Investigate how the variables are distributed
+### --------------------------------------------------------------
+### Investigate how the lexical richness variables are distributed
+### --------------------------------------------------------------
 
 # Don't use German students in Dutch track
 three_gr <- lca_data[lca_data$Group != "German_in_Dutch",]
 
 ## Lexical density
 ld_oct <- ggplot(data = three_gr, aes(three_gr$ld_oct)) +
-  geom_histogram(fill = "steelblue3") +
+  geom_histogram(col = "white", fill = "steelblue3") +
   facet_grid(~Group) +
   labs(x = "\nOctober", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ld_feb <- ggplot(data = three_gr, aes(three_gr$ld_feb)) +
-  geom_histogram(fill = "orange") +
+  geom_histogram(col = "white", fill = "orange") +
   facet_grid(~Group) +
   labs(x = "\nFebruary", y = "Count\n") +
   ggtitle("Lexical density\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ld_apr <- ggplot(data = three_gr, aes(three_gr$ld_apr)) +
-  geom_histogram(fill = "mediumpurple4") +
+  geom_histogram(col = "white", fill = "mediumpurple4") +
   facet_grid(~Group) +
   labs(x = "\nApril", y = "Count\n") +
   ggtitle("\n") +
@@ -195,21 +197,21 @@ grid.arrange(ld_oct, ld_feb, ld_apr, nrow=1, ncol=3)
 
 ## Lexical sophistication
 ls2_oct <- ggplot(data = three_gr, aes(three_gr$ls2_oct)) +
-  geom_histogram(fill = "steelblue3") +
+  geom_histogram(col = "white", fill = "steelblue3") +
   facet_grid(~Group) +
   labs(x = "\nOctober", y = "Count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ls2_feb <- ggplot(data = three_gr, aes(three_gr$ls2_feb)) +
-  geom_histogram(fill = "orange") +
+  geom_histogram(col = "white", fill = "orange") +
   facet_grid(~Group) +
   labs(x = "\nFebruary", y = "Count\n") +
   ggtitle("Lexical sophistication\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
 ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
-  geom_histogram(fill = "mediumpurple4") +
+  geom_histogram(col = "white", fill = "mediumpurple4") +
   facet_grid(~Group) +
   labs(x = "\nApril", y = "Count\n") +
   ggtitle("\n") +
@@ -219,7 +221,9 @@ ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
 grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 
 
+### ----------------------
 ### Inferential statistics
+### ----------------------
 
 # Merge long dataframes
 long_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
