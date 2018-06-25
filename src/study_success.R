@@ -16,12 +16,12 @@ colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
 colnames(subject_info)[colnames(subject_info)=="TrackNatio1"] <- "Group"
 subject_info$Nationality <- revalue(subject_info$Nationality, c("NL" = "Dutch", "DU" = "German"))
 subject_info$Track <- revalue(subject_info$Track, c("NL" = "Dutch", "EN" = "English"))
-subject_info$Group <- revalue(subject_info$Group, c("DU_in_NL" = "German_in_Dutch", "NL_in_NL" = "Dutch_in_Dutch", "DU_in_EN" = "German_in_English", "NL_in_EN" = "Dutch_in_English"))
+subject_info$Group <- revalue(subject_info$Group, c("DU_in_NL" = "German in Dutch", "NL_in_NL" = "Dutch in Dutch", "DU_in_EN" = "German in English", "NL_in_EN" = "Dutch in English"))
 
 # Relevel (for better visualisation)
 subject_info$Track <- factor(subject_info$Track, levels = c("Dutch", "English"))
 subject_info$Nationality <- factor(subject_info$Nationality, levels = c("Dutch", "German"))
-subject_info$Group <- factor(subject_info$Group, levels = c("Dutch_in_Dutch", "Dutch_in_English", "German_in_Dutch", "German_in_English"))
+subject_info$Group <- factor(subject_info$Group, levels = c("Dutch in Dutch", "Dutch in English", "German in Dutch", "German in English"))
 subject_info$DropOut <- factor(subject_info$DropOut, levels = c("DuringYear1", "AfterYear1", "No"))
 
 # Data frame without drop-outs
@@ -32,25 +32,39 @@ no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 ### Study success: Descriptive statistics
 ### -------------------------------------
 
+# Function to calculate standard error of the median
+se_median <- function(dep_var){
+  sd <- sd(dep_var)
+  n <- length(dep_var)
+  se <- 1.253 * sd / sqrt(n)
+  return(se)
+}
+
+# Function to calculate standard error of the median absolute deviation
+se_mad <- function(dep_var){
+  sd <- sd(dep_var)
+  n <- length(dep_var)
+  se <- 1.67 * sd / sqrt(2*n)
+  return(se)
+}
+
 ### ECs
 
-# All students
-tapply(subject_info$ECsTotal, subject_info$Group, mean)
-tapply(subject_info$ECsTotal, subject_info$Group, sd)
-descr_all_ec <- tapply(subject_info$ECsTotal, subject_info$Group, basicStats); descr_all_ec
-basicStats(subject_info$ECsTotal)
-
 # No drop-outs
-tapply(no_dropout$ECsTotal, no_dropout$Group, mean)
-tapply(no_dropout$ECsTotal, no_dropout$Group, sd)
-descr_sub_ec <- tapply(no_dropout$ECsTotal, no_dropout$Group, basicStats); descr_sub_ec
-basicStats(no_dropout$ECsTotal)
+tapply(no_dropout$ECsTotal, no_dropout$Group, stat.desc)
+tapply(no_dropout$ECsTotal, no_dropout$Group, se_median)
+tapply(no_dropout$ECsTotal, no_dropout$Group, mad) # Median Absolute Deviation
+tapply(no_dropout$ECsTotal, no_dropout$Group, se_mad) # Median Absolute Deviation
+stat.desc(no_dropout$ECsTotal)
+se_median(no_dropout$ECsTotal)
+mad(no_dropout$ECsTotal)
+se_mad(no_dropout$ECsTotal)
 
 # Histogram of total number of ECs obtained
 ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
   facet_grid(~Group) +
-  labs(x = "\nHistograms of total number of ECs obtained", y = "Count\n") +
+  labs(x = "\nTotal number of ECs obtained", y = "Student count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
@@ -59,23 +73,21 @@ ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
 
 ### Mean grade
 
-# All students
-tapply(subject_info$MeanPsyWeighted, subject_info$Group, mean, na.rm = TRUE)
-tapply(subject_info$MeanPsyWeighted, subject_info$Group, sd, na.rm = TRUE)
-descr_all_mean <- tapply(subject_info$MeanPsyWeighted, subject_info$Group, basicStats); descr_all_mean
-basicStats(subject_info$MeanPsyWeighted)
-
 # No drop-outs
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, mean, na.rm = TRUE)
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, sd, na.rm = TRUE)
-descr_sub_mean <- tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, basicStats); descr_sub_mean
-basicStats(no_dropout$MeanPsyWeighted)
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, stat.desc)
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_median)
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, mad)
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_mad)
+stat.desc(no_dropout$MeanPsyWeighted)
+se_median(no_dropout$MeanPsyWeighted)
+mad(no_dropout$MeanPsyWeighted)
+se_mad(no_dropout$MeanPsyWeighted)
 
 # Histogram of mean grades
 mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
   geom_histogram(col = "white", binwidth = 0.5) +
   facet_grid(~Group) +
-  labs(x = "\nHistograms of mean grades", y = "Count\n") +
+  labs(x = "\nMean grade", y = "Student count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=6)); mean_hist
@@ -83,23 +95,21 @@ mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
 
 ### Weighted grade
 
-# All students
-tapply(subject_info$WeightedGrade, subject_info$Group, mean, na.rm = TRUE)
-tapply(subject_info$WeightedGrade, subject_info$Group, sd, na.rm = TRUE)
-descr_all_weighted <- tapply(subject_info$WeightedGrade, subject_info$Group, basicStats); descr_all_weighted
-basicStats(subject_info$WeightedGrade)
-
 # No drop-outs
-tapply(no_dropout$WeightedGrade, no_dropout$Group, mean, na.rm = TRUE)
-tapply(no_dropout$WeightedGrade, no_dropout$Group, sd, na.rm = TRUE)
-descr_sub_weighted <- tapply(no_dropout$WeightedGrade, no_dropout$Group, basicStats); descr_sub_weighted
-basicStats(no_dropout$WeightedGrade)
+tapply(no_dropout$WeightedGrade, no_dropout$Group, stat.desc)
+tapply(no_dropout$WeightedGrade, no_dropout$Group, se_median)
+tapply(no_dropout$WeightedGrade, no_dropout$Group, mad)
+tapply(no_dropout$WeightedGrade, no_dropout$Group, se_mad)
+stat.desc(no_dropout$WeightedGrade)
+se_median(no_dropout$WeightedGrade)
+mad(no_dropout$WeightedGrade)
+se_mad(no_dropout$WeightedGrade)
 
 # Histogram of weighted grades
 weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 50) +
   facet_grid(~Group) +
-  labs(x = "\nHistograms of weighted grades", y = "Count\n") +
+  labs(x = "\nWeighted grade", y = "Student count\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist
@@ -125,6 +135,7 @@ prop.table(drop2, 2)
 
 ## Checking assumptions
 ECs_hist # Data are not normally distributed
+tapply(no_dropout$ECsTotal, no_dropout$Group, shapiro.test)
 
 # Kruskal-Wallis test
 kruskal.test(ECsTotal ~ Group, data = no_dropout)
