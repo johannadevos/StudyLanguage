@@ -145,9 +145,9 @@ by(no_dropout$Rank, no_dropout$Group, mean)
 ## Robust ANOVA
 
 # Transform data to wide format
-wilcox_wide <- dcast(no_dropout, SubjectCode ~ Group, value.var = "ECsTotal")
-str(wilcox_wide)
-wilcox_wide$SubjectCode <- NULL
+wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "ECsTotal")
+str(wilcox_wide_ECs)
+wilcox_wide_ECs$SubjectCode <- NULL
 
 # Load functions from Rand Wilcox
 source("Rallfun-v35.txt")
@@ -157,7 +157,7 @@ t1way(wilcox_wide, tr = 0)
 t1way(wilcox_wide, tr = 0.1)
 t1way(wilcox_wide, tr = 0.2)
 med1way(wilcox_wide) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
-t1waybt(wilcox_wide, tr = 0.1)
+t1waybt(wilcox_wide, tr = 0, nboot = 2000)
 
 
 ### Mean grade
@@ -182,6 +182,16 @@ kruskal.test(MeanPsyWeighted ~ Group, data = no_dropout)
 no_dropout$RankMeanPsyWeighted <- rank(no_dropout$MeanPsyWeighted)
 by(no_dropout$RankMeanPsyWeighted, no_dropout$Group, mean)
 
+## Robust ANOVA
+
+# Transform data to wide format
+wilcox_wide_mean <- dcast(no_dropout, SubjectCode ~ Group, value.var = "MeanPsyWeighted")
+wilcox_wide_mean$SubjectCode <- NULL
+
+# Perform robust ANOVA
+med1way(wilcox_wide_mean) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+t1waybt(wilcox_wide_mean, tr = 0, nboot = 2000)
+
 
 ### Weighted grade
 
@@ -196,6 +206,14 @@ leveneTest(no_dropout$WeightedGrade, no_dropout$Group) # Not significant
 kruskal.test(WeightedGrade ~ Group, data = no_dropout)
 no_dropout$RankWeightedGrade <- rank(no_dropout$WeightedGrade)
 by(no_dropout$WeightedGrade, no_dropout$Group, mean)
+
+# Transform data to wide format
+wilcox_wide_weighted <- dcast(no_dropout, SubjectCode ~ Group, value.var = "WeightedGrade")
+wilcox_wide_weighted$SubjectCode <- NULL
+
+# Perform robust ANOVA
+med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+t1waybt(wilcox_wide_weighted, tr = 0, nboot = 2000)
 
 
 ### Passing the BSA
