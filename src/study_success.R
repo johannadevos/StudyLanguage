@@ -241,6 +241,18 @@ drop2 <- table(subject_info$DropOut2, subject_info$Group); drop2
 chisq.test(drop2)
 
 
+### --------------------------------------------
+### Correlations between the dependent variables
+### --------------------------------------------
+
+# Check whether the three dependent variables are normally distributed
+apply(cor_data, 2, shapiro.test) # 2 to loop through columns
+
+# Create a correlation matrix using Spearman's correlation coefficient
+cor_data <- no_dropout[,cbind("ECsTotal", "MeanPsyWeighted", "WeightedGrade")]
+rcorr(as.matrix(cor_data), type = "spearman")
+
+
 ### --------------------------------------------------------
 ### Do the 'better' Dutch students choose the English track?
 ### --------------------------------------------------------
