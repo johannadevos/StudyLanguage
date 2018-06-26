@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales); library(MASS); library(pastecs)
+library(car); library(scales); library(MASS); library(pastecs)
 
 # Clear workspace
 rm(list=ls())
@@ -164,7 +164,11 @@ t1waybt(wilcox_wide, tr = 0, nboot = 2000)
 
 ## Checking assumptions
 mean_hist # Data seem normally distributed
-tapply(subject_info$MeanPsyWeighted, subject_info$Group, shapiro.test) # Shapiro test says data are non-normally distributed
+tapply(subject_info$MeanPsyWeighted, subject_info$Group, shapiro.test) # Significant
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in Dutch"])
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in English"])
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in Dutch"])
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in English"])
 
 # Levene's test of homogeneity of variance
 leveneTest(no_dropout$MeanPsyWeighted, no_dropout$Group) # Not significant
