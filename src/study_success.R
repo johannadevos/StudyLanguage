@@ -155,7 +155,19 @@ weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist
 
 
+### Passing the BSA
+
+# All students
+bsa_all <- table(subject_info$PassedBSA, subject_info$Group); bsa_all
+prop.table(bsa_all, 2)
+
+# No drop-outs
+bsa_no_dropout <- table(no_dropout$PassedBSA, no_dropout$Group); bsa_no_dropout
+prop.table(bsa_no_dropout, 2)
+
+
 ### Drop-out
+
 drop <- table(subject_info$DropOut, subject_info$Group); drop
 prop.table(drop, 2)
 
@@ -264,16 +276,15 @@ t1waybt(wilcox_wide_weighted, tr = 0, nboot = 2000)
 
 # All students
 bsa_all <- table(subject_info$PassedBSA, subject_info$Group); bsa_all
-prop.table(bsa_all, 2)
 chisq.test(bsa_all)
 
 # No drop-outs
 bsa_no_dropout <- table(no_dropout$PassedBSA, no_dropout$Group); bsa_no_dropout
-prop.table(bsa_no_dropout, 2)
 chisq.test(bsa_no_dropout)
 
 
-### Do certain groups drop out more often?
+### Drop-out
+
 drop <- table(subject_info$DropOut, subject_info$Group); drop
 chisq.test(drop)
 
