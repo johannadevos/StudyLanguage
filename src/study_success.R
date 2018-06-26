@@ -198,18 +198,14 @@ by(no_dropout$Rank, no_dropout$Group, mean)
 
 # Transform data to wide format
 wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "ECsTotal")
-str(wilcox_wide_ECs)
 wilcox_wide_ECs$SubjectCode <- NULL
 
 # Load functions from Rand Wilcox
 source("Rallfun-v35.txt")
 
-# Perform robust ANOVA
-t1way(wilcox_wide, tr = 0)
-t1way(wilcox_wide, tr = 0.1)
-t1way(wilcox_wide, tr = 0.2)
-med1way(wilcox_wide) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
-t1waybt(wilcox_wide, tr = 0, nboot = 2000)
+# Perform robust ANOVA with bootstrapping
+t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
+med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
 
 ### Mean grade
