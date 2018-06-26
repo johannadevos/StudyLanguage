@@ -95,11 +95,20 @@ ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
 
 ### Mean grade
 
-# No drop-outs
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, stat.desc)
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_median)
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, mad)
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_mad)
+# Mean with bootstrapped precision estimates
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
+bootstrap(no_dropout$MeanPsyWeighted, func=mean, iter=10000)
+
+# Median with bootstrapped precision estimates
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
+bootstrap(no_dropout$MeanPsyWeighted, func=median, iter=10000)
+
+# Other descriptives
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, stat.desc) # Summary
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_median) # SE of median
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, mad) # Median Absolute Deviation
+tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+
 stat.desc(no_dropout$MeanPsyWeighted)
 se_median(no_dropout$MeanPsyWeighted)
 mad(no_dropout$MeanPsyWeighted)
@@ -117,11 +126,20 @@ mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
 
 ### Weighted grade
 
-# No drop-outs
-tapply(no_dropout$WeightedGrade, no_dropout$Group, stat.desc)
-tapply(no_dropout$WeightedGrade, no_dropout$Group, se_median)
-tapply(no_dropout$WeightedGrade, no_dropout$Group, mad)
-tapply(no_dropout$WeightedGrade, no_dropout$Group, se_mad)
+# Mean with bootstrapped precision estimates
+tapply(no_dropout$WeightedGrade, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
+bootstrap(no_dropout$WeightedGrade, func=mean, iter=10000)
+
+# Median with bootstrapped precision estimates
+tapply(no_dropout$WeightedGrade, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
+bootstrap(no_dropout$WeightedGrade, func=median, iter=10000)
+
+# Other descriptives
+tapply(no_dropout$WeightedGrade, no_dropout$Group, stat.desc) # Summary
+tapply(no_dropout$WeightedGrade, no_dropout$Group, se_median) # SE of median
+tapply(no_dropout$WeightedGrade, no_dropout$Group, mad) # Median Absolute Deviation
+tapply(no_dropout$WeightedGrade, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+
 stat.desc(no_dropout$WeightedGrade)
 se_median(no_dropout$WeightedGrade)
 mad(no_dropout$WeightedGrade)
