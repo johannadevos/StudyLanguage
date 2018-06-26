@@ -285,12 +285,21 @@ drop <- table(subject_info$DropOut, subject_info$Group); drop
 chisq.test(drop)
 
 ## Collapse during and after year 1
-subject_info$DropOut2[subject_info$DropOut != "No"] <- "Yes"
-subject_info$DropOut2[subject_info$DropOut == "No"] <- "No"
+subject_info$DropOut2[subject_info$DropOut != "No"] <- 1
+subject_info$DropOut2[subject_info$DropOut == "No"] <- 0
 
 drop2 <- table(subject_info$DropOut2, subject_info$Group); drop2
 chisq.test(drop2)
 
+## Predict who will drop out
+dropout_model <- glm(DropOut2 ~ Group, family = binomial (link = "logit"), data = subject_info)
+summary(dropout_model)
+
+dropout_model2 <- glm(DropOut2 ~ Group + Gender, family = binomial (link = "logit"), data = subject_info)
+summary(dropout_model2)
+
+## To Do: lsmeans / correct for multiple testing
+## Lexical richness as predictor
 
 ### --------------------------------------------
 ### Correlations between the dependent variables
