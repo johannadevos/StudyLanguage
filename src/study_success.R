@@ -299,17 +299,25 @@ dropout_model2 <- glm(DropOut2 ~ Group + Gender, family = binomial (link = "logi
 summary(dropout_model2)
 
 ## To Do: lsmeans / correct for multiple testing
+
 ## Lexical richness as predictor
+
+
+all_data <- merge(lca_data, subject_info, all.y = TRUE)
+
+
 
 ### --------------------------------------------
 ### Correlations between the dependent variables
 ### --------------------------------------------
 
+# Create dataset
+cor_data <- no_dropout[,cbind("ECsTotal", "MeanPsyWeighted", "WeightedGrade")]
+
 # Check whether the three dependent variables are normally distributed
 apply(cor_data, 2, shapiro.test) # 2 to loop through columns
 
 # Create a correlation matrix using Spearman's correlation coefficient
-cor_data <- no_dropout[,cbind("ECsTotal", "MeanPsyWeighted", "WeightedGrade")]
 rcorr(as.matrix(cor_data), type = "spearman")
 
 
