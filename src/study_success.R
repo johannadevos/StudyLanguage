@@ -48,13 +48,35 @@ se_mad <- function(dep_var){
   return(se)
 }
 
+# Function to bootstrap the precision of test statistics
+bootstrap <- function(data, func, iter){
+  boot_mean <- boot(data, function(x,i) func(x[i]), iter)
+  print("The original statistic is:")
+  print(boot_mean$t0)
+  print("The bootstrapped standard error of the statistic is:")
+  se_mean <- sd(boot_mean$t)
+  print(se_mean)
+  ci <- boot.ci(boot_mean, type = "bca")
+  print("The BCa 95% confidence intervals of the statistic are:")
+  print(ci$bca[,4]); print(ci$bca[,5])
+}
+
 ### ECs
 
-# No drop-outs
-tapply(no_dropout$ECsTotal, no_dropout$Group, stat.desc)
-tapply(no_dropout$ECsTotal, no_dropout$Group, se_median)
+# Mean with bootstrapped precision estimates
+tapply(no_dropout$ECsTotal, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
+bootstrap(no_dropout$ECsTotal, func=mean, iter=10000)
+
+# Median with bootstrapped precision estimates
+tapply(no_dropout$ECsTotal, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
+bootstrap(no_dropout$ECsTotal, func=median, iter=10000)
+
+# Other descriptives
+tapply(no_dropout$ECsTotal, no_dropout$Group, stat.desc) # Summary
+tapply(no_dropout$ECsTotal, no_dropout$Group, se_median) # SE of median
 tapply(no_dropout$ECsTotal, no_dropout$Group, mad) # Median Absolute Deviation
-tapply(no_dropout$ECsTotal, no_dropout$Group, se_mad) # Median Absolute Deviation
+tapply(no_dropout$ECsTotal, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+
 stat.desc(no_dropout$ECsTotal)
 se_median(no_dropout$ECsTotal)
 mad(no_dropout$ECsTotal)
