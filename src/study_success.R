@@ -51,13 +51,16 @@ se_mad <- function(dep_var){
 # Function to bootstrap the precision of test statistics
 bootstrap <- function(data, func, iter){
   data <- na.omit(data)
-  boot_mean <- boot(data, function(x,i) func(x[i]), iter)
+  boot_sample <- boot(data, function(x,i) func(x[i]), iter)
   print("The original statistic is:")
-  print(boot_mean$t0)
+  print(boot_sample$t0)
   print("The bootstrapped standard error of the statistic is:")
-  se_mean <- sd(boot_mean$t)
-  print(se_mean)
-  ci <- boot.ci(boot_mean, type = "bca")
+  se <- sd(boot_sample$t)
+  print(se)
+  print("The bootstrapped standard deviation of the statistic is:")
+  sd <- se * sqrt(length(data))
+  print(sd)
+  ci <- boot.ci(boot_sample, type = "bca")
   print("The BCa 95% confidence intervals of the statistic are:")
   print(ci$bca[,4]); print(ci$bca[,5])
 }
