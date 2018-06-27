@@ -50,6 +50,7 @@ se_mad <- function(dep_var){
 
 # Function to bootstrap the precision of test statistics
 bootstrap <- function(data, func, iter){
+  data <- na.omit(data)
   boot_mean <- boot(data, function(x,i) func(x[i]), iter)
   print("The original statistic is:")
   print(boot_mean$t0)
@@ -241,8 +242,8 @@ wilcox_wide_mean <- dcast(no_dropout, SubjectCode ~ Group, value.var = "MeanPsyW
 wilcox_wide_mean$SubjectCode <- NULL
 
 # Perform robust ANOVA
+t1waybt(wilcox_wide_mean, tr = 0, nboot = 10000)
 med1way(wilcox_wide_mean) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
-t1waybt(wilcox_wide_mean, tr = 0, nboot = 2000)
 
 
 ### Weighted grade
@@ -264,8 +265,8 @@ wilcox_wide_weighted <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Weig
 wilcox_wide_weighted$SubjectCode <- NULL
 
 # Perform robust ANOVA
+t1waybt(wilcox_wide_weighted, tr = 0, nboot = 10000)
 med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
-t1waybt(wilcox_wide_weighted, tr = 0, nboot = 2000)
 
 
 ### Passing the BSA
