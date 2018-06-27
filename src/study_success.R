@@ -306,9 +306,17 @@ summary(dropout_model2)
 
 ## Lexical richness as predictor
 
+# Merge subject info and LCA data
+lex <- merge(lca_data, subject_info, all.x = TRUE) # Five observations have NA under DropOut2
+# When removing all.x = TRUE, the resulting dataset does not have these five observations.
 
-all_data <- merge(lca_data, subject_info, all.y = TRUE)
+# Average lexical richness scores over the three exams
+lex$LD <- rowMeans(cbind(lex$ld_oct, lex$ld_feb, lex$ld_apr))
+lex$LS2 <- rowMeans(cbind(lex$ls2_oct, lex$ls2_feb, lex$ls2_apr))
+lex$NDWESZ <- rowMeans(cbind(lex$ndwesz_oct, lex$ndwesz_feb, lex$ndwesz_apr))
 
+dropout_model3 <- glm(DropOut2 ~ Group + Gender + LD + LS2 + NDWESZ, family = binomial (link = "logit"), data = lex)
+summary(dropout_model3)
 
 
 ### --------------------------------------------
