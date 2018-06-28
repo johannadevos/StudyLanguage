@@ -176,10 +176,10 @@ drop <- table(subject_info$Group, subject_info$DropOut); drop
 prop.table(drop, 2)
 
 # Collapse during and after year 1
-subject_info$DropOut2[subject_info$DropOut != "No"] <- "Yes"
-subject_info$DropOut2[subject_info$DropOut == "No"] <- "No"
+subject_info$DropOutBinary[subject_info$DropOut != "No"] <- "Yes"
+subject_info$DropOutBinary[subject_info$DropOut == "No"] <- "No"
 
-drop2 <- table(subject_info$Group, subject_info$DropOut2); drop2
+drop2 <- table(subject_info$Group, subject_info$DropOutBinary); drop2
 prop.table(drop2, 2)
 
 
@@ -288,35 +288,31 @@ chisq.test(bsa_no_dropout)
 drop <- table(subject_info$Group, subject_info$DropOut); drop
 chisq.test(drop)
 
-## Collapse during and after year 1
-subject_info$DropOut2[subject_info$DropOut != "No"] <- 1
-subject_info$DropOut2[subject_info$DropOut == "No"] <- 0
-
-drop2 <- table(subject_info$Group, subject_info$DropOut2); drop2
+drop2 <- table(subject_info$Group, subject_info$DropOutBinary); drop2
 chisq.test(drop2)
 
 ## Predict who will drop out
-dropout_model <- glm(DropOut2 ~ Group, family = binomial (link = "logit"), data = subject_info)
+dropout_model <- glm(DropOutBinary ~ Group, family = binomial (link = "logit"), data = subject_info)
 summary(dropout_model)
 
-dropout_model2 <- glm(DropOut2 ~ Group + Gender, family = binomial (link = "logit"), data = subject_info)
+dropout_model2 <- glm(DropOutBinary ~ Group + Gender, family = binomial (link = "logit"), data = subject_info)
 summary(dropout_model2)
-
-## To Do: lsmeans / correct for multiple testing
 
 ## Lexical richness as predictor
 
 # Merge subject info and LCA data
-lex <- merge(lca_data, subject_info, all.x = TRUE) # Five observations have NA under DropOut2
-# When removing all.x = TRUE, the resulting dataset does not have these five observations.
+lex <- merge(lca_data, subject_info, all.x = TRUE) # Get lca_data from lexical_richness script
 
 # Average lexical richness scores over the three exams
 lex$LD <- rowMeans(cbind(lex$ld_oct, lex$ld_feb, lex$ld_apr))
 lex$LS2 <- rowMeans(cbind(lex$ls2_oct, lex$ls2_feb, lex$ls2_apr))
 lex$NDWESZ <- rowMeans(cbind(lex$ndwesz_oct, lex$ndwesz_feb, lex$ndwesz_apr))
 
-dropout_model3 <- glm(DropOut2 ~ Group + Gender + LD + LS2 + NDWESZ, family = binomial (link = "logit"), data = lex)
+dropout_model3 <- glm(DropOutBinary ~ Group + Gender + LD + LS2 + NDWESZ, family = binomial (link = "logit"), data = lex)
 summary(dropout_model3)
+
+## To do: lsmeans / correct for multiple testing
+## To do: investigate in what order the variables are entered into the model?
 
 
 ### --------------------------------------------
