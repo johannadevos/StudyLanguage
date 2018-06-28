@@ -162,24 +162,24 @@ weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
 ### Passing the BSA
 
 # All students
-bsa_all <- table(subject_info$PassedBSA, subject_info$Group); bsa_all
+bsa_all <- table(subject_info$Group, subject_info$PassedBSA); bsa_all
 prop.table(bsa_all, 2)
 
 # No drop-outs
-bsa_no_dropout <- table(no_dropout$PassedBSA, no_dropout$Group); bsa_no_dropout
+bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
 prop.table(bsa_no_dropout, 2)
 
 
 ### Drop-out
 
-drop <- table(subject_info$DropOut, subject_info$Group); drop
+drop <- table(subject_info$Group, subject_info$DropOut); drop
 prop.table(drop, 2)
 
 # Collapse during and after year 1
 subject_info$DropOut2[subject_info$DropOut != "No"] <- "Yes"
 subject_info$DropOut2[subject_info$DropOut == "No"] <- "No"
 
-drop2 <- table(subject_info$DropOut2, subject_info$Group); drop2
+drop2 <- table(subject_info$Group, subject_info$DropOut2); drop2
 prop.table(drop2, 2)
 
 
@@ -275,24 +275,24 @@ med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of stan
 ### Passing the BSA
 
 # All students
-bsa_all <- table(subject_info$PassedBSA, subject_info$Group); bsa_all
+bsa_all <- table(subject_info$Group, subject_info$PassedBSA); bsa_all
 chisq.test(bsa_all)
 
 # No drop-outs
-bsa_no_dropout <- table(no_dropout$PassedBSA, no_dropout$Group); bsa_no_dropout
+bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
 chisq.test(bsa_no_dropout)
 
 
 ### Drop-out
 
-drop <- table(subject_info$DropOut, subject_info$Group); drop
+drop <- table(subject_info$Group, subject_info$DropOut); drop
 chisq.test(drop)
 
 ## Collapse during and after year 1
 subject_info$DropOut2[subject_info$DropOut != "No"] <- 1
 subject_info$DropOut2[subject_info$DropOut == "No"] <- 0
 
-drop2 <- table(subject_info$DropOut2, subject_info$Group); drop2
+drop2 <- table(subject_info$Group, subject_info$DropOut2); drop2
 chisq.test(drop2)
 
 ## Predict who will drop out
