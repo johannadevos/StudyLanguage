@@ -90,12 +90,20 @@ se_mad(no_dropout$ECsTotal)
 ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
   facet_grid(~Group) +
-  labs(x = "\nTotal number of ECs obtained", y = "Student count\n") +
+  labs(x = "\nTotal number of ECs obtained", y = "Number of students (absolute)\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist
 
+ECs_hist_perc <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
+  geom_histogram(aes(y=5*..density..*100), col = "white", binwidth = 5) +
+  facet_grid(~Group) +
+  labs(x = "\nTotal number of ECs obtained", y = "Percentage of students (%)\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=5)) +
+  scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist_perc
 
 ### Mean grade
 
@@ -122,10 +130,18 @@ se_mad(no_dropout$MeanPsyWeighted)
 mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
   geom_histogram(col = "white", binwidth = 0.5) +
   facet_grid(~Group) +
-  labs(x = "\nMean grade", y = "Student count\n") +
+  labs(x = "\nMean grade", y = "Number of students (absolute)\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=6)); mean_hist
+
+mean_hist_perc <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
+  geom_histogram(aes(y=0.5*..density..*100), col = "white", binwidth = 0.5) +
+  facet_grid(~Group) +
+  labs(x = "\nMean grade", y = "Percentage of students (%)\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=6)); mean_hist_perc
 
 
 ### Weighted grade
@@ -153,10 +169,18 @@ se_mad(no_dropout$WeightedGrade)
 weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 50) +
   facet_grid(~Group) +
-  labs(x = "\nWeighted grade", y = "Student count\n") +
+  labs(x = "\nWeighted grade", y = "Number of students (absolute)\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist
+
+weighted_hist_perc <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
+  geom_histogram(aes(y=50*..density..*100), col = "white", binwidth = 50) +
+  facet_grid(~Group) +
+  labs(x = "\nWeighted grade", y = "Percentage of students (%)\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist_perc
 
 
 ### Passing the BSA
