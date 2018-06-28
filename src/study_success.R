@@ -16,12 +16,12 @@ colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
 colnames(subject_info)[colnames(subject_info)=="TrackNatio1"] <- "Group"
 subject_info$Nationality <- revalue(subject_info$Nationality, c("NL" = "Dutch", "DU" = "German"))
 subject_info$Track <- revalue(subject_info$Track, c("NL" = "Dutch", "EN" = "English"))
-subject_info$Group <- revalue(subject_info$Group, c("DU_in_NL" = "German in Dutch", "NL_in_NL" = "Dutch in Dutch", "DU_in_EN" = "German in English", "NL_in_EN" = "Dutch in English"))
+subject_info$Group <- revalue(subject_info$Group, c("DU_in_NL" = "German in Dutch track", "NL_in_NL" = "Dutch in Dutch track", "DU_in_EN" = "German in English track", "NL_in_EN" = "Dutch in English track"))
 
 # Relevel (for better visualisation)
 subject_info$Track <- factor(subject_info$Track, levels = c("Dutch", "English"))
 subject_info$Nationality <- factor(subject_info$Nationality, levels = c("Dutch", "German"))
-subject_info$Group <- factor(subject_info$Group, levels = c("Dutch in Dutch", "Dutch in English", "German in Dutch", "German in English"))
+subject_info$Group <- factor(subject_info$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
 subject_info$DropOut <- factor(subject_info$DropOut, levels = c("DuringYear1", "AfterYear1", "No"))
 
 # Data frame without drop-outs
@@ -241,10 +241,10 @@ med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard 
 ## Checking assumptions
 mean_hist # Data seem normally distributed
 tapply(subject_info$MeanPsyWeighted, subject_info$Group, shapiro.test) # Significant
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in Dutch"])
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in English"])
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in Dutch"])
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in English"])
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in Dutch track"])
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in English track"])
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in Dutch track"])
+qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in English track"])
 
 # Levene's test of homogeneity of variance
 leveneTest(no_dropout$MeanPsyWeighted, no_dropout$Group) # Not significant
