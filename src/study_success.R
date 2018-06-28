@@ -308,16 +308,33 @@ lex$LD <- rowMeans(cbind(lex$ld_oct, lex$ld_feb, lex$ld_apr))
 lex$LS2 <- rowMeans(cbind(lex$ls2_oct, lex$ls2_feb, lex$ls2_apr))
 lex$NDWESZ <- rowMeans(cbind(lex$ndwesz_oct, lex$ndwesz_feb, lex$ndwesz_apr))
 
-dropout_model3 <- glm(DropOutBinary ~ Group + Gender + LD + LS2 + NDWESZ, family = binomial (link = "logit"), data = lex)
-summary(dropout_model3)
+# Models and model comparisons
+ld_first <- glm(DropOutBinary ~ Group + Gender + LD, family = binomial (link = "logit"), data = lex)
+summary(ld_first)
+
+ls_second <- glm(DropOutBinary ~ Group + Gender + LD + LS2, family = binomial (link = "logit"), data = lex)
+summary(ls_second)
+anova(ld_first, ls_second, test = "Chisq")
+
+ls_first <- glm(DropOutBinary ~ Group + Gender + LS2, family = binomial (link = "logit"), data = lex)
+summary(ls_first)
+
+ld_second <- glm(DropOutBinary ~ Group + Gender + LS2 + LD, family = binomial (link = "logit"), data = lex)
+summary(ld_second)
+anova(ls_first, ld_second, test = "Chisq")
+
+lv_model <- glm(DropOutBinary ~ Group + Gender + LD + LS2 + NDWESZ, family = binomial (link = "logit"), data = lex)
+summary(lv_model)
+anova(ls_model, lv_model, test = "Chisq")
 
 ## To do: lsmeans / correct for multiple testing
-## To do: investigate in what order the variables are entered into the model?
 
 
 ### --------------------------------------------
 ### Correlations between the dependent variables
 ### --------------------------------------------
+
+## Three continuous measures of study success 
 
 # Create dataset
 cor_data <- no_dropout[,cbind("ECsTotal", "MeanPsyWeighted", "WeightedGrade")]
@@ -327,6 +344,17 @@ apply(cor_data, 2, shapiro.test) # 2 to loop through columns
 
 # Create a correlation matrix using Spearman's correlation coefficient
 rcorr(as.matrix(cor_data), type = "spearman")
+
+## Lexical richness measures
+
+# Create dataset
+lex_rich_measures <- lex[,cbind("LD", "LS2", "NDWESZ")]
+
+# Check whether the three dependent variables are normally distributed
+apply(lex_rich_measures, 2, shapiro.test) # 2 to loop through columns
+
+# Create a correlation matrix using Spearman's correlation coefficient
+rcorr(as.matrix(lex_rich_measures), type = "spearman")
 
 
 ### --------------------------------------------------------
