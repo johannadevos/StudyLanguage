@@ -16,12 +16,12 @@ colnames(lca_data)[colnames(lca_data)=="Natio1"] <- "Nationality"
 colnames(lca_data)[colnames(lca_data)=="TrackNatio1"] <- "Group"
 lca_data$Nationality <- revalue(lca_data$Nationality, c("NL" = "Dutch", "DU" = "German"))
 lca_data$Track <- revalue(lca_data$Track, c("NL" = "Dutch", "EN" = "English"))
-lca_data$Group <- revalue(lca_data$Group, c("DU_in_NL" = "German in Dutch", "NL_in_NL" = "Dutch in Dutch", "DU_in_EN" = "German in English", "NL_in_EN" = "Dutch in English"))
+lca_data$Group <- revalue(lca_data$Group, c("DU_in_NL" = "German in Dutch track", "NL_in_NL" = "Dutch in Dutch track", "DU_in_EN" = "German in English track", "NL_in_EN" = "Dutch in English track"))
 
 # Relevel (for better visualisation)
 lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
 lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
-lca_data$Group <- factor(lca_data$Group, levels = c("Dutch in Dutch", "Dutch in English", "German in Dutch", "German in English"))
+lca_data$Group <- factor(lca_data$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
 
 
 ### -----------------------------------------
