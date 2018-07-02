@@ -244,6 +244,32 @@ tapply(dutch_lex$ld, dutch_lex$Track, stat.desc)
 tapply(dutch_lex$ls2, dutch_lex$Track, stat.desc)
 tapply(dutch_lex$ndwesz, dutch_lex$Track, stat.desc)
 
+## Visualisation
+ld <- ggplot(data = dutch_lex, aes(dutch_lex$ld)) +
+  geom_histogram(col = "white", fill = "steelblue3") +
+  facet_grid(~Group) +
+  labs(x = "\nLD", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)); ld
+
+ls2 <- ggplot(data = dutch_lex, aes(dutch_lex$ls2)) +
+  geom_histogram(col = "white", fill = "orange") +
+  facet_grid(~Group) +
+  labs(x = "\nLS", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)); ls2
+
+ndwesz <- ggplot(data = dutch_lex, aes(dutch_lex$ndwesz)) +
+  geom_histogram(col = "white", fill = "mediumpurple4") +
+  facet_grid(~Group) +
+  labs(x = "\nLV", y = "Count\n") +
+  ggtitle("\n") +
+  theme(plot.title = element_text(hjust = 0.5)); ndwesz
+
+# To plot the three graphs in one picture
+grid.arrange(ld, ls2, ndwesz, nrow=1, ncol=3)
+
+
 ## Check assumptions
 
 # Homogeneity of covariance
