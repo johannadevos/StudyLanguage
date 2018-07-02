@@ -92,11 +92,11 @@ select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
 
 # Reshape data
 ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
-colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Month"
-ld_melted$Month <- revalue(ld_melted$Month, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
+colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
+ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
 
 # Visualise
-ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -110,11 +110,11 @@ ggplot(ld_melted, aes(x = Month, y = LD, linetype = Track, colour = Nationality,
 
 # Reshape data
 ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS2")
-colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Month"
-ls2_melted$Month <- revalue(ls2_melted$Month, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
+colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Exam"
+ls2_melted$Exam <- revalue(ls2_melted$Exam, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
 
 # Visualise
-ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(ls2_melted, aes(x = Exam, y = LS2, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -128,11 +128,11 @@ ggplot(ls2_melted, aes(x = Month, y = LS2, linetype = Track, colour = Nationalit
 
 # Reshape data
 ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "NDWESZ")
-colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Month"
-ndwesz_melted$Month <- revalue(ndwesz_melted$Month, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
+colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Exam"
+ndwesz_melted$Exam <- revalue(ndwesz_melted$Exam, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
 
 # Visualise
-ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(ndwesz_melted, aes(x = Exam, y = NDWESZ/20, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -148,11 +148,11 @@ ggplot(ndwesz_melted, aes(x = Month, y = NDWESZ/20, linetype = Track, colour = N
 
 # Reshape data
 msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("msttr_oct", "msttr_feb", "msttr_apr"), value.name = "MSTTR")
-colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Month"
-msttr_melted$Month <- revalue(msttr_melted$Month, c("msttr_oct"="1 (Oct)", "msttr_feb"="2 (Feb)", "msttr_apr" = "3 (Apr)"))
+colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Exam"
+msttr_melted$Exam <- revalue(msttr_melted$Exam, c("msttr_oct"="1 (Oct)", "msttr_feb"="2 (Feb)", "msttr_apr" = "3 (Apr)"))
 
 # Visualise
-ggplot(msttr_melted, aes(x = Month, y = MSTTR, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(msttr_melted, aes(x = Exam, y = MSTTR, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -291,6 +291,57 @@ cor(dutch_lex[, 52:54], method = "spearman") # Highest correlation is .22
 t.test(dutch_lex$ld[dutch_lex$Track=="Dutch"], dutch_lex$ld[dutch_lex$Track=="English"])
 wilcox.test(dutch_lex$ls2[dutch_lex$Track=="Dutch"], dutch_lex$ls2[dutch_lex$Track=="English"])
 t.test(dutch_lex$ndwesz[dutch_lex$Track=="Dutch"], dutch_lex$ndwesz[dutch_lex$Track=="English"])
+
+
+# --------------------------------------------------------
+# How does lexical richness develop during the first year?
+# --------------------------------------------------------
+
+## Lexical density
+
+# Reshape data
+ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
+colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
+ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
+
+# Set contrasts
+DD_vs_DE <- c(1, -1, 0, 0)
+GD_vs_GE <- c(0, 0, 1, -1)
+contrasts(ld_melted$Group) <- cbind(DD_vs_DE, GD_vs_GE)
+
+oct_feb <- c(1, -1, 0)
+oct_apr <- c(1, 0, -1)
+feb_apr <- c(0, 1, -1)
+contrasts(ld_melted$Exam) <- cbind(oct_feb, feb_apr, oct_apr)
+
+# Models
+library(nlme); library(multcomp)
+baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode/Exam, data = ld_melted, method = "ML")
+summary(baseline_model)
+
+exam_model <- update(baseline_model, .~. + Exam)
+summary(exam_model)
+
+group_model <- update(exam_model, .~. + Group)
+summary(group_model)
+
+exam_group_model <- update(group_model, .~. + Exam:Group)
+summary(exam_group_model)
+
+pairwise <- glht(exam_group_model, linfct = mcp(Exam = "Tukey"))
+summary(pairwise)
+confint(pairwise)
+
+anova(baseline_model, exam_model, group_model, exam_group_model)
+
+
+
+
+
+library(lme4)
+baseline <- lmer(LD ~ 1 + (1|SubjectCode/Exam), data = ld_melted)
+baseline <- lmer(LD ~ 1 + (1|SubjectCode) + (1|Exam), data = ld_melted)
+summary(baseline)
 
 
 ### KLAD
