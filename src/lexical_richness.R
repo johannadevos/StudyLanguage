@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales); library(MASS); library(pastecs)
+library(car); library(fBasics); library(scales); library(MASS); library(pastecs); 
 
 # Clear workspace
 rm(list=ls())
@@ -269,44 +269,34 @@ ndwesz <- ggplot(data = dutch_lex, aes(dutch_lex$ndwesz)) +
 # To plot the three graphs in one picture
 grid.arrange(ld, ls2, ndwesz, nrow=1, ncol=3)
 
-
 ## Check assumptions
 
-# Homogeneity of covariance
-by(dutch_lex[, cbind(dutch_lex$ld, dutch_lex$ls2)], dutch_lex$Track, cov)
-by(dutch_lex[, 49:51], dutch_lex$Track, cov)
+# Homogeneity of covariance (for MANOVA)
+by(dutch_lex[, 52:54], dutch_lex$Track, cov)
 
-# Multivariate normality
-dutch_wide <- dutch_lex[dutch_lex$Track=="Dutch", 49:51]
+# Multivariate normality (for MANOVA)
+library(RVAideMemoire)
+dutch_wide <- dutch_lex[dutch_lex$Track=="Dutch", 52:54]
 dutch_wide <- as.matrix(dutch_wide)
-mshapiro.test(dutch_wide) # "System is computationally singular"
-# https://stats.stackexchange.com/questions/76488/error-system-is-computationally-singular-when-running-a-glm
-# "This results from linearly dependent columns, i.e. strongly correlated variables."
-
-# Investigate correlations between dependent variables
-shapiro.test(dutch_lex$ld) # Not significant
-shapiro.test(dutch_lex$ls2) # Not significant
-shapiro.test(dutch_lex$ndwesz) # Not significant
-
-cor(dutch_lex[, 49:51], method = "pearson") # Highest correlation is .20
-
-
-
-
-### KLAD
+mshapiro.test(dutch_wide)
 
 # Is lexical richness normally distributed in each group?
 tapply(dutch_lex$ld, dutch_lex$Track, shapiro.test) # Yes
 tapply(dutch_lex$ls2, dutch_lex$Track, shapiro.test) # No
 tapply(dutch_lex$ndwesz, dutch_lex$Track, shapiro.test) # Yes
 
-# Comparing two means (NB: no correction for multiple testing)
+# Investigate correlations between dependent variables
+cor(dutch_lex[, 52:54], method = "pearson") # Highest correlation is .20
+cor(dutch_lex[, 52:54], method = "spearman") # Highest correlation is .22
+
+## Comparing two means (NB: no correction for multiple testing)
 t.test(dutch_lex$ld[dutch_lex$Track=="Dutch"], dutch_lex$ld[dutch_lex$Track=="English"])
 wilcox.test(dutch_lex$ls2[dutch_lex$Track=="Dutch"], dutch_lex$ls2[dutch_lex$Track=="English"])
 t.test(dutch_lex$ndwesz[dutch_lex$Track=="Dutch"], dutch_lex$ndwesz[dutch_lex$Track=="English"])
 
 
 
+### KLAD
 
 # Merge long dataframes
 long_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
