@@ -229,8 +229,6 @@ grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 # Is Dutch students' lexical richness higher in Dutch than in English?
 # --------------------------------------------------------------------
 
-# Is their a main effect of track on Lexical richness measures for the Dutch students?
-
 # Select Dutch students only
 dutch_lex <- lca_data[lca_data$Nationality == "Dutch",]
 
@@ -244,7 +242,7 @@ tapply(dutch_lex$ld, dutch_lex$Track, stat.desc)
 tapply(dutch_lex$ls2, dutch_lex$Track, stat.desc)
 tapply(dutch_lex$ndwesz, dutch_lex$Track, stat.desc)
 
-## Visualisation
+## Histograms
 ld <- ggplot(data = dutch_lex, aes(dutch_lex$ld)) +
   geom_histogram(col = "white", fill = "steelblue3") +
   facet_grid(~Group) +
@@ -293,7 +291,6 @@ cor(dutch_lex[, 52:54], method = "spearman") # Highest correlation is .22
 t.test(dutch_lex$ld[dutch_lex$Track=="Dutch"], dutch_lex$ld[dutch_lex$Track=="English"])
 wilcox.test(dutch_lex$ls2[dutch_lex$Track=="Dutch"], dutch_lex$ls2[dutch_lex$Track=="English"])
 t.test(dutch_lex$ndwesz[dutch_lex$Track=="Dutch"], dutch_lex$ndwesz[dutch_lex$Track=="English"])
-
 
 
 ### KLAD
