@@ -316,7 +316,7 @@ contrasts(ld_melted$Exam) <- cbind(oct_feb, feb_apr, oct_apr)
 
 # Models
 library(nlme); library(multcomp)
-baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode/Exam, data = ld_melted, method = "ML")
+baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode, data = ld_melted, method = "ML") # NB: ~1|Subjectcode or ~1|SubjectCode/Exam?
 summary(baseline_model)
 
 exam_model <- update(baseline_model, .~. + Exam)
@@ -339,8 +339,8 @@ anova(baseline_model, exam_model, group_model, exam_group_model)
 
 
 library(lme4)
-baseline <- lmer(LD ~ 1 + (1|SubjectCode/Exam), data = ld_melted)
-baseline <- lmer(LD ~ 1 + (1|SubjectCode) + (1|Exam), data = ld_melted)
+baseline <- lmer(LD ~ 1 + (1|SubjectCode), data = ld_melted)
+baseline <- lmer(LD ~ 1 + (1|SubjectCode) + (1|SubjectCode:Exam), data = ld_melted)
 summary(baseline)
 
 
