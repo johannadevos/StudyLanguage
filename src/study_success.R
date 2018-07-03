@@ -8,8 +8,9 @@ rm(list=ls())
 # Set working directory to the current file location
 # Can be done through 'Session' tab in RStudio 
 
-# Read in data
+# Read in data (choose between the next two files)
 subject_info <- read.csv("../data/subject_info.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+subject_info <- read.csv("../data/subject_info_extensive.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
 # Rename columns and colume values
 colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
@@ -234,6 +235,26 @@ source("Rallfun-v35.txt")
 # Perform robust ANOVA with bootstrapping
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+## Mixed-effects model
+
+# Transform to long data format
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(21:32), value.name = "Grade")
+colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
+grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
+
+EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(33:44), value.name = "EC_Worth")
+colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
+EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
+
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(45:56), value.name = "Weighted")
+colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
+weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
+
+# Merge
+subject_long <- merge(grades_long, EC_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
+subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
+
 
 
 ### Mean grade
