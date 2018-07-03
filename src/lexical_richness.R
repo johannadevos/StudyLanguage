@@ -314,6 +314,19 @@ group_model <- update(exam_model, .~. + Group)
 exam_group_model <- update(group_model, .~. + Exam:Group)
 anova(exam_model, group_model, exam_group_model)
 
+## Lexical sophistication
+group_model <- lme(LS2 ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
+summary(group_model)
+
+exam_group_model <- lme(LS2 ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
+summary(exam_group_model)
+
+## Lexical variation
+group_model <- lme(NDWESZ ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
+summary(group_model)
+
+exam_group_model <- lme(NDWESZ ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
+summary(exam_group_model)
 
 
 ### KLAD
