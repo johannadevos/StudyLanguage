@@ -304,6 +304,30 @@ ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Gr
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
 ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
 
+# Relevel
+ld_melted$Group <- factor(ld_melted$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
+ld_melted$Group <- factor(ld_melted$Group, levels = c("German in Dutch track", "German in English track", "Dutch in Dutch track", "Dutch in English track"))
+ld_melted$Exam <- factor(ld_melted$Exam, levels = c("1 (Oct)", "2 (Feb)", "3 (Apr)"))
+ld_melted$Exam <- factor(ld_melted$Exam, levels = c("2 (Feb)", "1 (Oct)", "3 (Apr)"))
+
+group_model <- lme(LD ~ 1 + Group, random = ~1|SubjectCode, data = ld_melted)
+group_model <- lmer(LD ~ 1 + Group + (1|SubjectCode), data = ld_melted)
+summary(group_model)
+
+exam_group_model <- lme(LD ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = ld_melted)
+summary(exam_group_model)
+
+# Model comparisons
+exam_model <- lme(LD ~ 1 + Exam, random = ~1|SubjectCode, data = ld_melted, method = "ML")
+group_model <- update(exam_model, .~. + Group)
+exam_group_model <- update(group_model, .~. + Exam:Group)
+anova(exam_model, group_model, exam_group_model)
+
+
+### KLAD
+
+## Exploration of contrasts, following Andy Field
+
 # Set contrasts
 DD_vs_DE <- c(1, -1, 0, 0)
 GD_vs_GE <- c(0, 0, 1, -1)
@@ -315,7 +339,7 @@ feb_apr <- c(0, 1, -1)
 contrasts(ld_melted$Exam) <- cbind(oct_feb, feb_apr, oct_apr)
 
 # Models
-baseline_model <- lmer(LD ~ 1 + (1|SubjectCode), data = ld_melted, REML = FALSE)
+baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode, data = ld_melted, method = "ML")
 # Use ML rather than REML to be able to do model comparisons with different fixed effects
 summary(baseline_model)
 
@@ -331,18 +355,15 @@ summary(exam_group_model)
 anova(baseline_model, exam_model, group_model, exam_group_model)
 
 library(multcomp)
-pairwise <- glht(exam_group_model, linfct = mcp(Exam = "Tukey"))
-summary(pairwise)
-confint(pairwise)
+exams_pairwise <- glht(exam_group_model, linfct = mcp(Exam = "Tukey"))
+summary(exams_pairwise)
+confint(exams_pairwise)
 
+groups_pairwise <- glht(exam_group_model, linfct = mcp(Group = "Tukey"))
+summary(groups_pairwise)
+confint(groups_pairwise)
 
-
-
-
-
-
-
-### KLAD
+## Other
 
 # Merge long dataframes
 long_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
