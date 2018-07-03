@@ -164,16 +164,16 @@ ggplot(ls2_melted, aes(x = Exam, y = LS2, linetype = Track, colour = Nationality
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
 # NDWESZ
-ggplot(ndwesz_melted, aes(x = Exam, y = NDWESZ/20, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(ndwesz_melted, aes(x = Exam, y = NDWESZ, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nExam", y = "Lexical variation\n(NDW-ES / 20)\n") +
+  labs(x = "\nExam", y = "Lexical variation\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
-#NB: I divided NDWESZ by 20 to obtain TTR. This is not the original measure.
+#NB: NDWESZ can be divided by 20 to obtain TTR. This is not the original measure.
 
 # MSTTR
 ggplot(msttr_melted, aes(x = Exam, y = MSTTR, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
