@@ -8,6 +8,11 @@ rm(list=ls())
 # Set working directory to the current file location
 # Can be done through 'Session' tab in RStudio 
 
+
+### ------------------------
+### Read and preprocess data
+### ------------------------
+
 # Read in data
 lca_data <- read.csv("../data/r_data.txt", header=TRUE, sep=",")
 
@@ -23,16 +28,37 @@ lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
 lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
 lca_data$Group <- factor(lca_data$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
 
-
-### -----------------------------------------
-### Exam descriptives: Text length and grades
-### -----------------------------------------
-
 # Read in grades
 grades <- read.csv("../data/grades.txt", header=TRUE, sep=",")
 
 # Merge with LCA file
 lca_data <- merge(lca_data, grades, by=c("SubjectCode"))
+
+# For each measure, transform to a long data frame
+ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
+colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
+ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
+
+ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS2")
+colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Exam"
+ls2_melted$Exam <- revalue(ls2_melted$Exam, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
+
+ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "NDWESZ")
+colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Exam"
+ndwesz_melted$Exam <- revalue(ndwesz_melted$Exam, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
+
+msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("msttr_oct", "msttr_feb", "msttr_apr"), value.name = "MSTTR")
+colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Exam"
+msttr_melted$Exam <- revalue(msttr_melted$Exam, c("msttr_oct"="1 (Oct)", "msttr_feb"="2 (Feb)", "msttr_apr" = "3 (Apr)"))
+
+# Merge long dataframes
+lca_long <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
+lca_long <- merge(lca_long, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
+
+
+### -----------------------------------------
+### Exam descriptives: Text length and grades
+### -----------------------------------------
 
 # Text length descriptives
 tapply(lca_data$wordtokens_oct, lca_data$Group, stat.desc); stat.desc(lca_data$wordtokens_oct)
@@ -70,11 +96,11 @@ hist_grades_apr <- ggplot(data = lca_data, aes(grade_apr, fill = Group)) +
   scale_x_continuous(breaks=pretty_breaks(n=6)); hist_grades_apr
 
 
-### --------------------------------------------------------------
-### How do L1 and L2 lexical richness develop during the 1st year?
-### --------------------------------------------------------------
+### ----------------------------------------------------
+### Descriptives for the development of lexical richness
+### ----------------------------------------------------
 
-### Descriptives
+## Summary statistics
 tapply(lca_data$ld_oct, lca_data$Group, length) # n
 
 select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
@@ -86,16 +112,9 @@ select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
   summarise_all("sd")
 
 
-### Visualisation
+## Visualisation
 
-## Lexical density
-
-# Reshape data
-ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
-colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
-ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
-
-# Visualise
+# Lexical density
 ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
@@ -106,14 +125,7 @@ ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, 
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
-## Lexical sophistication
-
-# Reshape data
-ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS2")
-colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Exam"
-ls2_melted$Exam <- revalue(ls2_melted$Exam, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
-
-# Visualise
+# Lexical sophistication
 ggplot(ls2_melted, aes(x = Exam, y = LS2, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
@@ -124,14 +136,7 @@ ggplot(ls2_melted, aes(x = Exam, y = LS2, linetype = Track, colour = Nationality
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
-## NDWESZ
-
-# Reshape data
-ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "NDWESZ")
-colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Exam"
-ndwesz_melted$Exam <- revalue(ndwesz_melted$Exam, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
-
-# Visualise
+# NDWESZ
 ggplot(ndwesz_melted, aes(x = Exam, y = NDWESZ/20, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
@@ -141,17 +146,9 @@ ggplot(ndwesz_melted, aes(x = Exam, y = NDWESZ/20, linetype = Track, colour = Na
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
-
 #NB: I divided NDWESZ by 20 to obtain TTR. This is not the original measure.
 
-## MSTTR
-
-# Reshape data
-msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("msttr_oct", "msttr_feb", "msttr_apr"), value.name = "MSTTR")
-colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Exam"
-msttr_melted$Exam <- revalue(msttr_melted$Exam, c("msttr_oct"="1 (Oct)", "msttr_feb"="2 (Feb)", "msttr_apr" = "3 (Apr)"))
-
-# Visualise
+# MSTTR
 ggplot(msttr_melted, aes(x = Exam, y = MSTTR, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
@@ -297,31 +294,26 @@ t.test(dutch_lex$ndwesz[dutch_lex$Track=="Dutch"], dutch_lex$ndwesz[dutch_lex$Tr
 # How does lexical richness develop during the first year?
 # --------------------------------------------------------
 
-## Lexical density
-
-# Reshape data
-ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
-colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
-ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
-
 # Relevel
-ld_melted$Group <- factor(ld_melted$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
-ld_melted$Group <- factor(ld_melted$Group, levels = c("German in Dutch track", "German in English track", "Dutch in Dutch track", "Dutch in English track"))
-ld_melted$Exam <- factor(ld_melted$Exam, levels = c("1 (Oct)", "2 (Feb)", "3 (Apr)"))
-ld_melted$Exam <- factor(ld_melted$Exam, levels = c("2 (Feb)", "1 (Oct)", "3 (Apr)"))
+lca_long$Group <- factor(lca_long$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
+lca_long$Group <- factor(lca_long$Group, levels = c("German in Dutch track", "German in English track", "Dutch in Dutch track", "Dutch in English track"))
+lca_long$Exam <- factor(lca_long$Exam, levels = c("1 (Oct)", "2 (Feb)", "3 (Apr)"))
+lca_long$Exam <- factor(lca_long$Exam, levels = c("2 (Feb)", "1 (Oct)", "3 (Apr)"))
 
-group_model <- lme(LD ~ 1 + Group, random = ~1|SubjectCode, data = ld_melted)
-group_model <- lmer(LD ~ 1 + Group + (1|SubjectCode), data = ld_melted)
+## Lexical density
+group_model <- lme(LD ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
+group_model <- lmer(LD ~ 1 + Group + (1|SubjectCode), data = lca_long)
 summary(group_model)
 
-exam_group_model <- lme(LD ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = ld_melted)
+exam_group_model <- lme(LD ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
 summary(exam_group_model)
 
 # Model comparisons
-exam_model <- lme(LD ~ 1 + Exam, random = ~1|SubjectCode, data = ld_melted, method = "ML")
+exam_model <- lme(LD ~ 1 + Exam, random = ~1|SubjectCode, data = lca_long, method = "ML")
 group_model <- update(exam_model, .~. + Group)
 exam_group_model <- update(group_model, .~. + Exam:Group)
 anova(exam_model, group_model, exam_group_model)
+
 
 
 ### KLAD
@@ -331,15 +323,15 @@ anova(exam_model, group_model, exam_group_model)
 # Set contrasts
 DD_vs_DE <- c(1, -1, 0, 0)
 GD_vs_GE <- c(0, 0, 1, -1)
-contrasts(ld_melted$Group) <- cbind(DD_vs_DE, GD_vs_GE)
+contrasts(lca_long$Group) <- cbind(DD_vs_DE, GD_vs_GE)
 
 oct_feb <- c(1, -1, 0)
 oct_apr <- c(1, 0, -1)
 feb_apr <- c(0, 1, -1)
-contrasts(ld_melted$Exam) <- cbind(oct_feb, feb_apr, oct_apr)
+contrasts(lca_long$Exam) <- cbind(oct_feb, feb_apr, oct_apr)
 
 # Models
-baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode, data = ld_melted, method = "ML")
+baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode, data = lca_long, method = "ML")
 # Use ML rather than REML to be able to do model comparisons with different fixed effects
 summary(baseline_model)
 
@@ -364,14 +356,6 @@ summary(groups_pairwise)
 confint(groups_pairwise)
 
 ## Other
-
-# Merge long dataframes
-long_data <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
-long_data <- merge(long_data, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Month"))
-long_data$Month <- factor(long_data$Month, levels = c("October", "February", "April"))
-
-# Exclude Germans in the Dutch track
-long_data <- long_data[long_data$Group != "German_in_Dutch",]
 
 # Define outcome variable
 outcome <- cbind(long_data$LD, long_data$LS2, long_data$NDWESZ)
