@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales); library(MASS); library(pastecs); library(lme4)
+library(car); library(fBasics); library(scales); library(MASS); library(pastecs); library(lme4); library(boot)
 
 # Clear workspace
 rm(list=ls())
@@ -60,15 +60,42 @@ lca_long <- merge(lca_long, ndwesz_melted, by=c("SubjectCode", "Track", "Nationa
 ### Exam descriptives: Text length and grades
 ### -----------------------------------------
 
+# Function to bootstrap the precision of test statistics
+bootstrap <- function(data, func, iter){
+  data <- na.omit(data)
+  boot_sample <- boot(data, function(x,i) func(x[i]), iter)
+  print("The original statistic is:")
+  print(boot_sample$t0)
+  print("The bootstrapped standard error of the statistic is:")
+  se <- sd(boot_sample$t)
+  print(se)
+  print("The bootstrapped standard deviation of the statistic is:")
+  sd <- se * sqrt(length(data))
+  print(sd)
+  ci <- boot.ci(boot_sample, type = "bca")
+  print("The BCa 95% confidence intervals of the statistic are:")
+  print(ci$bca[,4]); print(ci$bca[,5])
+}
+
 # Text length descriptives
-tapply(lca_data$wordtokens_oct, lca_data$Group, stat.desc); stat.desc(lca_data$wordtokens_oct)
-tapply(lca_data$wordtokens_feb, lca_data$Group, stat.desc); stat.desc(lca_data$wordtokens_feb)
-tapply(lca_data$wordtokens_apr, lca_data$Group, stat.desc); stat.desc(lca_data$wordtokens_apr)
+tapply(lca_data$wordtokens_oct, lca_data$Group, bootstrap, func=mean, iter=10000) # Per group
+bootstrap(lca_data$wordtokens_oct, func=mean, iter=10000) # Overall
+
+tapply(lca_data$wordtokens_feb, lca_data$Group, bootstrap, func=mean, iter=10000)
+bootstrap(lca_data$wordtokens_feb, func=mean, iter=10000)
+
+tapply(lca_data$wordtokens_apr, lca_data$Group, bootstrap, func=mean, iter=10000)
+bootstrap(lca_data$wordtokens_apr, func=mean, iter=10000)
 
 # Grade descriptives
-tapply(lca_data$grade_oct, lca_data$Group, stat.desc); stat.desc(lca_data$grade_oct)
-tapply(lca_data$grade_feb, lca_data$Group, stat.desc); stat.desc(lca_data$grade_feb)
-tapply(lca_data$grade_apr, lca_data$Group, stat.desc); stat.desc(lca_data$grade_apr)
+tapply(lca_data$grade_oct, lca_data$Group, bootstrap, func=mean, iter=10000)
+bootstrap(lca_data$grade_oct, func=mean, iter=10000)
+
+tapply(lca_data$grade_feb, lca_data$Group, bootstrap, func=mean, iter=10000)
+bootstrap(lca_data$grade_feb, func=mean, iter=10000)
+
+tapply(lca_data$grade_apr, lca_data$Group, bootstrap, func=mean, iter=10000)
+bootstrap(lca_data$grade_apr, func=mean, iter=10000)
 
 # Visualise grade distributions
 hist_grades_oct <- ggplot(data = lca_data, aes(grade_oct, fill = Group)) +
