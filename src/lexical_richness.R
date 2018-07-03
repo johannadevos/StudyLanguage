@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales); library(MASS); library(pastecs); 
+library(car); library(fBasics); library(scales); library(MASS); library(pastecs); library(lme4)
 
 # Clear workspace
 rm(list=ls())
@@ -315,8 +315,8 @@ feb_apr <- c(0, 1, -1)
 contrasts(ld_melted$Exam) <- cbind(oct_feb, feb_apr, oct_apr)
 
 # Models
-library(nlme); library(multcomp)
-baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode, data = ld_melted, method = "ML") # NB: ~1|Subjectcode or ~1|SubjectCode/Exam?
+baseline_model <- lmer(LD ~ 1 + (1|SubjectCode), data = ld_melted, REML = FALSE)
+# Use ML rather than REML to be able to do model comparisons with different fixed effects
 summary(baseline_model)
 
 exam_model <- update(baseline_model, .~. + Exam)
@@ -328,20 +328,18 @@ summary(group_model)
 exam_group_model <- update(group_model, .~. + Exam:Group)
 summary(exam_group_model)
 
+anova(baseline_model, exam_model, group_model, exam_group_model)
+
+library(multcomp)
 pairwise <- glht(exam_group_model, linfct = mcp(Exam = "Tukey"))
 summary(pairwise)
 confint(pairwise)
 
-anova(baseline_model, exam_model, group_model, exam_group_model)
 
 
 
 
 
-library(lme4)
-baseline <- lmer(LD ~ 1 + (1|SubjectCode), data = ld_melted)
-baseline <- lmer(LD ~ 1 + (1|SubjectCode) + (1|SubjectCode:Exam), data = ld_melted)
-summary(baseline)
 
 
 ### KLAD
