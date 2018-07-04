@@ -10,7 +10,9 @@ rm(list=ls())
 
 # Read in data (choose between the next two files)
 subject_info <- read.csv("../data/subject_info.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
-subject_info <- read.csv("../data/subject_info_extensive.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+
+# Exclude students who received exemptions for one or more courses
+subject_info <- subject_info[subject_info$Exemption!=1,]
 
 # Rename columns and colume values
 colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
