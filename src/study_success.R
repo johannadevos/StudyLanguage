@@ -284,25 +284,6 @@ source("Rallfun-v35.txt")
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
-## Mixed-effects model
-
-# Transform to long data format
-grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
-colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
-grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
-
-EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
-colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
-EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
-
-weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted")
-colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
-weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
-
-# Merge
-subject_long <- merge(grades_long, EC_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
-subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
-
 
 ### Mean grade
 
@@ -362,6 +343,37 @@ wilcox_wide_weighted$SubjectCode <- NULL
 # Perform robust ANOVA
 t1waybt(wilcox_wide_weighted, tr = 0, nboot = 10000)
 med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+
+## Mixed-effects models
+
+# Transform to long data format
+EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
+colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
+EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
+
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
+colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
+grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
+
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted")
+colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
+weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
+
+# Merge
+subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
+subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
+
+# Model
+ec_model <- lmer(EC_Obtained ~ Group + (1|SubjectCode), data = subject_long)
+ec_model <- lme(EC_Obtained ~ Group, random = ~1|SubjectCode, data = subject_long)
+summary(ec_model)
+
+grade_model <- lme(Grade ~ Group, random = ~1|SubjectCode, data = subject_long, na.action = na.exclude)
+summary(grade_model)
+
+weighted_model <- lme(Weighted ~ Group, random = ~1|SubjectCode, data = subject_long)
+summary(weighted_model)
 
 
 ### Passing the BSA
