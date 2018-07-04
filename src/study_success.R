@@ -14,6 +14,9 @@ subject_info <- read.csv("../data/subject_info.txt", header=TRUE, sep="\t", file
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
 
+# Exclude students who took courses outside of the Psychology programme
+subject_info <- subject_info[subject_info$ECsOther==0,]
+
 # Rename columns and colume values
 colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
 colnames(subject_info)[colnames(subject_info)=="TrackNatio1"] <- "Group"
@@ -90,10 +93,10 @@ mad(no_dropout$ECsTotal)
 se_mad(no_dropout$ECsTotal)
 
 # Histogram of total number of ECs obtained
-ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
+ECs_hist <- ggplot(data = no_dropout, aes(ECsPsyObtained, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
   facet_grid(~Group) +
-  labs(x = "\nTotal number of ECs obtained", y = "Number of students (absolute)\n") +
+  labs(x = "\nNumber of ECs obtained", y = "Number of students (absolute)\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
@@ -102,11 +105,12 @@ ECs_hist <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
 ECs_hist_perc <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
   geom_histogram(aes(y=5*..density..*100), col = "white", binwidth = 5) +
   facet_grid(~Group) +
-  labs(x = "\nTotal number of ECs obtained", y = "Percentage of students (%)\n") +
+  labs(x = "\nNumber of ECs obtained", y = "Percentage of students (%)\n") +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist_perc
+
 
 ### Mean grade
 
@@ -199,15 +203,17 @@ prop.table(bsa_no_dropout, 2)
 
 ### Drop-out
 
-drop <- table(subject_info$Group, subject_info$DropOut); drop
-prop.table(drop, 2)
+drop <- table(subject_info$DropOut, subject_info$Group); drop
+round(prop.table(drop, 2)*100, 2) # Per group
+round(prop.table(table(subject_info$DropOut))*100,2) # Overall
 
 # Collapse during and after year 1
 subject_info$DropOutBinary[subject_info$DropOut != "No"] <- "Yes"
 subject_info$DropOutBinary[subject_info$DropOut == "No"] <- "No"
 
-drop2 <- table(subject_info$Group, subject_info$DropOutBinary); drop2
-prop.table(drop2, 2)
+drop2 <- table(subject_info$DropOutBinary, subject_info$Group); drop2
+round(prop.table(drop2, 2)*100, 2) # Per group
+round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
 
 ### -------------------------------------
@@ -332,10 +338,7 @@ chisq.test(bsa_no_dropout)
 
 ### Drop-out
 
-drop <- table(subject_info$Group, subject_info$DropOut); drop
 chisq.test(drop)
-
-drop2 <- table(subject_info$Group, subject_info$DropOutBinary); drop2
 chisq.test(drop2)
 
 ## Predict who will drop out
