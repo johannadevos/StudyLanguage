@@ -15,7 +15,7 @@ subject_info <- read.csv("../data/subject_info.txt", header=TRUE, sep="\t", file
 subject_info <- subject_info[subject_info$Exemption!=1,]
 
 # Exclude students who took courses outside of the Psychology programme
-subject_info <- subject_info[subject_info$ECsOther==0,]
+subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
 
 # Rename columns and colume values
 colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
@@ -37,6 +37,48 @@ no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 ### -------------------------------------
 ### Study success: Descriptive statistics
 ### -------------------------------------
+
+### Calculate summary outcomes
+
+# Indices
+index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
+index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
+index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
+index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
+
+# Calculate obtained ECs
+obtained_ecs <- (no_dropout[, c(index1_grade:index13_grade)] > 5.5) * no_dropout[, c(index1_worth:index13_worth)] # Multiply grades by worth
+colnames(obtained_ecs) <- gsub('Worth', 'Obtained', colnames(obtained_ecs), fixed=TRUE) # Change column names
+obtained_ecs[is.na(obtained_ecs)] <- 0 # Replace NA by 0
+no_dropout <- cbind(no_dropout, obtained_ecs)
+
+# Calculate weighted grades
+weighted_grades <- (no_dropout[, c(index1_grade:index13_grade)]) * no_dropout[, c(index1_worth:index13_worth)] # Multiply grades by worth
+colnames(weighted_grades) <- gsub('Grade', 'Weighted', colnames(weighted_grades), fixed=TRUE) # Change column names
+weighted_grades[is.na(weighted_grades)] <- 0 # Replace NA by 0
+no_dropout <- cbind(no_dropout, weighted_grades)
+
+# More indices
+index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
+index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
+index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
+index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
+
+# Calculate sum of obtained ECs
+no_dropout$EC_Obtained <- rowSums(no_dropout[,c(index1_ec:index13_ec)])
+
+# Calculate sum of weighted grades
+no_dropout$Weighted_Grade <- rowSums(no_dropout[,c(index1_weighted:index13_weighted)])
+
+# Calculate the number of ECs taken
+ecs_taken <- (no_dropout[, c(index1_grade:index13_grade)] >= 1) * no_dropout[, c(index1_worth:index13_worth)]
+no_dropout$EC_Taken <- rowSums(ecs_taken, na.rm = TRUE)
+
+# Calculate mean grade
+no_dropout$Mean_Grade <- no_dropout$Weighted_Grade / no_dropout$EC_Taken
+
+
+### Functions
 
 # Function to calculate standard error of the median
 se_median <- function(dep_var){
@@ -73,16 +115,6 @@ bootstrap <- function(data, func, iter){
 
 ### ECs
 
-# Calculate obtained ECs
-index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
-index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
-no_dropout$EC_Obtained <- rowSums(no_dropout[,c(index1_ec:index13_ec)])
-
-# Compare with pre-computed columns
-identical(no_dropout[['ECsTotal']],no_dropout[['EC_Obtained']])
-identical(no_dropout[['ECsPsyObtained']],as.numeric(no_dropout[['EC_Obtained']]))
-no_dropout$ECsTotal - no_dropout$ECsPsyObtained
-
 # Mean with bootstrapped precision estimates
 tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
 bootstrap(no_dropout$EC_Obtained, func=mean, iter=10000)
@@ -103,7 +135,7 @@ mad(no_dropout$EC_Obtained)
 se_mad(no_dropout$EC_Obtained)
 
 # Histogram of total number of ECs obtained
-ECs_hist <- ggplot(data = no_dropout, aes(ECsPsyObtained, fill = Group)) +
+ECs_hist <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
   facet_grid(~Group) +
   labs(x = "\nNumber of ECs obtained", y = "Number of students (absolute)\n") +
@@ -124,36 +156,27 @@ ECs_hist_perc <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
 
 ### Mean grade
 
-# Calculate the mean grade and weighted grade measures
-index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
-index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
-index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
-index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
-
-no_dropout$Weighted_Grade <- rowSums(no_dropout[,c(index1_weighted:index13_weighted)])
-no_dropout$Mean_Grade <- no_dropout$WeightedGrade / no_dropout$ECsPsyTaken
-
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
-bootstrap(no_dropout$MeanPsyWeighted, func=mean, iter=10000)
+tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
+bootstrap(no_dropout$Mean_Grade, func=mean, iter=10000)
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
-bootstrap(no_dropout$MeanPsyWeighted, func=median, iter=10000)
+tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
+bootstrap(no_dropout$Mean_Grade, func=median, iter=10000)
 
 # Other descriptives
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, stat.desc) # Summary
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_median) # SE of median
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, mad) # Median Absolute Deviation
-tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+tapply(no_dropout$Mean_Grade, no_dropout$Group, stat.desc) # Summary
+tapply(no_dropout$Mean_Grade, no_dropout$Group, se_median) # SE of median
+tapply(no_dropout$Mean_Grade, no_dropout$Group, mad) # Median Absolute Deviation
+tapply(no_dropout$Mean_Grade, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
 
-stat.desc(no_dropout$MeanPsyWeighted)
-se_median(no_dropout$MeanPsyWeighted)
-mad(no_dropout$MeanPsyWeighted)
-se_mad(no_dropout$MeanPsyWeighted)
+stat.desc(no_dropout$Mean_Grade)
+se_median(no_dropout$Mean_Grade)
+mad(no_dropout$Mean_Grade)
+se_mad(no_dropout$Mean_Grade)
 
 # Histogram of mean grades
-mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
+mean_hist <- ggplot(data = no_dropout, aes(Mean_Grade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 0.5) +
   facet_grid(~Group) +
   labs(x = "\nMean grade", y = "Number of students (absolute)\n") +
@@ -161,7 +184,7 @@ mean_hist <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=6)); mean_hist
 
-mean_hist_perc <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) +
+mean_hist_perc <- ggplot(data = no_dropout, aes(Mean_Grade, fill = Group)) +
   geom_histogram(aes(y=0.5*..density..*100), col = "white", binwidth = 0.5) +
   facet_grid(~Group) +
   labs(x = "\nMean grade", y = "Percentage of students (%)\n") +
@@ -173,26 +196,26 @@ mean_hist_perc <- ggplot(data = no_dropout, aes(MeanPsyWeighted, fill = Group)) 
 ### Weighted grade
 
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$WeightedGrade, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
-bootstrap(no_dropout$WeightedGrade, func=mean, iter=10000)
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
+bootstrap(no_dropout$Weighted_Grade, func=mean, iter=10000)
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$WeightedGrade, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
-bootstrap(no_dropout$WeightedGrade, func=median, iter=10000)
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
+bootstrap(no_dropout$Weighted_Grade, func=median, iter=10000)
 
 # Other descriptives
-tapply(no_dropout$WeightedGrade, no_dropout$Group, stat.desc) # Summary
-tapply(no_dropout$WeightedGrade, no_dropout$Group, se_median) # SE of median
-tapply(no_dropout$WeightedGrade, no_dropout$Group, mad) # Median Absolute Deviation
-tapply(no_dropout$WeightedGrade, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, stat.desc) # Summary
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, se_median) # SE of median
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, mad) # Median Absolute Deviation
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
 
-stat.desc(no_dropout$WeightedGrade)
-se_median(no_dropout$WeightedGrade)
-mad(no_dropout$WeightedGrade)
-se_mad(no_dropout$WeightedGrade)
+stat.desc(no_dropout$Weighted_Grade)
+se_median(no_dropout$Weighted_Grade)
+mad(no_dropout$Weighted_Grade)
+se_mad(no_dropout$Weighted_Grade)
 
 # Histogram of weighted grades
-weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
+weighted_hist <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 50) +
   facet_grid(~Group) +
   labs(x = "\nWeighted grade", y = "Number of students (absolute)\n") +
@@ -200,7 +223,7 @@ weighted_hist <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist
 
-weighted_hist_perc <- ggplot(data = no_dropout, aes(WeightedGrade, fill = Group)) +
+weighted_hist_perc <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group)) +
   geom_histogram(aes(y=50*..density..*100), col = "white", binwidth = 50) +
   facet_grid(~Group) +
   labs(x = "\nWeighted grade", y = "Percentage of students (%)\n") +
@@ -222,14 +245,12 @@ prop.table(bsa_no_dropout, 2)
 
 ### Drop-out
 
+# Three categories (during year 1, after year 1, no)
 drop <- table(subject_info$DropOut, subject_info$Group); drop
 round(prop.table(drop, 2)*100, 2) # Per group
 round(prop.table(table(subject_info$DropOut))*100,2) # Overall
 
-# Collapse during and after year 1
-subject_info$DropOutBinary[subject_info$DropOut != "No"] <- "Yes"
-subject_info$DropOutBinary[subject_info$DropOut == "No"] <- "No"
-
+# Two categories (yes, no)
 drop2 <- table(subject_info$DropOutBinary, subject_info$Group); drop2
 round(prop.table(drop2, 2)*100, 2) # Per group
 round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
@@ -288,32 +309,32 @@ subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Track", 
 
 ## Checking assumptions
 mean_hist # Data seem normally distributed
-tapply(subject_info$MeanPsyWeighted, subject_info$Group, shapiro.test) # Significant
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in Dutch track"])
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "Dutch in English track"])
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in Dutch track"])
-qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in English track"])
+tapply(no_dropout$Mean_Grade, no_dropout$Group, shapiro.test) # Significant
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "Dutch in Dutch track"])
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "Dutch in English track"])
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "German in Dutch track"])
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "German in English track"])
 
 # Levene's test of homogeneity of variance
-leveneTest(no_dropout$MeanPsyWeighted, no_dropout$Group) # Not significant
+leveneTest(no_dropout$Mean_Grade, no_dropout$Group) # Not significant
 
 # Is EC_Obtained different between the groups?
-lm_mean <- lm(MeanPsyWeighted ~ Group, data = no_dropout)
+lm_mean <- lm(Mean_Grade ~ Group, data = no_dropout)
 summary(lm_mean)
 
-aov_mean <- aov(MeanPsyWeighted ~ Group, data = no_dropout)
+aov_mean <- aov(Mean_Grade ~ Group, data = no_dropout)
 summary(aov_mean)
 plot(aov_mean)
 
 # Kruskal-Wallis test
-kruskal.test(MeanPsyWeighted ~ Group, data = no_dropout)
-no_dropout$RankMeanPsyWeighted <- rank(no_dropout$MeanPsyWeighted)
-by(no_dropout$RankMeanPsyWeighted, no_dropout$Group, mean)
+kruskal.test(Mean_Grade ~ Group, data = no_dropout)
+no_dropout$RankMean_Grade <- rank(no_dropout$Mean_Grade)
+by(no_dropout$RankMean_Grade, no_dropout$Group, mean)
 
 ## Robust ANOVA
 
 # Transform data to wide format
-wilcox_wide_mean <- dcast(no_dropout, SubjectCode ~ Group, value.var = "MeanPsyWeighted")
+wilcox_wide_mean <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Mean_Grade")
 wilcox_wide_mean$SubjectCode <- NULL
 
 # Perform robust ANOVA
@@ -325,18 +346,18 @@ med1way(wilcox_wide_mean) # "WARNING: tied values detected. Estimate of standard
 
 ## Checking assumptions
 weighted_hist # Data seem skewed
-tapply(subject_info$WeightedGrade, subject_info$Group, shapiro.test) # Data are non-normally distributed
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, shapiro.test) # Data are non-normally distributed
 
 # Levene's test of homogeneity of variance
-leveneTest(no_dropout$WeightedGrade, no_dropout$Group) # Not significant
+leveneTest(no_dropout$Weighted_Grade, no_dropout$Group) # Not significant
 
 # Kruskal-Wallis test
-kruskal.test(WeightedGrade ~ Group, data = no_dropout)
-no_dropout$RankWeightedGrade <- rank(no_dropout$WeightedGrade)
-by(no_dropout$WeightedGrade, no_dropout$Group, mean)
+kruskal.test(Weighted_Grade ~ Group, data = no_dropout)
+no_dropout$RankWeighted_Grade <- rank(no_dropout$Weighted_Grade)
+by(no_dropout$Weighted_Grade, no_dropout$Group, mean)
 
 # Transform data to wide format
-wilcox_wide_weighted <- dcast(no_dropout, SubjectCode ~ Group, value.var = "WeightedGrade")
+wilcox_wide_weighted <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Weighted_Grade")
 wilcox_wide_weighted$SubjectCode <- NULL
 
 # Perform robust ANOVA
@@ -357,6 +378,7 @@ chisq.test(bsa_no_dropout)
 
 ### Drop-out
 
+# Chi-square tests
 chisq.test(drop)
 chisq.test(drop2)
 
@@ -406,7 +428,7 @@ anova(ls_model, lv_model, test = "Chisq")
 ## Three continuous measures of study success 
 
 # Create dataset
-cor_data <- no_dropout[,cbind("EC_Obtained", "MeanPsyWeighted", "WeightedGrade")]
+cor_data <- no_dropout[,cbind("EC_Obtained", "Mean_Grade", "Weighted_Grade")]
 
 # Check whether the three dependent variables are normally distributed
 apply(cor_data, 2, shapiro.test) # 2 to loop through columns
