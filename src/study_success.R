@@ -73,24 +73,34 @@ bootstrap <- function(data, func, iter){
 
 ### ECs
 
+# Calculate obtained ECs
+index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
+index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
+no_dropout$EC_Obtained <- rowSums(no_dropout[,c(index1_ec:index13_ec)])
+
+# Compare with pre-computed columns
+identical(no_dropout[['ECsTotal']],no_dropout[['EC_Obtained']])
+identical(no_dropout[['ECsPsyObtained']],as.numeric(no_dropout[['EC_Obtained']]))
+no_dropout$ECsTotal - no_dropout$ECsPsyObtained
+
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$ECsTotal, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
-bootstrap(no_dropout$ECsTotal, func=mean, iter=10000)
+tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
+bootstrap(no_dropout$EC_Obtained, func=mean, iter=10000)
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$ECsTotal, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
-bootstrap(no_dropout$ECsTotal, func=median, iter=10000)
+tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
+bootstrap(no_dropout$EC_Obtained, func=median, iter=10000)
 
 # Other descriptives
-tapply(no_dropout$ECsTotal, no_dropout$Group, stat.desc) # Summary
-tapply(no_dropout$ECsTotal, no_dropout$Group, se_median) # SE of median
-tapply(no_dropout$ECsTotal, no_dropout$Group, mad) # Median Absolute Deviation
-tapply(no_dropout$ECsTotal, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+tapply(no_dropout$EC_Obtained, no_dropout$Group, stat.desc) # Summary
+tapply(no_dropout$EC_Obtained, no_dropout$Group, se_median) # SE of median
+tapply(no_dropout$EC_Obtained, no_dropout$Group, mad) # Median Absolute Deviation
+tapply(no_dropout$EC_Obtained, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
 
-stat.desc(no_dropout$ECsTotal)
-se_median(no_dropout$ECsTotal)
-mad(no_dropout$ECsTotal)
-se_mad(no_dropout$ECsTotal)
+stat.desc(no_dropout$EC_Obtained)
+se_median(no_dropout$EC_Obtained)
+mad(no_dropout$EC_Obtained)
+se_mad(no_dropout$EC_Obtained)
 
 # Histogram of total number of ECs obtained
 ECs_hist <- ggplot(data = no_dropout, aes(ECsPsyObtained, fill = Group)) +
@@ -102,7 +112,7 @@ ECs_hist <- ggplot(data = no_dropout, aes(ECsPsyObtained, fill = Group)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist
 
-ECs_hist_perc <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
+ECs_hist_perc <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
   geom_histogram(aes(y=5*..density..*100), col = "white", binwidth = 5) +
   facet_grid(~Group) +
   labs(x = "\nNumber of ECs obtained", y = "Percentage of students (%)\n") +
@@ -113,6 +123,15 @@ ECs_hist_perc <- ggplot(data = no_dropout, aes(ECsTotal, fill = Group)) +
 
 
 ### Mean grade
+
+# Calculate the mean grade and weighted grade measures
+index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
+index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
+index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
+index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
+
+no_dropout$Weighted_Grade <- rowSums(no_dropout[,c(index1_weighted:index13_weighted)])
+no_dropout$Mean_Grade <- no_dropout$WeightedGrade / no_dropout$ECsPsyTaken
 
 # Mean with bootstrapped precision estimates
 tapply(no_dropout$MeanPsyWeighted, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
@@ -224,17 +243,17 @@ round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
 ## Checking assumptions
 ECs_hist # Data are not normally distributed
-tapply(no_dropout$ECsTotal, no_dropout$Group, shapiro.test)
+tapply(no_dropout$EC_Obtained, no_dropout$Group, shapiro.test)
 
 # Kruskal-Wallis test
-kruskal.test(ECsTotal ~ Group, data = no_dropout)
-no_dropout$Rank <- rank(no_dropout$ECsTotal)
+kruskal.test(EC_Obtained ~ Group, data = no_dropout)
+no_dropout$Rank <- rank(no_dropout$EC_Obtained)
 by(no_dropout$Rank, no_dropout$Group, mean)
 
 ## Robust ANOVA
 
 # Transform data to wide format
-wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "ECsTotal")
+wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "EC_Obtained")
 wilcox_wide_ECs$SubjectCode <- NULL
 
 # Load functions from Rand Wilcox
@@ -278,7 +297,7 @@ qplot(sample = subject_info$MeanPsyWeighted[subject_info$Group == "German in Eng
 # Levene's test of homogeneity of variance
 leveneTest(no_dropout$MeanPsyWeighted, no_dropout$Group) # Not significant
 
-# Is ECsTotal different between the groups?
+# Is EC_Obtained different between the groups?
 lm_mean <- lm(MeanPsyWeighted ~ Group, data = no_dropout)
 summary(lm_mean)
 
@@ -387,7 +406,7 @@ anova(ls_model, lv_model, test = "Chisq")
 ## Three continuous measures of study success 
 
 # Create dataset
-cor_data <- no_dropout[,cbind("ECsTotal", "MeanPsyWeighted", "WeightedGrade")]
+cor_data <- no_dropout[,cbind("EC_Obtained", "MeanPsyWeighted", "WeightedGrade")]
 
 # Check whether the three dependent variables are normally distributed
 apply(cor_data, 2, shapiro.test) # 2 to loop through columns
