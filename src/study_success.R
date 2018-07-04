@@ -372,6 +372,9 @@ summary(ec_model)
 grade_model <- lme(Grade ~ Group, random = ~1|SubjectCode, data = subject_long, na.action = na.exclude)
 summary(grade_model)
 
+grade_model2 <- lmer(Grade ~ Group + (1|SubjectCode) + (1|Course), data = subject_long, na.action = na.exclude)
+summary(grade_model2)
+
 weighted_model <- lme(Weighted ~ Group, random = ~1|SubjectCode, data = subject_long)
 summary(weighted_model)
 
