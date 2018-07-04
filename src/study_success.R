@@ -287,22 +287,21 @@ med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard 
 ## Mixed-effects model
 
 # Transform to long data format
-grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(21:32), value.name = "Grade")
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
 colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
 grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
 
-EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(33:44), value.name = "EC_Worth")
+EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
 colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
 EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
 
-weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(45:56), value.name = "Weighted")
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted")
 colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
 weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
 
 # Merge
 subject_long <- merge(grades_long, EC_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
 subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
-
 
 
 ### Mean grade
