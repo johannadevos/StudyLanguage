@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(scales); library(MASS); library(pastecs)
+library(car); library(scales); library(MASS); library(pastecs); library(lme4)
 
 # Clear workspace
 rm(list=ls())
@@ -76,6 +76,9 @@ no_dropout$EC_Taken <- rowSums(ecs_taken, na.rm = TRUE)
 
 # Calculate mean grade
 no_dropout$Mean_Grade <- no_dropout$Weighted_Grade / no_dropout$EC_Taken
+
+# Delete dataframes that are no longer necessary
+rm(ecs_taken, obtained_ecs, weighted_grades)
 
 
 ### Functions
@@ -256,11 +259,11 @@ round(prop.table(drop2, 2)*100, 2) # Per group
 round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
 
-### -------------------------------------
-### Study success: Inferential statistics
-### -------------------------------------
+### ----------------------------------------------------------------------------------------
+### Study success: Inferential statistics per outcome variable (no-mixed effects models yet)
+### ----------------------------------------------------------------------------------------
 
-### Total number of ECs
+### OBTAINED ECS
 
 ## Checking assumptions
 ECs_hist # Data are not normally distributed
@@ -285,7 +288,7 @@ t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
 
-### Mean grade
+### MEAN GRADE
 
 ## Checking assumptions
 mean_hist # Data seem normally distributed
@@ -322,7 +325,7 @@ t1waybt(wilcox_wide_mean, tr = 0, nboot = 10000)
 med1way(wilcox_wide_mean) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
 
-### Weighted grade
+### WEIGHTED GRADE
 
 ## Checking assumptions
 weighted_hist # Data seem skewed
@@ -345,41 +348,7 @@ t1waybt(wilcox_wide_weighted, tr = 0, nboot = 10000)
 med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
 
-## Mixed-effects models
-
-# Transform to long data format
-EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
-colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
-EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
-
-grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
-colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
-grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
-
-weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted")
-colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
-weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
-
-# Merge
-subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
-subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Track", "Nationality", "Group", "Course"))
-
-# Model
-ec_model <- lmer(EC_Obtained ~ Group + (1|SubjectCode), data = subject_long)
-ec_model <- lme(EC_Obtained ~ Group, random = ~1|SubjectCode, data = subject_long)
-summary(ec_model)
-
-grade_model <- lme(Grade ~ Group, random = ~1|SubjectCode, data = subject_long, na.action = na.exclude)
-summary(grade_model)
-
-grade_model2 <- lmer(Grade ~ Group + (1|SubjectCode) + (1|Course), data = subject_long, na.action = na.exclude)
-summary(grade_model2)
-
-weighted_model <- lme(Weighted ~ Group, random = ~1|SubjectCode, data = subject_long)
-summary(weighted_model)
-
-
-### Passing the BSA
+### PASSING THE BSA
 
 # All students
 bsa_all <- table(subject_info$Group, subject_info$PassedBSA); bsa_all
@@ -390,7 +359,7 @@ bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
 chisq.test(bsa_no_dropout)
 
 
-### Drop-out
+### DROP-OUT
 
 # Chi-square tests
 chisq.test(drop)
@@ -433,6 +402,52 @@ summary(lv_model)
 anova(ls_model, lv_model, test = "Chisq")
 
 ## To do: lsmeans / correct for multiple testing
+
+
+### -----------------------------------
+### Study success: Mixed-effects models
+### -----------------------------------
+
+# Transform to long data format
+EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
+colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
+EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
+
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
+colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
+grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
+
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted")
+colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
+weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
+
+# Merge
+subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
+subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
+
+# Remove dataframes
+rm(EC_long, grades_long, weighted_long)
+
+## Models
+
+# Obtained ECs
+ec1 <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(ec1)
+ec2 <- update(ec1, ~. + Group); summary(ec2)
+ec3 <- update(ec2, ~. + Gender); summary(ec3)
+anova(ec1, ec2, ec3)
+
+# Group, Course, Gender?, LR?
+
+# Mean grade
+grade_model <- lme(Grade ~ Group, random = ~1|SubjectCode, data = subject_long, na.action = na.exclude)
+summary(grade_model)
+
+grade_model2 <- lmer(Grade ~ Group + (1|SubjectCode) + (1|Course), data = subject_long, na.action = na.exclude)
+summary(grade_model2)
+
+# Weighted grade
+weighted_model <- lme(Weighted ~ Group, random = ~1|SubjectCode, data = subject_long)
+summary(weighted_model)
 
 
 ### --------------------------------------------
