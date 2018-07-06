@@ -302,7 +302,7 @@ subject_info = prep.read_subject_info(data_dir)
 #corr_grade_ects(subject_info)
 
 # Define required measures
-sel_measures = ['wordtokens', 'ld', 'ls2', 'ndwesz', 'msttr']
+sel_measures = ['wordtokens', 'ld', 'ls2', 'ndwesz']
 all_measures = list(exam1.columns)
 lca_measures = list(exam1.columns)[exam1.columns.get_loc('ld'):]
 

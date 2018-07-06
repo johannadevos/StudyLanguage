@@ -172,12 +172,9 @@ def main():
     
     # Parse arguments
     parser = argparse.ArgumentParser()
-    #parser.add_argument('language', help = "Choose the study language: 'EN' \
-    #                    or 'NL'.", choices = ["EN", "NL"])
     parser.add_argument('lca_min_sam', help = "Choose the minimal sample size \
                     with which the data were preprocessed.")
     args = parser.parse_args()
-    #language = args.language
     lca_min_sam = int(args.lca_min_sam)
     
     # Create directory to store results

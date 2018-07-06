@@ -70,7 +70,7 @@ dutch_subjects = subject_info[subject_info.Track == "NL"]
 english_subjects = subject_info[subject_info.Track == "EN"]
 
 # Define required measures
-sel_measures = ['wordtokens', 'ld', 'ls2', 'ndwesz', 'msttr']
+sel_measures = ['wordtokens', 'ld', 'ls2', 'ndwesz']
 
 # Apply filters
 exam1_nl_fil = filter_df(exam1_nl, sel_measures, lca_min_sam)
@@ -103,7 +103,7 @@ en_data = en_data.join(exam3_en_fil)
 r_data = nl_data.append(en_data)
 
 # Remove subjects for whom one or more exams are not available
-r_data = r_data.dropna(subset = ['msttr_oct', 'msttr_feb', 'msttr_apr'])
+r_data = r_data.dropna(subset = ['ld_oct', 'ld_feb', 'ld_apr'])
 
 # Write to file
 output = os.path.join(data_dir, 'r_data.txt')
