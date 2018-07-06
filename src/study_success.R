@@ -394,15 +394,21 @@ lr_long <- lr_long[!is.na(lr_long$LD),]
 ## Models
 
 # Obtained ECs
-ec1 <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(ec1)
-ec2 <- update(ec1, ~. + Group); summary(ec2)
-ec3 <- update(ec2, ~. + Gender); summary(ec3)
-anova(ec1, ec2, ec3)
+ec_null <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(ec_null)
+ec_group <- update(ec1, ~. + Group); summary(ec_group)
+ec_gender <- update(ec2, ~. + Gender); summary(ec_gender)
+anova(ec_null, ec_group, ec_gender)
 
 # Also use lexical richness as predictor, on the subset of the data for which these measures are available
+ec_null_lr <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(ec_null_lr)
+ec_ld <- update(ec_null_lr, ~. + LD); summary(ec_ld)
+anova(ec_null_lr, ec_ld)
 
+ec_ls <- update(ec_null_lr, ~. + LS); summary(ec_ls)
+anova(ec_null_lr, ec_ls)
 
-# Group, Course, Gender?, LR?
+ec_lv <- update(ec_null_lr, ~. + LV); summary(ec_lv)
+anova(ec_null_lr, ec_lv)
 
 # Mean grade
 grade_model <- lme(Grade ~ Group, random = ~1|SubjectCode, data = subject_long, na.action = na.exclude)
