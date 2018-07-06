@@ -21,17 +21,17 @@ ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Gr
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
 ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
 
-ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS")
-colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Exam"
-ls2_melted$Exam <- revalue(ls2_melted$Exam, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
+ls_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS")
+colnames(ls_melted)[colnames(ls_melted)=="variable"] <- "Exam"
+ls_melted$Exam <- revalue(ls_melted$Exam, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
 
-ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "LV")
-colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Exam"
-ndwesz_melted$Exam <- revalue(ndwesz_melted$Exam, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
+lv_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "LV")
+colnames(lv_melted)[colnames(lv_melted)=="variable"] <- "Exam"
+lv_melted$Exam <- revalue(lv_melted$Exam, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
 
 # Merge long dataframes
-lca_long <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
-lca_long <- merge(lca_long, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
+lca_long <- merge(ld_melted, ls_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
+lca_long <- merge(lca_long, lv_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
 
 # Remove unused dataframes
 #rm(list=ls(pattern="_melted"))
@@ -134,7 +134,7 @@ ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, 
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
 # Lexical sophistication
-ggplot(ls2_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -145,7 +145,7 @@ ggplot(ls2_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality,
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
 # Lexical variation
-ggplot(ndwesz_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
