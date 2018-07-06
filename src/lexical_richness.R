@@ -14,46 +14,27 @@ rm(list=ls())
 ### ------------------------
 
 # Read in data
-lca_data <- read.csv("../data/r_data.txt", header=TRUE, sep=",")
-
-# Rename columns and colume values
-colnames(lca_data)[colnames(lca_data)=="Natio1"] <- "Nationality"
-colnames(lca_data)[colnames(lca_data)=="TrackNatio1"] <- "Group"
-lca_data$Nationality <- revalue(lca_data$Nationality, c("NL" = "Dutch", "DU" = "German"))
-lca_data$Track <- revalue(lca_data$Track, c("NL" = "Dutch", "EN" = "English"))
-lca_data$Group <- revalue(lca_data$Group, c("DU_in_NL" = "German in Dutch track", "NL_in_NL" = "Dutch in Dutch track", "DU_in_EN" = "German in English track", "NL_in_EN" = "Dutch in English track"))
-
-# Relevel (for better visualisation)
-lca_data$Track <- factor(lca_data$Track, levels = c("Dutch", "English"))
-lca_data$Nationality <- factor(lca_data$Nationality, levels = c("Dutch", "German"))
-lca_data$Group <- factor(lca_data$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
-
-# Read in grades
-grades <- read.csv("../data/grades.txt", header=TRUE, sep=",")
-
-# Merge with LCA file
-lca_data <- merge(lca_data, grades, by=c("SubjectCode"))
+lca_data <- read.csv("../data/lexical_richness.txt", header=TRUE, sep="\t")
 
 # For each measure, transform to a long data frame
 ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
 ld_melted$Exam <- revalue(ld_melted$Exam, c("ld_oct"="1 (Oct)", "ld_feb"="2 (Feb)", "ld_apr" = "3 (Apr)"))
 
-ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS2")
+ls2_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ls2_oct", "ls2_feb", "ls2_apr"), value.name = "LS")
 colnames(ls2_melted)[colnames(ls2_melted)=="variable"] <- "Exam"
 ls2_melted$Exam <- revalue(ls2_melted$Exam, c("ls2_oct"="1 (Oct)", "ls2_feb"="2 (Feb)", "ls2_apr" = "3 (Apr)"))
 
-ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "NDWESZ")
+ndwesz_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ndwesz_oct", "ndwesz_feb", "ndwesz_apr"), value.name = "LV")
 colnames(ndwesz_melted)[colnames(ndwesz_melted)=="variable"] <- "Exam"
 ndwesz_melted$Exam <- revalue(ndwesz_melted$Exam, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"="2 (Feb)", "ndwesz_apr" = "3 (Apr)"))
-
-msttr_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("msttr_oct", "msttr_feb", "msttr_apr"), value.name = "MSTTR")
-colnames(msttr_melted)[colnames(msttr_melted)=="variable"] <- "Exam"
-msttr_melted$Exam <- revalue(msttr_melted$Exam, c("msttr_oct"="1 (Oct)", "msttr_feb"="2 (Feb)", "msttr_apr" = "3 (Apr)"))
 
 # Merge long dataframes
 lca_long <- merge(ld_melted, ls2_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
 lca_long <- merge(lca_long, ndwesz_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
+
+# Remove unused dataframes
+#rm(list=ls(pattern="_melted"))
 
 
 ### -----------------------------------------
@@ -130,11 +111,11 @@ hist_grades_apr <- ggplot(data = lca_data, aes(grade_apr, fill = Group)) +
 ## Summary statistics
 tapply(lca_data$ld_oct, lca_data$Group, length) # n
 
-select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
+dplyr::select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
   group_by(Group) %>%
   summarise_all("mean")  
 
-select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
+dplyr::select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
   group_by(Group) %>%
   summarise_all("sd")
 
@@ -153,7 +134,7 @@ ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, 
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
 # Lexical sophistication
-ggplot(ls2_melted, aes(x = Exam, y = LS2, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ggplot(ls2_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -163,8 +144,8 @@ ggplot(ls2_melted, aes(x = Exam, y = LS2, linetype = Track, colour = Nationality
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
 
-# NDWESZ
-ggplot(ndwesz_melted, aes(x = Exam, y = NDWESZ, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+# Lexical variation
+ggplot(ndwesz_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -173,18 +154,7 @@ ggplot(ndwesz_melted, aes(x = Exam, y = NDWESZ, linetype = Track, colour = Natio
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1))
-#NB: NDWESZ can be divided by 20 to obtain TTR. This is not the original measure.
-
-# MSTTR
-ggplot(msttr_melted, aes(x = Exam, y = MSTTR, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
-  stat_summary(fun.y = mean, geom = "point", size = 4) + 
-  stat_summary(fun.y = mean, geom = "line", size = 2) +
-  stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
-  theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nExam", y = "Lexical Variation\n(MSTTR)\n") +
-  scale_color_manual(values=c("orange", "steelblue3")) +
-  guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
-         colour=guide_legend(keywidth = 2, keyheight = 1))
+#NB: LV can be divided by 20 to obtain TTR. This is not the original measure.
 
 
 ### --------------------------------------------------------------
@@ -257,39 +227,39 @@ grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 dutch_lex <- lca_data[lca_data$Nationality == "Dutch",]
 
 # Average lexical richness over the three exams
-dutch_lex$ld <- rowMeans(cbind(dutch_lex$ld_oct, dutch_lex$ld_feb, dutch_lex$ld_apr))
-dutch_lex$ls2 <- rowMeans(cbind(dutch_lex$ls2_oct, dutch_lex$ls2_feb, dutch_lex$ls2_apr))
-dutch_lex$ndwesz <- rowMeans(cbind(dutch_lex$ndwesz_oct, dutch_lex$ndwesz_feb, dutch_lex$ndwesz_apr))
+dutch_lex$LD <- rowMeans(cbind(dutch_lex$ld_oct, dutch_lex$ld_feb, dutch_lex$ld_apr))
+dutch_lex$LS <- rowMeans(cbind(dutch_lex$ls2_oct, dutch_lex$ls2_feb, dutch_lex$ls2_apr))
+dutch_lex$LV <- rowMeans(cbind(dutch_lex$ndwesz_oct, dutch_lex$ndwesz_feb, dutch_lex$ndwesz_apr))
 
 # Descriptives
-tapply(dutch_lex$ld, dutch_lex$Track, stat.desc)
-tapply(dutch_lex$ls2, dutch_lex$Track, stat.desc)
-tapply(dutch_lex$ndwesz, dutch_lex$Track, stat.desc)
+tapply(dutch_lex$LD, dutch_lex$Track, stat.desc)
+tapply(dutch_lex$LS, dutch_lex$Track, stat.desc)
+tapply(dutch_lex$LV, dutch_lex$Track, stat.desc)
 
 ## Histograms
-ld <- ggplot(data = dutch_lex, aes(dutch_lex$ld)) +
+ld_hist <- ggplot(data = dutch_lex, aes(dutch_lex$LD)) +
   geom_histogram(col = "white", fill = "steelblue3") +
   facet_grid(~Group) +
   labs(x = "\nLD", y = "Count\n") +
   ggtitle("\n") +
-  theme(plot.title = element_text(hjust = 0.5)); ld
+  theme(plot.title = element_text(hjust = 0.5)); ld_hist
 
-ls2 <- ggplot(data = dutch_lex, aes(dutch_lex$ls2)) +
+ls_hist <- ggplot(data = dutch_lex, aes(dutch_lex$LS)) +
   geom_histogram(col = "white", fill = "orange") +
   facet_grid(~Group) +
   labs(x = "\nLS", y = "Count\n") +
   ggtitle("\n") +
-  theme(plot.title = element_text(hjust = 0.5)); ls2
+  theme(plot.title = element_text(hjust = 0.5)); ls_hist
 
-ndwesz <- ggplot(data = dutch_lex, aes(dutch_lex$ndwesz)) +
+lv_hist <- ggplot(data = dutch_lex, aes(dutch_lex$LV)) +
   geom_histogram(col = "white", fill = "mediumpurple4") +
   facet_grid(~Group) +
   labs(x = "\nLV", y = "Count\n") +
   ggtitle("\n") +
-  theme(plot.title = element_text(hjust = 0.5)); ndwesz
+  theme(plot.title = element_text(hjust = 0.5)); lv_hist
 
 # To plot the three graphs in one picture
-grid.arrange(ld, ls2, ndwesz, nrow=1, ncol=3)
+grid.arrange(ld_hist, ls_hist, lv_hist, nrow=1, ncol=3)
 
 ## Check assumptions
 
@@ -303,18 +273,18 @@ dutch_wide <- as.matrix(dutch_wide)
 mshapiro.test(dutch_wide)
 
 # Is lexical richness normally distributed in each group?
-tapply(dutch_lex$ld, dutch_lex$Track, shapiro.test) # Yes
-tapply(dutch_lex$ls2, dutch_lex$Track, shapiro.test) # No
-tapply(dutch_lex$ndwesz, dutch_lex$Track, shapiro.test) # Yes
+tapply(dutch_lex$LD, dutch_lex$Track, shapiro.test) # Yes
+tapply(dutch_lex$LS, dutch_lex$Track, shapiro.test) # No
+tapply(dutch_lex$LV, dutch_lex$Track, shapiro.test) # Yes
 
 # Investigate correlations between dependent variables
 cor(dutch_lex[, 52:54], method = "pearson") # Highest correlation is .20
 cor(dutch_lex[, 52:54], method = "spearman") # Highest correlation is .22
 
 ## Comparing two means (NB: no correction for multiple testing)
-t.test(dutch_lex$ld[dutch_lex$Track=="Dutch"], dutch_lex$ld[dutch_lex$Track=="English"])
-wilcox.test(dutch_lex$ls2[dutch_lex$Track=="Dutch"], dutch_lex$ls2[dutch_lex$Track=="English"])
-t.test(dutch_lex$ndwesz[dutch_lex$Track=="Dutch"], dutch_lex$ndwesz[dutch_lex$Track=="English"])
+t.test(dutch_lex$LD[dutch_lex$Track=="Dutch"], dutch_lex$LD[dutch_lex$Track=="English"])
+wilcox.test(dutch_lex$LS[dutch_lex$Track=="Dutch"], dutch_lex$LV[dutch_lex$Track=="English"])
+t.test(dutch_lex$LV[dutch_lex$Track=="Dutch"], dutch_lex$LV[dutch_lex$Track=="English"])
 
 
 # --------------------------------------------------------
@@ -342,17 +312,17 @@ exam_group_model <- update(group_model, .~. + Exam:Group)
 anova(exam_model, group_model, exam_group_model)
 
 ## Lexical sophistication
-group_model <- lme(LS2 ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
+group_model <- lme(LS ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
 summary(group_model)
 
-exam_group_model <- lme(LS2 ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
+exam_group_model <- lme(LS ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
 summary(exam_group_model)
 
 ## Lexical variation
-group_model <- lme(NDWESZ ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
+group_model <- lme(LV ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
 summary(group_model)
 
-exam_group_model <- lme(NDWESZ ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
+exam_group_model <- lme(LV ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
 summary(exam_group_model)
 
 
@@ -398,7 +368,7 @@ confint(groups_pairwise)
 ## Other
 
 # Define outcome variable
-outcome <- cbind(long_data$LD, long_data$LS2, long_data$NDWESZ)
+outcome <- cbind(long_data$LD, long_data$LS, long_data$LV)
 
 # Run MANOVA
 manova <- manova(outcome ~ Group + Month + Group * Month, data = long_data)
