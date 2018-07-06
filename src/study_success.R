@@ -383,6 +383,14 @@ subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender",
 rm(EC_long, grades_long, weighted_long)
 rm(list=ls(pattern="index"))
 
+# Also create a long dataframe with the lexical richness measures, using a subset of all data
+lr_long <- subject_long
+lr_long$LD <- subject_info$LD[match(lr_long$SubjectCode, subject_info$SubjectCode)]
+lr_long$LS <- subject_info$LS[match(lr_long$SubjectCode, subject_info$SubjectCode)]
+lr_long$LV <- subject_info$LV[match(lr_long$SubjectCode, subject_info$SubjectCode)]
+lr_long <- lr_long[!is.na(lr_long$LD),]
+
+
 ## Models
 
 # Obtained ECs
@@ -390,6 +398,9 @@ ec1 <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long,
 ec2 <- update(ec1, ~. + Group); summary(ec2)
 ec3 <- update(ec2, ~. + Gender); summary(ec3)
 anova(ec1, ec2, ec3)
+
+# Also use lexical richness as predictor, on the subset of the data for which these measures are available
+
 
 # Group, Course, Gender?, LR?
 
