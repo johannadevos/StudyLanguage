@@ -6,10 +6,10 @@ library(plyr); library(dplyr)
 # Clear workspace
 rm(list=ls())
 
-# Read in data (choose between the next two files)
+# Read in data
 subject_info <- read.csv("../data/subject_info.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
-## Calculate measures of study success
+# Calculate measures of study success
 
 # Indices
 index1_grade <- which(colnames(subject_info)=="Course1_Grade")
@@ -48,9 +48,6 @@ subject_info$EC_Taken <- rowSums(ecs_taken, na.rm = TRUE)
 # Calculate mean grade
 subject_info$Mean_Grade <- subject_info$Weighted_Grade / subject_info$EC_Taken
 
-# Delete dataframes that are no longer necessary
-rm(ecs_taken, obtained_ecs, weighted_grades)
-
 # Read in LCA data
 lca_raw <- read.csv("../data/r_data.txt", header=TRUE, sep=",")
 
@@ -76,7 +73,7 @@ all_data$Nationality <- factor(all_data$Nationality, levels = c("Dutch", "German
 all_data$Group <- factor(all_data$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
 all_data$DropOut <- factor(all_data$DropOut, levels = c("DuringYear1", "AfterYear1", "No"))
 
-## Lexical richness data
+# Lexical richness data
 
 # Delete columns with repeated measures of study success
 lca <- all_data[,-c(index1_ec:index13_ec, index1_grade:index13_grade, index1_weighted:index13_weighted, index1_worth:index13_worth)]
@@ -84,7 +81,7 @@ lca <- all_data[,-c(index1_ec:index13_ec, index1_grade:index13_grade, index1_wei
 # Only keep students for whom LCA measures are available
 lca <- lca[!is.na(lca$wordtokens_oct),]
 
-## Study success data
+# Study success data
 
 study_success <- all_data
 
@@ -105,9 +102,9 @@ study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade
 study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
 study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
 
-## Write the new dataframes to text files
+# Write the new dataframes to text files
 write.table(study_success,"../data/study_success.txt",sep="\t",row.names=FALSE)
 write.table(lca,"../data/lexical_richness.txt",sep="\t",row.names=FALSE)
 
-## Remove everything except the data needed
+# Remove everything except the data needed
 rm(list=setdiff(ls(), c("study_success", "lca")))
