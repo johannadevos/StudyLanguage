@@ -367,11 +367,11 @@ EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationa
 colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
 EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
 
-grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Mean_Grade")
 colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
 grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
 
-weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted")
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted_Grade")
 colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
 weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
 
@@ -391,12 +391,14 @@ lr_long$LV <- subject_info$LV[match(lr_long$SubjectCode, subject_info$SubjectCod
 lr_long <- lr_long[!is.na(lr_long$LD),]
 
 
-## Models
+### Models
 
-# Obtained ECs
+## Obtained ECs
+
+# Investigate Group and Gender on the full dataset
 ec_null <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(ec_null)
-ec_group <- update(ec1, ~. + Group); summary(ec_group)
-ec_gender <- update(ec2, ~. + Gender); summary(ec_gender)
+ec_group <- update(ec_null, ~. + Group); summary(ec_group)
+ec_gender <- update(ec_group, ~. + Gender); summary(ec_gender)
 anova(ec_null, ec_group, ec_gender)
 
 # Also use lexical richness as predictor, on the subset of the data for which these measures are available
@@ -410,16 +412,43 @@ anova(ec_null_lr, ec_ls)
 ec_lv <- update(ec_null_lr, ~. + LV); summary(ec_lv)
 anova(ec_null_lr, ec_lv)
 
-# Mean grade
-grade_model <- lme(Grade ~ Group, random = ~1|SubjectCode, data = subject_long, na.action = na.exclude)
-summary(grade_model)
+## Mean grade
 
-grade_model2 <- lmer(Grade ~ Group + (1|SubjectCode) + (1|Course), data = subject_long, na.action = na.exclude)
-summary(grade_model2)
+# Investigate Group and Gender on the full dataset
+mean_null <- lmer(Mean_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(mean_null)
+mean_group <- update(mean_null, ~. + Group); summary(mean_group)
+mean_gender <- update(mean_group, ~. + Gender); summary(mean_gender)
+anova(mean_null, mean_group, mean_gender)
 
-# Weighted grade
-weighted_model <- lme(Weighted ~ Group, random = ~1|SubjectCode, data = subject_long)
-summary(weighted_model)
+# Also use lexical richness as predictor, on the subset of the data for which these measures are available
+mean_null_lr <- lmer(Mean_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(mean_null_lr)
+mean_ld <- update(mean_null_lr, ~. + LD); summary(mean_ld)
+anova(mean_null_lr, mean_ld)
+
+mean_ls <- update(mean_null_lr, ~. + LS); summary(mean_ls)
+anova(mean_null_lr, mean_ls)
+
+mean_lv <- update(mean_null_lr, ~. + LV); summary(mean_lv)
+anova(mean_null_lr, mean_lv)
+
+## Weighted grade
+
+# Investigate Group and Gender on the full dataset
+weighted_null <- lmer(Weighted_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(weighted_null)
+weighted_group <- update(weighted_null, ~. + Group); summary(weighted_group)
+weighted_gender <- update(weighted_group, ~. + Gender); summary(weighted_gender)
+anova(weighted_null, weighted_group, weighted_gender)
+
+# Also use lexical richness as predictor, on the subset of the data for which these measures are available
+weighted_null_lr <- lmer(Weighted_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(weighted_null_lr)
+weighted_ld <- update(weighted_null_lr, ~. + LD); summary(weighted_ld)
+anova(weighted_null_lr, weighted_ld)
+
+weighted_ls <- update(weighted_null_lr, ~. + LS); summary(weighted_ls)
+anova(weighted_null_lr, weighted_ls)
+
+weighted_lv <- update(weighted_null_lr, ~. + LV); summary(weighted_lv)
+anova(weighted_null_lr, weighted_lv)
 
 
 ### --------------------------------------------
