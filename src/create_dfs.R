@@ -1,5 +1,8 @@
 ### Creating the data files for analysis
 
+# Libraries
+library(plyr); library(dplyr)
+
 # Clear workspace
 rm(list=ls())
 
@@ -73,11 +76,17 @@ all_data$Nationality <- factor(all_data$Nationality, levels = c("Dutch", "German
 all_data$Group <- factor(all_data$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
 all_data$DropOut <- factor(all_data$DropOut, levels = c("DuringYear1", "AfterYear1", "No"))
 
-# Delete columns with repeated measures of study success
-study_success <- all_data[,-c(index1_ec:index13_ec, index1_grade:index13_grade, index1_weighted:index13_weighted, index1_worth:index13_worth)]
+## Lexical richness data
 
-# Data for analysis of lexical development
-lca <- study_success[!is.na(study_success$wordtokens_oct),]
+# Delete columns with repeated measures of study success
+lca <- all_data[,-c(index1_ec:index13_ec, index1_grade:index13_grade, index1_weighted:index13_weighted, index1_worth:index13_worth)]
+
+# Only keep students for whom LCA measures are available
+lca <- lca[!is.na(lca$wordtokens_oct),]
+
+## Study success data
+
+study_success <- all_data
 
 # Average lexical richness over the three exams
 study_success$LD <- rowMeans(cbind(study_success$ld_oct, study_success$ld_feb, study_success$ld_apr))
@@ -89,17 +98,16 @@ study_success <- study_success [, -grep("_oct", colnames(study_success))]
 study_success <- study_success [, -grep("_feb", colnames(study_success))]
 study_success <- study_success [, -grep("_apr", colnames(study_success))]
 
-# Exclude students who received exemptions for one or more courses
-no_exem <- study_success[study_success$Exemption!=1,]
+# Move repeated study success measures to the end
+# This is done four times because the formerly established indices no longer apply
+study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
+study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
+study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
+study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
 
-# Exclude students who took courses outside of the Psychology programme
-no_outside <- no_exem[no_exem$CoursesOutsideProgramme==0,]
+## Write the new dataframes to text files
+write.table(study_success,"../data/study_success.txt",sep="\t",row.names=FALSE)
+write.table(lca,"../data/lexical_richness.txt",sep="\t",row.names=FALSE)
 
-# Data frame without drop-outs
-no_dropout <- no_outside[no_outside$DropOut!="DuringYear1",]
-
-
-
-
-# Remove everything except the data needed
-rm(list=setdiff(ls(), c("study_success", "no_dropout", "lca")))
+## Remove everything except the data needed
+rm(list=setdiff(ls(), c("study_success", "lca")))
