@@ -1,6 +1,6 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(scales); library(MASS); library(pastecs); library(lme4)
+library(car); library(scales); library(MASS); library(pastecs); library(lme4); library(boot)
 
 # Clear workspace
 rm(list=ls())
@@ -9,7 +9,7 @@ rm(list=ls())
 # Can be done through 'Session' tab in RStudio 
 
 # Read in data (choose between the next two files)
-subject_info <- read.csv("../data/subject_info.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
@@ -17,69 +17,23 @@ subject_info <- subject_info[subject_info$Exemption!=1,]
 # Exclude students who took courses outside of the Psychology programme
 subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
 
-# Rename columns and colume values
-colnames(subject_info)[colnames(subject_info)=="Natio1"] <- "Nationality"
-colnames(subject_info)[colnames(subject_info)=="TrackNatio1"] <- "Group"
-subject_info$Nationality <- revalue(subject_info$Nationality, c("NL" = "Dutch", "DU" = "German"))
-subject_info$Track <- revalue(subject_info$Track, c("NL" = "Dutch", "EN" = "English"))
-subject_info$Group <- revalue(subject_info$Group, c("DU_in_NL" = "German in Dutch track", "NL_in_NL" = "Dutch in Dutch track", "DU_in_EN" = "German in English track", "NL_in_EN" = "Dutch in English track"))
-
-# Relevel (for better visualisation)
-subject_info$Track <- factor(subject_info$Track, levels = c("Dutch", "English"))
-subject_info$Nationality <- factor(subject_info$Nationality, levels = c("Dutch", "German"))
-subject_info$Group <- factor(subject_info$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
-subject_info$DropOut <- factor(subject_info$DropOut, levels = c("DuringYear1", "AfterYear1", "No"))
-
 # Data frame without drop-outs
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
-
-
-### -------------------------------------
-### Study success: Descriptive statistics
-### -------------------------------------
-
-### Calculate summary outcomes
 
 # Indices
 index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
 index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
 index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
 index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
-
-# Calculate obtained ECs
-obtained_ecs <- (no_dropout[, c(index1_grade:index13_grade)] > 5.5) * no_dropout[, c(index1_worth:index13_worth)] # Multiply grades by worth
-colnames(obtained_ecs) <- gsub('Worth', 'Obtained', colnames(obtained_ecs), fixed=TRUE) # Change column names
-obtained_ecs[is.na(obtained_ecs)] <- 0 # Replace NA by 0
-no_dropout <- cbind(no_dropout, obtained_ecs)
-
-# Calculate weighted grades
-weighted_grades <- (no_dropout[, c(index1_grade:index13_grade)]) * no_dropout[, c(index1_worth:index13_worth)] # Multiply grades by worth
-colnames(weighted_grades) <- gsub('Grade', 'Weighted', colnames(weighted_grades), fixed=TRUE) # Change column names
-weighted_grades[is.na(weighted_grades)] <- 0 # Replace NA by 0
-no_dropout <- cbind(no_dropout, weighted_grades)
-
-# More indices
 index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
 index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
 index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
 index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
 
-# Calculate sum of obtained ECs
-no_dropout$EC_Obtained <- rowSums(no_dropout[,c(index1_ec:index13_ec)])
 
-# Calculate sum of weighted grades
-no_dropout$Weighted_Grade <- rowSums(no_dropout[,c(index1_weighted:index13_weighted)])
-
-# Calculate the number of ECs taken
-ecs_taken <- (no_dropout[, c(index1_grade:index13_grade)] >= 1) * no_dropout[, c(index1_worth:index13_worth)]
-no_dropout$EC_Taken <- rowSums(ecs_taken, na.rm = TRUE)
-
-# Calculate mean grade
-no_dropout$Mean_Grade <- no_dropout$Weighted_Grade / no_dropout$EC_Taken
-
-# Delete dataframes that are no longer necessary
-rm(ecs_taken, obtained_ecs, weighted_grades)
-
+### -------------------------------------
+### Study success: Descriptive statistics
+### -------------------------------------
 
 ### Functions
 
@@ -427,6 +381,7 @@ subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender",
 
 # Remove dataframes
 rm(EC_long, grades_long, weighted_long)
+rm(list=ls(pattern="index"))
 
 ## Models
 
