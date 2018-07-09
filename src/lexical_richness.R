@@ -221,6 +221,7 @@ grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 ### --------------------------------------------------------
 
 ### Lexical density
+# (These same values can also be obtained by relevelling the model)
 
 # Model comparisons
 exam_main_LD <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
@@ -232,7 +233,8 @@ anova(exam_main_LD, exam_group_main_LD, exam_group_int_LD)
 
 # Research question 1: Compare overall LD scores
 group.emm_LD <- emmeans(exam_group_int_LD, ~ Group); group.emm_LD
-pairs(group.emm_LD)
+pairs(group.emm_LD, adjust = "none")
+confint(pairs(group.emm_LD, adjust = "none"))
 
 # Research questions 2 and 3: Compare development of LD scores
 exam_group.emm_LD <- emmeans(exam_group_int_LD, ~ Exam*Group); exam_group.emm_LD
