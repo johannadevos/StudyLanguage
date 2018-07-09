@@ -216,139 +216,53 @@ ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
 grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 
 
-### ----------------------
-### Inferential statistics
-### ----------------------
-
-# --------------------------------------------------------------------
-# Is Dutch students' lexical richness higher in Dutch than in English?
-# --------------------------------------------------------------------
-
-# Select Dutch students only
-dutch_lex <- lca_data[lca_data$Nationality == "Dutch",]
-
-# Average lexical richness over the three exams
-dutch_lex$LD <- rowMeans(cbind(dutch_lex$ld_oct, dutch_lex$ld_feb, dutch_lex$ld_apr))
-dutch_lex$LS <- rowMeans(cbind(dutch_lex$ls2_oct, dutch_lex$ls2_feb, dutch_lex$ls2_apr))
-dutch_lex$LV <- rowMeans(cbind(dutch_lex$ndwesz_oct, dutch_lex$ndwesz_feb, dutch_lex$ndwesz_apr))
-
-# Descriptives
-tapply(dutch_lex$LD, dutch_lex$Track, stat.desc)
-tapply(dutch_lex$LS, dutch_lex$Track, stat.desc)
-tapply(dutch_lex$LV, dutch_lex$Track, stat.desc)
-
-## Histograms
-ld_hist <- ggplot(data = dutch_lex, aes(dutch_lex$LD)) +
-  geom_histogram(col = "white", fill = "steelblue3") +
-  facet_grid(~Group) +
-  labs(x = "\nLD", y = "Count\n") +
-  ggtitle("\n") +
-  theme(plot.title = element_text(hjust = 0.5)); ld_hist
-
-ls_hist <- ggplot(data = dutch_lex, aes(dutch_lex$LS)) +
-  geom_histogram(col = "white", fill = "orange") +
-  facet_grid(~Group) +
-  labs(x = "\nLS", y = "Count\n") +
-  ggtitle("\n") +
-  theme(plot.title = element_text(hjust = 0.5)); ls_hist
-
-lv_hist <- ggplot(data = dutch_lex, aes(dutch_lex$LV)) +
-  geom_histogram(col = "white", fill = "mediumpurple4") +
-  facet_grid(~Group) +
-  labs(x = "\nLV", y = "Count\n") +
-  ggtitle("\n") +
-  theme(plot.title = element_text(hjust = 0.5)); lv_hist
-
-# To plot the three graphs in one picture
-grid.arrange(ld_hist, ls_hist, lv_hist, nrow=1, ncol=3)
-
-## Check assumptions
-
-# Homogeneity of covariance (for MANOVA)
-by(dutch_lex[, 52:54], dutch_lex$Track, cov)
-
-# Multivariate normality (for MANOVA)
-library(RVAideMemoire)
-dutch_wide <- dutch_lex[dutch_lex$Track=="Dutch", 52:54]
-dutch_wide <- as.matrix(dutch_wide)
-mshapiro.test(dutch_wide)
-
-# Is lexical richness normally distributed in each group?
-tapply(dutch_lex$LD, dutch_lex$Track, shapiro.test) # Yes
-tapply(dutch_lex$LS, dutch_lex$Track, shapiro.test) # No
-tapply(dutch_lex$LV, dutch_lex$Track, shapiro.test) # Yes
-
-# Investigate correlations between dependent variables
-cor(dutch_lex[, 52:54], method = "pearson") # Highest correlation is .20
-cor(dutch_lex[, 52:54], method = "spearman") # Highest correlation is .22
-
-## Comparing two means (NB: no correction for multiple testing)
-t.test(dutch_lex$LD[dutch_lex$Track=="Dutch"], dutch_lex$LD[dutch_lex$Track=="English"])
-wilcox.test(dutch_lex$LS[dutch_lex$Track=="Dutch"], dutch_lex$LV[dutch_lex$Track=="English"])
-t.test(dutch_lex$LV[dutch_lex$Track=="Dutch"], dutch_lex$LV[dutch_lex$Track=="English"])
-
-
-# --------------------------------------------------------
-# How does lexical richness develop during the first year?
-# --------------------------------------------------------
-
-# Relevel
-lca_long$Group <- factor(lca_long$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
-lca_long$Group <- factor(lca_long$Group, levels = c("German in Dutch track", "German in English track", "Dutch in Dutch track", "Dutch in English track"))
-lca_long$Exam <- factor(lca_long$Exam, levels = c("1 (Oct)", "2 (Feb)", "3 (Apr)"))
-lca_long$Exam <- factor(lca_long$Exam, levels = c("2 (Feb)", "1 (Oct)", "3 (Apr)"))
+### --------------------------------------------------------
+### How does lexical richness develop during the first year?
+### --------------------------------------------------------
 
 ### Lexical density
 
-# Question 1
-group_model <- lme(LD ~ 1 + Group, random = ~1|SubjectCode, data = lca_long); summary(group_model)
-group_model <- lmer(LD ~ 1 + Group + (1|SubjectCode), data = lca_long); summary(group_model)
-
-# Question 2 and 3
-exam_group_model <- lme(LD ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long); summary(exam_group_model)
-
 # Model comparisons
-exam_model <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
-group_model <- update(exam_model, .~. + Group)
-exam_group_model <- update(group_model, .~. + Exam:Group)
-anova(exam_model, group_model, exam_group_model)
+exam_main <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
+exam_group_main <- update(exam_main, .~. + Group); summary(exam_group_main)
+exam_group_int <- update(exam_group_main, .~. + Exam:Group); summary(exam_group_int)
+anova(exam_main, exam_group_main, exam_group_int)
 
 ## Multiple comparisons
 
 # Research question 1: Compare overall LD scores
-group.emm <- emmeans(exam_group_model, ~ Group); group.emm
+group.emm <- emmeans(exam_group_int, ~ Group); group.emm
 pairs(group.emm)
 
 # Research questions 2 and 3: Compare development of LD scores
-exam_group.emm <- emmeans(exam_group_model, ~ Exam*Group); exam_group.emm
+exam_group.emm <- emmeans(exam_group_int, ~ Exam*Group); exam_group.emm
 pairs(exam_group.emm, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
-
 
 ## Check assumptions (see Winter, 2013)
 
 ## Is there a linear relationship between the dependent and independent variables?
 # The plot should not show any obvious pattern in the residuals
-plot(fitted(exam_group_model), residuals(exam_group_model))
-plot(lca_long$LD, residuals(exam_group_model))
+plot(fitted(exam_group_int), residuals(exam_group_int))
+plot(lca_long$LD, residuals(exam_group_int))
 abline(h = 0)
 
 # A weak relationship is visible: smaller fitted values tend to have negative residuals,
 # larger fitted values seem to have positive residuals
-cor.test(fitted(exam_group_model), residuals(exam_group_model))
-summary(lm(residuals(exam_group_model) ~ fitted(exam_group_model)))
+cor.test(fitted(exam_group_int), residuals(exam_group_int))
+summary(lm(residuals(exam_group_int) ~ fitted(exam_group_int)))
 
 ## Absence of collinearity
 # Exam and Group are not correlated, because all groups took the same exams
 
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
-plot(fitted(exam_group_model), residuals(exam_group_model))
+plot(fitted(exam_group_int), residuals(exam_group_int))
 abline(h = 0)
 # There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
 
 ## Normality of residuals
-hist(residuals(exam_group_model)) 
-qqnorm(residuals(exam_group_model))
+hist(residuals(exam_group_int)) 
+qqnorm(residuals(exam_group_int))
 # Almost perfectly normal
 
 ## Absence of influential data points
@@ -364,18 +278,18 @@ plot(lca_data$Cook, ylab = "Cook's distance")
 
 
 ### Lexical sophistication
-group_model <- lme(LS ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
-summary(group_model)
+exam_group_main <- lme(LS ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
+summary(exam_group_main)
 
-exam_group_model <- lme(LS ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
-summary(exam_group_model)
+exam_group_int <- lme(LS ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
+summary(exam_group_int)
 
 ### Lexical variation
-group_model <- lme(LV ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
-summary(group_model)
+exam_group_main <- lme(LV ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
+summary(exam_group_main)
 
-exam_group_model <- lme(LV ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
-summary(exam_group_model)
+exam_group_int <- lme(LV ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
+summary(exam_group_int)
 
 
 ### KLAD
@@ -397,23 +311,23 @@ baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode, data = lca_long, method =
 # Use ML rather than REML to be able to do model comparisons with different fixed effects
 summary(baseline_model)
 
-exam_model <- update(baseline_model, .~. + Exam)
-summary(exam_model)
+exam_main <- update(baseline_model, .~. + Exam)
+summary(exam_main)
 
-group_model <- update(exam_model, .~. + Group)
-summary(group_model)
+exam_group_main <- update(exam_main, .~. + Group)
+summary(exam_group_main)
 
-exam_group_model <- update(group_model, .~. + Exam:Group)
-summary(exam_group_model)
+exam_group_int <- update(exam_group_main, .~. + Exam:Group)
+summary(exam_group_int)
 
-anova(baseline_model, exam_model, group_model, exam_group_model)
+anova(baseline_model, exam_main, exam_group_main, exam_group_int)
 
 library(multcomp)
-exams_pairwise <- glht(exam_group_model, linfct = mcp(Exam = "Tukey"))
+exams_pairwise <- glht(exam_group_int, linfct = mcp(Exam = "Tukey"))
 summary(exams_pairwise)
 confint(exams_pairwise)
 
-groups_pairwise <- glht(exam_group_model, linfct = mcp(Group = "Tukey"))
+groups_pairwise <- glht(exam_group_int, linfct = mcp(Group = "Tukey"))
 summary(groups_pairwise)
 confint(groups_pairwise)
 
