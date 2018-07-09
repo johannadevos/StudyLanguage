@@ -305,13 +305,7 @@ abline(h = 0)
 # No obvious relationship between the fitted and residual values is visible,
 # although apparently there are few fitted values around 0.14.
 
-## Absence of collinearity
-# Exam and Group are not correlated, because all groups took the same exams
-
 ## Homoskedasticity
-# The standard deviations of the residuals should not depend on the x-value
-plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS))
-abline(h = 0)
 # There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
 
 ## Normality of residuals
@@ -327,10 +321,46 @@ plot(lca_data$Cook, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
-## Independence
-# Is taken care of by the random intercepts at the subject level
-
 
 ### Lexical variation
 
+# Model comparisons
+exam_main_LV <- lmer(LV ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
+exam_group_main_LV <- update(exam_main_LV, .~. + Group); summary(exam_group_main_LV)
+exam_group_int_LV <- update(exam_group_main_LV, .~. + Exam:Group); summary(exam_group_int_LV)
+anova(exam_main_LV, exam_group_main_LV, exam_group_int_LV)
 
+## Multiple comparisons
+
+# Research question 1: Compare overall LS scores
+group.emm_LV <- emmeans(exam_group_int_LV, ~ Group); group.emm_LV
+pairs(group.emm_LV, adjust = "none")
+
+# Research questions 2 and 3: Compare development of LS scores
+exam_group.emm_LV <- emmeans(exam_group_int_LV, ~ Exam*Group); exam_group.emm_LV
+pairs(exam_group.emm_LV, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
+pairs(exam_group.emm_LV, by = "Exam", adjust = "none")
+
+## Check assumptions (see Winter, 2013)
+
+## Is there a linear relationship between the dependent and independent variables?
+# The plot should not show any obvious pattern in the residuals
+plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV))
+abline(h = 0)
+# No obvious relationship between the fitted and residual values is visible,
+
+## Homoskedasticity
+# There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
+
+## Normality of residuals
+hist(residuals(exam_group_int_LV)) 
+qqnorm(residuals(exam_group_int_LV))
+# Seems normal
+
+## Absence of influential data points
+
+# Calculate Cook's distance and visualise outcomes
+lca_data$Cook <- cooks.distance.estex(influence(exam_group_int_LV, group = 'SubjectCode'))
+plot(lca_data$Cook, ylab = "Cook's distance")
+# Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
+# Or, it shouldn't be >4/n (assumption not met, but no real outliers)
