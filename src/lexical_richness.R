@@ -1,6 +1,7 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(fBasics); library(scales); library(MASS); library(pastecs); library(lme4); library(boot)
+library(car); library(fBasics); library(scales); library(MASS); library(pastecs); library(lme4); 
+library(boot); library(nlme); library(influence.ME)
 
 # Clear workspace
 rm(list=ls())
@@ -297,13 +298,14 @@ lca_long$Group <- factor(lca_long$Group, levels = c("German in Dutch track", "Ge
 lca_long$Exam <- factor(lca_long$Exam, levels = c("1 (Oct)", "2 (Feb)", "3 (Apr)"))
 lca_long$Exam <- factor(lca_long$Exam, levels = c("2 (Feb)", "1 (Oct)", "3 (Apr)"))
 
-## Lexical density
-group_model <- lme(LD ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
-group_model <- lmer(LD ~ 1 + Group + (1|SubjectCode), data = lca_long)
-summary(group_model)
+### Lexical density
 
-exam_group_model <- lme(LD ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
-summary(exam_group_model)
+# Question 1
+group_model <- lme(LD ~ 1 + Group, random = ~1|SubjectCode, data = lca_long); summary(group_model)
+group_model <- lmer(LD ~ 1 + Group + (1|SubjectCode), data = lca_long); summary(group_model)
+
+# Question 2 and 3
+exam_group_model <- lme(LD ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long); summary(exam_group_model)
 
 # Model comparisons
 exam_model <- lme(LD ~ 1 + Exam, random = ~1|SubjectCode, data = lca_long, method = "ML")
@@ -311,14 +313,53 @@ group_model <- update(exam_model, .~. + Group)
 exam_group_model <- update(group_model, .~. + Exam:Group)
 anova(exam_model, group_model, exam_group_model)
 
-## Lexical sophistication
+## Check assumptions (see Winter, 2013)
+
+## Is there a linear relationship between the dependent and independent variables?
+# The plot should not show any obvious pattern in the residuals
+plot(fitted(exam_group_model), residuals(exam_group_model))
+plot(lca_long$LD, residuals(exam_group_model))
+abline(h = 0)
+
+# A weak relationship is visible: smaller fitted values tend to have negative residuals,
+# larger fitted values seem to have positive residuals
+cor.test(fitted(exam_group_model), residuals(exam_group_model))
+summary(lm(residuals(exam_group_model) ~ fitted(exam_group_model)))
+
+## Absence of collinearity
+# Exam and Group are not correlated, because all groups took the same exams
+
+## Homoskedasticity
+# The standard deviations of the residuals should not depend on the x-value
+plot(fitted(exam_group_model), residuals(exam_group_model))
+abline(h = 0)
+# There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
+
+## Normality of residuals
+hist(residuals(exam_group_model)) 
+qqnorm(residuals(exam_group_model))
+# Almost perfectly normal
+
+## Absence of influential data points
+
+# Calculate Cook's distance and visualise outcomes
+lca_data$Cook <- cooks.distance.estex(influence(eg_model, group = 'SubjectCode'))
+plot(lca_data$Cook, ylab = "Cook's distance")
+# Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
+# Or, it shouldn't be >4/n (assumption not met, but no real outliers)
+
+## Independence
+# Is taken care of by the random intercepts at the subject level
+
+
+### Lexical sophistication
 group_model <- lme(LS ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
 summary(group_model)
 
 exam_group_model <- lme(LS ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
 summary(exam_group_model)
 
-## Lexical variation
+### Lexical variation
 group_model <- lme(LV ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
 summary(group_model)
 
