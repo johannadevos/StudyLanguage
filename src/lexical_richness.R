@@ -332,59 +332,5 @@ plot(lca_data$Cook, ylab = "Cook's distance")
 
 
 ### Lexical variation
-exam_group_main <- lme(LV ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
-summary(exam_group_main)
-
-exam_group_int <- lme(LV ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
-summary(exam_group_int)
 
 
-### KLAD
-
-## Exploration of contrasts, following Andy Field
-
-# Set contrasts
-DD_vs_DE <- c(1, -1, 0, 0)
-GD_vs_GE <- c(0, 0, 1, -1)
-contrasts(lca_long$Group) <- cbind(DD_vs_DE, GD_vs_GE)
-
-oct_feb <- c(1, -1, 0)
-oct_apr <- c(1, 0, -1)
-feb_apr <- c(0, 1, -1)
-contrasts(lca_long$Exam) <- cbind(oct_feb, feb_apr, oct_apr)
-
-# Models
-baseline_model <- lme(LD ~ 1, random = ~1|SubjectCode, data = lca_long, method = "ML")
-# Use ML rather than REML to be able to do model comparisons with different fixed effects
-summary(baseline_model)
-
-exam_main <- update(baseline_model, .~. + Exam)
-summary(exam_main)
-
-exam_group_main <- update(exam_main, .~. + Group)
-summary(exam_group_main)
-
-exam_group_int <- update(exam_group_main, .~. + Exam:Group)
-summary(exam_group_int)
-
-anova(baseline_model, exam_main, exam_group_main, exam_group_int)
-
-library(multcomp)
-exams_pairwise <- glht(exam_group_int, linfct = mcp(Exam = "Tukey"))
-summary(exams_pairwise)
-confint(exams_pairwise)
-
-groups_pairwise <- glht(exam_group_int, linfct = mcp(Group = "Tukey"))
-summary(groups_pairwise)
-confint(groups_pairwise)
-
-## Other
-
-# Define outcome variable
-outcome <- cbind(long_data$LD, long_data$LS, long_data$LV)
-
-# Run MANOVA
-manova <- manova(outcome ~ Group + Month + Group * Month, data = long_data)
-summary(manova)
-summary.lm(manova)
-summary.aov(manova)
