@@ -1,7 +1,7 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
 library(car); library(fBasics); library(scales); library(MASS); library(pastecs); library(lme4); 
-library(boot); library(nlme); library(influence.ME)
+library(boot); library(nlme); library(influence.ME); library(emmeans)
 
 # Clear workspace
 rm(list=ls())
@@ -308,10 +308,21 @@ group_model <- lmer(LD ~ 1 + Group + (1|SubjectCode), data = lca_long); summary(
 exam_group_model <- lme(LD ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long); summary(exam_group_model)
 
 # Model comparisons
-exam_model <- lme(LD ~ 1 + Exam, random = ~1|SubjectCode, data = lca_long, method = "ML")
+exam_model <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
 group_model <- update(exam_model, .~. + Group)
 exam_group_model <- update(group_model, .~. + Exam:Group)
 anova(exam_model, group_model, exam_group_model)
+
+## Multiple comparisons
+
+# Research question 1: Compare overall LD scores
+group.emm <- emmeans(exam_group_model, ~ Group); group.emm
+pairs(group.emm)
+
+# Research questions 2 and 3: Compare development of LD scores
+exam_group.emm <- emmeans(exam_group_model, ~ Exam*Group); exam_group.emm
+pairs(exam_group.emm, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
+
 
 ## Check assumptions (see Winter, 2013)
 
