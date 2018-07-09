@@ -124,7 +124,7 @@ dplyr::select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
 ## Visualisation
 
 # Lexical density
-ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ld <- ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -132,10 +132,10 @@ ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, 
   labs(x = "\nExam", y = "Lexical Density\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
-         colour=guide_legend(keywidth = 2, keyheight = 1))
+         colour=guide_legend(keywidth = 2, keyheight = 1)); ld
 
 # Lexical sophistication
-ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ls <- ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -143,10 +143,10 @@ ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, 
   labs(x = "\nExam", y = "Lexical Sophistication\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
-         colour=guide_legend(keywidth = 2, keyheight = 1))
+         colour=guide_legend(keywidth = 2, keyheight = 1)); ls
 
 # Lexical variation
-ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+lv <- ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -154,7 +154,7 @@ ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, 
   labs(x = "\nExam", y = "Lexical variation\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
-         colour=guide_legend(keywidth = 2, keyheight = 1))
+         colour=guide_legend(keywidth = 2, keyheight = 1)); lv
 #NB: LV can be divided by 20 to obtain TTR. This is not the original measure.
 
 
@@ -212,7 +212,7 @@ ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5))
 
-# To plot the three graphs in one picture
+# Plot the three graphs in one picture
 grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 
 
@@ -237,6 +237,7 @@ pairs(group.emm)
 # Research questions 2 and 3: Compare development of LD scores
 exam_group.emm <- emmeans(exam_group_int, ~ Exam*Group); exam_group.emm
 pairs(exam_group.emm, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
+pairs(exam_group.emm, by = "Exam", adjust = "none")
 
 ## Check assumptions (see Winter, 2013)
 
