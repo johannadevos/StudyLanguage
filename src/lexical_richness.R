@@ -223,53 +223,52 @@ grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 ### Lexical density
 
 # Model comparisons
-exam_main <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
-exam_group_main <- update(exam_main, .~. + Group); summary(exam_group_main)
-exam_group_int <- update(exam_group_main, .~. + Exam:Group); summary(exam_group_int)
-anova(exam_main, exam_group_main, exam_group_int)
+exam_main_LD <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
+exam_group_main_LD <- update(exam_main_LD, .~. + Group); summary(exam_group_main_LD)
+exam_group_int_LD <- update(exam_group_main_LD, .~. + Exam:Group); summary(exam_group_int_LD)
+anova(exam_main_LD, exam_group_main_LD, exam_group_int_LD)
 
 ## Multiple comparisons
 
 # Research question 1: Compare overall LD scores
-group.emm <- emmeans(exam_group_int, ~ Group); group.emm
-pairs(group.emm)
+group.emm_LD <- emmeans(exam_group_int_LD, ~ Group); group.emm_LD
+pairs(group.emm_LD)
 
 # Research questions 2 and 3: Compare development of LD scores
-exam_group.emm <- emmeans(exam_group_int, ~ Exam*Group); exam_group.emm
-pairs(exam_group.emm, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
-pairs(exam_group.emm, by = "Exam", adjust = "none")
+exam_group.emm_LD <- emmeans(exam_group_int_LD, ~ Exam*Group); exam_group.emm_LD
+pairs(exam_group.emm_LD, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
+pairs(exam_group.emm_LD, by = "Exam", adjust = "none")
 
 ## Check assumptions (see Winter, 2013)
 
 ## Is there a linear relationship between the dependent and independent variables?
 # The plot should not show any obvious pattern in the residuals
-plot(fitted(exam_group_int), residuals(exam_group_int))
-plot(lca_long$LD, residuals(exam_group_int))
+plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD))
 abline(h = 0)
 
 # A weak relationship is visible: smaller fitted values tend to have negative residuals,
 # larger fitted values seem to have positive residuals
-cor.test(fitted(exam_group_int), residuals(exam_group_int))
-summary(lm(residuals(exam_group_int) ~ fitted(exam_group_int)))
+cor.test(fitted(exam_group_int_LD), residuals(exam_group_int_LD))
+summary(lm(residuals(exam_group_int_LD) ~ fitted(exam_group_int_LD)))
 
 ## Absence of collinearity
 # Exam and Group are not correlated, because all groups took the same exams
 
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
-plot(fitted(exam_group_int), residuals(exam_group_int))
+plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD))
 abline(h = 0)
 # There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
 
 ## Normality of residuals
-hist(residuals(exam_group_int)) 
-qqnorm(residuals(exam_group_int))
+hist(residuals(exam_group_int_LD)) 
+qqnorm(residuals(exam_group_int_LD))
 # Almost perfectly normal
 
 ## Absence of influential data points
 
 # Calculate Cook's distance and visualise outcomes
-lca_data$Cook <- cooks.distance.estex(influence(eg_model, group = 'SubjectCode'))
+lca_data$Cook <- cooks.distance.estex(influence(exam_group_int_LD, group = 'SubjectCode'))
 plot(lca_data$Cook, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
@@ -279,11 +278,58 @@ plot(lca_data$Cook, ylab = "Cook's distance")
 
 
 ### Lexical sophistication
-exam_group_main <- lme(LS ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
-summary(exam_group_main)
 
-exam_group_int <- lme(LS ~ 1 + Exam + Group + Exam:Group, random = ~1|SubjectCode, data = lca_long)
-summary(exam_group_int)
+# Model comparisons
+exam_main_LS <- lmer(LS ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
+exam_group_main_LS <- update(exam_main_LS, .~. + Group); summary(exam_group_main_LS)
+exam_group_int_LS <- update(exam_group_main_LS, .~. + Exam:Group); summary(exam_group_int_LS)
+anova(exam_main_LS, exam_group_main_LS, exam_group_int_LS)
+
+## Multiple comparisons
+
+# Research question 1: Compare overall LS scores
+group.emm_LS <- emmeans(exam_group_int_LS, ~ Group); group.emm_LS
+pairs(group.emm_LS, adjust = "none")
+
+# Research questions 2 and 3: Compare development of LS scores
+exam_group.emm_LS <- emmeans(exam_group_int_LS, ~ Exam*Group); exam_group.emm_LS
+pairs(exam_group.emm_LS, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
+pairs(exam_group.emm_LS, by = "Exam", adjust = "none")
+
+## Check assumptions (see Winter, 2013)
+
+## Is there a linear relationship between the dependent and independent variables?
+# The plot should not show any obvious pattern in the residuals
+plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS))
+abline(h = 0)
+# No obvious relationship between the fitted and residual values is visible,
+# although apparently there are few fitted values around 0.14.
+
+## Absence of collinearity
+# Exam and Group are not correlated, because all groups took the same exams
+
+## Homoskedasticity
+# The standard deviations of the residuals should not depend on the x-value
+plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS))
+abline(h = 0)
+# There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
+
+## Normality of residuals
+hist(residuals(exam_group_int_LS)) 
+qqnorm(residuals(exam_group_int_LS))
+# Almost perfectly normal
+
+## Absence of influential data points
+
+# Calculate Cook's distance and visualise outcomes
+lca_data$Cook <- cooks.distance.estex(influence(exam_group_int_LS, group = 'SubjectCode'))
+plot(lca_data$Cook, ylab = "Cook's distance")
+# Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
+# Or, it shouldn't be >4/n (assumption not met, but no real outliers)
+
+## Independence
+# Is taken care of by the random intercepts at the subject level
+
 
 ### Lexical variation
 exam_group_main <- lme(LV ~ 1 + Group, random = ~1|SubjectCode, data = lca_long)
