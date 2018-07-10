@@ -4,6 +4,7 @@ library("ggridges")   # for rows of density plots
 library("brms")       # for modelling
 library("HDInterval") # for HDIs
 library("car")
+library("rstan")
 rstan::rstan_options(autowrite=TRUE)
 # most modern computers have at least cores, so this should speed things up
 options(mc.cores=2)
@@ -13,23 +14,23 @@ theme_set(theme_light())
 
 library('lme4')
 
-# https://www.tidyverse.org/articles/2017/12/workflow-vs-script/
-
-# variable: Track, levels: Dutch, English
-# variable: Nationality, levels: Dutch, German
-# four-level variable called Group (levels: Dutch in Dutch track, Dutch in English track, German in Dutch track, German in English track). 
-
-# 1) "DropOutBinary", a 0/1 measure that indicates whether or not someone dropped out in the first year
-# 2) "EC_Obtained", a continuous measure that indicates how many European Credits someone obtained in the first year (range: 0-60, because one year is 60 credits)
-# 3) "Mean_Grade", a continuous measure with range 0-10
-# 4) "Weighted_Grade", a continuous measure that is the product of the grades that someone obtained and the number of courses they participated in
-
-# The first year of Psychology at Radboud University consists of 13 courses. Thus, variables 2-4 are repeated measures based on 13 observations. Therefore, I'm using mixed-effects models to investigate these measures. As said, the predictor called Group is the most important. I'm also exploring further predictors, namely Gender, LD, LS, and LV. The latter three are measures of lexical proficiency in the study language. These three measures I only have for a subset of the participants.
-
-# You should run lines 1-31 of study_success.R to read and preprocess the data. Then run lines 365-391 to get the data in long format, and lines 398-451 for the mixed-effects models. This does not include DropOutBinary but I'm still working on that based on the e-mail you sent me last week.
+# Clear workspace
+rm(list=ls())
 
 # Set working directory to the current file location
 # Can be done through 'Session' tab in RStudio 
+
+# Read in data (choose between the next two files)
+subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+
+# Exclude students who received exemptions for one or more courses
+subject_info <- subject_info[subject_info$Exemption!=1,]
+
+# Exclude students who took courses outside of the Psychology programme
+subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
+
+# Data frame without drop-outs
+no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
 # Read in data (choose between the next two files)
 vos <- read.table("../data/study_success.txt", header=TRUE, fileEncoding = "UTF-8-BOM") %>% 
@@ -54,7 +55,7 @@ vos.agg <- vos %>%
 
 vos.binom <- brm(DropOutBinary ~ 1 + Track * Nationality,
                  family=bernoulli(),
-                 data=vos.agg,
+                 data=subject_info,
                  prior=set_prior("normal(0,2)", class="b"),
                  algorithm="sampling",
                  iter=2e3,
