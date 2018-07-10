@@ -34,6 +34,11 @@ lv_melted$Exam <- revalue(lv_melted$Exam, c("ndwesz_oct"="1 (Oct)", "ndwesz_feb"
 lca_long <- merge(ld_melted, ls_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
 lca_long <- merge(lca_long, lv_melted, by=c("SubjectCode", "Track", "Nationality", "Group", "Exam"))
 
+# Add grades
+lca_long$Grade <- ifelse(lca_long$Exam == "1 (Oct)", lca_data$grade_oct[match(lca_long$SubjectCode, lca_data$SubjectCode)], 
+                  ifelse(lca_long$Exam == "2 (Feb)", lca_data$grade_feb[match(lca_long$SubjectCode, lca_data$SubjectCode)],
+                  ifelse(lca_long$Exam == "3 (Apr)", lca_data$grade_apr[match(lca_long$SubjectCode, lca_data$SubjectCode)], NA)))
+  
 # Remove unused dataframes
 #rm(list=ls(pattern="_melted"))
 
@@ -215,6 +220,13 @@ ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
 # Plot the three graphs in one picture
 grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 
+
+### ------------------------------------------
+### Investigate how the grades are distributed
+### ------------------------------------------
+
+stat.desc(cbind(lca_data$grade_oct, lca_data$grade_feb, lca_data$grade_apr))
+lm()
 
 ### --------------------------------------------------------
 ### How does lexical richness develop during the first year?
