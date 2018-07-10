@@ -380,3 +380,22 @@ lca_data$Cook <- cooks.distance.estex(influence(exam_group_int_LV, group = 'Subj
 plot(lca_data$Cook, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
+
+
+### ------------
+### LexTALE data
+### ------------
+
+lex <- read.delim("../data/lextale.txt", header = TRUE, sep = "\t")
+
+# Different in English skills?
+tapply(lex$SchoolEnglish, lex$Track, stat.desc)
+tapply(lex$SchoolEnglish, lex$Track, shapiro.test)
+summary(aov(SchoolEnglish ~ Track, data=lex)) # p = .08
+
+# Different in LexTALE?
+tapply(lex$LexTALE, lex$Track, stat.desc)
+tapply(lex$LexTALE, lex$Track, shapiro.test)
+summary(aov(LexTALE ~ Track, data=lex)) # p = .40
+
+# Matching still needs to be performed
