@@ -221,13 +221,6 @@ ls2_apr <- ggplot(data = three_gr, aes(three_gr$ls2_apr)) +
 grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 
 
-### ------------------------------------------
-### Investigate how the grades are distributed
-### ------------------------------------------
-
-stat.desc(cbind(lca_data$grade_oct, lca_data$grade_feb, lca_data$grade_apr))
-lm()
-
 ### --------------------------------------------------------
 ### How does lexical richness develop during the first year?
 ### --------------------------------------------------------
@@ -236,10 +229,13 @@ lm()
 # (These same values can also be obtained by relevelling the model)
 
 # Model comparisons
-exam_main_LD <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
-exam_group_main_LD <- update(exam_main_LD, .~. + Group); summary(exam_group_main_LD)
-exam_group_int_LD <- update(exam_group_main_LD, .~. + Exam:Group); summary(exam_group_int_LD)
-anova(exam_main_LD, exam_group_main_LD, exam_group_int_LD)
+exam_LD <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
+grade_LD <- update(exam_LD, .~. + Grade); summary(grade_LD)
+anova(exam_LD, grade_LD)
+
+exam_group_LD <- update(exam_LD, .~. + Group); summary(exam_group_LD)
+exam_group_int_LD <- update(exam_group_LD, .~. + Exam:Group); summary(exam_group_int_LD)
+anova(exam_LD, exam_group_LD, exam_group_int_LD)
 
 ## Multiple comparisons
 
@@ -294,10 +290,13 @@ plot(lca_data$Cook, ylab = "Cook's distance")
 ### Lexical sophistication
 
 # Model comparisons
-exam_main_LS <- lmer(LS ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
-exam_group_main_LS <- update(exam_main_LS, .~. + Group); summary(exam_group_main_LS)
-exam_group_int_LS <- update(exam_group_main_LS, .~. + Exam:Group); summary(exam_group_int_LS)
-anova(exam_main_LS, exam_group_main_LS, exam_group_int_LS)
+exam_LS <- lmer(LS ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
+grade_LS <- update(exam_LS, .~. + Grade); summary(grade_LS)
+anova(exam_LS, grade_LS)
+
+exam_group_LS <- update(grade_LS, .~. + Group); summary(exam_group_LS)
+exam_group_int_LS <- update(exam_group_LS, .~. + Exam:Group); summary(exam_group_int_LS)
+anova(grade_LS, exam_group_LS, exam_group_int_LS)
 
 ## Multiple comparisons
 
@@ -339,18 +338,21 @@ plot(lca_data$Cook, ylab = "Cook's distance")
 ### Lexical variation
 
 # Model comparisons
-exam_main_LV <- lmer(LV ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
-exam_group_main_LV <- update(exam_main_LV, .~. + Group); summary(exam_group_main_LV)
-exam_group_int_LV <- update(exam_group_main_LV, .~. + Exam:Group); summary(exam_group_int_LV)
-anova(exam_main_LV, exam_group_main_LV, exam_group_int_LV)
+exam_LV <- lmer(LV ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE)
+grade_LV <- update(exam_LV, .~. + Grade); summary(grade_LV)
+anova(exam_LV, grade_LV)
+
+exam_group_LV <- update(exam_LV, .~. + Group); summary(exam_group_LV)
+exam_group_int_LV <- update(exam_group_LV, .~. + Exam:Group); summary(exam_group_int_LV)
+anova(exam_LV, exam_group_LV, exam_group_int_LV)
 
 ## Multiple comparisons
 
-# Research question 1: Compare overall LS scores
+# Research question 1: Compare overall LV scores
 group.emm_LV <- emmeans(exam_group_int_LV, ~ Group); group.emm_LV
 pairs(group.emm_LV, adjust = "none")
 
-# Research questions 2 and 3: Compare development of LS scores
+# Research questions 2 and 3: Compare development of LV scores
 exam_group.emm_LV <- emmeans(exam_group_int_LV, ~ Exam*Group); exam_group.emm_LV
 pairs(exam_group.emm_LV, simple = c("Group", "Exam"), adjust = "none", interaction = TRUE)
 pairs(exam_group.emm_LV, by = "Exam", adjust = "none")
