@@ -1,7 +1,7 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
 library(car); library(fBasics); library(scales); library(MASS); library(pastecs); library(lme4); 
-library(boot); library(nlme); library(influence.ME); library(emmeans)
+library(boot); library(nlme); library(emmeans)
 
 # Clear workspace
 rm(list=ls())
@@ -391,11 +391,20 @@ lex <- read.delim("../data/lextale.txt", header = TRUE, sep = "\t")
 # Different in English skills?
 tapply(lex$SchoolEnglish, lex$Track, stat.desc)
 tapply(lex$SchoolEnglish, lex$Track, shapiro.test)
-summary(aov(SchoolEnglish ~ Track, data=lex)) # p = .08
+wilcox.test(lex$SchoolEnglish ~ lex$Track)
+
+# Subset matched data
+lex_matched <- lex[lex$Include == "Yes",]
+
+# Check that the English school grade is the same for both groups
+tapply(lex_matched$SchoolEnglish, lex_matched$Track, stat.desc)
 
 # Different in LexTALE?
-tapply(lex$LexTALE, lex$Track, stat.desc)
-tapply(lex$LexTALE, lex$Track, shapiro.test)
-summary(aov(LexTALE ~ Track, data=lex)) # p = .40
+tapply(lex_matched$LexTALE, lex_matched$Track, stat.desc)
+tapply(lex_matched$LexTALE, lex_matched$Track, shapiro.test)
 
-# Matching still needs to be performed
+hist(lex_matched$LexTALE[lex_matched$Track=="Dutch"])
+hist(lex_matched$LexTALE[lex_matched$Track=="English"])
+
+wilcox.test(lex_matched$LexTALE ~ lex_matched$Track)
+t.test(lex_matched$LexTALE ~ lex_matched$Track)
