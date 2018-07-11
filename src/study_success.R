@@ -248,8 +248,6 @@ t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 
 ## Robust ANCOVA
 
-## First, check whether the groups differ in LD, LS and LV
-
 # Function to draw histograms per group for the lexical richness variables
 lr_hist <- function(dep_var){
   par(mfrow=c(2,2))
@@ -283,6 +281,27 @@ lv_lm <- lm(LV ~ Group, data = no_dropout); summary(lv_lm)
 ld_aov <- aov(LD ~ Group, data = no_dropout, na.action = na.exclude); summary(ld_aov)
 ls_aov <- aov(LS ~ Group, data = no_dropout, na.action = na.exclude); summary(ls_aov)
 lv_aov <- aov(LV ~ Group, data = no_dropout, na.action = na.exclude); summary(lv_aov)
+
+# Conduct ANCOVA
+
+# NB: No robust ANCOVA for more than two groups seems to be available
+
+## Robust regression
+
+bootReg <- function (formula, data, i)
+  {d <- data [i,]
+  fit <- lm(formula, data = d)
+  return(coef(fit))
+}
+
+bootResults <- boot(statistic = bootReg, formula = EC_Obtained ~ Group, data = no_dropout, R = 2000)
+bootResults$t0 # Intercept and slope coefficients
+boot.ci(bootResults, type = "bca", conf = 0.991, index = 1) # Confidence intervals for intercept
+boot.ci(bootResults, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
+boot.ci(bootResults, type = "bca", index = 3) # Confidence intervals for group: German in Dutch track
+boot.ci(bootResults, type = "bca", index = 4) # Confidence intervals for group: German in English track
+
+
 
 
 ### MEAN GRADE
