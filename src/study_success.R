@@ -294,13 +294,26 @@ bootReg <- function (formula, data, i)
   return(coef(fit))
 }
 
-bootResults <- boot(statistic = bootReg, formula = EC_Obtained ~ Group, data = no_dropout, R = 2000)
+bootResults <- boot(statistic = bootReg, formula = EC_Obtained ~ Group + Gender, data = no_dropout, R = 2000)
 bootResults$t0 # Intercept and slope coefficients
 boot.ci(bootResults, type = "bca", conf = 0.991, index = 1) # Confidence intervals for intercept
 boot.ci(bootResults, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
 boot.ci(bootResults, type = "bca", index = 3) # Confidence intervals for group: German in Dutch track
 boot.ci(bootResults, type = "bca", index = 4) # Confidence intervals for group: German in English track
+boot.ci(bootResults, type = "bca", conf = 0.991, index = 5) # Confidence intervals for group: German in English track
 
+bootResults2 <- boot(statistic = bootReg, formula = EC_Obtained ~ Group, data = lr, R = 2000)
+bootResults3 <- boot(statistic = bootReg, formula = EC_Obtained ~ Group + LD_Centered, data = lr, R = 2000)
+bootResults2$t0 # Intercept and slope coefficients
+boot.ci(bootResults3, type = "bca", conf = 0.991, index = 1) # Confidence intervals for intercept
+boot.ci(bootResults3, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
+boot.ci(bootResults3, type = "bca", index = 3) # Confidence intervals for group: German in Dutch track
+boot.ci(bootResults3, type = "bca", index = 4) # Confidence intervals for group: German in English track
+
+lr <- no_dropout[!is.na(no_dropout$LD),]
+lr$LD_Centered <- lr$LD - mean(lr$LD)
+
+anova(bootResults2, bootResults3)
 
 
 
