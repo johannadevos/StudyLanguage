@@ -266,6 +266,18 @@ lr_hist("LV")
 
 ## Group differences in lexical richness?
 
+# Check assumptions for ANOVA
+leveneTest(no_dropout$LD, no_dropout$Group)
+
+# Conduct ANOVA
+ld_lm <- lm(LD ~ Group, data = no_dropout); summary(ld_lm)
+ls_lm <- lm(LS ~ Group, data = no_dropout); summary(ls_lm)
+lv_lm <- lm(LV ~ Group, data = no_dropout); summary(lv_lm)
+
+ld_aov <- aov(LD ~ Group, data = no_dropout, na.action = na.exclude); summary(ld_aov)
+ls_aov <- aov(LS ~ Group, data = no_dropout, na.action = na.exclude); summary(ls_aov)
+lv_aov <- aov(LV ~ Group, data = no_dropout, na.action = na.exclude); summary(lv_aov)
+
 
 ### MEAN GRADE
 
