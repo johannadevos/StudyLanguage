@@ -3,6 +3,7 @@ library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmis
 library(car); library(scales); library(MASS); library(pastecs); library(lme4); library(boot)
 library(arm) # To create the binned residual plot
 library(influence.ME) # To compute Cook's distance
+library(WRS) # Wilcox's functions for robust statistics
 
 # Clear workspace
 rm(list=ls())
@@ -236,8 +237,8 @@ by(no_dropout$Rank, no_dropout$Group, mean)
 wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "EC_Obtained")
 wilcox_wide_ECs$SubjectCode <- NULL
 
-# Load functions from Rand Wilcox
-source("Rallfun-v35.txt")
+# Load functions from Rand Wilcox (only if WRS library cannot be imported)
+#source("Rallfun-v35.txt")
 
 # Perform robust ANOVA with bootstrapping
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
