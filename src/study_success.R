@@ -242,7 +242,29 @@ wilcox_wide_ECs$SubjectCode <- NULL
 
 # Perform robust ANOVA with bootstrapping
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
-med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+#med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+# Further predictors: gender, LD, LS, LV
+
+##Robust ANCOVA
+
+## First, check whether the groups differ in LD, LS and LV
+
+# Function to draw histograms per group for the lexical richness variables
+lr_hist <- function(dep_var){
+  par(mfrow=c(2,2))
+  hist(no_dropout[[dep_var]][no_dropout$Group=="Dutch in Dutch track"], main = dep_var, xlab = "Dutch in Dutch track")
+  hist(no_dropout[[dep_var]][no_dropout$Group=="Dutch in English track"], main = dep_var, xlab = "Dutch in English track")
+  hist(no_dropout[[dep_var]][no_dropout$Group=="German in Dutch track"], main = dep_var, xlab = "German in Dutch track")
+  hist(no_dropout[[dep_var]][no_dropout$Group=="German in English track"], main = dep_var, xlab = "German in English track")
+}
+
+# Normally distributed?
+lr_hist("LD")
+lr_hist("LS")
+lr_hist("LV")
+
+## Group differences in lexical richness?
 
 
 ### MEAN GRADE
