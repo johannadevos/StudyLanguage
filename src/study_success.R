@@ -246,7 +246,7 @@ t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 
 # Further predictors: gender, LD, LS, LV
 
-##Robust ANCOVA
+## Robust ANCOVA
 
 ## First, check whether the groups differ in LD, LS and LV
 
@@ -264,7 +264,13 @@ lr_hist("LD")
 lr_hist("LS")
 lr_hist("LV")
 
-## Group differences in lexical richness?
+## Group differences in lexical richness? (assumption for ANCOVA)
+
+# Descriptives
+options(scipen=999) # No scientific notation (enable again by setting it to 0)
+tapply(no_dropout$LD, no_dropout$Group, stat.desc)
+tapply(no_dropout$LS, no_dropout$Group, stat.desc)
+tapply(no_dropout$LV, no_dropout$Group, stat.desc)
 
 # Check assumptions for ANOVA
 leveneTest(no_dropout$LD, no_dropout$Group)
