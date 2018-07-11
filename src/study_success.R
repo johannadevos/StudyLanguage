@@ -367,7 +367,7 @@ EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationa
 colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
 EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
 
-grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Mean_Grade")
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
 colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
 grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
 
@@ -415,7 +415,7 @@ anova(ec_null_lr, ec_lv)
 ## Mean grade
 
 # Investigate Group and Gender on the full dataset
-mean_null <- lmer(Mean_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(mean_null)
+mean_null <- lmer(Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(mean_null)
 mean_group <- update(mean_null, ~. + Group); summary(mean_group)
 mean_gender <- update(mean_group, ~. + Gender); summary(mean_gender)
 anova(mean_null, mean_group, mean_gender)
