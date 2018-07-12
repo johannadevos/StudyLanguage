@@ -250,6 +250,10 @@ wilcox_wide_ECs$SubjectCode <- NULL
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 #med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
+## Ordinary regression
+reg_group <- lm(EC_Obtained ~ Group, data = no_dropout)
+summary(reg_group)
+
 # Further predictors: gender, LD, LS, LV
 
 ## Robust ANCOVA
