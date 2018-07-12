@@ -1,6 +1,10 @@
 # Import libraries
-library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(scales); library(MASS); library(pastecs)
+library(ggplot2) # Plotting
+library(scales) # To use pretty breaks in ggplot
+library(reshape2) # Use dcast to reshape data from long to wide format
+library(Hmisc) # For rcorr function
+library(plyr); library(dplyr); library(gridExtra)
+library(car); library(MASS); library(pastecs)
 library(lme4) # Linear mixed-effects models
 library(boot) # For bootstrapping
 library(arm) # To create the binned residual plot
@@ -323,8 +327,29 @@ boot.ci(bootResults3, type = "bca", conf = 0.991, index = 2) # Confidence interv
 boot.ci(bootResults3, type = "bca", index = 3) # Confidence intervals for group: German in Dutch track
 boot.ci(bootResults3, type = "bca", index = 4) # Confidence intervals for group: German in English track
 
+## Lexical richness
+
+# Create dataframe
 lr <- no_dropout[!is.na(no_dropout$LD),]
 lr$LD_Centered <- lr$LD - mean(lr$LD)
+
+# Are the lexical richness measures normally distribued?
+hist(lr$LD) # Yes
+hist(lr$LS) # So-so (little bit of positive skew)
+hist(lr$LV) # Yes
+
+# Are the lexical richness measures correlated?
+rcorr(as.matrix(lr[,cbind("LD", "LS", "LV")]), type = "pearson")
+
+## Regression
+boot_lr <- boot(statistic = bootReg, formula = EC_Obtained ~ LV + LS + LD, data = lr, R = 2000)
+
+# Results
+boot_lr$t0 # Intercept and slope coefficients
+boot.ci(boot_lr, type = "bca", conf = 0.991, index = 1) # Confidence intervals for intercept
+boot.ci(boot_lr, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
+boot.ci(boot_lr, type = "bca", conf = 0.991, index = 3) # Confidence intervals for group: German in Dutch track
+boot.ci(boot_lr, type = "bca", conf = 0.991, index = 4) # Confidence intervals for group: German in English track
 
 
 ### MEAN GRADE
@@ -474,6 +499,9 @@ lr_long$LD <- subject_info$LD[match(lr_long$SubjectCode, subject_info$SubjectCod
 lr_long$LS <- subject_info$LS[match(lr_long$SubjectCode, subject_info$SubjectCode)]
 lr_long$LV <- subject_info$LV[match(lr_long$SubjectCode, subject_info$SubjectCode)]
 lr_long <- lr_long[!is.na(lr_long$LD),]
+
+
+
 
 
 ### Models
