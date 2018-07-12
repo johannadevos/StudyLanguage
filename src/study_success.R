@@ -1,6 +1,8 @@
 # Import libraries
 library(ggplot2); library(plyr); library(dplyr); library(reshape2); library(Hmisc); library(gridExtra)
-library(car); library(scales); library(MASS); library(pastecs); library(lme4); library(boot)
+library(car); library(scales); library(MASS); library(pastecs)
+library(lme4) # Linear mixed-effects models
+library(boot) # For bootstrapping
 library(arm) # To create the binned residual plot
 library(influence.ME) # To compute Cook's distance
 library(WRS) # Wilcox's functions for robust statistics
@@ -34,9 +36,9 @@ index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
 index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
 
 
-### -------------------------------------
-### Study success: Descriptive statistics
-### -------------------------------------
+### ----------------------
+### Descriptive statistics
+### ----------------------
 
 ### Functions
 
@@ -216,9 +218,9 @@ round(prop.table(drop2, 2)*100, 2) # Per group
 round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
 
-### ----------------------------------------------------------------------------------------
-### Study success: Inferential statistics per outcome variable (no-mixed effects models yet)
-### ----------------------------------------------------------------------------------------
+### -------------------------------------------------------------------------
+### Inferential statistics per outcome variable (no-mixed effects models yet)
+### -------------------------------------------------------------------------
 
 ### OBTAINED ECS
 
@@ -288,19 +290,30 @@ lv_aov <- aov(LV ~ Group, data = no_dropout, na.action = na.exclude); summary(lv
 
 ## Robust regression
 
+# Define function to do robust regression (taken from Andy Field)
 bootReg <- function (formula, data, i)
-  {d <- data [i,]
+  {d <- data [i,] # i refers to a particular bootstrap sample
   fit <- lm(formula, data = d)
   return(coef(fit))
 }
 
-bootResults <- boot(statistic = bootReg, formula = EC_Obtained ~ Group + Gender, data = no_dropout, R = 2000)
-bootResults$t0 # Intercept and slope coefficients
-boot.ci(bootResults, type = "bca", conf = 0.991, index = 1) # Confidence intervals for intercept
-boot.ci(bootResults, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
-boot.ci(bootResults, type = "bca", index = 3) # Confidence intervals for group: German in Dutch track
-boot.ci(bootResults, type = "bca", index = 4) # Confidence intervals for group: German in English track
-boot.ci(bootResults, type = "bca", conf = 0.991, index = 5) # Confidence intervals for group: German in English track
+# Run robust regression
+boot_group <- boot(statistic = bootReg, formula = EC_Obtained ~ Group, data = no_dropout, R = 10000)
+
+# Relevel
+no_dropout$Group <- factor(no_dropout$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
+no_dropout$Group <- factor(no_dropout$Group, levels = c("Dutch in English track", "Dutch in Dutch track", "German in Dutch track", "German in English track"))
+no_dropout$Group <- factor(no_dropout$Group, levels = c("German in Dutch track", "Dutch in Dutch track", "Dutch in English track", "German in English track"))
+
+# Results
+boot_group$t0 # Intercept and slope coefficients
+boot.ci(boot_group, type = "bca", conf = 0.991, index = 1) # Confidence intervals for intercept
+boot.ci(boot_group, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
+boot.ci(boot_group, type = "bca", conf = 0.991, index = 3) # Confidence intervals for group: German in Dutch track
+boot.ci(boot_group, type = "bca", conf = 0.991, index = 4) # Confidence intervals for group: German in English track
+
+# Other analyses (to be continued)
+boot_gender <- boot(statistic = bootReg, formula = EC_Obtained ~ Group + Gender, data = no_dropout, R = 2000)
 
 bootResults2 <- boot(statistic = bootReg, formula = EC_Obtained ~ Group, data = lr, R = 2000)
 bootResults3 <- boot(statistic = bootReg, formula = EC_Obtained ~ Group + LD_Centered, data = lr, R = 2000)
@@ -312,9 +325,6 @@ boot.ci(bootResults3, type = "bca", index = 4) # Confidence intervals for group:
 
 lr <- no_dropout[!is.na(no_dropout$LD),]
 lr$LD_Centered <- lr$LD - mean(lr$LD)
-
-anova(bootResults2, bootResults3)
-
 
 
 ### MEAN GRADE
