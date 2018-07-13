@@ -1,7 +1,8 @@
 ### Creating the data files for analysis
 
 # Libraries
-library(plyr); library(dplyr)
+library(plyr) # To use revalue for renaming factor levels
+library(dplyr) # To move selected columns to the end of the dataframe
 
 # Clear workspace
 rm(list=ls())
@@ -34,6 +35,11 @@ index1_ec <- which(colnames(subject_info)=="Course1_EC_Obtained")
 index13_ec <- which(colnames(subject_info)=="Course13_EC_Obtained")
 index1_weighted <- which(colnames(subject_info)=="Course1_Weighted")
 index13_weighted <- which(colnames(subject_info)=="Course13_Weighted")
+
+# Calculate pass/fail per course
+courses_passed <- (subject_info[, c(index1_ec:index13_ec)] > 0) * 1
+colnames(courses_passed) <- gsub('EC_Obtained', 'Passed', colnames(courses_passed), fixed=TRUE) # Change column names
+subject_info <- cbind(subject_info, courses_passed)
 
 # Calculate sum of obtained ECs
 subject_info$EC_Obtained <- rowSums(subject_info[,c(index1_ec:index13_ec)])
@@ -97,6 +103,7 @@ study_success <- study_success [, -grep("_apr", colnames(study_success))]
 
 # Move repeated study success measures to the end
 # This is done four times because the formerly established indices no longer apply
+study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
 study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
 study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
 study_success <- study_success%>%dplyr::select(-cbind(index1_grade:index13_grade),everything())
