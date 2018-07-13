@@ -28,6 +28,9 @@ subject_info$Exemption <- NULL
 subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
 subject_info$CoursesOutsideProgramme <- NULL
 
+# Are LCA measures available?
+subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
+
 # Data frame without drop-outs
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
@@ -481,26 +484,26 @@ anova(ls_model, lv_model, test = "Chisq")
 ### -----------------------------------
 
 # Transform to long data format
-EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
+EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
 colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
 EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
 
-grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
 colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
 grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
 
-weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted_Grade")
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted_Grade")
 colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
 weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
 
-passed_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_passed:index13_passed), value.name = "Passed")
+passed_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_passed:index13_passed), value.name = "Passed")
 colnames(passed_long)[colnames(passed_long)=="variable"] <- "Course"
 passed_long$Course <- as.factor(gsub("\\D", "", passed_long$Course))
 
 # Merge
-subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
-subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
-subject_long <- merge(subject_long, passed_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
+subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+subject_long <- merge(subject_long, passed_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
 
 # Remove dataframes
 rm(EC_long, grades_long, weighted_long, passed_long)
@@ -521,6 +524,7 @@ lr_long <- lr_long[!is.na(lr_long$LD),]
 # Investigate Group and Gender on the full dataset
 ec_null <- glmer(Passed ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, family = "binomial", control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=1e5))); summary(ec_null)
 ec_group <- update(ec_null, ~. + Group); summary(ec_group)
+ec_lca <- update(ec_group, ~. + LCA); summary(ec_lca)
 ec_gender <- update(ec_group, ~. + Gender); summary(ec_gender)
 anova(ec_null, ec_group, ec_gender)
 
