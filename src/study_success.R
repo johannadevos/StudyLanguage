@@ -503,7 +503,7 @@ subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender",
 subject_long <- merge(subject_long, passed_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
 
 # Remove dataframes
-rm(EC_long, grades_long, weighted_long)
+rm(EC_long, grades_long, weighted_long, passed_long)
 rm(list=ls(pattern="index"))
 
 # Also create a long dataframe with the lexical richness measures, using a subset of all data
@@ -517,6 +517,30 @@ lr_long <- lr_long[!is.na(lr_long$LD),]
 ### Models
 
 ## Obtained ECs
+
+# Investigate Group and Gender on the full dataset
+ec_null <- glmer(Passed ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, family = "binomial", control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=1e5))); summary(ec_null)
+ec_group <- update(ec_null, ~. + Group); summary(ec_group)
+ec_gender <- update(ec_group, ~. + Gender); summary(ec_gender)
+anova(ec_null, ec_group, ec_gender)
+
+## Do the students for whom LR measures are available differ from the other students?
+
+# Create binary variable
+
+
+
+# Also use lexical richness as predictor, on the subset of the data for which these measures are available
+ec_null_lr <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(ec_null_lr)
+ec_ld <- update(ec_null_lr, ~. + LD); summary(ec_ld)
+anova(ec_null_lr, ec_ld)
+
+ec_ls <- update(ec_null_lr, ~. + LS); summary(ec_ls)
+anova(ec_null_lr, ec_ls)
+
+ec_lv <- update(ec_null_lr, ~. + LV); summary(ec_lv)
+anova(ec_null_lr, ec_lv)
+
 
 # Investigate Group and Gender on the full dataset
 ec_null <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(ec_null)
