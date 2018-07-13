@@ -1,7 +1,7 @@
 # Import libraries
 library(ggplot2) # Plotting
 library(scales) # To use pretty breaks in ggplot
-library(reshape2) # Use dcast to reshape data from long to wide format
+library(reshape2) # Use dcast (long -> wide) and melt (wide -> long)
 library(Hmisc) # For rcorr function
 library(plyr); library(dplyr); library(gridExtra)
 library(car); library(MASS); library(pastecs)
@@ -40,6 +40,8 @@ index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
 index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
 index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
 index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
+index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
+index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
 
 
 ### ----------------------
@@ -491,9 +493,14 @@ weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "N
 colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
 weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
 
+passed_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group"), measure.vars = c(index1_passed:index13_passed), value.name = "Passed")
+colnames(passed_long)[colnames(passed_long)=="variable"] <- "Course"
+passed_long$Course <- as.factor(gsub("\\D", "", passed_long$Course))
+
 # Merge
 subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
 subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
+subject_long <- merge(subject_long, passed_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course"))
 
 # Remove dataframes
 rm(EC_long, grades_long, weighted_long)
