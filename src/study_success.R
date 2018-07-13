@@ -22,9 +22,11 @@ subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fil
 
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
+subject_info$Exemption <- NULL
 
 # Exclude students who took courses outside of the Psychology programme
 subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
+subject_info$CoursesOutsideProgramme <- NULL
 
 # Data frame without drop-outs
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
@@ -503,9 +505,6 @@ lr_long$LD <- subject_info$LD[match(lr_long$SubjectCode, subject_info$SubjectCod
 lr_long$LS <- subject_info$LS[match(lr_long$SubjectCode, subject_info$SubjectCode)]
 lr_long$LV <- subject_info$LV[match(lr_long$SubjectCode, subject_info$SubjectCode)]
 lr_long <- lr_long[!is.na(lr_long$LD),]
-
-
-
 
 
 ### Models
