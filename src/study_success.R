@@ -321,13 +321,14 @@ bootReg <- function (formula, data, i)
   return(coef(fit))
 }
 
+bootLogReg <- function (formula, data, i)
+{d <- data [i,] # i refers to a particular bootstrap sample
+fit <- glm(formula, data = d, family = "binomial")
+return(coef(fit))
+}
+
 # Run robust regression
 boot_group <- boot(statistic = bootReg, formula = EC_Obtained ~ Group, data = no_dropout, R = 10000)
-
-# Relevel
-no_dropout$Group <- factor(no_dropout$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
-no_dropout$Group <- factor(no_dropout$Group, levels = c("Dutch in English track", "Dutch in Dutch track", "German in Dutch track", "German in English track"))
-no_dropout$Group <- factor(no_dropout$Group, levels = c("German in Dutch track", "Dutch in Dutch track", "Dutch in English track", "German in English track"))
 
 # Results
 boot_group$t0 # Intercept and slope coefficients
@@ -337,15 +338,24 @@ boot.ci(boot_group, type = "bca", conf = 0.95, index = 3) # Confidence intervals
 boot.ci(boot_group, type = "bca", conf = 0.95, index = 4) # Confidence intervals for group: German in English track
 
 # Adding the LCA measures
-boot_lca <- update(boot_group, formula = . ~ . + LD + LS + LV)
+boot_lca <- update(boot_group, formula = . ~ . + LD_Centered + LS_Centered + LV_Centered)
 boot_lca <- boot(statistic = bootReg, formula = EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+boot_lca <- boot(statistic = bootReg, formula = Mean_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+boot_lca <- boot(statistic = bootReg, formula = Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 boot_lca$t0
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 1) # Confidence intervals for group: Dutch in English track
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 2) # Confidence intervals for group: Dutch in English track
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 3) # Confidence intervals for group: Dutch in English track
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 4) # Confidence intervals for group: Dutch in English track
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 1) # Confidence intervals for intercept
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 2) # Confidence intervals for LD
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 3) # Confidence intervals for LS
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 4) # Confidence intervals for LV
 
+boot_log_lca <- boot(statistic = bootLogReg, formula = DropOutBinary ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+
+boot_log_lca$t0
+boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 1) # Confidence intervals for intercept
+boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 2) # Confidence intervals for LD
+boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 3) # Confidence intervals for LS
+boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 4) # Confidence intervals for LV
 
 
 # Other analyses (to be continued)
