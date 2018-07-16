@@ -326,10 +326,22 @@ no_dropout$Group <- factor(no_dropout$Group, levels = c("German in Dutch track",
 
 # Results
 boot_group$t0 # Intercept and slope coefficients
-boot.ci(boot_group, type = "bca", conf = 0.991, index = 1) # Confidence intervals for intercept
-boot.ci(boot_group, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
-boot.ci(boot_group, type = "bca", conf = 0.991, index = 3) # Confidence intervals for group: German in Dutch track
-boot.ci(boot_group, type = "bca", conf = 0.991, index = 4) # Confidence intervals for group: German in English track
+boot.ci(boot_group, type = "bca", conf = 0.95, index = 1) # Confidence intervals for intercept
+boot.ci(boot_group, type = "bca", conf = 0.95, index = 2) # Confidence intervals for group: Dutch in English track
+boot.ci(boot_group, type = "bca", conf = 0.95, index = 3) # Confidence intervals for group: German in Dutch track
+boot.ci(boot_group, type = "bca", conf = 0.95, index = 4) # Confidence intervals for group: German in English track
+
+# Adding the LCA measures
+boot_lca <- update(boot_group, formula = . ~ . + LD + LS + LV)
+boot_lca <- boot(statistic = bootReg, formula = EC_Obtained ~ LD + LS + LV, data = lca, R = 10000)
+
+boot_lca$t0
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 1) # Confidence intervals for group: Dutch in English track
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 2) # Confidence intervals for group: Dutch in English track
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 3) # Confidence intervals for group: Dutch in English track
+boot.ci(boot_lca, type = "bca", conf = 0.95, index = 4) # Confidence intervals for group: Dutch in English track
+
+
 
 # Other analyses (to be continued)
 boot_gender <- boot(statistic = bootReg, formula = EC_Obtained ~ Group + Gender, data = no_dropout, R = 2000)
