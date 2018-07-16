@@ -18,7 +18,7 @@ rm(list=ls())
 # Set working directory to the current file location
 # Can be done through 'Session' tab in RStudio 
 
-# Read in data (choose between the next two files)
+# Read in data
 subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
 # Exclude students who received exemptions for one or more courses
@@ -344,18 +344,18 @@ boot_lca <- boot(statistic = bootReg, formula = Mean_Grade ~ LD_Centered + LS_Ce
 boot_lca <- boot(statistic = bootReg, formula = Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 boot_lca$t0
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 1) # Confidence intervals for intercept
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 2) # Confidence intervals for LD
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 3) # Confidence intervals for LS
-boot.ci(boot_lca, type = "bca", conf = 0.95, index = 4) # Confidence intervals for LV
+boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 1) # Confidence intervals for intercept
+boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 2) # Confidence intervals for LD
+boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 3) # Confidence intervals for LS
+boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 4) # Confidence intervals for LV
 
 boot_log_lca <- boot(statistic = bootLogReg, formula = DropOutBinary ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 boot_log_lca$t0
-boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 1) # Confidence intervals for intercept
-boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 2) # Confidence intervals for LD
-boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 3) # Confidence intervals for LS
-boot.ci(boot_log_lca, type = "bca", conf = 0.95, index = 4) # Confidence intervals for LV
+boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 1) # Confidence intervals for intercept
+boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 2) # Confidence intervals for LD
+boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 3) # Confidence intervals for LS
+boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 4) # Confidence intervals for LV
 
 
 # Other analyses (to be continued)
@@ -371,14 +371,10 @@ boot.ci(bootResults3, type = "bca", index = 4) # Confidence intervals for group:
 
 ## Lexical richness
 
-# Create dataframe
-lr <- no_dropout[!is.na(no_dropout$LD),]
-lr$LD_Centered <- lr$LD - mean(lr$LD)
-
 # Are the lexical richness measures normally distribued?
-hist(lr$LD) # Yes
-hist(lr$LS) # So-so (little bit of positive skew)
-hist(lr$LV) # Yes
+hist(lca$LD) # Yes
+hist(lca$LS) # So-so (little bit of positive skew)
+hist(lca$LV) # Yes
 
 # Are the lexical richness measures correlated?
 rcorr(as.matrix(lr[,cbind("LD", "LS", "LV")]), type = "pearson")
