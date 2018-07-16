@@ -38,6 +38,11 @@ subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
 # Dataset with just LCA
 lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
 
+# Center the LCA measures
+lca$LD_Centered <- lca$LD - mean(lca$LD)
+lca$LS_Centered <- lca$LS - mean(lca$LS)
+lca$LV_Centered <- lca$LV - mean(lca$LV)
+
 # Indices
 index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
 index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
@@ -333,7 +338,7 @@ boot.ci(boot_group, type = "bca", conf = 0.95, index = 4) # Confidence intervals
 
 # Adding the LCA measures
 boot_lca <- update(boot_group, formula = . ~ . + LD + LS + LV)
-boot_lca <- boot(statistic = bootReg, formula = EC_Obtained ~ LD + LS + LV, data = lca, R = 10000)
+boot_lca <- boot(statistic = bootReg, formula = EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 boot_lca$t0
 boot.ci(boot_lca, type = "bca", conf = 0.95, index = 1) # Confidence intervals for group: Dutch in English track
