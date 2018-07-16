@@ -465,6 +465,23 @@ chisq.test(drop2)
 dropout_model <- glm(DropOutBinary ~ Group, family = binomial (link = "logit"), data = subject_info)
 summary(dropout_model)
 
+# Contrasts
+
+dd_vs_de <- c(0,1,0,0)
+dd_vs_gd <- c(0,0,1,0)
+dd_vs_ge <- c(0,0,0,1)
+
+contrasts(subject_info$Group) <- cbind (dd_vs_de, dd_vs_gd, dd_vs_ge)
+contrasts(subject_info$Group)
+
+dd_vs_de <- c(0,1,0,0)
+dd_vs_g <- c(0,0,0.5,0.5)
+gd_vs_ge <- c(0,0,-1,1)
+
+contrasts(subject_info$Group) <- cbind (dd_vs_de, dd_vs_g, gd_vs_ge)
+contrasts(subject_info$Group)
+
+# Gender as predictor
 dropout_model2 <- glm(DropOutBinary ~ Group + Gender, family = binomial (link = "logit"), data = subject_info)
 summary(dropout_model2)
 
