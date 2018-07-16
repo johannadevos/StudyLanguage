@@ -5,7 +5,7 @@
 subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
 
-## Research question 1: high school grades
+## Study success - Research question 1: high school grades
 
 # New dataframe with just the school grades
 school <- subject_info[c("SchoolMean", "SchoolEnglish")]
@@ -36,7 +36,7 @@ subject_info$CoursesOutsideProgramme <- NULL
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
 
-## Research question 2 and 3: relationship group / lexical richness and study success
+## Study success - Research question 2 and 3: relationship group / lexical richness and study success
 
 # New dataframe with the dependent variables
 success <- no_dropout[c("EC_Obtained", "Mean_Grade", "Weighted_Grade", "DropOutBinary")]
@@ -49,3 +49,25 @@ cor_success <- cor(success, method = "spearman"); cor_success
 
 # Write correlation matrix to file
 write.table(cor_success, "../results/corr_matrices/success.txt", col.names = FALSE, row.names=FALSE)
+
+
+## Lexical richness
+
+# Read in data
+subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+
+# New dataframe with the dependent variables
+lca <- subject_info[c("LD", "LV", "LS")]
+lca <- na.omit(lca)
+
+# Histograms to gauge normality
+hist(lca$LD) # Normal
+hist(lca$LS) # So-so
+hist(lca$LV) # Quite normal
+
+# Correlation matrix
+cor_lca <- cor(lca, method = "pearson"); cor_lca
+rcorr(as.matrix(lca)) # To also obtain p-values
+
+# Write correlation matrix to file
+write.table(cor_lca, "../results/corr_matrices/lca.txt", col.names = FALSE, row.names=FALSE)
