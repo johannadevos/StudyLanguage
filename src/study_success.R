@@ -43,6 +43,9 @@ lca$LD_Centered <- lca$LD - mean(lca$LD)
 lca$LS_Centered <- lca$LS - mean(lca$LS)
 lca$LV_Centered <- lca$LV - mean(lca$LV)
 
+# Alpha according to Nyholt (2004)
+alpha = 0.0193034401172986
+
 # Indices
 index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
 index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
@@ -55,6 +58,7 @@ index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
 index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
 index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
 
+  
 
 ### ----------------------
 ### Descriptive statistics
@@ -481,12 +485,21 @@ dd_vs_ge <- c(0,0,0,1)
 contrasts(subject_info$Group) <- cbind (dd_vs_de, dd_vs_gd, dd_vs_ge)
 contrasts(subject_info$Group)
 
-# Own contrasts
+# Own contrasts: first Dutch versus German nationality, then Dutch versus English track
 d_vs_g <- c(-1,-1,1,1)
 dd_vs_de <- c(-1,1,0,0)
 gd_vs_ge <- c(0,0,-1,1)
 
 contrasts(subject_info$Group) <- cbind (d_vs_g, dd_vs_de, gd_vs_ge)
+contrasts(subject_info$Group)
+
+# Own contrasts: first L1 vs L2, then Dutch versus German (within the English track)
+# The last contrast is German in Dutch versus Dutch in English and German in English (needed to arrive at three contrasts)
+dd_vs_rest <- c(-1,0.33,0.33,0.33)
+de_vs_ge <- c(0,-1,0,1)
+gd_vs_english <- c(0,0.5,-1,0.5)
+
+contrasts(subject_info$Group) <- cbind (dd_vs_rest, de_vs_ge,gd_vs_english)
 contrasts(subject_info$Group)
 
 ## Gender as predictor
