@@ -3,13 +3,14 @@ library(ggplot2) # Plotting
 library(scales) # To use pretty breaks in ggplot
 library(reshape2) # Use dcast (long -> wide) and melt (wide -> long)
 library(Hmisc) # For rcorr function
-library(plyr); library(dplyr); library(gridExtra)
-library(car); library(MASS); library(pastecs)
+library(car) # Levene's test
+library(pastecs) # stat.desc function
 library(lme4) # Linear mixed-effects models
 library(boot) # For bootstrapping
 library(arm) # To create the binned residual plot
 library(influence.ME) # To compute Cook's distance
 library(WRS) # Wilcox's functions for robust statistics
+library(plyr); library(dplyr); library(gridExtra); library(MASS)
 
 # Clear workspace
 rm(list=ls())
@@ -28,11 +29,14 @@ subject_info$Exemption <- NULL
 subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
 subject_info$CoursesOutsideProgramme <- NULL
 
+# Data frame without drop-outs
+no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
+
 # Are LCA measures available?
 subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
 
-# Data frame without drop-outs
-no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
+# Dataset with just LCA
+lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
 
 # Indices
 index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
