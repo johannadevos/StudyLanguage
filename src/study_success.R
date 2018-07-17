@@ -485,6 +485,10 @@ dd_vs_ge <- c(0,0,0,1)
 contrasts(subject_info$Group) <- cbind (dd_vs_de, dd_vs_gd, dd_vs_ge)
 contrasts(subject_info$Group)
 
+# Relevel
+subject_info$Group <- factor(subject_info$Group, levels = c("Dutch in Dutch track", "Dutch in English track", "German in Dutch track", "German in English track"))
+subject_info$Group <- factor(subject_info$Group, levels = c("German in English track", "Dutch in Dutch track", "Dutch in English track", "German in Dutch track"))
+
 # Own contrasts: first Dutch versus German nationality, then Dutch versus English track
 d_vs_g <- c(-1,-1,1,1)
 dd_vs_de <- c(-1,1,0,0)
@@ -499,7 +503,7 @@ dd_vs_rest <- c(-1,0.33,0.33,0.33)
 de_vs_ge <- c(0,-1,0,1)
 gd_vs_english <- c(0,0.5,-1,0.5)
 
-contrasts(subject_info$Group) <- cbind (dd_vs_rest, de_vs_ge,gd_vs_english)
+contrasts(subject_info$Group) <- cbind (dd_vs_rest, gd_vs_english, de_vs_ge)
 contrasts(subject_info$Group)
 
 ## Gender as predictor
