@@ -234,7 +234,6 @@ grid.arrange(ls2_oct, ls2_feb, ls2_apr, nrow=1, ncol=3)
 ### --------------------------------------------------------
 
 ### Lexical density
-# (These same values can also be obtained by relevelling the model)
 
 # Model comparisons
 exam_LD <- lmer(LD ~ 1 + Exam + (1|SubjectCode), data = lca_long, REML = FALSE); summary(exam_LD)
