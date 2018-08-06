@@ -44,7 +44,6 @@ lca$LS_Centered <- lca$LS - mean(lca$LS)
 lca$LV_Centered <- lca$LV - mean(lca$LV)
 
 # Alpha according to Li & Ji (2005); cited in Nyholt (2004)
-alpha_school = .0253
 alpha_success = 0.0170
 
 # Indices
@@ -737,8 +736,14 @@ rcorr(as.matrix(lex_rich_measures), type = "spearman")
 ### Do the 'better' Dutch students choose the English track?
 ### --------------------------------------------------------
 
+# Reload data, so that no subjects are excluded for this analysis
+subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+
 # Select Dutch students only
 dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
+
+# Alpha according to Li & Ji (2005); cited in Nyholt (2004)
+alpha_school = .0253
 
 # Descriptives per track
 tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
