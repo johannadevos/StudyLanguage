@@ -749,7 +749,7 @@ alpha_school = .0253
 tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
 tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, conf.level = (1-alpha_school)) # To obtain CI
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
 
 # Plot distribution of grades
 hist(dutch_data$SchoolMean[dutch_data$Track == "English"], breaks=12)
