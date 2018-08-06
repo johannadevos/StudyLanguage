@@ -43,8 +43,9 @@ lca$LD_Centered <- lca$LD - mean(lca$LD)
 lca$LS_Centered <- lca$LS - mean(lca$LS)
 lca$LV_Centered <- lca$LV - mean(lca$LV)
 
-# Alpha according to Nyholt (2004)
-alpha = 0.0193034401172986
+# Alpha according to Li & Ji (2005); cited in Nyholt (2004)
+alpha_school = .0253
+alpha_success = 0.0170
 
 # Indices
 index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
@@ -741,9 +742,9 @@ dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
 
 # Descriptives per track
 tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
-tapply(dutch_data$SchoolMean, dutch_data$Track, t.test) # To obtain 95% CI
+tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test) # To obtain 95% CI
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, conf.level = (1-alpha_school)) # To obtain CI
 
 # Plot distribution of grades
 hist(dutch_data$SchoolMean[dutch_data$Track == "English"], breaks=12)
