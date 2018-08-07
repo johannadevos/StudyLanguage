@@ -1,13 +1,13 @@
 # Import libraries
 library(boot) # Function 'boot' for bootstrapping
 library(emmeans) # Estimated marginal means for multiple comparisons
+library(plyr) # Function 'revalue' to rename variable levels
 library(dplyr) # Function 'select'
 library(ggplot2) # Function 'ggplot' for data visualisation
 library(gridExtra) # Function 'grid.arrange' to order graphs
 library(influence.ME) # Function 'cooks.distanc.estex' to check fit and assumptions of linear models
 library(lme4) # Function 'lmer' for linear mixed-effects modelling
 library(pastecs) # Function 'stat.desc' for descriptive statistics
-library(plyr) # Function 'revalue' to rename variable levels
 library(reshape2) # Functions 'dcast' (long -> wide) and 'melt' (wide -> long)
 library(scales) # Function 'pretty_breaks' to use within ggplot
 
