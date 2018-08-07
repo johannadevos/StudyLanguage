@@ -94,8 +94,8 @@ bootstrap <- function(data, func, iter){
   print("The bootstrapped standard deviation of the statistic is:")
   sd <- se * sqrt(length(data))
   print(sd)
-  ci <- boot.ci(boot_sample, type = "bca")
-  print("The BCa 95% confidence intervals of the statistic are:")
+  ci <- boot.ci(boot_sample, type = "bca", conf = 1-alpha_success)
+  print("The BCa confidence intervals of the statistic are:")
   print(ci$bca[,4]); print(ci$bca[,5])
 }
 
