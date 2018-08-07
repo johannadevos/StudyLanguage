@@ -137,7 +137,7 @@ dplyr::select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
 ## Visualisation
 
 # Lexical density
-ld <- ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ld <- ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, shape = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -148,7 +148,7 @@ ld <- ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationa
          colour=guide_legend(keywidth = 2, keyheight = 1)); ld
 
 # Lexical sophistication
-ls <- ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+ls <- ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, shape = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
@@ -159,7 +159,7 @@ ls <- ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationa
          colour=guide_legend(keywidth = 2, keyheight = 1)); ls
 
 # Lexical variation
-lv <- ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, group = interaction(Track, Nationality))) +
+lv <- ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, shape = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
