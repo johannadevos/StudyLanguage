@@ -77,6 +77,11 @@ wilcox.test(dutch_data$SchoolEnglish[dutch_data$Track=="English"], dutch_data$Sc
 t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
 
 
+### --------------------------------------------------------------------------------------
+### Question 5: Is there a relation between nationality, study language and study success?
+### --------------------------------------------------------------------------------------
+
+### Preprocessing
 
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
@@ -88,17 +93,6 @@ subject_info$CoursesOutsideProgramme <- NULL
 
 # Data frame without drop-outs
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
-
-# Are LCA measures available?
-subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
-
-# Dataset with just LCA
-lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
-
-# Center the LCA measures
-lca$LD_Centered <- lca$LD - mean(lca$LD)
-lca$LS_Centered <- lca$LS - mean(lca$LS)
-lca$LV_Centered <- lca$LV - mean(lca$LV)
 
 # Alpha according to Li & Ji (2005); cited in Nyholt (2004)
 alpha_success = 0.0170
@@ -115,53 +109,24 @@ index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
 index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
 index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
 
-  
 
-### ----------------------
-### Descriptive statistics
-### ----------------------
+### Total number of obtained ECs
 
-### Functions
-
-# Function to calculate standard error of the median
-se_median <- function(dep_var){
-  sd <- sd(dep_var)
-  n <- length(dep_var)
-  se <- 1.253 * sd / sqrt(n)
-  return(se)
-}
-
-# Function to calculate standard error of the median absolute deviation
-se_mad <- function(dep_var){
-  sd <- sd(dep_var)
-  n <- length(dep_var)
-  se <- 1.67 * sd / sqrt(2*n)
-  return(se)
-}
-
-
-### ECs
+## Descriptive statistics 
 
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
-bootstrap(no_dropout$EC_Obtained, func=mean, iter=10000)
+tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_success) # Per group
+bootstrap(no_dropout$EC_Obtained, func=mean, iter=10000, alpha = alpha_success) # Overall
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
-bootstrap(no_dropout$EC_Obtained, func=median, iter=10000)
+tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_success) # Per group
+bootstrap(no_dropout$EC_Obtained, func=median, iter=10000, alpha = alpha_success) # Overall
 
-# Other descriptives
-tapply(no_dropout$EC_Obtained, no_dropout$Group, stat.desc) # Summary
-tapply(no_dropout$EC_Obtained, no_dropout$Group, se_median) # SE of median
-tapply(no_dropout$EC_Obtained, no_dropout$Group, mad) # Median Absolute Deviation
-tapply(no_dropout$EC_Obtained, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+# Summary statistics
+tapply(no_dropout$EC_Obtained, no_dropout$Group, stat.desc) # Per group
+stat.desc(no_dropout$EC_Obtained) # Overall
 
-stat.desc(no_dropout$EC_Obtained)
-se_median(no_dropout$EC_Obtained)
-mad(no_dropout$EC_Obtained)
-se_mad(no_dropout$EC_Obtained)
-
-# Histogram of total number of ECs obtained
+# Histograms
 ECs_hist <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
   geom_histogram(col = "white", binwidth = 5) +
   facet_grid(~Group) +
@@ -180,29 +145,26 @@ ECs_hist_perc <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist_perc
 
+## Inferential statistics
+
 
 ### Mean grade
 
+## Descriptive statistics 
+
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
-bootstrap(no_dropout$Mean_Grade, func=mean, iter=10000)
+tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_success) # Per group
+bootstrap(no_dropout$Mean_Grade, func=mean, iter=10000, alpha = alpha_success) # Overall
 
 # Median with bootstrapped precision estimates
 tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
-bootstrap(no_dropout$Mean_Grade, func=median, iter=10000)
+bootstrap(no_dropout$Mean_Grade, func=median, iter=10000, alpha = alpha_success) # Overall
 
-# Other descriptives
-tapply(no_dropout$Mean_Grade, no_dropout$Group, stat.desc) # Summary
-tapply(no_dropout$Mean_Grade, no_dropout$Group, se_median) # SE of median
-tapply(no_dropout$Mean_Grade, no_dropout$Group, mad) # Median Absolute Deviation
-tapply(no_dropout$Mean_Grade, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
-
+# Summary statistics
+tapply(no_dropout$Mean_Grade, no_dropout$Group, stat.desc)
 stat.desc(no_dropout$Mean_Grade)
-se_median(no_dropout$Mean_Grade)
-mad(no_dropout$Mean_Grade)
-se_mad(no_dropout$Mean_Grade)
 
-# Histogram of mean grades
+# Histograms
 mean_hist <- ggplot(data = no_dropout, aes(Mean_Grade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 0.5) +
   facet_grid(~Group) +
@@ -219,29 +181,26 @@ mean_hist_perc <- ggplot(data = no_dropout, aes(Mean_Grade, fill = Group)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=6)); mean_hist_perc
 
+## Inferential statistics
+
 
 ### Weighted grade
 
+## Descriptive statistics 
+
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000) # Per group
-bootstrap(no_dropout$Weighted_Grade, func=mean, iter=10000)
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_success) # Per group
+bootstrap(no_dropout$Weighted_Grade, func=mean, iter=10000, alpha = alpha_success) # Overall
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
-bootstrap(no_dropout$Weighted_Grade, func=median, iter=10000)
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_success) # Per group
+bootstrap(no_dropout$Weighted_Grade, func=median, iter=10000, alpha = alpha_success) # Overall
 
-# Other descriptives
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, stat.desc) # Summary
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, se_median) # SE of median
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, mad) # Median Absolute Deviation
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, se_mad) # SE of Median Absolute Deviation
+# Summary statistics
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, stat.desc) # Per group
+stat.desc(no_dropout$Weighted_Grade) # Overall
 
-stat.desc(no_dropout$Weighted_Grade)
-se_median(no_dropout$Weighted_Grade)
-mad(no_dropout$Weighted_Grade)
-se_mad(no_dropout$Weighted_Grade)
-
-# Histogram of weighted grades
+# Histograms
 weighted_hist <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group)) +
   geom_histogram(col = "white", binwidth = 50) +
   facet_grid(~Group) +
@@ -258,6 +217,26 @@ weighted_hist_perc <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist_perc
 
+## Inferential statistics
+
+
+### Drop-out
+
+## Descriptive statistics 
+
+# Three categories (during year 1, after year 1, no)
+drop3 <- table(subject_info$DropOut, subject_info$Group); drop3
+round(prop.table(drop3, 2)*100, 2) # Per group
+round(prop.table(table(subject_info$DropOut))*100,2) # Overall
+
+# Two categories (yes, no)
+drop2 <- table(subject_info$DropOutBinary, subject_info$Group); drop2
+round(prop.table(drop2, 2)*100, 2) # Per group
+round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
+
+## Inferential statistics
+
+
 
 ### Passing the BSA
 
@@ -268,19 +247,6 @@ prop.table(bsa_all, 2)
 # No drop-outs
 bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
 prop.table(bsa_no_dropout, 2)
-
-
-### Drop-out
-
-# Three categories (during year 1, after year 1, no)
-drop <- table(subject_info$DropOut, subject_info$Group); drop
-round(prop.table(drop, 2)*100, 2) # Per group
-round(prop.table(table(subject_info$DropOut))*100,2) # Overall
-
-# Two categories (yes, no)
-drop2 <- table(subject_info$DropOutBinary, subject_info$Group); drop2
-round(prop.table(drop2, 2)*100, 2) # Per group
-round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
 
 ### -------------------------------------------------------------------------
@@ -551,7 +517,21 @@ contrasts(subject_info$Group)
 dropout_model2 <- glm(DropOutBinary ~ Group + Gender, family = binomial (link = "logit"), data = subject_info)
 summary(dropout_model2)
 
-## Lexical richness as predictor
+
+### ----------------------------------------------------------------------------------------------
+### Question 6: Does students' lexical richness in the study language predict their study success?
+### ----------------------------------------------------------------------------------------------
+
+# Are LCA measures available?
+subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
+
+# Dataset with just LCA
+lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
+
+# Center the LCA measures
+lca$LD_Centered <- lca$LD - mean(lca$LD)
+lca$LS_Centered <- lca$LS - mean(lca$LS)
+lca$LV_Centered <- lca$LV - mean(lca$LV)
 
 # Merge subject info and LCA data
 lex <- merge(lca_data, subject_info, all.x = TRUE) # Get lca_data from lexical_richness script
