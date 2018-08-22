@@ -65,17 +65,16 @@ tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_sc
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
 
-# Bootstrapped descriptives per track
+# Bootstrapped descriptives per dependent variable and track
 tapply(dutch_data$SchoolMean, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_school) # SchoolMean
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_school) # SchoolEnglish
 
-# Use non-parametric testing
+# Use a non-parametric test to compare means
 wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
 wilcox.test(dutch_data$SchoolEnglish[dutch_data$Track=="English"], dutch_data$SchoolEnglish[dutch_data$Track=="Dutch"])
 
 # Since the p-value for SchoolMean is so close to significance (.07), also do a t-test for further exploration
 t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
-
 
 
 
