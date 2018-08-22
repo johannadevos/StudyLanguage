@@ -110,7 +110,7 @@ index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
 index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
 
 
-### Total number of obtained ECs
+### TOTAL NUMBER OF OBTAINED ECs
 
 ## Descriptive statistics 
 
@@ -147,8 +147,30 @@ ECs_hist_perc <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
 
 ## Inferential statistics
 
+# Checking assumptions
+ECs_hist # Data are not normally distributed
+tapply(no_dropout$EC_Obtained, no_dropout$Group, shapiro.test)
 
-### Mean grade
+# Kruskal-Wallis test
+kruskal.test(EC_Obtained ~ Group, data = no_dropout)
+no_dropout$Rank <- rank(no_dropout$EC_Obtained)
+by(no_dropout$Rank, no_dropout$Group, mean)
+
+# Robust ANOVA
+
+# Transform data to wide format
+wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "EC_Obtained")
+wilcox_wide_ECs$SubjectCode <- NULL
+
+# Load functions from Rand Wilcox (only if you have problems importing the WRS library)
+#source("Rallfun-v35.txt")
+
+# Perform robust ANOVA with bootstrapping
+t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
+#med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+
+### MEAN GRADE
 
 ## Descriptive statistics 
 
@@ -183,8 +205,42 @@ mean_hist_perc <- ggplot(data = no_dropout, aes(Mean_Grade, fill = Group)) +
 
 ## Inferential statistics
 
+# Checking assumptions
+mean_hist # Data seem normally distributed
+tapply(no_dropout$Mean_Grade, no_dropout$Group, shapiro.test) # Significant
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "Dutch in Dutch track"])
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "Dutch in English track"])
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "German in Dutch track"])
+qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "German in English track"])
 
-### Weighted grade
+# Levene's test of homogeneity of variance
+leveneTest(no_dropout$Mean_Grade, no_dropout$Group) # Not significant
+
+# Regular ANOVA
+lm_mean <- lm(Mean_Grade ~ Group, data = no_dropout)
+summary(lm_mean)
+
+aov_mean <- aov(Mean_Grade ~ Group, data = no_dropout)
+summary(aov_mean)
+plot(aov_mean)
+
+# Kruskal-Wallis test
+kruskal.test(Mean_Grade ~ Group, data = no_dropout)
+no_dropout$RankMean_Grade <- rank(no_dropout$Mean_Grade)
+by(no_dropout$RankMean_Grade, no_dropout$Group, mean)
+
+# Robust ANOVA
+
+# Transform data to wide format
+wilcox_wide_mean <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Mean_Grade")
+wilcox_wide_mean$SubjectCode <- NULL
+
+# Perform robust ANOVA
+t1waybt(wilcox_wide_mean, tr = 0, nboot = 10000)
+#med1way(wilcox_wide_mean) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+
+### WEIGHTED GRADE
 
 ## Descriptive statistics 
 
@@ -218,6 +274,26 @@ weighted_hist_perc <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist_perc
 
 ## Inferential statistics
+
+# Checking assumptions
+weighted_hist # Data seem skewed
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, shapiro.test) # Data are non-normally distributed
+
+# Levene's test of homogeneity of variance
+leveneTest(no_dropout$Weighted_Grade, no_dropout$Group) # Not significant
+
+# Kruskal-Wallis test
+kruskal.test(Weighted_Grade ~ Group, data = no_dropout)
+no_dropout$RankWeighted_Grade <- rank(no_dropout$Weighted_Grade)
+by(no_dropout$Weighted_Grade, no_dropout$Group, mean)
+
+# Transform data to wide format
+wilcox_wide_weighted <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Weighted_Grade")
+wilcox_wide_weighted$SubjectCode <- NULL
+
+# Perform robust ANOVA
+t1waybt(wilcox_wide_weighted, tr = 0, nboot = 10000)
+#med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
 
 ### Drop-out
@@ -254,28 +330,6 @@ prop.table(bsa_no_dropout, 2)
 ### -------------------------------------------------------------------------
 
 ### OBTAINED ECS
-
-## Checking assumptions
-ECs_hist # Data are not normally distributed
-tapply(no_dropout$EC_Obtained, no_dropout$Group, shapiro.test)
-
-# Kruskal-Wallis test
-kruskal.test(EC_Obtained ~ Group, data = no_dropout)
-no_dropout$Rank <- rank(no_dropout$EC_Obtained)
-by(no_dropout$Rank, no_dropout$Group, mean)
-
-## Robust ANOVA
-
-# Transform data to wide format
-wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "EC_Obtained")
-wilcox_wide_ECs$SubjectCode <- NULL
-
-# Load functions from Rand Wilcox (only if WRS library cannot be imported)
-#source("Rallfun-v35.txt")
-
-# Perform robust ANOVA with bootstrapping
-t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
-#med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
 ## Ordinary regression
 reg_group <- lm(EC_Obtained ~ Group, data = no_dropout)
@@ -401,64 +455,8 @@ boot.ci(boot_lr, type = "bca", conf = 0.991, index = 3) # Confidence intervals f
 boot.ci(boot_lr, type = "bca", conf = 0.991, index = 4) # Confidence intervals for group: German in English track
 
 
-### MEAN GRADE
-
-## Checking assumptions
-mean_hist # Data seem normally distributed
-tapply(no_dropout$Mean_Grade, no_dropout$Group, shapiro.test) # Significant
-qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "Dutch in Dutch track"])
-qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "Dutch in English track"])
-qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "German in Dutch track"])
-qplot(sample = no_dropout$Mean_Grade[no_dropout$Group == "German in English track"])
-
-# Levene's test of homogeneity of variance
-leveneTest(no_dropout$Mean_Grade, no_dropout$Group) # Not significant
-
-# Is EC_Obtained different between the groups?
-lm_mean <- lm(Mean_Grade ~ Group, data = no_dropout)
-summary(lm_mean)
-
-aov_mean <- aov(Mean_Grade ~ Group, data = no_dropout)
-summary(aov_mean)
-plot(aov_mean)
-
-# Kruskal-Wallis test
-kruskal.test(Mean_Grade ~ Group, data = no_dropout)
-no_dropout$RankMean_Grade <- rank(no_dropout$Mean_Grade)
-by(no_dropout$RankMean_Grade, no_dropout$Group, mean)
-
-## Robust ANOVA
-
-# Transform data to wide format
-wilcox_wide_mean <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Mean_Grade")
-wilcox_wide_mean$SubjectCode <- NULL
-
-# Perform robust ANOVA
-t1waybt(wilcox_wide_mean, tr = 0, nboot = 10000)
-med1way(wilcox_wide_mean) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
-
-
 ### WEIGHTED GRADE
 
-## Checking assumptions
-weighted_hist # Data seem skewed
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, shapiro.test) # Data are non-normally distributed
-
-# Levene's test of homogeneity of variance
-leveneTest(no_dropout$Weighted_Grade, no_dropout$Group) # Not significant
-
-# Kruskal-Wallis test
-kruskal.test(Weighted_Grade ~ Group, data = no_dropout)
-no_dropout$RankWeighted_Grade <- rank(no_dropout$Weighted_Grade)
-by(no_dropout$Weighted_Grade, no_dropout$Group, mean)
-
-# Transform data to wide format
-wilcox_wide_weighted <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Weighted_Grade")
-wilcox_wide_weighted$SubjectCode <- NULL
-
-# Perform robust ANOVA
-t1waybt(wilcox_wide_weighted, tr = 0, nboot = 10000)
-med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
 
 ### PASSING THE BSA
