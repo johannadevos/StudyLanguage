@@ -21,6 +21,22 @@ rm(list=ls())
 # Read in data
 subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
+# Function to bootstrap the precision of test statistics
+bootstrap <- function(data, func, iter, alpha){
+  data <- na.omit(data)
+  boot_sample <- boot(data, function(x,i) func(x[i]), iter)
+  print("The estimated value of the statistic is:")
+  print(boot_sample$t0)
+  print("The bootstrapped standard error of the statistic is:")
+  se <- sd(boot_sample$t)
+  print(se)
+  print("The bootstrapped standard deviation of the statistic is:")
+  sd <- se * sqrt(length(data))
+  print(sd)
+  ci <- boot.ci(boot_sample, type = "bca", conf = 1-alpha)
+  print("The BCa confidence intervals of the statistic are:")
+  print(ci$bca[,4]); print(ci$bca[,5])
+}
 
 ### --------------------------------------------------------------------
 ### Question 4: Do the 'better' Dutch students choose the English track?
@@ -48,6 +64,10 @@ tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
 tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
+
+# Bootstrapped descriptives per track
+tapply(dutch_data$SchoolMean, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_school) # SchoolMean
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_school) # SchoolEnglish
 
 # Use non-parametric testing
 wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
@@ -120,22 +140,6 @@ se_mad <- function(dep_var){
   return(se)
 }
 
-# Function to bootstrap the precision of test statistics
-bootstrap <- function(data, func, iter){
-  data <- na.omit(data)
-  boot_sample <- boot(data, function(x,i) func(x[i]), iter)
-  print("The original statistic is:")
-  print(boot_sample$t0)
-  print("The bootstrapped standard error of the statistic is:")
-  se <- sd(boot_sample$t)
-  print(se)
-  print("The bootstrapped standard deviation of the statistic is:")
-  sd <- se * sqrt(length(data))
-  print(sd)
-  ci <- boot.ci(boot_sample, type = "bca", conf = 1-alpha_success)
-  print("The BCa confidence intervals of the statistic are:")
-  print(ci$bca[,4]); print(ci$bca[,5])
-}
 
 ### ECs
 
