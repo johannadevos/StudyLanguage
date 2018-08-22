@@ -179,7 +179,7 @@ tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000
 bootstrap(no_dropout$Mean_Grade, func=mean, iter=10000, alpha = alpha_success) # Overall
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=median, iter=10000) # Per group
+tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_success) # Per group
 bootstrap(no_dropout$Mean_Grade, func=median, iter=10000, alpha = alpha_success) # Overall
 
 # Summary statistics
