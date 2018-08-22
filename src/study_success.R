@@ -21,6 +21,44 @@ rm(list=ls())
 # Read in data
 subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
+
+### --------------------------------------------------------------------
+### Question 4: Do the 'better' Dutch students choose the English track?
+### --------------------------------------------------------------------
+
+# Select Dutch students only
+dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
+
+# Alpha according to Li & Ji (2005); cited in Nyholt (2004)
+alpha_school = .0253
+
+# Are the grades normally distributed? --> Not in the Dutch track
+tapply(dutch_data$SchoolMean, dutch_data$Track, shapiro.test)
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, shapiro.test)
+
+# Plot distribution of grades
+hist(dutch_data$SchoolMean[dutch_data$Track == "English"], breaks=12) # Overall grade
+hist(dutch_data$SchoolMean[dutch_data$Track == "Dutch"], breaks=12)
+
+hist(dutch_data$SchoolEnglish[dutch_data$Track == "English"], breaks=12) # English grade
+hist(dutch_data$SchoolEnglish[dutch_data$Track == "Dutch"], breaks=12)
+
+# Descriptives per track
+tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
+tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
+
+# Use non-parametric testing
+wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
+wilcox.test(dutch_data$SchoolEnglish[dutch_data$Track=="English"], dutch_data$SchoolEnglish[dutch_data$Track=="Dutch"])
+
+# Since the p-value for SchoolMean is so close to significance (.07), also do a t-test for further exploration
+t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
+
+
+
+
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
 subject_info$Exemption <- NULL
@@ -730,41 +768,3 @@ apply(lex_rich_measures, 2, shapiro.test) # 2 to loop through columns
 
 # Create a correlation matrix using Spearman's correlation coefficient
 rcorr(as.matrix(lex_rich_measures), type = "spearman")
-
-
-### --------------------------------------------------------
-### Do the 'better' Dutch students choose the English track?
-### --------------------------------------------------------
-
-# Reload data, so that no subjects are excluded for this analysis
-subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
-
-# Select Dutch students only
-dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
-
-# Alpha according to Li & Ji (2005); cited in Nyholt (2004)
-alpha_school = .0253
-
-# Descriptives per track
-tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
-tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
-
-# Plot distribution of grades
-hist(dutch_data$SchoolMean[dutch_data$Track == "English"], breaks=12)
-hist(dutch_data$SchoolMean[dutch_data$Track == "Dutch"], breaks=12)
-
-hist(dutch_data$SchoolEnglish[dutch_data$Track == "English"], breaks=12)
-hist(dutch_data$SchoolEnglish[dutch_data$Track == "Dutch"], breaks=12)
-
-# Are grades normally distributed? --> Not in the Dutch track
-tapply(dutch_data$SchoolMean, dutch_data$Track, shapiro.test)
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, shapiro.test)
-
-# Use non-parametric testing
-wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
-wilcox.test(dutch_data$SchoolEnglish[dutch_data$Track=="English"], dutch_data$SchoolEnglish[dutch_data$Track=="Dutch"])
-
-# Since the p-value for SchoolMean is so close to significance (.07), also do a t-test for further exploration
-t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
