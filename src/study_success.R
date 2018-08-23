@@ -303,13 +303,13 @@ t1waybt(wilcox_wide_weighted, tr = 0, nboot = 10000)
 ## Descriptive statistics 
 
 # Three categories (during year 1, after year 1, no)
-drop3 <- table(subject_info$DropOut, subject_info$Group); drop3
-round(prop.table(drop3, 2)*100, 2) # Per group
+drop3 <- table(subject_info$Group, subject_info$DropOut); drop3
+round(prop.table(drop3, 1)*100, 2) # Per group
 round(prop.table(table(subject_info$DropOut))*100,2) # Overall
 
 # Two categories (yes, no)
-drop2 <- table(subject_info$DropOutBinary, subject_info$Group); drop2
-round(prop.table(drop2, 2)*100, 2) # Per group
+drop2 <- table(subject_info$Group, subject_info$DropOutBinary); drop2
+round(prop.table(drop2, 1)*100, 2) # Per group
 round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
 ## Inferential statistics
@@ -327,16 +327,15 @@ pairs(emm_dropout, adjust = "none")
 confint(pairs(emm_dropout, adjust = "none"))
 
 
-
 ### Passing the BSA
 
 # All students
 bsa_all <- table(subject_info$Group, subject_info$PassedBSA); bsa_all
-prop.table(bsa_all, 2)
+prop.table(bsa_all, 1)
 
 # No drop-outs
 bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
-prop.table(bsa_no_dropout, 2)
+prop.table(bsa_no_dropout, 1)
 
 
 ### -------------------------------------------------------------------------
