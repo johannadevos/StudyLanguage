@@ -329,6 +329,8 @@ confint(pairs(emm_dropout, adjust = "none"))
 
 ### Passing the BSA
 
+## Descriptive statistics 
+
 # All students
 bsa_all <- table(subject_info$Group, subject_info$PassedBSA); bsa_all
 prop.table(bsa_all, 1)
@@ -336,6 +338,14 @@ prop.table(bsa_all, 1)
 # No drop-outs
 bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
 prop.table(bsa_no_dropout, 1)
+
+## Inferential statistics
+
+# All students
+chisq.test(bsa_all)
+
+# No drop-outs
+chisq.test(bsa_no_dropout)
 
 
 ### -------------------------------------------------------------------------
@@ -466,22 +476,6 @@ boot.ci(boot_lr, type = "bca", conf = 0.991, index = 1) # Confidence intervals f
 boot.ci(boot_lr, type = "bca", conf = 0.991, index = 2) # Confidence intervals for group: Dutch in English track
 boot.ci(boot_lr, type = "bca", conf = 0.991, index = 3) # Confidence intervals for group: German in Dutch track
 boot.ci(boot_lr, type = "bca", conf = 0.991, index = 4) # Confidence intervals for group: German in English track
-
-
-### WEIGHTED GRADE
-
-
-
-### PASSING THE BSA
-
-# All students
-bsa_all <- table(subject_info$Group, subject_info$PassedBSA); bsa_all
-chisq.test(bsa_all)
-
-# No drop-outs
-bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
-chisq.test(bsa_no_dropout)
-
 
 
 ## Contrasts
