@@ -367,7 +367,7 @@ lca$LV_Centered <- lca$LV - mean(lca$LV)
 
 ### TOTAL NUMBER OF OBTAINED ECs
 
-# Run robust regression
+## Robust regression
 lca_ECs <- boot(statistic = bootReg, formula = EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 # Inspect results
@@ -376,6 +376,24 @@ boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 1) # Confidence
 boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
 boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
 boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+
+## OLS regression
+lca_ECs_ols <- lm(EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_ECs_ols)
+
+# Check assumptions
+
+# Residual plot
+plot(fitted(lca_ECs_ols), residuals(lca_ECs_ols)) # Does not look good - heteroscedasticity, also non-linearity? (stripe?)
+abline(h = c(0, sd(residuals(lca_ECs_ols)), -sd(residuals(lca_ECs_ols))))
+
+# Absence of collinearity (see earlier)
+
+# Normality of residuals
+hist(residuals(lca_ECs_ols)) # Skewed to the left
+qqnorm(residuals(lca_ECs_ols))
+
+# Absence of influential data points
+# To do: see Field et al. (2012, p. 288)
 
 
 ### MEAN GRADE
@@ -410,7 +428,7 @@ qqnorm(residuals(lca_mean_ols))
 # To do: see Field et al. (2012, p. 288)
 
 ## Mixed-effects model
-lca_mean_me <- lmer(Grade ~ LD + LS + LV + (1|SubjectCode), data = lr_long); summary(lca_mean_me)
+lca_mean_me <- lmer(Grade ~ LD + LS + LV + (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me)
 
 # Check assumptions
 
@@ -431,7 +449,7 @@ qqnorm(residuals(lca_mean_me))
 
 ### WEIGHTED GRADE
 
-# Run robust regression
+# Robust regression
 lca_weighted <- boot(statistic = bootReg, formula = Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 # Inspect results
@@ -440,6 +458,40 @@ boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 1) # Confi
 boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
 boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
 boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+
+## OLS regression
+lca_weighted_ols <- lm(Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_weighted_ols)
+
+# Check assumptions
+
+# Residual plot
+plot(fitted(lca_weighted_ols), residuals(lca_weighted_ols)) # Looks good, no evidence of non-linearity or heteroscedasticity
+abline(h = c(0, sd(residuals(lca_mean_ols)), -sd(residuals(lca_mean_ols))))
+
+# Absence of collinearity (see earlier)
+
+# Normality of residuals
+hist(residuals(lca_weighted_ols)) # Looks alright, not great
+qqnorm(residuals(lca_weighted_ols))
+
+# Absence of influential data points
+# To do: see Field et al. (2012, p. 288)
+
+## Mixed-effects model
+lca_weighted_me <- lmer(Weighted_Grade ~ LD + LS + LV + (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_weighted_me)
+
+# Check assumptions
+
+# Residual plot
+plot(fitted(lca_weighted_me), residuals(lca_weighted_me)) # Stripes, some patterns visible.
+abline(h = c(0, sd(residuals(lca_weighted_me)), -sd(residuals(lca_weighted_me))))
+
+# Normality of residuals
+hist(residuals(lca_weighted_me)) # Meh
+qqnorm(residuals(lca_weighted_me))
+
+# Absence of influential data points
+# To do
 
 
 ### DROP-OUT
