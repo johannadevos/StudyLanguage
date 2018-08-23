@@ -85,6 +85,9 @@ t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean
 
 ### Preprocessing
 
+# Are LCA measures available?
+subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
+
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
 subject_info$Exemption <- NULL
@@ -98,18 +101,6 @@ no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
 # Alpha according to Li & Ji (2005); cited in Nyholt (2004)
 alpha_success = 0.0170
-
-# Indices
-index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
-index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
-index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
-index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
-index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
-index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
-index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
-index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
-index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
-index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
 
 
 ### TOTAL NUMBER OF OBTAINED ECs
@@ -365,9 +356,6 @@ fit <- glm(formula, data = d, family = "binomial")
 return(coef(fit))
 }
 
-# Are LCA measures available?
-subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
-
 # Dataset with just LCA
 lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
 
@@ -392,7 +380,7 @@ boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 4) # Confidence
 
 ### MEAN GRADE
 
-# Run robust regression
+## Robust regression
 lca_mean <- boot(statistic = bootReg, formula = Mean_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 # Inspect results
@@ -401,6 +389,44 @@ boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 1) # Confidenc
 boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
 boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
 boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+
+## OLS regression
+lca_mean_ols <- lm(Mean_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_mean_ols)
+
+# Check assumptions
+
+# Residual plot
+plot(fitted(lca_mean_ols), residuals(lca_mean_ols)) # Looks good, no evidence of non-linearity or heteroscedasticity
+abline(h = c(0, sd(residuals(lca_mean_ols)), -sd(residuals(lca_mean_ols))))
+
+# Absence of collinearity
+rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson") # Highest correlation is r = .38
+
+# Normality of residuals
+hist(residuals(lca_mean_ols)) # Looks good
+qqnorm(residuals(lca_mean_ols))
+
+# Absence of influential data points
+# To do: see Field et al. (2012, p. 288)
+
+## Mixed-effects model
+lca_mean_me <- lmer(Grade ~ LD + LS + LV + (1|SubjectCode), data = lr_long); summary(lca_mean_me)
+
+# Check assumptions
+
+# Residual plot
+plot(fitted(lca_mean_me), residuals(lca_mean_me)) # Stripes, because data are not strictly continuous. Otherwise okay.
+abline(h = c(0, sd(residuals(lca_mean_me)), -sd(residuals(lca_mean_me))))
+
+# Absence of collinearity
+rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson") # Highest correlation is r = .38
+
+# Normality of residuals
+hist(residuals(lca_mean_me)) # Looks good
+qqnorm(residuals(lca_mean_me))
+
+# Absence of influential data points
+# To do
 
 
 ### WEIGHTED GRADE
@@ -557,9 +583,6 @@ summary(dropout_model2)
 ### Question 6: Does students' lexical richness in the study language predict their study success?
 ### ----------------------------------------------------------------------------------------------
 
-# Are LCA measures available?
-subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
-
 # Dataset with just LCA
 lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
 
@@ -598,9 +621,23 @@ anova(ls_model, lv_model, test = "Chisq")
 ## To do: lsmeans / correct for multiple testing
 
 
-### -----------------------------------
-### Study success: Mixed-effects models
-### -----------------------------------
+### ---------------------------
+### Extra: Mixed-effects models
+### ---------------------------
+
+### PREPROCESSING
+
+# Indices
+index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
+index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
+index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
+index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
+index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
+index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
+index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
+index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
+index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
+index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
 
 # Transform to long data format
 EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
@@ -634,55 +671,37 @@ lr_long$LD <- subject_info$LD[match(lr_long$SubjectCode, subject_info$SubjectCod
 lr_long$LS <- subject_info$LS[match(lr_long$SubjectCode, subject_info$SubjectCode)]
 lr_long$LV <- subject_info$LV[match(lr_long$SubjectCode, subject_info$SubjectCode)]
 lr_long <- lr_long[!is.na(lr_long$LD),]
+lr_long$LCA <- NULL
 
 
 ### Models
 
-## Obtained ECs
+### TOTAL NUMBER OF OBTAINED ECs / PASSING COURSES
 
 # Investigate Group and Gender on the full dataset
 ec_null <- glmer(Passed ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, family = "binomial", control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=1e5))); summary(ec_null)
 ec_group <- update(ec_null, ~. + Group); summary(ec_group)
+ec_gender <- update(ec_group, ~. + Gender); summary(ec_gender)
+anova(ec_null, ec_group, ec_gender)
+
+# Are the outcomes different for students who completed all three exams?
 ec_lca <- update(ec_group, ~. + LCA); summary(ec_lca)
-ec_gender <- update(ec_group, ~. + Gender); summary(ec_gender)
-anova(ec_null, ec_group, ec_gender)
-
-## Do the students for whom LR measures are available differ from the other students?
-
-# Create binary variable
-
-
+anova(ec_group, ec_lca)
 
 # Also use lexical richness as predictor, on the subset of the data for which these measures are available
-ec_null_lr <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(ec_null_lr)
+ec_null_lr <- glmer(Passed ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(ec_null_lr)
+
 ec_ld <- update(ec_null_lr, ~. + LD); summary(ec_ld)
-anova(ec_null_lr, ec_ld)
+anova(ec_null_lr, ec_ld) # Not significant
 
 ec_ls <- update(ec_null_lr, ~. + LS); summary(ec_ls)
-anova(ec_null_lr, ec_ls)
+anova(ec_null_lr, ec_ls) # Not significant
 
 ec_lv <- update(ec_null_lr, ~. + LV); summary(ec_lv)
-anova(ec_null_lr, ec_lv)
+anova(ec_null_lr, ec_lv) # Not significant
 
 
-# Investigate Group and Gender on the full dataset
-ec_null <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(ec_null)
-ec_group <- update(ec_null, ~. + Group); summary(ec_group)
-ec_gender <- update(ec_group, ~. + Gender); summary(ec_gender)
-anova(ec_null, ec_group, ec_gender)
-
-# Also use lexical richness as predictor, on the subset of the data for which these measures are available
-ec_null_lr <- lmer(EC_Obtained ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(ec_null_lr)
-ec_ld <- update(ec_null_lr, ~. + LD); summary(ec_ld)
-anova(ec_null_lr, ec_ld)
-
-ec_ls <- update(ec_null_lr, ~. + LS); summary(ec_ls)
-anova(ec_null_lr, ec_ls)
-
-ec_lv <- update(ec_null_lr, ~. + LV); summary(ec_lv)
-anova(ec_null_lr, ec_lv)
-
-## Mean grade
+### MEAN GRADE
 
 # Investigate Group and Gender on the full dataset
 mean_null <- lmer(Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(mean_null)
@@ -691,7 +710,8 @@ mean_gender <- update(mean_group, ~. + Gender); summary(mean_gender)
 anova(mean_null, mean_group, mean_gender)
 
 # Also use lexical richness as predictor, on the subset of the data for which these measures are available
-mean_null_lr <- lmer(Mean_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(mean_null_lr)
+mean_null_lr <- lmer(Grade ~ 1 + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(mean_null_lr)
+
 mean_ld <- update(mean_null_lr, ~. + LD); summary(mean_ld)
 anova(mean_null_lr, mean_ld)
 
@@ -701,7 +721,8 @@ anova(mean_null_lr, mean_ls)
 mean_lv <- update(mean_null_lr, ~. + LV); summary(mean_lv)
 anova(mean_null_lr, mean_lv)
 
-## Weighted grade
+
+### WEIGHTED GRADE
 
 # Investigate Group and Gender on the full dataset
 weighted_null <- lmer(Weighted_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(weighted_null)
@@ -751,8 +772,8 @@ qqnorm(residuals(model))
 ## Absence of influential data points
 
 # Calculate Cook's distance and visualise outcomes
-no_dropout$Cook <- cooks.distance.estex(influence(model, group = 'SubjectCode'))
-plot(no_dropout$Cook, ylab = "Cook's distance")
+subject_long$Cook <- cooks.distance.estex(influence(model, group = 'SubjectCode'))
+plot(subject_long$Cook, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
