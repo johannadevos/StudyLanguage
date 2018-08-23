@@ -1,4 +1,5 @@
 # Import libraries
+library(emmeans) # To perform mulitple comparisons
 library(ggplot2) # Plotting
 library(scales) # To use pretty breaks in ggplot
 library(reshape2) # Use dcast (long -> wide) and melt (wide -> long)
@@ -37,6 +38,7 @@ bootstrap <- function(data, func, iter, alpha){
   print("The BCa confidence intervals of the statistic are:")
   print(ci$bca[,4]); print(ci$bca[,5])
 }
+
 
 ### --------------------------------------------------------------------
 ### Question 4: Do the 'better' Dutch students choose the English track?
@@ -312,6 +314,18 @@ round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
 ## Inferential statistics
 
+# Chi-square tests
+chisq.test(drop3)
+chisq.test(drop2)
+
+# Predict who will drop out
+dropout_model <- glm(DropOutBinary ~ Group, family = binomial (link = "logit"), data = subject_info)
+summary(dropout_model)
+
+emm_dropout <- emmeans(dropout_model, ~ Group); emm_dropout
+pairs(emm_dropout, adjust = "none")
+confint(pairs(emm_dropout, adjust = "none"))
+
 
 
 ### Passing the BSA
@@ -470,15 +484,6 @@ bsa_no_dropout <- table(no_dropout$Group, no_dropout$PassedBSA); bsa_no_dropout
 chisq.test(bsa_no_dropout)
 
 
-### DROP-OUT
-
-# Chi-square tests
-chisq.test(drop)
-chisq.test(drop2)
-
-## Predict who will drop out
-dropout_model <- glm(DropOutBinary ~ Group, family = binomial (link = "logit"), data = subject_info)
-summary(dropout_model)
 
 ## Contrasts
 
