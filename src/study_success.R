@@ -428,6 +428,7 @@ boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 2) # Confidenc
 boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
 boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
 
+lca_drop_glm <- glm(DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, family = "binomial"); summary(lca_drop_glm)
 
 
 ### -------------------------------------------------------------------------
@@ -503,7 +504,7 @@ hist(lca$LS) # So-so (little bit of positive skew)
 hist(lca$LV) # Yes
 
 # Are the lexical richness measures correlated?
-rcorr(as.matrix(lr[,cbind("LD", "LS", "LV")]), type = "pearson")
+rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson")
 
 ## Regression
 boot_lr <- boot(statistic = bootReg, formula = EC_Obtained ~ LV + LS + LD, data = lr, R = 2000)
