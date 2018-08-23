@@ -348,6 +348,88 @@ chisq.test(bsa_all)
 chisq.test(bsa_no_dropout)
 
 
+### ----------------------------------------------------------------------------------------------
+### Question 6: Does students' lexical richness in the study language predict their study success?
+### ----------------------------------------------------------------------------------------------
+
+# Define functions to do robust regression (taken Field, Miles & Field, 2012, p. 299)
+bootReg <- function (formula, data, i)
+{d <- data [i,] # i refers to a particular bootstrap sample
+fit <- lm(formula, data = d)
+return(coef(fit))
+}
+
+bootLogReg <- function (formula, data, i)
+{d <- data [i,] # i refers to a particular bootstrap sample
+fit <- glm(formula, data = d, family = "binomial")
+return(coef(fit))
+}
+
+# Are LCA measures available?
+subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
+
+# Dataset with just LCA
+lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
+
+# Center the LCA measures
+lca$LD_Centered <- lca$LD - mean(lca$LD)
+lca$LS_Centered <- lca$LS - mean(lca$LS)
+lca$LV_Centered <- lca$LV - mean(lca$LV)
+
+
+### TOTAL NUMBER OF OBTAINED ECs
+
+# Run robust regression
+lca_ECs <- boot(statistic = bootReg, formula = EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+
+# Inspect results
+lca_ECs$t0 # Intercept and slope coefficients
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+
+
+### MEAN GRADE
+
+# Run robust regression
+lca_mean <- boot(statistic = bootReg, formula = Mean_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+
+# Inspect results
+lca_mean$t0 # Intercept and slope coefficients
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+
+
+### WEIGHTED GRADE
+
+# Run robust regression
+lca_weighted <- boot(statistic = bootReg, formula = Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+
+# Inspect results
+lca_weighted$t0 # Intercept and slope coefficients
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+
+
+### DROP-OUT
+
+# Run robust regression
+lca_drop <- boot(statistic = bootLogReg, formula = DropOutBinary ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+
+# Inspect results
+lca_drop$t0 # Intercept and slope coefficients
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+
+
+
 ### -------------------------------------------------------------------------
 ### Inferential statistics per outcome variable (no-mixed effects models yet)
 ### -------------------------------------------------------------------------
@@ -400,50 +482,6 @@ lv_aov <- aov(LV ~ Group, data = no_dropout, na.action = na.exclude); summary(lv
 
 # NB: No robust ANCOVA for more than two groups seems to be available
 
-## Robust regression
-
-# Define function to do robust regression (taken from Andy Field)
-bootReg <- function (formula, data, i)
-  {d <- data [i,] # i refers to a particular bootstrap sample
-  fit <- lm(formula, data = d)
-  return(coef(fit))
-}
-
-bootLogReg <- function (formula, data, i)
-{d <- data [i,] # i refers to a particular bootstrap sample
-fit <- glm(formula, data = d, family = "binomial")
-return(coef(fit))
-}
-
-# Run robust regression
-boot_group <- boot(statistic = bootReg, formula = EC_Obtained ~ Group, data = no_dropout, R = 10000)
-
-# Results
-boot_group$t0 # Intercept and slope coefficients
-boot.ci(boot_group, type = "bca", conf = 0.95, index = 1) # Confidence intervals for intercept
-boot.ci(boot_group, type = "bca", conf = 0.95, index = 2) # Confidence intervals for group: Dutch in English track
-boot.ci(boot_group, type = "bca", conf = 0.95, index = 3) # Confidence intervals for group: German in Dutch track
-boot.ci(boot_group, type = "bca", conf = 0.95, index = 4) # Confidence intervals for group: German in English track
-
-# Adding the LCA measures
-boot_lca <- update(boot_group, formula = . ~ . + LD_Centered + LS_Centered + LV_Centered)
-boot_lca <- boot(statistic = bootReg, formula = EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
-boot_lca <- boot(statistic = bootReg, formula = Mean_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
-boot_lca <- boot(statistic = bootReg, formula = Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
-
-boot_lca$t0
-boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 1) # Confidence intervals for intercept
-boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 2) # Confidence intervals for LD
-boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 3) # Confidence intervals for LS
-boot.ci(boot_lca, type = "bca", conf = (1-0.0193), index = 4) # Confidence intervals for LV
-
-boot_log_lca <- boot(statistic = bootLogReg, formula = DropOutBinary ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
-
-boot_log_lca$t0
-boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 1) # Confidence intervals for intercept
-boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 2) # Confidence intervals for LD
-boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 3) # Confidence intervals for LS
-boot.ci(boot_log_lca, type = "bca", conf = (1-0.0193), index = 4) # Confidence intervals for LV
 
 
 # Other analyses (to be continued)
