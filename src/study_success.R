@@ -318,7 +318,7 @@ pairs(emm_dropout, adjust = "none")
 confint(pairs(emm_dropout, adjust = "none"))
 
 
-### Passing the BSA
+### PASSING THE BSA
 
 ## Descriptive statistics 
 
@@ -379,6 +379,15 @@ boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 4) # Confidence
 
 ## OLS regression
 lca_ECs_ols <- lm(EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_ECs_ols)
+
+# With polynomial terms
+LD2 <- lca$LD_Centered^2
+LS2 <- lca$LS_Centered^2
+LV2 <- lca$LV_Centered^2
+
+lca_ECs_ols2 <- lm(EC_Obtained ~ LD2 + LS2 + LV2 + LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_ECs_ols2)
+predictions <- predict(lca_ECs_ols2)
+plot(lca$LS_Centered, predictions)
 
 # Check assumptions
 
@@ -797,7 +806,7 @@ anova(weighted_null_lr, weighted_lv)
 ### Check assumptions
 
 # Choose the model you want to check the assumptions for
-model <- weighted_gender
+model <- ec_group
 
 ## Is there a linear relationship between the dependent and independent variables?
 # The plot should not show any obvious pattern in the residuals
