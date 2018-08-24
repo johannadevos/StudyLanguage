@@ -475,7 +475,7 @@ lca_weighted_ols <- lm(Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered,
 
 # Residual plot
 plot(fitted(lca_weighted_ols), residuals(lca_weighted_ols)) # Looks good, no evidence of non-linearity or heteroscedasticity
-abline(h = c(0, sd(residuals(lca_mean_ols)), -sd(residuals(lca_mean_ols))))
+abline(h = c(0, sd(residuals(lca_weighted_ols)), -sd(residuals(lca_weighted_ols))))
 
 # Absence of collinearity (see earlier)
 
