@@ -390,6 +390,55 @@ emm_dropout <- emmeans(dropout_model, ~ Group); emm_dropout
 pairs(emm_dropout, adjust = "none")
 confint(pairs(emm_dropout, adjust = "none"))
 
+# Check assumptions
+
+# Binned residual plot (see Gelman & Hill, 2007)
+binnedplot(fitted(dropout_model), resid(dropout_model), nclass = 24, cex.pts=1, col.int="black", xlab = "Predicted values")
+# Only 4 dots, but that's because there are 4 groups and within each group all predictions are the same
+
+# Histogram of residuals
+hist(residuals(dropout_model)) # There are 8 possible values for the residuals (four groups * two outcomes)
+
+# Investigate outliers
+
+# Standardized residuals
+subject_info$StandardizedResiduals <- rstandard(dropout_model)
+plot(subject_info$StandardizedResiduals)
+summary(subject_info$StandardizedResiduals)
+length(which(subject_info$StandardizedResiduals > 1.96 | subject_info$StandardizedResiduals < -1.96)) / nrow(lca) # Only 5% should lie outside +- 1.96. We have 8.5%.
+length(which(subject_info$StandardizedResiduals > 2.58 | subject_info$StandardizedResiduals < -2.58)) / nrow(lca) # Only 1% should lie outside +- 2.58. We have 0%.
+
+# Store large residuals for further investigation
+subject_info$LargeResidual <- rstudent(dropout_model) > 1.96 | rstudent(dropout_model) < -1.96
+
+# Investigate influential cases
+
+# Leverage
+subject_info$Leverage <- hatvalues(dropout_model)
+av_lev <- (3+1)/nrow(subject_info) # Average leverage = 0.0069
+subject_info$LargeLeverage <- subject_info["Leverage"] > (3*av_lev) # 0.0206
+plot(subject_info$Leverage)
+abline(h=2*av_lev)
+abline(h=3*av_lev)
+
+# DF beta
+subject_info$dfBeta <- dfbeta(dropout_model)
+summary(subject_info$dfBeta)
+
+# Cook's distance
+subject_info$Cook <- cooks.distance(dropout_model)
+plot(subject_info$Cook) # No values above 0.85
+subject_info$LargeCook <- subject_info["Cook"] > 0.85
+
+# Covariance ratio
+subject_info$CovRatio <- covratio(dropout_model)
+high_cov <- 1 + 3*(3+1)/nrow(subject_info)
+low_cov <- 1 - 3*(3+1)/nrow(subject_info)
+subject_info$LargeCovRatio <- subject_info["CovRatio"] > high_cov | subject_info["CovRatio"] < low_cov
+
+# Are there any cases with large residuals that are overly influential?
+which(subject_info$LargeResidual==TRUE & (subject_info$LargeCook==TRUE | subject_info$LargeLeverage==TRUE | subject_info$LargeCovRatio==TRUE))
+
 
 ### PASSING THE BSA
 
