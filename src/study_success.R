@@ -437,7 +437,7 @@ qqnorm(residuals(lca_mean_ols))
 # To do: see Field et al. (2012, p. 288)
 
 ## Mixed-effects model
-lca_mean_me_null <- lmer(Grade ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me_null)
+lca_mean_me_null <- lmer(Grade ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(lca_mean_me_null)
 lca_mean_me_ld <- update(lca_mean_me_null, . ~ + LD + .); summary(lca_mean_me_ld)
 lca_mean_me_ls <- update(lca_mean_me_ld, . ~ + LS + .); summary(lca_mean_me_ls)
 lca_mean_me_lv <- update(lca_mean_me_ls, . ~ + LV + .); summary(lca_mean_me_lv)
@@ -456,8 +456,11 @@ rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson") # Highest corr
 hist(residuals(lca_mean_me_lv)) # Looks good
 qqnorm(residuals(lca_mean_me_lv))
 
-# Absence of influential data points
-# To do
+# Cook's distance: absence of influential data points
+lca$Cook <- cooks.distance.estex(influence(lca_mean_me_lv, group = 'SubjectCode'))
+plot(lca$Cook, ylab = "Cook's distance")
+# Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
+# Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
 # Are the random coefficients normally distributed?
 subject_intercepts <- ranef(lca_mean_me_lv)[[1]]
