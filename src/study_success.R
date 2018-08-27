@@ -22,6 +22,9 @@ rm(list=ls())
 # Read in data
 subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
+# Are LCA measures available?
+subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
+
 # Function to bootstrap the precision of test statistics
 bootstrap <- function(data, func, iter, alpha){
   data <- na.omit(data)
@@ -84,9 +87,6 @@ t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean
 ### --------------------------------------------------------------------------------------
 
 ### Preprocessing
-
-# Are LCA measures available?
-subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
 
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
@@ -454,6 +454,13 @@ qqnorm(residuals(lca_mean_me))
 
 # Absence of influential data points
 # To do
+
+## Model comparisons
+lca_mean_me_null <- lmer(Grade ~ (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me_null)
+lca_mean_me_ld <- update(lca_mean_me_null, . ~ + LD + .); summary(lca_mean_me_ld)
+lca_mean_me_ls <- update(lca_mean_me_ld, . ~ + LS + .); summary(lca_mean_me_ls)
+lca_mean_me_lv <- update(lca_mean_me_ls, . ~ + LV + .); summary(lca_mean_me_lv)
+anova(lca_mean_me_null, lca_mean_me_ld, lca_mean_me_ls, lca_mean_me_lv)
 
 
 ### WEIGHTED GRADE
