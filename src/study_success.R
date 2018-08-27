@@ -533,6 +533,80 @@ boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 4) # Confidenc
 
 lca_drop_glm <- glm(DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, family = "binomial"); summary(lca_drop_glm)
 
+# Check assumptions
+
+# Binned residual plot (see Gelman & Hill, 2007)
+binnedplot(fitted(lca_drop_glm), resid(lca_drop_glm), cex.pts=1, col.int="black", xlab = "Predicted values")
+
+# Investigate outliers
+
+# Standardized residuals
+lca$StandardizedResiduals <- rstandard(lca_drop_glm)
+plot(lca$StandardizedResiduals)
+length(which(lca$StandardizedResiduals > 1.96 | lca$StandardizedResiduals < -1.96)) / nrow(lca) # Only 5% should lie outside +- 1.96. We have 8.5%.
+length(which(lca$StandardizedResiduals > 2.58 | lca$StandardizedResiduals < -2.58)) / nrow(lca) # Only 1% should lie outside +- 2.58. We have 0%.
+
+# Store large residuals for further investigation
+lca$LargeResidual <- rstudent(lca_drop_glm) > 1.96 | rstudent(lca_drop_glm) < -1.96
+
+# Investigate influential cases
+
+# Cook's distance
+lca$Cook <- cooks.distance(lca_drop_glm) # No values above 0.85
+plot(lca$Cook)
+lca$LargeCook <- lca["Cook"] > 0.85
+
+# Leverage
+lca$Leverage <- hatvalues(lca_drop_glm)
+av_lev <- (6+1)/305 # Average leverage
+lca$LargeLeverage <- lca["Leverage"] > (3*av_lev)
+
+# Covariance ratio
+lca$CovRatio <- covratio(lca_drop_glm)
+high_cov <- 1 + 3*(6+1)/305
+low_cov <- 1 - 3*(6+1)/305
+lca$LargeCovRatio <- lca["CovRatio"] > high_cov | lca["CovRatio"] < low_cov
+
+# Exclude cases with large residuals that are overly influential
+influ_cases <- which(lca$LargeResidual==TRUE & (lca$LargeCook==TRUE | lca$LargeLeverage==TRUE | lca$LargeCovRatio==TRUE))
+lca_no_infl_cases <- lca[-influ_cases,]
+
+# Rerun model for sensitivity analysis
+lca_drop_glm_no_infl <- glm(DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca_no_infl_cases, family = "binomial"); summary(lca_drop_glm_no_infl)
+binnedplot(fitted(lca_drop_glm_no_infl), resid(lca_drop_glm_no_infl), cex.pts=1, col.int="black", xlab = "Predicted values")
+plot(fitted(lca_drop_glm_no_infl), resid(lca_drop_glm_no_infl))
+
+# Investigate outliers
+
+# Standardized residuals
+lca_no_infl_cases$StandardizedResiduals <- rstandard(lca_drop_glm_no_infl)
+plot(lca_no_infl_cases$StandardizedResiduals)
+length(which(lca_no_infl_cases$StandardizedResiduals > 1.96 | lca_no_infl_cases$StandardizedResiduals < -1.96)) / nrow(lca_no_infl_cases) # Only 5% should lie outside +- 1.96. We have 8.5%.
+length(which(lca_no_infl_cases$StandardizedResiduals > 2.58 | lca_no_infl_cases$StandardizedResiduals < -2.58)) / nrow(lca_no_infl_cases) # Only 1% should lie outside +- 2.58. We have 0%.
+
+# Store large residuals for further investigation
+lca_no_infl_cases$LargeResidual <- rstudent(lca_drop_glm_no_infl) > 1.96 | rstudent(lca_drop_glm_no_infl) < -1.96
+
+# Investigate influential cases
+
+# Cook's distance
+lca_no_infl_cases$Cook <- cooks.distance(lca_drop_glm_no_infl) # No values above 0.85
+plot(lca_no_infl_cases$Cook)
+lca_no_infl_cases$LargeCook <- lca_no_infl_cases["Cook"] > 0.85
+
+# Leverage
+lca_no_infl_cases$Leverage <- hatvalues(lca_drop_glm_no_infl)
+av_lev <- (6+1)/nrow(lca_no_infl_cases) # Average leverage
+lca_no_infl_cases$LargeLeverage <- lca_no_infl_cases["Leverage"] > (3*av_lev)
+
+# Covariance ratio
+lca_no_infl_cases$CovRatio <- covratio(lca_drop_glm_no_infl)
+high_cov <- 1 + 3*(6+1)/nrow(lca_no_infl_cases)
+low_cov <- 1 - 3*(6+1)/nrow(lca_no_infl_cases)
+lca_no_infl_cases$LargeCovRatio <- lca_no_infl_cases["CovRatio"] > high_cov | lca_no_infl_cases["CovRatio"] < low_cov
+
+which(lca_no_infl_cases$LargeResidual==TRUE & (lca_no_infl_cases$LargeCook==TRUE | lca_no_infl_cases$LargeLeverage==TRUE | lca_no_infl_cases$LargeCovRatio==TRUE))
+
 
 ### -------------------------------------------------------------------------
 ### Inferential statistics per outcome variable (no-mixed effects models yet)
