@@ -437,7 +437,7 @@ qqnorm(residuals(lca_mean_ols))
 # To do: see Field et al. (2012, p. 288)
 
 ## Mixed-effects model
-lca_mean_me_null <- lmer(Grade ~ Group + (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me_null)
+lca_mean_me_null <- lmer(Grade ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me_null)
 lca_mean_me_ld <- update(lca_mean_me_null, . ~ + LD + .); summary(lca_mean_me_ld)
 lca_mean_me_ls <- update(lca_mean_me_ld, . ~ + LS + .); summary(lca_mean_me_ls)
 lca_mean_me_lv <- update(lca_mean_me_ls, . ~ + LV + .); summary(lca_mean_me_lv)
@@ -458,6 +458,15 @@ qqnorm(residuals(lca_mean_me_lv))
 
 # Absence of influential data points
 # To do
+
+# Are the random coefficients normally distributed?
+subject_intercepts <- ranef(lca_mean_me_lv)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
+course_intercepts <- ranef(lca_mean_me_lv)[[2]]
+course_int_vec <- as.vector(course_intercepts$`(Intercept)`)
+hist(course_intercepts)
 
 
 ### WEIGHTED GRADE
