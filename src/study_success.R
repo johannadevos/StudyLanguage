@@ -418,8 +418,7 @@ subject_info$Leverage <- hatvalues(dropout_model)
 av_lev <- (3+1)/nrow(subject_info) # Average leverage = 0.0069
 subject_info$LargeLeverage <- subject_info["Leverage"] > (3*av_lev) # 0.0206
 plot(subject_info$Leverage)
-abline(h=2*av_lev)
-abline(h=3*av_lev)
+abline(h=2*av_lev); abline(h=3*av_lev)
 
 # DF beta
 subject_info$dfBeta <- dfbeta(dropout_model)
@@ -679,11 +678,12 @@ hist(residuals(lca_drop_glm))
 # Standardized residuals
 lca$StandardizedResiduals <- rstandard(lca_drop_glm)
 plot(lca$StandardizedResiduals)
+abline(h=1.96); abline(h=2.58)
 length(which(lca$StandardizedResiduals > 1.96 | lca$StandardizedResiduals < -1.96)) / nrow(lca) # Only 5% should lie outside +- 1.96. We have 8.5%.
 length(which(lca$StandardizedResiduals > 2.58 | lca$StandardizedResiduals < -2.58)) / nrow(lca) # Only 1% should lie outside +- 2.58. We have 0%.
 
 # Store large residuals for further investigation
-lca$LargeResidual <- rstudent(lca_drop_glm) > 1.96 | rstudent(lca_drop_glm) < -1.96
+#lca$LargeResidual <- rstudent(lca_drop_glm) > 1.96 | rstudent(lca_drop_glm) < -1.96
 
 # Investigate influential cases
 
@@ -694,8 +694,15 @@ lca$LargeCook <- lca["Cook"] > 0.85
 
 # Leverage
 lca$Leverage <- hatvalues(lca_drop_glm)
-av_lev <- (6+1)/305 # Average leverage
-lca$LargeLeverage <- lca["Leverage"] > (3*av_lev)
+av_lev <- length(lca_drop_glm$coefficients)/nrow(lca) # Average leverage
+plot(lca$Leverage)
+abline(h=2*av_lev); abline(h=3*av_lev)
+#lca$LargeLeverage <- lca["Leverage"] > (3*av_lev)
+
+# DF Beta
+#lca$DFBeta <- dfbeta(lca_drop_glm)
+summary(dfbeta(lca_drop_glm))
+#lca$LargeDFBeta <- lca["DFBeta"] > 1
 
 # Covariance ratio
 lca$CovRatio <- covratio(lca_drop_glm)
