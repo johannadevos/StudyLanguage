@@ -437,30 +437,27 @@ qqnorm(residuals(lca_mean_ols))
 # To do: see Field et al. (2012, p. 288)
 
 ## Mixed-effects model
-lca_mean_me <- lmer(Grade ~ LD + LS + LV + (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me)
+lca_mean_me_null <- lmer(Grade ~ Group + (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me_null)
+lca_mean_me_ld <- update(lca_mean_me_null, . ~ + LD + .); summary(lca_mean_me_ld)
+lca_mean_me_ls <- update(lca_mean_me_ld, . ~ + LS + .); summary(lca_mean_me_ls)
+lca_mean_me_lv <- update(lca_mean_me_ls, . ~ + LV + .); summary(lca_mean_me_lv)
+anova(lca_mean_me_null, lca_mean_me_ld, lca_mean_me_ls, lca_mean_me_lv)
 
 # Check assumptions
 
 # Residual plot
-plot(fitted(lca_mean_me), residuals(lca_mean_me)) # Stripes, because data are not strictly continuous. Otherwise okay.
-abline(h = c(0, sd(residuals(lca_mean_me)), -sd(residuals(lca_mean_me))))
+plot(fitted(lca_mean_me_lv), residuals(lca_mean_me_lv)) # Stripes, because data are not strictly continuous. Otherwise okay.
+abline(h = c(0, sd(residuals(lca_mean_me_lv)), -sd(residuals(lca_mean_me_lv))))
 
 # Absence of collinearity
 rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson") # Highest correlation is r = .38
 
 # Normality of residuals
-hist(residuals(lca_mean_me)) # Looks good
-qqnorm(residuals(lca_mean_me))
+hist(residuals(lca_mean_me_lv)) # Looks good
+qqnorm(residuals(lca_mean_me_lv))
 
 # Absence of influential data points
 # To do
-
-## Model comparisons
-lca_mean_me_null <- lmer(Grade ~ (1|SubjectCode) + (1|Course), data = lr_long); summary(lca_mean_me_null)
-lca_mean_me_ld <- update(lca_mean_me_null, . ~ + LD + .); summary(lca_mean_me_ld)
-lca_mean_me_ls <- update(lca_mean_me_ld, . ~ + LS + .); summary(lca_mean_me_ls)
-lca_mean_me_lv <- update(lca_mean_me_ls, . ~ + LV + .); summary(lca_mean_me_lv)
-anova(lca_mean_me_null, lca_mean_me_ld, lca_mean_me_ls, lca_mean_me_lv)
 
 
 ### WEIGHTED GRADE
