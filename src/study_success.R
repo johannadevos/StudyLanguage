@@ -536,6 +536,30 @@ lr_long$LCA <- NULL
 
 ### TOTAL NUMBER OF OBTAINED ECs
 
+## Mixed-effects model
+lca_passed_me_group <- glmer(Passed ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long, family = "binomial", control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=1e5))); summary(lca_passed_me_null)
+lca_passed_me_ld <- update(lca_passed_me_group, . ~ + LD + .); summary(lca_passed_me_ld)
+lca_passed_me_ls <- update(lca_passed_me_ld, . ~ + LS + .); summary(lca_passed_me_ls)
+lca_passed_me_lv <- update(lca_passed_me_ls, . ~ + LV + .); summary(lca_passed_me_lv)
+anova(lca_passed_me_null, lca_passed_me_ld, lca_passed_me_ls, lca_passed_me_lv)
+
+# Check assumptions
+
+# Binned residual plot (see Gelman & Hill, 2007)
+binnedplot(fitted(lca_passed_me_lv), resid(lca_passed_me_lv), cex.pts=1, col.int="black", xlab = "Predicted values")
+
+# Normality of residuals
+hist(residuals(lca_passed_me_lv))
+
+# Are the random coefficients normally distributed?
+subject_intercepts <- ranef(lca_passed_me_lv)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
+course_intercepts <- ranef(lca_passed_me_lv)[[2]]
+course_int_vec <- as.vector(course_intercepts$`(Intercept)`)
+hist(course_intercepts)
+
 ## Robust regression
 lca_ECs <- boot(statistic = bootReg, formula = EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
