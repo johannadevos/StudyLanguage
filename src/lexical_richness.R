@@ -292,6 +292,15 @@ plot(lca_data$Cook_int_LD, ylab = "Cook's distance")
 ## Independence
 # Is taken care of by the random intercepts at the subject level
 
+## Are the random coefficients normally distributed?
+subject_intercepts <- ranef(exam_group_LD)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
+subject_intercepts <- ranef(exam_group_int_LD)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
 
 ### Lexical sophistication
 
@@ -344,6 +353,15 @@ plot(lca_data$Cook_int_LS, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
+## Are the random coefficients normally distributed?
+subject_intercepts <- ranef(exam_group_LS)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
+subject_intercepts <- ranef(exam_group_int_LS)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
 
 ### Lexical variation
 
@@ -395,6 +413,15 @@ lca_data$Cook_int_LV <- cooks.distance.estex(influence(exam_group_int_LV, group 
 plot(lca_data$Cook_int_LV, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
+
+## Are the random coefficients normally distributed?
+subject_intercepts <- ranef(exam_group_LV)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
+subject_intercepts <- ranef(exam_group_int_LV)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
 
 
 ### ------------
