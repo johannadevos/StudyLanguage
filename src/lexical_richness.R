@@ -24,6 +24,7 @@ rm(list=ls())
 
 # Read in data
 lca_data <- read.csv("../data/lexical_richness.txt", header=TRUE, sep="\t")
+lca_data$SubjectCode <- as.factor(lca_data$SubjectCode)
 
 # For each measure, transform to a long data frame
 ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
@@ -260,33 +261,31 @@ pairs(exam_group.emm_LD, by = "Exam", adjust = "none")
 
 ## Is there a linear relationship between the dependent and independent variables?
 # The plot should not show any obvious pattern in the residuals
-plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD))
-abline(h = 0)
 
-# A weak relationship is visible: smaller fitted values tend to have negative residuals,
-# larger fitted values seem to have positive residuals
-cor.test(fitted(exam_group_int_LD), residuals(exam_group_int_LD))
-summary(lm(residuals(exam_group_int_LD) ~ fitted(exam_group_int_LD)))
+## Homoskedasticity
+# The standard deviations of the residuals should not depend on the x-value
+
+plot(fitted(exam_group_LD), residuals(exam_group_LD)); abline(h = 0)
+plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD)); abline(h = 0)
 
 ## Absence of collinearity
 # Exam and Group are not correlated, because all groups took the same exams
 
-## Homoskedasticity
-# The standard deviations of the residuals should not depend on the x-value
-plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD))
-abline(h = 0)
-# There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
-
 ## Normality of residuals
-hist(residuals(exam_group_int_LD)) 
+hist(residuals(exam_group_LD)) # Seems normal
+qqnorm(residuals(exam_group_LD))
+
+hist(residuals(exam_group_int_LD)) # Seems normal
 qqnorm(residuals(exam_group_int_LD))
-# Almost perfectly normal
 
 ## Absence of influential data points
 
 # Calculate Cook's distance and visualise outcomes
-lca_data$Cook <- cooks.distance.estex(influence(exam_group_int_LD, group = 'SubjectCode'))
-plot(lca_data$Cook, ylab = "Cook's distance")
+lca_data$Cook_LD <- cooks.distance.estex(influence(exam_group_LD, group = 'SubjectCode'))
+plot(lca_data$Cook_LD, ylab = "Cook's distance")
+
+lca_data$Cook_int_LD <- cooks.distance.estex(influence(exam_group_int_LD, group = 'SubjectCode'))
+plot(lca_data$Cook_int_LD, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
@@ -320,24 +319,31 @@ pairs(exam_group.emm_LS, by = "Exam", adjust = "none")
 
 ## Is there a linear relationship between the dependent and independent variables?
 # The plot should not show any obvious pattern in the residuals
-plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS))
-abline(h = 0)
-# No obvious relationship between the fitted and residual values is visible,
-# although apparently there are few fitted values around 0.14.
 
 ## Homoskedasticity
-# There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
+# The standard deviations of the residuals should not depend on the x-value
+
+plot(fitted(exam_group_LS), residuals(exam_group_LS)); abline(h = 0)
+plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS)); abline(h = 0)
+
+## Absence of collinearity
+# Exam and Group are not correlated, because all groups took the same exams
 
 ## Normality of residuals
-hist(residuals(exam_group_int_LS)) 
+hist(residuals(exam_group_LS)) # Seems normal
+qqnorm(residuals(exam_group_LS))
+
+hist(residuals(exam_group_int_LS)) # Seems normal
 qqnorm(residuals(exam_group_int_LS))
-# Almost perfectly normal
 
 ## Absence of influential data points
 
 # Calculate Cook's distance and visualise outcomes
-lca_data$Cook <- cooks.distance.estex(influence(exam_group_int_LS, group = 'SubjectCode'))
-plot(lca_data$Cook, ylab = "Cook's distance")
+lca_data$Cook_LS <- cooks.distance.estex(influence(exam_group_LS, group = 'SubjectCode'))
+plot(lca_data$Cook_LS, ylab = "Cook's distance")
+
+lca_data$Cook_int_LS <- cooks.distance.estex(influence(exam_group_int_LS, group = 'SubjectCode'))
+plot(lca_data$Cook_int_LS, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
@@ -368,23 +374,31 @@ pairs(exam_group.emm_LV, by = "Exam", adjust = "none")
 
 ## Is there a linear relationship between the dependent and independent variables?
 # The plot should not show any obvious pattern in the residuals
-plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV))
-abline(h = 0)
-# No obvious relationship between the fitted and residual values is visible,
 
 ## Homoskedasticity
-# There doesn't seem to be heteroscedasticity - higher fitted values don't have smaller/larger residuals
+# The standard deviations of the residuals should not depend on the x-value
+
+plot(fitted(exam_group_LV), residuals(exam_group_LV)); abline(h = 0)
+plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV)); abline(h = 0)
+
+## Absence of collinearity
+# Exam and Group are not correlated, because all groups took the same exams
 
 ## Normality of residuals
-hist(residuals(exam_group_int_LV)) 
+hist(residuals(exam_group_LV)) # Quite normal, but skewed to the left
+qqnorm(residuals(exam_group_LV))
+
+hist(residuals(exam_group_int_LV)) # Quite normal, but skewed to the left
 qqnorm(residuals(exam_group_int_LV))
-# Seems normal
 
 ## Absence of influential data points
 
 # Calculate Cook's distance and visualise outcomes
-lca_data$Cook <- cooks.distance.estex(influence(exam_group_int_LV, group = 'SubjectCode'))
-plot(lca_data$Cook, ylab = "Cook's distance")
+lca_data$Cook_LV <- cooks.distance.estex(influence(exam_group_LV, group = 'SubjectCode'))
+plot(lca_data$Cook_LV, ylab = "Cook's distance")
+
+lca_data$Cook_int_LV <- cooks.distance.estex(influence(exam_group_int_LV, group = 'SubjectCode'))
+plot(lca_data$Cook_int_LV, ylab = "Cook's distance")
 # Different guidelines. Either, Cook's distance should not be >1 or >0.85 (assumption met)
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
