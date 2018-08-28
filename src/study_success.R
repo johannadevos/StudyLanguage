@@ -9,7 +9,7 @@ library(pastecs) # stat.desc function
 library(lme4) # Linear mixed-effects models
 library(boot) # For bootstrapping
 library(arm) # To create the binned residual plot
-library(influence.ME) # To compute Cook's distance
+library(influence.ME) # To compute Cook's distance in mixed-effects models
 library(WRS) # Wilcox's functions for robust statistics
 library(plyr); library(dplyr); library(gridExtra); library(MASS)
 
@@ -181,7 +181,7 @@ ECs_hist_perc <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
 
 ## Inferential statistics
 
-# Checking assumptions
+# Checking the assumption of normality
 ECs_hist # Data are not normally distributed
 tapply(no_dropout$EC_Obtained, no_dropout$Group, shapiro.test)
 
@@ -190,7 +190,7 @@ kruskal.test(EC_Obtained ~ Group, data = no_dropout)
 no_dropout$Rank <- rank(no_dropout$EC_Obtained)
 by(no_dropout$Rank, no_dropout$Group, mean)
 
-# Robust ANOVA
+## Robust ANOVA
 
 # Transform data to wide format
 wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "EC_Obtained")
@@ -203,16 +203,33 @@ wilcox_wide_ECs$SubjectCode <- NULL
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 #med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
 
-# Mixed-effects models
+## Mixed-effects models
+
+# Run and compare models
 ec_null <- glmer(Passed ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, family = "binomial", control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=1e5))); summary(ec_null)
 ec_group <- update(ec_null, ~. + Group); summary(ec_group)
 anova(ec_null, ec_group)
+
+## Check assumptions of mixed-effects models
 
 # Binned residual plot (see Gelman & Hill, 2007)
 binnedplot(fitted(ec_group), resid(ec_group), cex.pts=1, col.int="black", xlab = "Predicted values")
 
 # Normality of residuals
 hist(residuals(ec_group))
+
+# Are the random coefficients normally distributed?
+subject_intercepts <- ranef(ec_group)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts)
+
+course_intercepts <- ranef(ec_group)[[2]]
+course_int_vec <- as.vector(course_intercepts$`(Intercept)`)
+hist(course_intercepts)
+
+# Influential data points (Cook's distance)
+no_dropout$Cook_EC <- cooks.distance.estex(influence(ec_group, group = 'SubjectCode'))
+plot(no_dropout$Cook_EC, ylab = "Cook's distance")
 
 
 ### MEAN GRADE
