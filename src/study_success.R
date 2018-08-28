@@ -693,9 +693,9 @@ lca$Leverage <- hatvalues(lca_drop_glm)
 av_lev <- length(lca_drop_glm$coefficients)/nrow(lca) # Average leverage
 plot(lca$Leverage)
 abline(h=2*av_lev); abline(h=3*av_lev)
-length(which(lca$Leverage > 3*av_lev)) / nrow(lca)
-lca$LargeLeverage <- lca["Leverage"] > (3*av_lev)
-which(lca$Leverage > 3*av_lev)
+length(which(lca$Leverage > 2*av_lev)) / nrow(lca)
+lca$LargeLeverage <- lca["Leverage"] > (2*av_lev)
+which(lca$Leverage > 2*av_lev)
 
 # DF Beta
 lca$DFBeta <- dfbeta(lca_drop_glm) # This results in a matrix within the data frame. Only the first dimension of the matrix is visible.
@@ -706,62 +706,32 @@ large_betas <- NULL # Create empty vector
 for(predictor_index in 1:ncol(lca$DFBeta)){ # Loop through matrix to find df beta values > 1
   print(paste("Predictor index: ", predictor_index))
   print(which(lca$DFBeta[,predictor_index] > 1))
+  print(lca$DFBeta[which(lca$DFBeta[,predictor_index] > 1), predictor_index])
   large_betas <- append(large_betas, which(lca$DFBeta[,predictor_index] > 1))
 }
 
 lca$LargeDFBeta <- FALSE # Create row with all LargeDFBeta values set to false
 lca$LargeDFBeta[large_betas] <- TRUE # Set rows with large df beta values in one (or more) of the dimensions to true
 
-# Cook's distance
-lca$Cook <- cooks.distance(lca_drop_glm) # No values above 0.85
-plot(lca$Cook)
-lca$LargeCook <- lca["Cook"] > 0.85
-
-# Covariance ratio
-lca$CovRatio <- covratio(lca_drop_glm)
-high_cov <- 1 + 3*(6+1)/305
-low_cov <- 1 - 3*(6+1)/305
-lca$LargeCovRatio <- lca["CovRatio"] > high_cov | lca["CovRatio"] < low_cov
-
 # Exclude cases with large residuals that are overly influential
-influ_cases <- which(lca$LargeResidual==TRUE & (lca$LargeCook==TRUE | lca$LargeLeverage==TRUE | lca$LargeCovRatio==TRUE))
+influ_cases <- which(lca$LargeResidual==TRUE & (lca$LargeLeverage==TRUE | lca$LargeDFBeta==TRUE))
 lca_no_infl_cases <- lca[-influ_cases,]
 
 # Rerun model for sensitivity analysis
 lca_drop_glm_no_infl <- glm(DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca_no_infl_cases, family = "binomial"); summary(lca_drop_glm_no_infl)
 binnedplot(fitted(lca_drop_glm_no_infl), resid(lca_drop_glm_no_infl), cex.pts=1, col.int="black", xlab = "Predicted values")
-plot(fitted(lca_drop_glm_no_infl), resid(lca_drop_glm_no_infl))
+hist(residuals(lca_drop_glm_no_infl)) # Histogram of residuals
 
-# Investigate outliers
+# Cook's distance (not used in manuscript)
+lca$Cook <- cooks.distance(lca_drop_glm) # No values above 0.85
+plot(lca$Cook)
+lca$LargeCook <- lca["Cook"] > 0.85
 
-# Standardized residuals
-lca_no_infl_cases$StandardizedResiduals <- rstandard(lca_drop_glm_no_infl)
-plot(lca_no_infl_cases$StandardizedResiduals)
-length(which(lca_no_infl_cases$StandardizedResiduals > 1.96 | lca_no_infl_cases$StandardizedResiduals < -1.96)) / nrow(lca_no_infl_cases) # Only 5% should lie outside +- 1.96. We have 8.5%.
-length(which(lca_no_infl_cases$StandardizedResiduals > 2.58 | lca_no_infl_cases$StandardizedResiduals < -2.58)) / nrow(lca_no_infl_cases) # Only 1% should lie outside +- 2.58. We have 0%.
-
-# Store large residuals for further investigation
-lca_no_infl_cases$LargeResidual <- rstudent(lca_drop_glm_no_infl) > 1.96 | rstudent(lca_drop_glm_no_infl) < -1.96
-
-# Investigate influential cases
-
-# Cook's distance
-lca_no_infl_cases$Cook <- cooks.distance(lca_drop_glm_no_infl) # No values above 0.85
-plot(lca_no_infl_cases$Cook)
-lca_no_infl_cases$LargeCook <- lca_no_infl_cases["Cook"] > 0.85
-
-# Leverage
-lca_no_infl_cases$Leverage <- hatvalues(lca_drop_glm_no_infl)
-av_lev <- (6+1)/nrow(lca_no_infl_cases) # Average leverage
-lca_no_infl_cases$LargeLeverage <- lca_no_infl_cases["Leverage"] > (3*av_lev)
-
-# Covariance ratio
-lca_no_infl_cases$CovRatio <- covratio(lca_drop_glm_no_infl)
-high_cov <- 1 + 3*(6+1)/nrow(lca_no_infl_cases)
-low_cov <- 1 - 3*(6+1)/nrow(lca_no_infl_cases)
-lca_no_infl_cases$LargeCovRatio <- lca_no_infl_cases["CovRatio"] > high_cov | lca_no_infl_cases["CovRatio"] < low_cov
-
-which(lca_no_infl_cases$LargeResidual==TRUE & (lca_no_infl_cases$LargeCook==TRUE | lca_no_infl_cases$LargeLeverage==TRUE | lca_no_infl_cases$LargeCovRatio==TRUE))
+# Covariance ratio (not used in manuscript)
+lca$CovRatio <- covratio(lca_drop_glm)
+high_cov <- 1 + 3*(6+1)/305
+low_cov <- 1 - 3*(6+1)/305
+lca$LargeCovRatio <- lca["CovRatio"] > high_cov | lca["CovRatio"] < low_cov
 
 
 ### -------------------------------------------------------------------------
