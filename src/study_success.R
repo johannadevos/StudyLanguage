@@ -401,8 +401,7 @@ chisq.test(drop3)
 chisq.test(drop2)
 
 # Predict who will drop out
-dropout_model <- glm(DropOutBinary ~ Group, family = binomial (link = "logit"), data = subject_info)
-summary(dropout_model)
+dropout_model <- glm(DropOutBinary ~ Group, family = binomial (link = "logit"), data = subject_info); summary(dropout_model)
 
 emm_dropout <- emmeans(dropout_model, ~ Group); emm_dropout
 pairs(emm_dropout, adjust = "none")
@@ -457,6 +456,25 @@ subject_info$LargeCovRatio <- subject_info["CovRatio"] > high_cov | subject_info
 
 # Are there any cases with large residuals that are overly influential?
 which(subject_info$LargeResidual==TRUE & (subject_info$LargeCook==TRUE | subject_info$LargeLeverage==TRUE | subject_info$LargeCovRatio==TRUE))
+
+# Robust logistic regression
+
+# Function to do bootstrapping
+bootLogReg <- function (formula, data, i)
+{d <- data [i,] # i refers to a particular bootstrap sample
+fit <- glm(formula, data = d, family = "binomial")
+return(coef(fit))
+}
+
+# Run robust regression
+dropout_model_robust <- boot(statistic = bootLogReg, formula = DropOutBinary ~ Group, data = subject_info, R = 10000)
+
+# Inspect results
+dropout_model_robust$t0 # Intercept and slope coefficients
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for Dutch in English track
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for German in Dutch track
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for German in English track
 
 
 ### PASSING THE BSA
