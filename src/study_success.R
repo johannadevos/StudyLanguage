@@ -21,6 +21,7 @@ rm(list=ls())
 
 # Read in data
 subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+subject_info$SubjectCode <- as.factor(subject_info$SubjectCode)
 
 # Are LCA measures available?
 subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
@@ -683,26 +684,38 @@ length(which(lca$StandardizedResiduals > 1.96 | lca$StandardizedResiduals < -1.9
 length(which(lca$StandardizedResiduals > 2.58 | lca$StandardizedResiduals < -2.58)) / nrow(lca) # Only 1% should lie outside +- 2.58. We have 0%.
 
 # Store large residuals for further investigation
-#lca$LargeResidual <- rstudent(lca_drop_glm) > 1.96 | rstudent(lca_drop_glm) < -1.96
+lca$LargeResidual <- rstudent(lca_drop_glm) > 1.96 | rstudent(lca_drop_glm) < -1.96
 
 # Investigate influential cases
-
-# Cook's distance
-lca$Cook <- cooks.distance(lca_drop_glm) # No values above 0.85
-plot(lca$Cook)
-lca$LargeCook <- lca["Cook"] > 0.85
 
 # Leverage
 lca$Leverage <- hatvalues(lca_drop_glm)
 av_lev <- length(lca_drop_glm$coefficients)/nrow(lca) # Average leverage
 plot(lca$Leverage)
 abline(h=2*av_lev); abline(h=3*av_lev)
-#lca$LargeLeverage <- lca["Leverage"] > (3*av_lev)
+length(which(lca$Leverage > 3*av_lev)) / nrow(lca)
+lca$LargeLeverage <- lca["Leverage"] > (3*av_lev)
+which(lca$Leverage > 3*av_lev)
 
 # DF Beta
-#lca$DFBeta <- dfbeta(lca_drop_glm)
+lca$DFBeta <- dfbeta(lca_drop_glm) # This results in a matrix within the data frame. Only the first dimension of the matrix is visible.
 summary(dfbeta(lca_drop_glm))
-#lca$LargeDFBeta <- lca["DFBeta"] > 1
+
+large_betas <- NULL # Create empty vector
+
+for(predictor_index in 1:ncol(lca$DFBeta)){ # Loop through matrix to find df beta values > 1
+  print(paste("Predictor index: ", predictor_index))
+  print(which(lca$DFBeta[,predictor_index] > 1))
+  large_betas <- append(large_betas, which(lca$DFBeta[,predictor_index] > 1))
+}
+
+lca$LargeDFBeta <- FALSE # Create row with all LargeDFBeta values set to false
+lca$LargeDFBeta[large_betas] <- TRUE # Set rows with large df beta values in one (or more) of the dimensions to true
+
+# Cook's distance
+lca$Cook <- cooks.distance(lca_drop_glm) # No values above 0.85
+plot(lca$Cook)
+lca$LargeCook <- lca["Cook"] > 0.85
 
 # Covariance ratio
 lca$CovRatio <- covratio(lca_drop_glm)
