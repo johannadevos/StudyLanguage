@@ -326,9 +326,6 @@ pairs(exam_group.emm_LS, by = "Exam", adjust = "none")
 plot(fitted(exam_group_LS), residuals(exam_group_LS)); abline(h = 0)
 plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS)); abline(h = 0)
 
-## Absence of collinearity
-# Exam and Group are not correlated, because all groups took the same exams
-
 ## Normality of residuals
 hist(residuals(exam_group_LS)) # Seems normal
 qqnorm(residuals(exam_group_LS))
@@ -380,9 +377,6 @@ pairs(exam_group.emm_LV, by = "Exam", adjust = "none")
 
 plot(fitted(exam_group_LV), residuals(exam_group_LV)); abline(h = 0)
 plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV)); abline(h = 0)
-
-## Absence of collinearity
-# Exam and Group are not correlated, because all groups took the same exams
 
 ## Normality of residuals
 hist(residuals(exam_group_LV)) # Quite normal, but skewed to the left
