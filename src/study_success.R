@@ -724,14 +724,17 @@ qqnorm(residuals(lca_weighted_me))
 ### DROP-OUT
 
 # Run robust regression
-lca_drop <- boot(statistic = bootLogReg, formula = DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+lca_drop <- boot(statistic = bootLogReg, formula = DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca_no_infl_cases, R = 10000)
 
 # Inspect results
 lca_drop$t0 # Intercept and slope coefficients
 boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 1) # Confidence intervals for intercept
-boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 2) # Confidence intervals for LD
-boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 3) # Confidence intervals for LS
-boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 4) # Confidence intervals for LV
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 2) # Confidence intervals for Dutch in English track
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 3) # Confidence intervals for German in Dutch track
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 4) # Confidence intervals for German in English track
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 5) # Confidence intervals for LD
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 6) # Confidence intervals for LS
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 7) # Confidence intervals for LV
 
 # Logistic regression
 lca_drop_glm <- glm(DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, family = "binomial"); summary(lca_drop_glm)
