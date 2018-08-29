@@ -5,7 +5,7 @@
 subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
 
 
-## Study success - Research question 1: high school grades
+## Study success - Research question 4: High school grades
 
 # New dataframe with just the school grades
 school <- subject_info[c("SchoolMean", "SchoolEnglish")]
@@ -36,19 +36,37 @@ subject_info$CoursesOutsideProgramme <- NULL
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
 
-## Study success - Research question 2 and 3: relationship group / lexical richness and study success
+## Study success - Research question 5: Relationship group and study success
 
 # New dataframe with the dependent variables
 success <- no_dropout[c("EC_Obtained", "Mean_Grade", "Weighted_Grade", "DropOutBinary")]
 success <- na.omit(success)
 
 # Measures are not normally distributed
+tapply()
 
 # Correlation matrix
-cor_success <- cor(success, method = "spearman"); cor_success
+# I'm using Pearson's correlation coefficient even though not all measures are normally distributed,
+# but the point-biserial correlation is based on Pearson and we're not using the resulting p-values, only the correlation coefficients
+cor_success <- cor(success); cor_success
 
 # Write correlation matrix to file
-write.table(cor_success, "../results/corr_matrices/success.txt", col.names = FALSE, row.names=FALSE)
+write.table(cor_success, "../results/corr_matrices/success_question_5.txt", col.names = FALSE, row.names=FALSE)
+
+
+## Study success - Research question 6: Relationship lexical richness and study success
+
+# New dataframe with the dependent variables
+success <- no_dropout[c("Mean_Grade", "DropOutBinary")]
+success <- na.omit(success)
+
+# Measures are not normally distributed
+
+# Correlation matrix
+cor_success <- cor(success); cor_success
+
+# Write correlation matrix to file
+write.table(cor_success, "../results/corr_matrices/success_question_6.txt", col.names = FALSE, row.names=FALSE)
 
 
 ## Lexical richness
