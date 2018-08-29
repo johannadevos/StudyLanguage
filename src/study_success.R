@@ -101,7 +101,7 @@ subject_info$CoursesOutsideProgramme <- NULL
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
 # Alpha according to Li & Ji (2005); cited in Nyholt (2004)
-alpha_success = 0.0202
+alpha_5 = 0.0202
 
 ## Create long data frames needed to do mixed-effects modelling
 
@@ -149,12 +149,12 @@ rm(list=ls(pattern="index"))
 ## Descriptive statistics 
 
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_success) # Per group
-bootstrap(no_dropout$EC_Obtained, func=mean, iter=10000, alpha = alpha_success) # Overall
+tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_5) # Per group
+bootstrap(no_dropout$EC_Obtained, func=mean, iter=10000, alpha = alpha_5) # Overall
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_success) # Per group
-bootstrap(no_dropout$EC_Obtained, func=median, iter=10000, alpha = alpha_success) # Overall
+tapply(no_dropout$EC_Obtained, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_5) # Per group
+bootstrap(no_dropout$EC_Obtained, func=median, iter=10000, alpha = alpha_5) # Overall
 
 # Summary statistics
 tapply(no_dropout$EC_Obtained, no_dropout$Group, stat.desc) # Per group
@@ -237,12 +237,12 @@ plot(no_dropout$Cook_EC, ylab = "Cook's distance")
 ## Descriptive statistics 
 
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_success) # Per group
-bootstrap(no_dropout$Mean_Grade, func=mean, iter=10000, alpha = alpha_success) # Overall
+tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_5) # Per group
+bootstrap(no_dropout$Mean_Grade, func=mean, iter=10000, alpha = alpha_5) # Overall
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_success) # Per group
-bootstrap(no_dropout$Mean_Grade, func=median, iter=10000, alpha = alpha_success) # Overall
+tapply(no_dropout$Mean_Grade, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_5) # Per group
+bootstrap(no_dropout$Mean_Grade, func=median, iter=10000, alpha = alpha_5) # Overall
 
 # Summary statistics
 tapply(no_dropout$Mean_Grade, no_dropout$Group, stat.desc)
@@ -318,12 +318,12 @@ hist(residuals(mean_group))
 ## Descriptive statistics 
 
 # Mean with bootstrapped precision estimates
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_success) # Per group
-bootstrap(no_dropout$Weighted_Grade, func=mean, iter=10000, alpha = alpha_success) # Overall
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=mean, iter=10000, alpha = alpha_5) # Per group
+bootstrap(no_dropout$Weighted_Grade, func=mean, iter=10000, alpha = alpha_5) # Overall
 
 # Median with bootstrapped precision estimates
-tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_success) # Per group
-bootstrap(no_dropout$Weighted_Grade, func=median, iter=10000, alpha = alpha_success) # Overall
+tapply(no_dropout$Weighted_Grade, no_dropout$Group, bootstrap, func=median, iter=10000, alpha = alpha_5) # Per group
+bootstrap(no_dropout$Weighted_Grade, func=median, iter=10000, alpha = alpha_5) # Overall
 
 # Summary statistics
 tapply(no_dropout$Weighted_Grade, no_dropout$Group, stat.desc) # Per group
@@ -471,10 +471,10 @@ dropout_model_robust <- boot(statistic = bootLogReg, formula = DropOutBinary ~ G
 
 # Inspect results
 dropout_model_robust$t0 # Intercept and slope coefficients
-boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
-boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for Dutch in English track
-boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for German in Dutch track
-boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for German in English track
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_5), index = 1) # Confidence intervals for intercept
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_5), index = 2) # Confidence intervals for Dutch in English track
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_5), index = 3) # Confidence intervals for German in Dutch track
+boot.ci(dropout_model_robust, type = "bca", conf = (1-alpha_5), index = 4) # Confidence intervals for German in English track
 
 
 ### PASSING THE BSA
@@ -501,6 +501,8 @@ chisq.test(bsa_no_dropout)
 ### ----------------------------------------------------------------------------------------------
 ### Question 6: Does students' lexical richness in the study language predict their study success?
 ### ----------------------------------------------------------------------------------------------
+
+alpha_6 <- .0253
 
 ### Preprocessing
 
@@ -565,10 +567,10 @@ lca_ECs <- boot(statistic = bootReg, formula = EC_Obtained ~ LD_Centered + LS_Ce
 
 # Inspect results
 lca_ECs$t0 # Intercept and slope coefficients
-boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
-boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
-boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
-boot.ci(lca_ECs, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_6), index = 1) # Confidence intervals for intercept
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_6), index = 2) # Confidence intervals for LD
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_6), index = 3) # Confidence intervals for LS
+boot.ci(lca_ECs, type = "bca", conf = (1-alpha_6), index = 4) # Confidence intervals for LV
 
 ## OLS regression
 lca_ECs_ols <- lm(EC_Obtained ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_ECs_ols)
@@ -605,10 +607,10 @@ lca_mean <- boot(statistic = bootReg, formula = Mean_Grade ~ LD_Centered + LS_Ce
 
 # Inspect results
 lca_mean$t0 # Intercept and slope coefficients
-boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
-boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
-boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
-boot.ci(lca_mean, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_6), index = 1) # Confidence intervals for intercept
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_6), index = 2) # Confidence intervals for LD
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_6), index = 3) # Confidence intervals for LS
+boot.ci(lca_mean, type = "bca", conf = (1-alpha_6), index = 4) # Confidence intervals for LV
 
 ## OLS regression
 lca_mean_ols <- lm(Mean_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_mean_ols)
@@ -679,10 +681,10 @@ lca_weighted <- boot(statistic = bootReg, formula = Weighted_Grade ~ LD_Centered
 
 # Inspect results
 lca_weighted$t0 # Intercept and slope coefficients
-boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
-boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
-boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
-boot.ci(lca_weighted, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_6), index = 1) # Confidence intervals for intercept
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_6), index = 2) # Confidence intervals for LD
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_6), index = 3) # Confidence intervals for LS
+boot.ci(lca_weighted, type = "bca", conf = (1-alpha_6), index = 4) # Confidence intervals for LV
 
 ## OLS regression
 lca_weighted_ols <- lm(Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_weighted_ols)
@@ -722,14 +724,14 @@ qqnorm(residuals(lca_weighted_me))
 ### DROP-OUT
 
 # Run robust regression
-lca_drop <- boot(statistic = bootLogReg, formula = DropOutBinary ~ LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
+lca_drop <- boot(statistic = bootLogReg, formula = DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 # Inspect results
 lca_drop$t0 # Intercept and slope coefficients
-boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 1) # Confidence intervals for intercept
-boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 2) # Confidence intervals for LD
-boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 3) # Confidence intervals for LS
-boot.ci(lca_drop, type = "bca", conf = (1-alpha_success), index = 4) # Confidence intervals for LV
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 1) # Confidence intervals for intercept
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 2) # Confidence intervals for LD
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 3) # Confidence intervals for LS
+boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 4) # Confidence intervals for LV
 
 # Logistic regression
 lca_drop_glm <- glm(DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, family = "binomial"); summary(lca_drop_glm)
