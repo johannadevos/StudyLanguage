@@ -1,6 +1,7 @@
 __pycache__
 data/indiv_files
 data/raw_data
+figures/*
 results/length_descriptives
 src/Rallfun-v35.txt
 src/t1waybt_commented.R
