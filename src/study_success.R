@@ -31,16 +31,16 @@ bootstrap <- function(data, func, iter, alpha){
   data <- na.omit(data)
   boot_sample <- boot(data, function(x,i) func(x[i]), iter)
   print("The estimated value of the statistic is:")
-  print(boot_sample$t0)
+  print(round(boot_sample$t0, 2))
   print("The bootstrapped standard error of the statistic is:")
   se <- sd(boot_sample$t)
-  print(se)
+  print(round(se, 2))
   print("The bootstrapped standard deviation of the statistic is:")
   sd <- se * sqrt(length(data))
-  print(sd)
+  print(round(sd,2))
   ci <- boot.ci(boot_sample, type = "bca", conf = 1-alpha)
   print("The BCa confidence intervals of the statistic are:")
-  print(ci$bca[,4]); print(ci$bca[,5])
+  print(round(ci$bca[,4],2)); print(round(ci$bca[,5],2))
 }
 
 
@@ -101,7 +101,7 @@ subject_info$CoursesOutsideProgramme <- NULL
 no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
 # Alpha according to Li & Ji (2005); cited in Nyholt (2004)
-alpha_success = 0.0170
+alpha_success = 0.0202
 
 ## Create long data frames needed to do mixed-effects modelling
 
