@@ -664,6 +664,13 @@ course_intercepts <- ranef(lca_mean_me_lv)[[2]]
 course_int_vec <- as.vector(course_intercepts$`(Intercept)`)
 hist(course_intercepts)
 
+## Robust mixed-effects model
+lca_mean_rme_null <- rlmer(Grade ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(lca_mean_rme_null)
+lca_mean_rme_ld <- update(lca_mean_rme_null, . ~ + LD + .); summary(lca_mean_rme_ld)
+lca_mean_rme_ls <- update(lca_mean_rme_ld, . ~ + LS + .); summary(lca_mean_rme_ls)
+lca_mean_rme_lv <- update(lca_mean_rme_ls, . ~ + LV + .); summary(lca_mean_rme_lv)
+compare(lca_mean_rme_null, lca_mean_rme_ld, lca_mean_rme_ls, lca_mean_rme_lv)
+
 
 ### WEIGHTED GRADE
 
