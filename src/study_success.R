@@ -394,6 +394,19 @@ drop2 <- table(subject_info$Group, subject_info$DropOutBinary); drop2
 round(prop.table(drop2, 1)*100, 2) # Per group
 round(prop.table(table(subject_info$DropOutBinary))*100,2) # Overall
 
+# Confidence intervals around percentages
+ci_perc <- function(prop, alpha, z, n)
+{upper <- prop + z*sqrt((prop*((1-prop))/n))
+lower <- prop - z*sqrt((prop*((1-prop))/n))
+level <- (1-alpha)*100
+print(paste(level, "% confidence interval: ", round(lower, 4), "-", round(upper, 4)))
+}
+
+ci_perc(0.1977, 0.02, 2.33, 172) # Dutch in Dutch track
+ci_perc(0.2500, 0.02, 2.33, 36) # Dutch in English track
+ci_perc(0.3400, 0.02, 2.33, 50) # German in Dutch track
+ci_perc(0.3323, 0.02, 2.33, 325) # German in English track
+
 ## Inferential statistics
 
 # Chi-square tests
