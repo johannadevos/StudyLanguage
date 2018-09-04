@@ -336,10 +336,10 @@ plot(fitted(exam_group_LS), residuals(exam_group_LS)); abline(h = 0)
 plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS)); abline(h = 0)
 
 ## Normality of residuals
-hist(residuals(exam_group_LS)) # Seems normal
+hist(residuals(exam_group_LS), breaks = 30) # Seems normal
 qqnorm(residuals(exam_group_LS))
 
-hist(residuals(exam_group_int_LS)) # Seems normal
+hist(residuals(exam_group_int_LS), breaks = 30) # Seems normal
 qqnorm(residuals(exam_group_int_LS))
 
 ## Absence of influential data points
@@ -356,11 +356,11 @@ plot(lca_data$Cook_int_LS, ylab = "Cook's distance")
 ## Are the random coefficients normally distributed?
 subject_intercepts <- ranef(exam_group_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts)
+hist(subject_intercepts, breaks = 30)
 
 subject_intercepts <- ranef(exam_group_int_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts)
+hist(subject_intercepts, breaks = 30)
 
 
 ### Lexical variation
