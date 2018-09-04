@@ -26,6 +26,11 @@ rm(list=ls())
 lca_data <- read.csv("../data/lexical_richness.txt", header=TRUE, sep="\t")
 lca_data$SubjectCode <- as.factor(lca_data$SubjectCode)
 
+# Calculate overall lexical richness scores
+lca_data$LD <- rowMeans(cbind(lca_data$ld_oct, lca_data$ld_feb, lca_data$ld_apr))
+lca_data$LS <- rowMeans(cbind(lca_data$ls2_oct, lca_data$ls2_feb, lca_data$ls2_apr))
+lca_data$LV <- rowMeans(cbind(lca_data$ndwesz_oct, lca_data$ndwesz_feb, lca_data$ndwesz_apr))
+
 # For each measure, transform to a long data frame
 ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
 colnames(ld_melted)[colnames(ld_melted)=="variable"] <- "Exam"
@@ -357,10 +362,12 @@ plot(lca_data$Cook_int_LS, ylab = "Cook's distance")
 subject_intercepts <- ranef(exam_group_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
 hist(subject_intercepts, breaks = 30)
+lca_data$subj_intercept_LS <- subject_intercepts
 
 subject_intercepts <- ranef(exam_group_int_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
 hist(subject_intercepts, breaks = 30)
+lca_data$subj_intercept_LS_int <- subject_intercepts
 
 
 ### Lexical variation
