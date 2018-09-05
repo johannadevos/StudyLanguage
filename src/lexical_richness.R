@@ -26,10 +26,11 @@ rm(list=ls())
 lca_data <- read.csv("../data/lexical_richness.txt", header=TRUE, sep="\t")
 lca_data$SubjectCode <- as.factor(lca_data$SubjectCode)
 
-# Calculate overall lexical richness scores
+# Calculate overall lexical richness scores and average number of word tokens
 lca_data$LD <- rowMeans(cbind(lca_data$ld_oct, lca_data$ld_feb, lca_data$ld_apr))
 lca_data$LS <- rowMeans(cbind(lca_data$ls2_oct, lca_data$ls2_feb, lca_data$ls2_apr))
 lca_data$LV <- rowMeans(cbind(lca_data$ndwesz_oct, lca_data$ndwesz_feb, lca_data$ndwesz_apr))
+lca_data$tokens <- rowMeans(cbind(lca_data$wordtokens_oct, lca_data$wordtokens_feb, lca_data$wordtokens_apr))
 
 # For each measure, transform to a long data frame
 ld_melted <- melt(lca_data, id.vars=c("SubjectCode", "Track", "Nationality", "Group"), measure.vars = c("ld_oct", "ld_feb", "ld_apr"), value.name = "LD")
