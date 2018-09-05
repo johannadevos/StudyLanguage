@@ -406,6 +406,7 @@ ci_perc(0.1977, 0.02, 2.33, 172) # Dutch in Dutch track
 ci_perc(0.2500, 0.02, 2.33, 36) # Dutch in English track
 ci_perc(0.3400, 0.02, 2.33, 50) # German in Dutch track
 ci_perc(0.3323, 0.02, 2.33, 325) # German in English track
+ci_perc(0.2882, 0.02, 2.33, 583) # Total
 
 ## Inferential statistics
 
