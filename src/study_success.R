@@ -1,15 +1,15 @@
 # Import libraries
+library(arm) # To create the binned residual plot
+library(boot) # For bootstrapping
+library(car) # Levene's test
 library(emmeans) # To perform mulitple comparisons
 library(ggplot2) # Plotting
-library(scales) # To use pretty breaks in ggplot
-library(reshape2) # Use dcast (long -> wide) and melt (wide -> long)
 library(Hmisc) # For rcorr function
-library(car) # Levene's test
-library(pastecs) # stat.desc function
-library(lme4) # Linear mixed-effects models
-library(boot) # For bootstrapping
-library(arm) # To create the binned residual plot
 library(influence.ME) # To compute Cook's distance in mixed-effects models
+library(lme4) # Linear mixed-effects models
+library(pastecs) # stat.desc function
+library(reshape2) # Use dcast (long -> wide) and melt (wide -> long)
+library(scales) # To use pretty breaks in ggplot
 library(WRS) # Wilcox's functions for robust statistics
 
 # Clear workspace
