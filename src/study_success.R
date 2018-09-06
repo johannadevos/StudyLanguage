@@ -511,6 +511,54 @@ chisq.test(bsa_all)
 chisq.test(bsa_no_dropout)
 
 
+### Did unequal English abilities obscure the comparison between the two Dutch groups?
+### Match the two Dutch group in terms of their English grades, and repeat analysis
+
+# Create subsets for each Dutch group
+d_in_d <- no_dropout[no_dropout$Group=="Dutch in Dutch track",]
+d_in_e <- no_dropout[no_dropout$Group=="Dutch in English track",]
+
+# Sort the English grades in the largest group (Dutch in Dutch track) ascendingly
+d_in_d <- d_in_d[order(d_in_d$SchoolEnglish),]
+
+# Delete rows until the English grades in the two groups match
+for(i in 1:nrow(d_in_d)){
+  print(paste("Index:", i))
+  
+  if(round(mean(d_in_d[-0:-i,]$SchoolEnglish, na.rm=TRUE),2) == round(mean(d_in_e$SchoolEnglish, na.rm = TRUE),2)){
+    print("Mean English grade in each group:")
+    print(mean(d_in_d[-0:-i,]$SchoolEnglish, na.rm=TRUE))
+    print(mean(d_in_e$SchoolEnglish, na.rm=TRUE))
+    
+    print("Mean overall school grade in each group:")
+    print(round(mean(d_in_d[-0:-i,]$SchoolMean, na.rm=TRUE), 2))
+    print(round(mean(d_in_e$SchoolMean, na.rm=TRUE), 2))
+  
+    cut_off <- i
+    
+    break
+  }
+}
+
+# Which subjects should be excluded in order to get matching English grades?
+excl_subj <- d_in_d[1:cut_off,]$SubjectCode
+
+# Create new data frame with only Dutch students, where the students in the two tracks are matched on English grade
+matched_dutch <- no_dropout[!no_dropout$SubjectCode %in% excl_subj,]
+matched_dutch$Group <- as.factor(matched_dutch$Group)
+
+# Exclude cases where English school grade was unknown
+matched_dutch <- matched_dutch[!is.na(matched_dutch$SchoolEnglish),]
+
+# Delete unused Group levels (i.e., the two German groups)
+matched_dutch$Group <- factor(matched_dutch$Group)
+
+# Calculate descriptives
+tapply(matched_dutch$SchoolEnglish, matched_dutch$Group, mean)
+tapply(matched_dutch$SchoolMean, matched_dutch$Group, mean)
+
+
+
 ### ----------------------------------------------------------------------------------------------
 ### Question 6: Does students' lexical richness in the study language predict their study success?
 ### ----------------------------------------------------------------------------------------------
