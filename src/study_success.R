@@ -11,7 +11,6 @@ library(boot) # For bootstrapping
 library(arm) # To create the binned residual plot
 library(influence.ME) # To compute Cook's distance in mixed-effects models
 library(WRS) # Wilcox's functions for robust statistics
-library(plyr); library(dplyr); library(gridExtra); library(MASS)
 
 # Clear workspace
 rm(list=ls())
@@ -436,8 +435,8 @@ hist(residuals(dropout_model)) # There are 8 possible values for the residuals (
 subject_info$StandardizedResiduals <- rstandard(dropout_model)
 plot(subject_info$StandardizedResiduals)
 summary(subject_info$StandardizedResiduals)
-length(which(subject_info$StandardizedResiduals > 1.96 | subject_info$StandardizedResiduals < -1.96)) / nrow(lca) # Only 5% should lie outside +- 1.96. We have 8.5%.
-length(which(subject_info$StandardizedResiduals > 2.58 | subject_info$StandardizedResiduals < -2.58)) / nrow(lca) # Only 1% should lie outside +- 2.58. We have 0%.
+length(which(subject_info$StandardizedResiduals > 1.96 | subject_info$StandardizedResiduals < -1.96)) / nrow(subject_info) # Only 5% should lie outside +- 1.96. We have 0%.
+length(which(subject_info$StandardizedResiduals > 2.58 | subject_info$StandardizedResiduals < -2.58)) / nrow(subject_info) # Only 1% should lie outside +- 2.58. We have 0%.
 
 # Store large residuals for further investigation
 subject_info$LargeResidual <- rstudent(dropout_model) > 1.96 | rstudent(dropout_model) < -1.96
@@ -553,11 +552,11 @@ lr_long$LCA <- NULL
 ### TOTAL NUMBER OF OBTAINED ECs
 
 ## Mixed-effects model
-lca_passed_me_group <- glmer(Passed ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long, family = "binomial", control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=1e5))); summary(lca_passed_me_null)
+lca_passed_me_group <- glmer(Passed ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long, family = "binomial", control = glmerControl(optimizer = "bobyqa", optCtrl=list(maxfun=1e5))); summary(lca_passed_me_group)
 lca_passed_me_ld <- update(lca_passed_me_group, . ~ + LD + .); summary(lca_passed_me_ld)
 lca_passed_me_ls <- update(lca_passed_me_ld, . ~ + LS + .); summary(lca_passed_me_ls)
 lca_passed_me_lv <- update(lca_passed_me_ls, . ~ + LV + .); summary(lca_passed_me_lv)
-anova(lca_passed_me_null, lca_passed_me_ld, lca_passed_me_ls, lca_passed_me_lv)
+anova(lca_passed_me_group, lca_passed_me_ld, lca_passed_me_ls, lca_passed_me_lv)
 
 # Check assumptions
 
@@ -738,7 +737,7 @@ qqnorm(residuals(lca_weighted_me))
 ### DROP-OUT
 
 # Run robust regression
-lca_drop <- boot(statistic = bootLogReg, formula = DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca_no_infl_cases, R = 10000)
+lca_drop <- boot(statistic = bootLogReg, formula = DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, R = 10000)
 
 # Inspect results
 lca_drop$t0 # Intercept and slope coefficients
@@ -821,9 +820,9 @@ low_cov <- 1 - 3*(6+1)/305
 lca$LargeCovRatio <- lca["CovRatio"] > high_cov | lca["CovRatio"] < low_cov
 
 
-### -------------------------------------------------------------------------
-### Inferential statistics per outcome variable (no-mixed effects models yet)
-### -------------------------------------------------------------------------
+### -----
+### Other
+### -----
 
 # Function to draw histograms per group for the lexical richness variables
 lr_hist <- function(dep_var){
@@ -839,17 +838,9 @@ lr_hist("LD")
 lr_hist("LS")
 lr_hist("LV")
 
-## Group differences in lexical richness? (assumption for ANCOVA)
-
-# Descriptives
 options(scipen=999) # No scientific notation (enable again by setting it to 0)
-tapply(no_dropout$LD, no_dropout$Group, stat.desc)
-tapply(no_dropout$LS, no_dropout$Group, stat.desc)
-tapply(no_dropout$LV, no_dropout$Group, stat.desc)
 
-## Lexical richness
-
-# Are the lexical richness measures normally distribued?
+## Are the lexical richness measures normally distribued?
 hist(lca$LD) # Yes
 hist(lca$LS) # So-so (little bit of positive skew)
 hist(lca$LV) # Yes
@@ -885,17 +876,7 @@ gd_vs_english <- c(0,0.5,-1,0.5)
 contrasts(subject_info$Group) <- cbind (dd_vs_rest, gd_vs_english, de_vs_ge)
 contrasts(subject_info$Group)
 
-## Gender as predictor
-dropout_model2 <- glm(DropOutBinary ~ Group + Gender, family = binomial (link = "logit"), data = subject_info)
-summary(dropout_model2)
-
-
-
-### --------------------------------------------
-### Correlations between the dependent variables
-### --------------------------------------------
-
-## Three continuous measures of study success 
+## Correlations between the dependent variables
 
 # Create dataset
 cor_data <- no_dropout[,cbind("EC_Obtained", "Mean_Grade", "Weighted_Grade")]
@@ -905,14 +886,3 @@ apply(cor_data, 2, shapiro.test) # 2 to loop through columns
 
 # Create a correlation matrix using Spearman's correlation coefficient
 rcorr(as.matrix(cor_data), type = "spearman")
-
-## Lexical richness measures
-
-# Create dataset
-lex_rich_measures <- lex[,cbind("LD", "LS2", "NDWESZ")]
-
-# Check whether the three dependent variables are normally distributed
-apply(lex_rich_measures, 2, shapiro.test) # 2 to loop through columns
-
-# Create a correlation matrix using Spearman's correlation coefficient
-rcorr(as.matrix(lex_rich_measures), type = "spearman")
