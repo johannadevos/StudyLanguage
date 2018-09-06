@@ -544,11 +544,10 @@ for(i in 1:nrow(d_in_d)){
 excl_subj <- d_in_d[1:cut_off,]$SubjectCode
 
 # Create new data frame with only Dutch students, where the students in the two tracks are matched on English grade
-matched_dutch <- no_dropout[!no_dropout$SubjectCode %in% excl_subj,]
-matched_dutch$Group <- as.factor(matched_dutch$Group)
+matched_all <- no_dropout[!no_dropout$SubjectCode %in% excl_subj,]
 
-# Exclude cases where English school grade was unknown
-matched_dutch <- matched_dutch[!is.na(matched_dutch$SchoolEnglish),]
+# Exclude cases where English school grade was unknown (only Dutch students)
+matched_dutch <- matched_all[!is.na(matched_all$SchoolEnglish),]
 
 # Delete unused Group levels (i.e., the two German groups)
 matched_dutch$Group <- factor(matched_dutch$Group)
@@ -557,6 +556,14 @@ matched_dutch$Group <- factor(matched_dutch$Group)
 tapply(matched_dutch$SchoolEnglish, matched_dutch$Group, mean)
 tapply(matched_dutch$SchoolMean, matched_dutch$Group, mean)
 
+# Delete Dutch students where English school grade was unknown, but keep German students
+matched <- matched_all[!is.na(matched_all$SchoolEnglish) | matched_all$Nationality=="German",]
+
+# To replicate the results for Question 4: set dutch_data to matched_dutch and run the above commands
+dutch_data <- matched_dutch
+
+# To replicate the results for Question 5: set no_dropout to matched_dutch and run the above commands
+no_dropout <- matched
 
 
 ### ----------------------------------------------------------------------------------------------
