@@ -66,13 +66,13 @@ hist(dutch_data$SchoolEnglish[dutch_data$Track == "Dutch"], breaks=12)
 
 # Descriptives per track
 tapply(dutch_data$SchoolMean, dutch_data$Track, stat.desc)
-tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
+tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_4)) # To obtain CI
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_school)) # To obtain CI
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_4)) # To obtain CI
 
 # Bootstrapped descriptives per dependent variable and track
-tapply(dutch_data$SchoolMean, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_school) # SchoolMean
-tapply(dutch_data$SchoolEnglish, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_school) # SchoolEnglish
+tapply(dutch_data$SchoolMean, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_4) # SchoolMean
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_4) # SchoolEnglish
 
 # Use a non-parametric test to compare means
 wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
