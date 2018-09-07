@@ -295,10 +295,14 @@ by(no_dropout$RankMean_Grade, no_dropout$Group, mean)
 # Transform data to wide format
 wilcox_wide_mean <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Mean_Grade")
 wilcox_wide_mean$SubjectCode <- NULL
+wilcox_wide_mean <- as.list(wilcox_wide_mean)
 
 # Perform robust ANOVA
 t1waybt(wilcox_wide_mean, tr = 0, nboot = 10000)
 #med1way(wilcox_wide_mean) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+# Post-hoc tests
+mcppb20(wilcox_wide_mean, tr = 0, crit = alpha_5/2, nboot = 10000) # Data need to be in list mode
 
 # Mixed-effects models
 mean_null <- lmer(Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(mean_null)
