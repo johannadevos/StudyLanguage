@@ -86,7 +86,7 @@ t.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean
 ### Question 5: Is there a relation between nationality, study language and study success?
 ### --------------------------------------------------------------------------------------
 
-### Preprocessing
+### PREPROCESSING
 
 # Exclude students who received exemptions for one or more courses
 subject_info <- subject_info[subject_info$Exemption!=1,]
@@ -101,46 +101,6 @@ no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
 
 # Alpha according to Li & Ji (2005); cited in Nyholt (2004)
 alpha_5 = 0.0202
-
-## Create long data frames needed to do mixed-effects modelling
-
-# Indices
-index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
-index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
-index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
-index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
-index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
-index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
-index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
-index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
-index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
-index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
-
-# Transform to long data format
-EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
-colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
-EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
-
-grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
-colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
-grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
-
-weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted_Grade")
-colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
-weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
-
-passed_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_passed:index13_passed), value.name = "Passed")
-colnames(passed_long)[colnames(passed_long)=="variable"] <- "Course"
-passed_long$Course <- as.factor(gsub("\\D", "", passed_long$Course))
-
-# Merge
-subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
-subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
-subject_long <- merge(subject_long, passed_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
-
-# Remove data frames
-rm(EC_long, grades_long, weighted_long, passed_long)
-rm(list=ls(pattern="index"))
 
 
 ### MATCH DUTCH STUDENTS ON ENGLISH GRADE
@@ -191,14 +151,55 @@ tapply(matched_dutch$SchoolMean, matched_dutch$Group, mean)
 matched_all <- matched_all[!is.na(matched_all$SchoolEnglish) | matched_all$Nationality=="German",]
 
 # To replicate the results for Question 4: set dutch_data to matched_dutch and run the above commands
-#dutch_data <- matched_dutch
+dutch_data <- matched_dutch
 
 # To replicate the results for Question 5: set no_dropout to matched or matched_dutch and run the above commands
-#no_dropout <- matched_all
+no_dropout <- matched_all
 #no_dropout <- matched_dutch
 
 # Remove variables that are no longer needed
 rm(excl_subj, d_in_d, d_in_e, cut_off, i)
+
+
+### CREATE LONG DATA FRAMES
+
+# Indices
+index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
+index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
+index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
+index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
+index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
+index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
+index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
+index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
+index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
+index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
+
+# Transform to long data format
+EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
+colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
+EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
+
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
+colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
+grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
+
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted_Grade")
+colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
+weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
+
+passed_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_passed:index13_passed), value.name = "Passed")
+colnames(passed_long)[colnames(passed_long)=="variable"] <- "Course"
+passed_long$Course <- as.factor(gsub("\\D", "", passed_long$Course))
+
+# Merge
+subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+subject_long <- merge(subject_long, passed_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+
+# Remove data frames
+rm(EC_long, grades_long, weighted_long, passed_long)
+rm(list=ls(pattern="index"))
 
 
 ### TOTAL NUMBER OF OBTAINED ECs
