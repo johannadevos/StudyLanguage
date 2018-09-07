@@ -96,18 +96,15 @@ subject_info$Exemption <- NULL
 subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
 subject_info$CoursesOutsideProgramme <- NULL
 
-# Data frame without drop-outs
-no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
-
-# Alpha according to Li & Ji (2005); cited in Nyholt (2004)
-alpha_5 = 0.0202
+# Exclude Dutch students for whom high school grades are not available
+subject_info <- subject_info[!is.na(subject_info$SchoolEnglish) | subject_info$Nationality=="German",]
 
 
 ### MATCH DUTCH STUDENTS ON ENGLISH GRADE
 
 # Create subsets for each Dutch group
-d_in_d <- no_dropout[no_dropout$Group=="Dutch in Dutch track",]
-d_in_e <- no_dropout[no_dropout$Group=="Dutch in English track",]
+d_in_d <- subject_info[subject_info$Group=="Dutch in Dutch track",]
+d_in_e <- subject_info[subject_info$Group=="Dutch in English track",]
 
 # Sort the English grades in the largest group (Dutch in Dutch track) ascendingly
 d_in_d <- d_in_d[order(d_in_d$SchoolEnglish),]
@@ -135,7 +132,7 @@ for(i in 1:nrow(d_in_d)){
 excl_subj <- d_in_d[1:cut_off,]$SubjectCode
 
 # Exclude students so that the English grades end up the same
-matched_all <- no_dropout[!no_dropout$SubjectCode %in% excl_subj,]
+matched_all <- subject_info[!subject_info$SubjectCode %in% excl_subj,]
 
 # Exclude students whose English school grade was unknown (this leaves only Dutch students)
 matched_dutch <- matched_all[!is.na(matched_all$SchoolEnglish),]
@@ -143,25 +140,25 @@ matched_dutch <- matched_all[!is.na(matched_all$SchoolEnglish),]
 # Delete unused Group levels (i.e., the two German groups)
 matched_dutch$Group <- factor(matched_dutch$Group)
 
-# Calculate descriptives
-tapply(matched_dutch$SchoolEnglish, matched_dutch$Group, mean)
-tapply(matched_dutch$SchoolMean, matched_dutch$Group, mean)
-
-# Exclude Dutch students whose English school grade was unknown, but keep German students
-matched_all <- matched_all[!is.na(matched_all$SchoolEnglish) | matched_all$Nationality=="German",]
-
 # To replicate the results for Question 4: set dutch_data to matched_dutch and run the above commands
 dutch_data <- matched_dutch
 
 # To replicate the results for Question 5: set no_dropout to matched or matched_dutch and run the above commands
-no_dropout <- matched_all
-#no_dropout <- matched_dutch
+subject_info <- matched_all
 
 # Remove variables that are no longer needed
 rm(excl_subj, d_in_d, d_in_e, cut_off, i)
 
 
-### CREATE LONG DATA FRAMES
+### CONTINUE PREPROCESSING
+
+# Data frame without drop-outs
+no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
+
+# Alpha according to Li & Ji (2005); cited in Nyholt (2004)
+alpha_5 = 0.0202
+
+## Create long data frames
 
 # Indices
 index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
@@ -258,12 +255,12 @@ wilcox_wide_ECs <- as.list(wilcox_wide_ECs)
 # Load functions from Rand Wilcox (only if you have problems importing the WRS library)
 #source("Rallfun-v35.txt")
 
-# Post-hoc tests
-mcppb20(wilcox_wide_ECs, tr = 0, crit = alpha_5/2, nboot = 10000) # Data need to be in list mode
-
 # Perform robust ANOVA with bootstrapping
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
 #med1way(wilcox_wide_ECs) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+# Post-hoc tests
+mcppb20(wilcox_wide_ECs, tr = 0, crit = alpha_5/2, nboot = 10000) # Data need to be in list mode
 
 ## Mixed-effects models
 
@@ -292,6 +289,9 @@ hist(course_intercepts)
 # Influential data points (Cook's distance)
 no_dropout$Cook_EC <- cooks.distance.estex(influence(ec_group, group = 'SubjectCode'))
 plot(no_dropout$Cook_EC, ylab = "Cook's distance")
+
+# Remove models
+rm(list=ls(pattern="ec_"))
 
 
 ### MEAN GRADE
