@@ -429,10 +429,14 @@ by(no_dropout$Weighted_Grade, no_dropout$Group, mean)
 # Transform data to wide format
 wilcox_wide_weighted <- dcast(no_dropout, SubjectCode ~ Group, value.var = "Weighted_Grade")
 wilcox_wide_weighted$SubjectCode <- NULL
+wilcox_wide_weighted <- as.list(wilcox_wide_weighted)
 
 # Perform robust ANOVA
 t1waybt(wilcox_wide_weighted, tr = 0, nboot = 10000)
 #med1way(wilcox_wide_weighted) # "WARNING: tied values detected. Estimate of standard error might be highly inaccurate, even with n large."
+
+# Post-hoc tests
+mcppb20(wilcox_wide_weighted, tr = 0, crit = alpha_5/2, nboot = 10000)
 
 # Mixed-effects models
 weighted_null <- lmer(Weighted_Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long, REML = FALSE); summary(weighted_null)
@@ -468,11 +472,11 @@ level <- (1-alpha)*100
 print(paste(level, "% confidence interval: ", round(lower, 4), "-", round(upper, 4)))
 }
 
-ci_perc(0.1977, 0.02, 2.33, 172) # Dutch in Dutch track
-ci_perc(0.2500, 0.02, 2.33, 36) # Dutch in English track
-ci_perc(0.3400, 0.02, 2.33, 50) # German in Dutch track
-ci_perc(0.3323, 0.02, 2.33, 325) # German in English track
-ci_perc(0.2882, 0.02, 2.33, 583) # Total
+ci_perc(0.1915, 0.02, 2.33, nrow(subject_info[subject_info$Group=="Dutch in Dutch track",]))
+ci_perc(0.2121, 0.02, 2.33, nrow(subject_info[subject_info$Group=="Dutch in English track",]))
+ci_perc(0.3400, 0.02, 2.33, nrow(subject_info[subject_info$Group=="German in Dutch track",]))
+ci_perc(0.3323, 0.02, 2.33, nrow(subject_info[subject_info$Group=="German in English track",]))
+ci_perc(0.2988, 0.02, 2.33, nrow(subject_info)) # Total
 
 ## Inferential statistics
 
