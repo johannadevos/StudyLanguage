@@ -51,7 +51,7 @@ bootstrap <- function(data, func, iter, alpha){
 dutch_data <- subject_info[subject_info$Nationality == "Dutch",]
 
 # Alpha according to Li & Ji (2005); cited in Nyholt (2004)
-alpha_school = .0253
+alpha_4 = .0253
 
 # Are the grades normally distributed? --> Not in the Dutch track
 tapply(dutch_data$SchoolMean, dutch_data$Track, shapiro.test)
@@ -194,9 +194,13 @@ by(no_dropout$Rank, no_dropout$Group, mean)
 # Transform data to wide format
 wilcox_wide_ECs <- dcast(no_dropout, SubjectCode ~ Group, value.var = "EC_Obtained")
 wilcox_wide_ECs$SubjectCode <- NULL
+wilcox_wide_ECs <- as.list(wilcox_wide_ECs)
 
 # Load functions from Rand Wilcox (only if you have problems importing the WRS library)
 #source("Rallfun-v35.txt")
+
+# Post-hoc tests
+mcppb20(wilcox_wide_ECs, tr = 0, crit = alpha_5/2, nboot = 10000) # Data need to be in list mode
 
 # Perform robust ANOVA with bootstrapping
 t1waybt(wilcox_wide_ECs, tr = 0, nboot = 10000)
@@ -564,10 +568,10 @@ tapply(matched_dutch$SchoolMean, matched_dutch$Group, mean)
 matched_all <- matched_all[!is.na(matched_all$SchoolEnglish) | matched_all$Nationality=="German",]
 
 # To replicate the results for Question 4: set dutch_data to matched_dutch and run the above commands
-dutch_data <- matched_dutch
+#dutch_data <- matched_dutch
 
 # To replicate the results for Question 5: set no_dropout to matched or matched_dutch and run the above commands
-no_dropout <- matched_all
+#no_dropout <- matched_all
 #no_dropout <- matched_dutch
 
 # Remove variables that are no longer needed
