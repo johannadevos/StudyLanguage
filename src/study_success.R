@@ -143,6 +143,64 @@ rm(EC_long, grades_long, weighted_long, passed_long)
 rm(list=ls(pattern="index"))
 
 
+### MATCH DUTCH STUDENTS ON ENGLISH GRADE
+
+# Create subsets for each Dutch group
+d_in_d <- no_dropout[no_dropout$Group=="Dutch in Dutch track",]
+d_in_e <- no_dropout[no_dropout$Group=="Dutch in English track",]
+
+# Sort the English grades in the largest group (Dutch in Dutch track) ascendingly
+d_in_d <- d_in_d[order(d_in_d$SchoolEnglish),]
+
+# Delete rows until the English grades in the two groups match
+for(i in 1:nrow(d_in_d)){
+  print(paste("Index:", i))
+  
+  if(round(mean(d_in_d[-0:-i,]$SchoolEnglish, na.rm=TRUE),2) == round(mean(d_in_e$SchoolEnglish, na.rm = TRUE),2)){
+    print("Mean English grade in each group:")
+    print(mean(d_in_d[-0:-i,]$SchoolEnglish, na.rm=TRUE))
+    print(mean(d_in_e$SchoolEnglish, na.rm=TRUE))
+    
+    print("Mean overall school grade in each group:")
+    print(round(mean(d_in_d[-0:-i,]$SchoolMean, na.rm=TRUE), 2))
+    print(round(mean(d_in_e$SchoolMean, na.rm=TRUE), 2))
+    
+    cut_off <- i
+    
+    break
+  }
+}
+
+# Which subjects should be excluded in order to get matching English grades?
+excl_subj <- d_in_d[1:cut_off,]$SubjectCode
+
+# Exclude students so that the English grades end up the same
+matched_all <- no_dropout[!no_dropout$SubjectCode %in% excl_subj,]
+
+# Exclude students whose English school grade was unknown (this leaves only Dutch students)
+matched_dutch <- matched_all[!is.na(matched_all$SchoolEnglish),]
+
+# Delete unused Group levels (i.e., the two German groups)
+matched_dutch$Group <- factor(matched_dutch$Group)
+
+# Calculate descriptives
+tapply(matched_dutch$SchoolEnglish, matched_dutch$Group, mean)
+tapply(matched_dutch$SchoolMean, matched_dutch$Group, mean)
+
+# Exclude Dutch students whose English school grade was unknown, but keep German students
+matched_all <- matched_all[!is.na(matched_all$SchoolEnglish) | matched_all$Nationality=="German",]
+
+# To replicate the results for Question 4: set dutch_data to matched_dutch and run the above commands
+#dutch_data <- matched_dutch
+
+# To replicate the results for Question 5: set no_dropout to matched or matched_dutch and run the above commands
+#no_dropout <- matched_all
+#no_dropout <- matched_dutch
+
+# Remove variables that are no longer needed
+rm(excl_subj, d_in_d, d_in_e, cut_off, i)
+
+
 ### TOTAL NUMBER OF OBTAINED ECs
 
 ## Descriptive statistics 
@@ -517,65 +575,6 @@ chisq.test(bsa_all)
 
 # No drop-outs
 chisq.test(bsa_no_dropout)
-
-
-### Did unequal English abilities obscure the comparison between the two Dutch groups?
-### Match the two Dutch group in terms of their English grades, and repeat analysis
-
-# Create subsets for each Dutch group
-d_in_d <- no_dropout[no_dropout$Group=="Dutch in Dutch track",]
-d_in_e <- no_dropout[no_dropout$Group=="Dutch in English track",]
-
-# Sort the English grades in the largest group (Dutch in Dutch track) ascendingly
-d_in_d <- d_in_d[order(d_in_d$SchoolEnglish),]
-
-# Delete rows until the English grades in the two groups match
-for(i in 1:nrow(d_in_d)){
-  print(paste("Index:", i))
-  
-  if(round(mean(d_in_d[-0:-i,]$SchoolEnglish, na.rm=TRUE),2) == round(mean(d_in_e$SchoolEnglish, na.rm = TRUE),2)){
-    print("Mean English grade in each group:")
-    print(mean(d_in_d[-0:-i,]$SchoolEnglish, na.rm=TRUE))
-    print(mean(d_in_e$SchoolEnglish, na.rm=TRUE))
-    
-    print("Mean overall school grade in each group:")
-    print(round(mean(d_in_d[-0:-i,]$SchoolMean, na.rm=TRUE), 2))
-    print(round(mean(d_in_e$SchoolMean, na.rm=TRUE), 2))
-  
-    cut_off <- i
-    
-    break
-  }
-}
-
-# Which subjects should be excluded in order to get matching English grades?
-excl_subj <- d_in_d[1:cut_off,]$SubjectCode
-
-# Exclude students so that the English grades end up the same
-matched_all <- no_dropout[!no_dropout$SubjectCode %in% excl_subj,]
-
-# Exclude students whose English school grade was unknown (this leaves only Dutch students)
-matched_dutch <- matched_all[!is.na(matched_all$SchoolEnglish),]
-
-# Delete unused Group levels (i.e., the two German groups)
-matched_dutch$Group <- factor(matched_dutch$Group)
-
-# Calculate descriptives
-tapply(matched_dutch$SchoolEnglish, matched_dutch$Group, mean)
-tapply(matched_dutch$SchoolMean, matched_dutch$Group, mean)
-
-# Exclude Dutch students whose English school grade was unknown, but keep German students
-matched_all <- matched_all[!is.na(matched_all$SchoolEnglish) | matched_all$Nationality=="German",]
-
-# To replicate the results for Question 4: set dutch_data to matched_dutch and run the above commands
-#dutch_data <- matched_dutch
-
-# To replicate the results for Question 5: set no_dropout to matched or matched_dutch and run the above commands
-#no_dropout <- matched_all
-#no_dropout <- matched_dutch
-
-# Remove variables that are no longer needed
-rm(excl_subj, d_in_d, d_in_e, cut_off, i)
 
 
 ### ----------------------------------------------------------------------------------------------
