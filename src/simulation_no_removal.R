@@ -4,7 +4,7 @@
 # How does this removal impact lexical variation scores? (NDW-ESZ)
 
 # Proportion of unique words
-prop <- mean(lca_data$LV) # or alternatively:
+prop <- mean(lca_data$LV) / 20 # or alternatively:
 prop <- 17.31343 / 20
 
 # Absolute number of unique words
