@@ -147,7 +147,7 @@ dutch_data <- matched_dutch
 subject_info <- matched_all
 
 # Remove variables that are no longer needed
-rm(excl_subj, d_in_d, d_in_e, cut_off, i)
+rm(excl_subj, d_in_d, d_in_e, matched_dutch, cut_off, i)
 
 
 ### CONTINUE PREPROCESSING
