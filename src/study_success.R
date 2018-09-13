@@ -96,11 +96,11 @@ subject_info$Exemption <- NULL
 subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
 subject_info$CoursesOutsideProgramme <- NULL
 
-# Exclude Dutch students for whom high school grades are not available
-subject_info <- subject_info[!is.na(subject_info$SchoolEnglish) | subject_info$Nationality=="German",]
-
 
 ### MATCH DUTCH STUDENTS ON ENGLISH GRADE
+
+# Exclude Dutch students for whom high school grades are not available
+subject_info <- subject_info[!is.na(subject_info$SchoolEnglish) | subject_info$Nationality=="German",]
 
 # Create subsets for each Dutch group
 d_in_d <- subject_info[subject_info$Group=="Dutch in Dutch track",]
@@ -147,7 +147,7 @@ dutch_data <- matched_dutch
 subject_info <- matched_all
 
 # Remove variables that are no longer needed
-rm(excl_subj, d_in_d, d_in_e, cut_off, i)
+rm(excl_subj, d_in_d, d_in_e, matched_dutch, cut_off, i)
 
 
 ### CONTINUE PREPROCESSING
