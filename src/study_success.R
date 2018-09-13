@@ -516,12 +516,12 @@ subject_info$LargeResidual <- rstudent(dropout_model) > 1.96 | rstudent(dropout_
 
 # Leverage
 subject_info$Leverage <- hatvalues(dropout_model)
-av_lev <- length(dropout_model$coefficients)/nrow(subject_info) # Average leverage = 0.0069
+av_lev <- length(dropout_model$coefficients)/nrow(subject_info) # Average leverage
 length(which(subject_info$Leverage > (2*av_lev)))
 length(which(subject_info$Leverage > (3*av_lev)))
 plot(subject_info$Leverage)
 abline(h=2*av_lev); abline(h=3*av_lev)
-subject_info$LargeLeverage <- subject_info["Leverage"] > (3*av_lev) # 0.0206
+subject_info$LargeLeverage <- subject_info["Leverage"] > (3*av_lev)
 
 # DF beta
 subject_info$dfBeta <- dfbeta(dropout_model)
