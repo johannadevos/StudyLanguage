@@ -765,6 +765,10 @@ plot(fitted(lca_mean_ols), residuals(lca_mean_ols)) # Looks good, no evidence of
 abline(h = c(0, sd(residuals(lca_mean_ols)), -sd(residuals(lca_mean_ols))))
 
 # Absence of collinearity
+hist(lca$LD_Centered)
+hist(lca$LS_Centered)
+hist(lca$LV_Centered)
+apply(lca[,cbind("LD", "LS", "LV")], 2, shapiro.test) # Significant for LS and LV, but histograms seem quite normal
 rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson") # Highest correlation is r = .38
 
 # Normality of residuals
