@@ -586,11 +586,86 @@ chisq.test(bsa_no_dropout)
 ### Question 6: Does students' lexical richness in the study language predict their study success?
 ### ----------------------------------------------------------------------------------------------
 
+### Data preprocessing
+
+# Read in data (go back to unmatched data)
+subject_info <- read.csv("../data/study_success.txt", header=TRUE, sep="\t", fileEncoding="UTF-8-BOM")
+subject_info$SubjectCode <- as.factor(subject_info$SubjectCode)
+
+# Are LCA measures available?
+subject_info$LCA <- ifelse(!is.na(subject_info$LD), 1, 0)
+
+# Exclude students who received exemptions for one or more courses
+subject_info <- subject_info[subject_info$Exemption!=1,]
+subject_info$Exemption <- NULL
+
+# Exclude students who took courses outside of the Psychology programme
+subject_info <- subject_info[subject_info$CoursesOutsideProgramme==0,]
+subject_info$CoursesOutsideProgramme <- NULL
+
+# Data frame without drop-outs
+no_dropout <- subject_info[subject_info$DropOut!="DuringYear1",]
+
+# Dataset with just LCA
+lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
+
+# Center the LCA measures
+lca$LD_Centered <- lca$LD - mean(lca$LD)
+lca$LS_Centered <- lca$LS - mean(lca$LS)
+lca$LV_Centered <- lca$LV - mean(lca$LV)
+
+## Create long data frames
+
+# Indices
+index1_grade <- which(colnames(no_dropout)=="Course1_Grade")
+index13_grade <- which(colnames(no_dropout)=="Course13_Grade")
+index1_worth <- which(colnames(no_dropout)=="Course1_EC_Worth")
+index13_worth <- which(colnames(no_dropout)=="Course13_EC_Worth")
+index1_ec <- which(colnames(no_dropout)=="Course1_EC_Obtained")
+index13_ec <- which(colnames(no_dropout)=="Course13_EC_Obtained")
+index1_weighted <- which(colnames(no_dropout)=="Course1_Weighted")
+index13_weighted <- which(colnames(no_dropout)=="Course13_Weighted")
+index1_passed <- which(colnames(no_dropout)=="Course1_Passed")
+index13_passed <- which(colnames(no_dropout)=="Course13_Passed")
+
+# Transform to long data format
+EC_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_ec:index13_ec), value.name = "EC_Obtained")
+colnames(EC_long)[colnames(EC_long)=="variable"] <- "Course"
+EC_long$Course <- as.factor(gsub("\\D", "", EC_long$Course))
+
+grades_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_grade:index13_grade), value.name = "Grade")
+colnames(grades_long)[colnames(grades_long)=="variable"] <- "Course"
+grades_long$Course <- as.factor(gsub("\\D", "", grades_long$Course))
+
+weighted_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_weighted:index13_weighted), value.name = "Weighted_Grade")
+colnames(weighted_long)[colnames(weighted_long)=="variable"] <- "Course"
+weighted_long$Course <- as.factor(gsub("\\D", "", weighted_long$Course))
+
+passed_long <- melt(no_dropout, id.vars=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "LCA"), measure.vars = c(index1_passed:index13_passed), value.name = "Passed")
+colnames(passed_long)[colnames(passed_long)=="variable"] <- "Course"
+passed_long$Course <- as.factor(gsub("\\D", "", passed_long$Course))
+
+# Merge
+subject_long <- merge(EC_long, grades_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+subject_long <- merge(subject_long, weighted_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+subject_long <- merge(subject_long, passed_long, by=c("SubjectCode", "Gender", "Track", "Nationality", "Group", "Course", "LCA"))
+
+# Remove data frames
+rm(EC_long, grades_long, weighted_long, passed_long)
+rm(list=ls(pattern="index"))
+
+# Create a long data frame with the lexical richness measures, for mixed-effects modelling
+lr_long <- subject_long
+lr_long$LD <- subject_info$LD[match(lr_long$SubjectCode, subject_info$SubjectCode)]
+lr_long$LS <- subject_info$LS[match(lr_long$SubjectCode, subject_info$SubjectCode)]
+lr_long$LV <- subject_info$LV[match(lr_long$SubjectCode, subject_info$SubjectCode)]
+lr_long <- lr_long[!is.na(lr_long$LD),]
+lr_long$LCA <- NULL
+
+### Alpha
 alpha_6 <- .0253
 
-### Preprocessing
-
-# Define functions to do robust regression (taken Field, Miles & Field, 2012, p. 299)
+### Define functions to do robust regression (taken Field, Miles & Field, 2012, p. 299)
 bootReg <- function (formula, data, i)
 {d <- data [i,] # i refers to a particular bootstrap sample
 fit <- lm(formula, data = d)
@@ -602,22 +677,6 @@ bootLogReg <- function (formula, data, i)
 fit <- glm(formula, data = d, family = "binomial")
 return(coef(fit))
 }
-
-# Dataset with just LCA
-lca <- subject_info[subject_info$LCA==1,] # Incidentally, no-one dropped out during year 1
-
-# Center the LCA measures
-lca$LD_Centered <- lca$LD - mean(lca$LD)
-lca$LS_Centered <- lca$LS - mean(lca$LS)
-lca$LV_Centered <- lca$LV - mean(lca$LV)
-
-# Create a long data frame with the lexical richness measures, for mixed-effects modelling
-lr_long <- subject_long
-lr_long$LD <- subject_info$LD[match(lr_long$SubjectCode, subject_info$SubjectCode)]
-lr_long$LS <- subject_info$LS[match(lr_long$SubjectCode, subject_info$SubjectCode)]
-lr_long$LV <- subject_info$LV[match(lr_long$SubjectCode, subject_info$SubjectCode)]
-lr_long <- lr_long[!is.na(lr_long$LD),]
-lr_long$LCA <- NULL
 
 
 ### TOTAL NUMBER OF OBTAINED ECs
