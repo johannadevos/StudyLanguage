@@ -883,8 +883,18 @@ boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 5) # Confidence inte
 boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 6) # Confidence intervals for LS
 boot.ci(lca_drop, type = "bca", conf = (1-alpha_6), index = 7) # Confidence intervals for LV
 
-# Logistic regression
-lca_drop_glm <- glm(DropOutBinary ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca, family = "binomial"); summary(lca_drop_glm)
+# Logistic regression (see Field, Miles & Field, 2012, p. 337)
+lca_drop_glm_null <- glm(DropOutBinary ~ Group, data = lca, family = "binomial"); summary(lca_drop_glm_null)
+lca_drop_glm_ld <- update(lca_drop_glm_null, . ~ + LD_Centered + .); summary(lca_drop_glm_ld)
+lca_drop_glm_ls <- update(lca_drop_glm_ld, . ~ + LS_Centered + .); summary(lca_drop_glm_ls)
+lca_drop_glm_lv <- update(lca_drop_glm_ls, . ~ + LV_Centered + .); summary(lca_drop_glm_lv)
+
+anova(lca_drop_glm_null, lca_drop_glm_ld, lca_drop_glm_ls, lca_drop_glm_lv)
+
+modelChi <- lca_drop_glm_null$deviance - lca_drop_glm_ld$deviance
+chidf <- lca_drop_glm_null$df.residual - lca_drop_glm_ld$df.residual
+chisq.prob <- 1 - pchisq(modelChi, chidf)
+modelChi; chidf; chisq.prob
 
 # Check assumptions
 
