@@ -271,8 +271,8 @@ pairs(exam_group.emm_LD, by = "Exam", adjust = "none")
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
 
-plot(fitted(exam_group_LD), residuals(exam_group_LD)); abline(h = 0)
-plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD)); abline(h = 0)
+plot(fitted(exam_group_LD), residuals(exam_group_LD), main = "Residual plot LD (Model 3)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
+plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD), main = "Residual plot LD (Model 4)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
 
 ## Absence of collinearity
 # Exam and Group are not correlated, because all groups took the same exams
@@ -338,8 +338,8 @@ pairs(exam_group.emm_LS, by = "Exam", adjust = "none")
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
 
-plot(fitted(exam_group_LS), residuals(exam_group_LS)); abline(h = 0)
-plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS)); abline(h = 0)
+plot(fitted(exam_group_LS), residuals(exam_group_LS), main = "Residual plot LS (Model 3)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
+plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS), main = "Residual plot LS (Model 4)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
 
 ## Normality of residuals
 hist(residuals(exam_group_LS), breaks = 30) # Seems normal
@@ -400,8 +400,8 @@ pairs(exam_group.emm_LV, by = "Exam", adjust = "none")
 
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
-plot(fitted(exam_group_LV), residuals(exam_group_LV), xlab = "Fitted values (Model 3)", ylab = "Residual values (Model 3)"); abline(h = 0) # A bimodal distribution appears
-plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV), xlab = "Fitted values (Model 4)", ylab = "Residual values (Model 4)"); abline(h = 0) # Slightly visible, but much better
+plot(fitted(exam_group_LV), residuals(exam_group_LV), main = "Residual plot LV (Model 3)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0) # A bimodal distribution appears
+plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV), main = "Residual plot LV (Model 4)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0) # Slightly visible, but much better
 
 ## Normality of residuals
 hist(residuals(exam_group_LV)) # Quite normal, but skewed to the left
