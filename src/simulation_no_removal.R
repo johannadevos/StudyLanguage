@@ -26,7 +26,7 @@ one_per <- d_len / prop_rem
 
 # Proportion of content words
 prop <- mean(lca_data$LD) # or manually:
-prop <- 0.510708994708995
+#prop <- 0.510708994708995
 
 # Absolute number of content words
 abs <- round(prop * one_per, 0)
@@ -51,7 +51,7 @@ mean(vec2)
 
 # Proportion of unique words
 prop <- mean(lca_data$LV) / 20 # or manually:
-prop <- 17.31343 / 20
+#prop <- 17.31343 / 20
 
 # Absolute number of unique words
 abs <- round(prop * one_per, 0)
