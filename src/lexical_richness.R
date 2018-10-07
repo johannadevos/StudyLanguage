@@ -55,7 +55,7 @@ lca_long$Grade <- ifelse(lca_long$Exam == "1 (Oct)", lca_data$grade_oct[match(lc
                   ifelse(lca_long$Exam == "3 (Apr)", lca_data$grade_apr[match(lca_long$SubjectCode, lca_data$SubjectCode)], NA)))
   
 # Remove unused dataframes
-#rm(list=ls(pattern="_melted"))
+rm(list=ls(pattern="_melted"))
 
 
 ### -----------------------------------------
@@ -271,17 +271,17 @@ pairs(exam_group.emm_LD, by = "Exam", adjust = "none")
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
 
-plot(fitted(exam_group_LD), residuals(exam_group_LD), main = "Residual plot LD (Model 3)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
-plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD), main = "Residual plot LD (Model 4)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
+plot(fitted(exam_group_LD), residuals(exam_group_LD), main = "LD: Residual plot (Model 3)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
+plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD), main = "LD: Residual plot (Model 4)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
 
 ## Absence of collinearity
 # Exam and Group are not correlated, because all groups took the same exams
 
 ## Normality of residuals
-hist(residuals(exam_group_LD)) # Seems normal
+hist(residuals(exam_group_LD), main = "LD: Histogram of residuals (Model 3)", xlab = "Residual value") # Seems normal
 qqnorm(residuals(exam_group_LD))
 
-hist(residuals(exam_group_int_LD)) # Seems normal
+hist(residuals(exam_group_int_LD), main = "LD: Histogram of residuals (Model 4)", xlab = "Residual value") # Seems normal
 qqnorm(residuals(exam_group_int_LD))
 
 ## Absence of influential data points
@@ -301,11 +301,11 @@ plot(lca_data$Cook_int_LD, ylab = "Cook's distance")
 ## Are the random coefficients normally distributed?
 subject_intercepts <- ranef(exam_group_LD)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts)
+hist(subject_intercepts, main = "LD: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 
 subject_intercepts <- ranef(exam_group_int_LD)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts)
+hist(subject_intercepts, main = "LD: Histogram of subject intercepts (Model 4)", xlab = "Subject intercept")
 
 
 ### Lexical sophistication
@@ -338,14 +338,14 @@ pairs(exam_group.emm_LS, by = "Exam", adjust = "none")
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
 
-plot(fitted(exam_group_LS), residuals(exam_group_LS), main = "Residual plot LS (Model 3)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
-plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS), main = "Residual plot LS (Model 4)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0)
+plot(fitted(exam_group_LS), residuals(exam_group_LS), main = "Residual plot LS (Model 3)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
+plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS), main = "Residual plot LS (Model 4)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
 
 ## Normality of residuals
-hist(residuals(exam_group_LS), breaks = 30) # Seems normal
+hist(residuals(exam_group_LS), main = "LS: Histogram of residuals (Model 3)", xlab = "Residual value") # Seems normal
 qqnorm(residuals(exam_group_LS))
 
-hist(residuals(exam_group_int_LS), breaks = 30) # Seems normal
+hist(residuals(exam_group_int_LS), main = "LS: Histogram of residuals (Model 4)", xlab = "Residual value") # Seems normal
 qqnorm(residuals(exam_group_int_LS))
 
 ## Absence of influential data points
@@ -362,13 +362,11 @@ plot(lca_data$Cook_int_LS, ylab = "Cook's distance")
 ## Are the random coefficients normally distributed?
 subject_intercepts <- ranef(exam_group_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, breaks = 30)
-lca_data$subj_intercept_LS <- subject_intercepts
+hist(subject_intercepts, main = "LS: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 
 subject_intercepts <- ranef(exam_group_int_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, breaks = 30)
-lca_data$subj_intercept_LS_int <- subject_intercepts
+hist(subject_intercepts, breaks = 12, main = "LS: Histogram of subject intercepts (Model 4)", xlab = "Subject intercept")
 
 
 ### Lexical variation
@@ -400,14 +398,14 @@ pairs(exam_group.emm_LV, by = "Exam", adjust = "none")
 
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
-plot(fitted(exam_group_LV), residuals(exam_group_LV), main = "Residual plot LV (Model 3)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0) # A bimodal distribution appears
-plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV), main = "Residual plot LV (Model 4)", xlab = "Fitted values", ylab = "Residual values"); abline(h = 0) # Slightly visible, but much better
+plot(fitted(exam_group_LV), residuals(exam_group_LV), main = "Residual plot LV (Model 3)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0) # A bimodal distribution appears
+plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV), main = "Residual plot LV (Model 4)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0) # Slightly visible, but much better
 
 ## Normality of residuals
-hist(residuals(exam_group_LV)) # Quite normal, but skewed to the left
+hist(residuals(exam_group_LV), main = "LV: Histogram of residuals (Model 3)", xlab = "Residual value") # Quite normal, but skewed to the left
 qqnorm(residuals(exam_group_LV))
 
-hist(residuals(exam_group_int_LV)) # Quite normal, but skewed to the left
+hist(residuals(exam_group_int_LV), main = "LV: Histogram of residuals (Model 4)", xlab = "Residual value") # Quite normal, but skewed to the left
 qqnorm(residuals(exam_group_int_LV))
 
 ## Absence of influential data points
@@ -424,11 +422,11 @@ plot(lca_data$Cook_int_LV, ylab = "Cook's distance")
 ## Are the random coefficients normally distributed?
 subject_intercepts <- ranef(exam_group_LV)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, breaks = 30)
+hist(subject_intercepts, main = "LD: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 
 subject_intercepts <- ranef(exam_group_int_LV)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, breaks = 30)
+hist(subject_intercepts, breaks = 8, main = "LS: Histogram of subject intercepts (Model 4)", xlab = "Subject intercept")
 
 
 ### ------------
