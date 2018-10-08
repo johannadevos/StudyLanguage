@@ -147,7 +147,7 @@ dutch_data <- matched_dutch
 subject_info <- matched_all
 
 # Remove variables that are no longer needed
-rm(excl_subj, d_in_d, d_in_e, matched_dutch, cut_off, i)
+rm(excl_subj, d_in_d, d_in_e, matched_dutch, matched_all, cut_off, i)
 
 
 ### CONTINUE PREPROCESSING
@@ -846,20 +846,28 @@ boot.ci(lca_weighted, type = "bca", conf = (1-alpha_6), index = 2) # Confidence 
 boot.ci(lca_weighted, type = "bca", conf = (1-alpha_6), index = 3) # Confidence intervals for LS
 boot.ci(lca_weighted, type = "bca", conf = (1-alpha_6), index = 4) # Confidence intervals for LV
 
-## OLS regression
-lca_weighted_ols <- lm(Weighted_Grade ~ LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_weighted_ols)
+## Forced-entry OLS regression
+lca_weighted_ols <- lm(Weighted_Grade ~ Group + LD_Centered + LS_Centered + LV_Centered, data = lca); summary(lca_weighted_ols)
+
+## Hierarchical OLS regression
+lca_weighted_null <- lm(Weighted_Grade ~ Group, data = lca); summary(lca_weighted_null)
+lca_weighted_ld <- update(lca_weighted_null, . ~ + LD_Centered + .); summary(lca_weighted_ld)
+lca_weighted_ls <- update(lca_weighted_ld, . ~ + LS_Centered + .); summary(lca_weighted_ls)
+lca_weighted_lv <- update(lca_weighted_ls, . ~ + LV_Centered + .); summary(lca_weighted_lv)
+
+anova(lca_weighted_null, lca_weighted_ld, lca_weighted_ls, lca_weighted_lv)
 
 # Check assumptions
 
 # Residual plot
-plot(fitted(lca_weighted_ols), residuals(lca_weighted_ols)) # Looks good, no evidence of non-linearity or heteroscedasticity
-abline(h = c(0, sd(residuals(lca_weighted_ols)), -sd(residuals(lca_weighted_ols))))
+plot(fitted(lca_weighted_lv), residuals(lca_weighted_lv)) # Looks good, no evidence of non-linearity or heteroscedasticity
+abline(h = c(0, sd(residuals(lca_weighted_lv)), -sd(residuals(lca_weighted_lv))))
 
 # Absence of collinearity (see earlier)
 
 # Normality of residuals
-hist(residuals(lca_weighted_ols)) # Looks alright, not great
-qqnorm(residuals(lca_weighted_ols))
+hist(residuals(lca_weighted_lv)) # Looks alright, not great
+qqnorm(residuals(lca_weighted_lv))
 
 # Absence of influential data points
 # To do: see Field et al. (2012, p. 288)
@@ -878,7 +886,8 @@ hist(residuals(lca_weighted_me)) # Meh
 qqnorm(residuals(lca_weighted_me))
 
 # Absence of influential data points
-# To do
+lca$Cook_weighted <- cooks.distance(lca_weighted_lv)
+plot(lca$Cook_weighted) # No values above 0.85
 
 
 ### DROP-OUT
