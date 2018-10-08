@@ -800,14 +800,15 @@ anova(lca_mean_me_null, lca_mean_me_ld, lca_mean_me_ls, lca_mean_me_lv)
 # Check assumptions
 
 # Residual plot
-plot(fitted(lca_mean_me_lv), residuals(lca_mean_me_lv)) # Stripes, because data are not strictly continuous. Otherwise okay.
+plot(fitted(lca_mean_me_lv), residuals(lca_mean_me_lv), main = "Grade: Residual plot (full model)", xlab = "Predicted values", ylab = "Residual values") # Stripes, because data are not strictly continuous. Otherwise okay.
+abline(h = 0)
 abline(h = c(0, sd(residuals(lca_mean_me_lv)), -sd(residuals(lca_mean_me_lv))))
 
 # Absence of collinearity
 rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson") # Highest correlation is r = .38
 
 # Normality of residuals
-hist(residuals(lca_mean_me_lv)) # Looks good
+hist(residuals(lca_mean_me_lv), main = "Grade: Histogram of residuals", xlab = "Residual value") # Looks good
 qqnorm(residuals(lca_mean_me_lv))
 
 # Cook's distance: absence of influential data points
@@ -819,11 +820,11 @@ plot(lca$Cook, ylab = "Cook's distance")
 # Are the random coefficients normally distributed?
 subject_intercepts <- ranef(lca_mean_me_lv)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts)
+hist(subject_intercepts, main = "Grade: Histogram of subject intercepts", xlab = "Subject intercept")
 
 course_intercepts <- ranef(lca_mean_me_lv)[[2]]
 course_int_vec <- as.vector(course_intercepts$`(Intercept)`)
-hist(course_intercepts)
+hist(course_int_vec, main = "Grade: Histogram of course intercepts", xlab = "Course intercept")
 
 ## Robust mixed-effects model
 lca_mean_rme_null <- rlmer(Grade ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(lca_mean_rme_null)
