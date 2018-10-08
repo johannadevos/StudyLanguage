@@ -372,11 +372,23 @@ mean_null <- lmer(Grade ~ 1 + (1|SubjectCode) + (1|Course), data = subject_long,
 mean_group <- update(mean_null, ~. + Group); summary(mean_group)
 anova(mean_null, mean_group)
 
+# Regular residual plot
+plot(fitted(mean_group), residuals(mean_group), main = "Grade: Residual plot", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
+
 # Binned residual plot (see Gelman & Hill, 2007)
 binnedplot(fitted(mean_group), resid(mean_group), cex.pts=1, col.int="black", xlab = "Predicted values")
 
 # Normality of residuals
-hist(residuals(mean_group))
+hist(residuals(mean_group), main = "Grade: Histogram of residuals", xlab = "Residual value")
+
+## Are the random coefficients normally distributed?
+subject_intercepts <- ranef(mean_group)[[1]]
+subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+hist(subject_intercepts, main = "Grade: Histogram of subject intercepts", xlab = "Subject intercept")
+
+course_intercepts <- ranef(mean_group)[[2]]
+course_intercepts <- as.vector(course_intercepts$`(Intercept)`)
+hist(course_intercepts, main = "Grade: Histogram of course intercepts", xlab = "Course intercept")
 
 
 ### WEIGHTED GRADE
