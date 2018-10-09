@@ -70,9 +70,13 @@ tapply(dutch_data$SchoolMean, dutch_data$Track, t.test, conf.level = (1-alpha_4)
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, stat.desc)
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, t.test, conf.level = (1-alpha_4)) # To obtain CI
 
-# Bootstrapped descriptives per dependent variable and track
+# Bootstrapped descriptives per dependent variable and track (mean)
 tapply(dutch_data$SchoolMean, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_4) # SchoolMean
 tapply(dutch_data$SchoolEnglish, dutch_data$Track, bootstrap, func=mean, iter=10000, alpha = alpha_4) # SchoolEnglish
+
+# Bootstrapped descriptives per dependent variable and track (median)
+tapply(dutch_data$SchoolMean, dutch_data$Track, bootstrap, func=median, iter=10000, alpha = alpha_4) # SchoolMean
+tapply(dutch_data$SchoolEnglish, dutch_data$Track, bootstrap, func=median, iter=10000, alpha = alpha_4) # SchoolEnglish
 
 # Use a non-parametric test to compare means
 wilcox.test(dutch_data$SchoolMean[dutch_data$Track=="English"], dutch_data$SchoolMean[dutch_data$Track=="Dutch"])
