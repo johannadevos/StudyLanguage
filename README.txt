@@ -1,4 +1,7 @@
---- preprocessing.py ---
+This repository holds the code that I used in a study to investigate the effects of studying in Dutch versus studying in English. I looked at students' language development in the language in which they study, as well as the influence the study language has on the students' grades, obtained number of European Credits (ECs) and drop-out rates. The outcomes of this results are reported in two chapters in my PhD thesis, as of yet they are not published.
+
+
+Some info on how to use the script preprocessing.py:
 
 This is a command line script which does the following:
 
