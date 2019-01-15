@@ -466,7 +466,7 @@ binnedplot(fitted(weighted_group), resid(weighted_group), cex.pts=1, col.int="bl
 hist(residuals(weighted_group))
 
 
-### Drop-out
+### DROP-OUT
 
 ## Descriptive statistics 
 
@@ -494,11 +494,16 @@ ci_perc(0.3400, 0.02, 2.33, nrow(subject_info[subject_info$Group=="German in Dut
 ci_perc(0.3323, 0.02, 2.33, nrow(subject_info[subject_info$Group=="German in English track",]))
 ci_perc(0.2988, 0.02, 2.33, nrow(subject_info)) # Total
 
+# German versus Dutch students, regardless of track
+drop2_natio <- table(subject_info$Nationality, subject_info$DropOutBinary); drop2_natio
+round(prop.table(drop2_natio, 1)*100, 2)
+
 ## Inferential statistics
 
 # Chi-square tests
 chisq.test(drop3)
 chisq.test(drop2)
+chisq.test(drop2_natio)
 
 # Predict who will drop out
 dropout_model <- glm(DropOutBinary ~ Group, family = binomial (link = "logit"), data = subject_info); summary(dropout_model)
