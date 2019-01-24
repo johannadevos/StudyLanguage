@@ -144,6 +144,7 @@ dplyr::select(lca_data, Group, ld_oct, ld_feb, ld_apr) %>%
 ## Visualisation
 
 # Lexical density
+tiff("../figures/Chapter 5 - Figure 1.tiff", units="in", width=7, height=4, res=300)
 ld <- ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationality, shape = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
@@ -153,8 +154,10 @@ ld <- ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationa
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1)); ld
+dev.off()
 
 # Lexical sophistication
+tiff("../figures/Chapter 5 - Figure 2.tiff", units="in", width=7, height=4, res=300)
 ls <- ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationality, shape = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
@@ -164,8 +167,10 @@ ls <- ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationa
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1)); ls
+dev.off()
 
 # Lexical variation
+tiff("../figures/Chapter 5 - Figure 3.tiff", units="in", width=7, height=4, res=300)
 lv <- ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationality, shape = Nationality, group = interaction(Track, Nationality))) +
   stat_summary(fun.y = mean, geom = "point", size = 4) + 
   stat_summary(fun.y = mean, geom = "line", size = 2) +
@@ -176,7 +181,7 @@ lv <- ggplot(lv_melted, aes(x = Exam, y = LV, linetype = Track, colour = Nationa
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1)); lv
 #NB: LV can be divided by 20 to obtain TTR. This is not the original measure.
-
+dev.off()
 
 ### --------------------------------------------------------------
 ### Investigate how the lexical richness variables are distributed
@@ -271,17 +276,23 @@ pairs(exam_group.emm_LD, by = "Exam", adjust = "none")
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
 
+tiff("../figures/Chapter 5 - Figure A.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
 plot(fitted(exam_group_LD), residuals(exam_group_LD), main = "LD: Residual plot (Model 3)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
 plot(fitted(exam_group_int_LD), residuals(exam_group_int_LD), main = "LD: Residual plot (Model 4)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
+dev.off()
 
 ## Absence of collinearity
 # Exam and Group are not correlated, because all groups took the same exams
 
 ## Normality of residuals
+tiff("../figures/Chapter 5 - Figure B.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
 hist(residuals(exam_group_LD), main = "LD: Histogram of residuals (Model 3)", xlab = "Residual value") # Seems normal
-qqnorm(residuals(exam_group_LD))
-
 hist(residuals(exam_group_int_LD), main = "LD: Histogram of residuals (Model 4)", xlab = "Residual value") # Seems normal
+dev.off()
+
+qqnorm(residuals(exam_group_LD))
 qqnorm(residuals(exam_group_int_LD))
 
 ## Absence of influential data points
@@ -301,12 +312,15 @@ plot(lca_data$Cook_int_LD, ylab = "Cook's distance")
 ## Are the random coefficients normally distributed?
 subject_intercepts <- ranef(exam_group_LD)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, main = "LD: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 
 subject_intercepts <- ranef(exam_group_int_LD)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, main = "LD: Histogram of subject intercepts (Model 4)", xlab = "Subject intercept")
 
+tiff("../figures/Chapter 5 - Figure C.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
+hist(subject_intercepts, main = "LD: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
+hist(subject_intercepts, main = "LD: Histogram of subject intercepts (Model 4)", xlab = "Subject intercept")
+dev.off()
 
 ### Lexical sophistication
 
@@ -338,14 +352,20 @@ pairs(exam_group.emm_LS, by = "Exam", adjust = "none")
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
 
+tiff("../figures/Chapter 5 - Figure D.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
 plot(fitted(exam_group_LS), residuals(exam_group_LS), main = "LS: Residual plot (Model 3)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
 plot(fitted(exam_group_int_LS), residuals(exam_group_int_LS), main = "LS: Residual plot (Model 4)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0)
+dev.off()
 
 ## Normality of residuals
+tiff("../figures/Chapter 5 - Figure E.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
 hist(residuals(exam_group_LS), main = "LS: Histogram of residuals (Model 3)", xlab = "Residual value") # Seems normal
-qqnorm(residuals(exam_group_LS))
-
 hist(residuals(exam_group_int_LS), main = "LS: Histogram of residuals (Model 4)", xlab = "Residual value") # Seems normal
+dev.off()
+
+qqnorm(residuals(exam_group_LS))
 qqnorm(residuals(exam_group_int_LS))
 
 ## Absence of influential data points
@@ -362,11 +382,15 @@ plot(lca_data$Cook_int_LS, ylab = "Cook's distance")
 ## Are the random coefficients normally distributed?
 subject_intercepts <- ranef(exam_group_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, main = "LS: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 
 subject_intercepts <- ranef(exam_group_int_LS)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+
+tiff("../figures/Chapter 5 - Figure F.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
+hist(subject_intercepts, main = "LS: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 hist(subject_intercepts, breaks = 12, main = "LS: Histogram of subject intercepts (Model 4)", xlab = "Subject intercept")
+dev.off()
 
 
 ### Lexical variation
@@ -399,14 +423,20 @@ pairs(exam_group.emm_LV, by = "Exam", adjust = "none")
 ## Homoskedasticity
 # The standard deviations of the residuals should not depend on the x-value
 
+tiff("../figures/Chapter 5 - Figure G.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
 plot(fitted(exam_group_LV), residuals(exam_group_LV), main = "LV: Residual plot (Model 3)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0) # A bimodal distribution appears
 plot(fitted(exam_group_int_LV), residuals(exam_group_int_LV), main = "LV: Residual plot (Model 4)", xlab = "Predicted values", ylab = "Residual values"); abline(h = 0) # Slightly visible, but much better
+dev.off()
 
 ## Normality of residuals
+tiff("../figures/Chapter 5 - Figure H.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
 hist(residuals(exam_group_LV), main = "LV: Histogram of residuals (Model 3)", xlab = "Residual value") # Quite normal, but skewed to the left
-qqnorm(residuals(exam_group_LV))
-
 hist(residuals(exam_group_int_LV), main = "LV: Histogram of residuals (Model 4)", xlab = "Residual value") # Quite normal, but skewed to the left
+dev.off()
+
+qqnorm(residuals(exam_group_LV))
 qqnorm(residuals(exam_group_int_LV))
 
 ## Absence of influential data points
@@ -423,11 +453,15 @@ plot(lca_data$Cook_int_LV, ylab = "Cook's distance")
 ## Are the random coefficients normally distributed?
 subject_intercepts <- ranef(exam_group_LV)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
-hist(subject_intercepts, main = "LV: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 
 subject_intercepts <- ranef(exam_group_int_LV)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
+
+tiff("../figures/Chapter 5 - Figure I.tiff", units="in", width=11, height=4, res=300)
+par(mfrow=c(1,2))
+hist(subject_intercepts, main = "LV: Histogram of subject intercepts (Model 3)", xlab = "Subject intercept")
 hist(subject_intercepts, breaks = 8, main = "LV: Histogram of subject intercepts (Model 4)", xlab = "Subject intercept")
+dev.off()
 
 
 ### ------------
