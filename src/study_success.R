@@ -229,6 +229,7 @@ ECs_hist <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist
 
+tiff("../figures/Chapter 6 - Figure B.tiff", units="in", width=9, height=4, res=300)
 ECs_hist_perc <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
   geom_histogram(aes(y=5*..density..*100), col = "white", binwidth = 5) +
   facet_grid(~Group) +
@@ -237,6 +238,7 @@ ECs_hist_perc <- ggplot(data = no_dropout, aes(EC_Obtained, fill = Group)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=5)) +
   scale_y_continuous(breaks=pretty_breaks(n=10)); ECs_hist_perc
+dev.off()
 
 ## Inferential statistics
 
@@ -276,7 +278,9 @@ anova(ec_null, ec_group)
 ## Check assumptions of mixed-effects models
 
 # Binned residual plot (see Gelman & Hill, 2007)
+tiff("../figures/Chapter 6 - Figure A.tiff", units="in", width=6, height=4, res=300)
 binnedplot(fitted(ec_group), resid(ec_group), cex.pts=1, col.int="black", xlab = "Predicted values")
+dev.off()
 
 # Normality of residuals
 hist(residuals(ec_group))
@@ -420,6 +424,7 @@ weighted_hist <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group)) +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist
 
+tiff("../figures/Chapter 6 - Figure C.tiff", units="in", width=9, height=4, res=300)
 weighted_hist_perc <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group)) +
   geom_histogram(aes(y=50*..density..*100), col = "white", binwidth = 50) +
   facet_grid(~Group) +
@@ -427,6 +432,7 @@ weighted_hist_perc <- ggplot(data = no_dropout, aes(Weighted_Grade, fill = Group
   ggtitle("\n") +
   theme(plot.title = element_text(hjust = 0.5)) +
   scale_x_continuous(breaks=pretty_breaks(n=3)); weighted_hist_perc
+dev.off()
 
 ## Inferential statistics
 
@@ -712,7 +718,9 @@ anova(lca_passed_me_group, lca_passed_me_ld, lca_passed_me_ls, lca_passed_me_lv)
 # Check assumptions
 
 # Binned residual plot (see Gelman & Hill, 2007)
+tiff("../figures/Chapter 6 - Figure D.tiff", units="in", width=6, height=4, res=300)
 binnedplot(fitted(lca_passed_me_lv), resid(lca_passed_me_lv), cex.pts=1, col.int="black", xlab = "Predicted values")
+dev.off()
 
 # Normality of residuals
 hist(residuals(lca_passed_me_lv))
@@ -809,15 +817,20 @@ anova(lca_mean_me_null, lca_mean_me_ld, lca_mean_me_ls, lca_mean_me_lv)
 # Check assumptions
 
 # Residual plot
+tiff("../figures/Chapter 6 - Figure E.tiff", units="in", width=6, height=4, res=300)
 plot(fitted(lca_mean_me_lv), residuals(lca_mean_me_lv), main = "Grade: Residual plot (full model)", xlab = "Predicted values", ylab = "Residual values") # Stripes, because data are not strictly continuous. Otherwise okay.
 abline(h = 0)
 abline(h = c(0, sd(residuals(lca_mean_me_lv)), -sd(residuals(lca_mean_me_lv))))
+dev.off()
 
 # Absence of collinearity
 rcorr(as.matrix(lca[,cbind("LD", "LS", "LV")]), type = "pearson") # Highest correlation is r = .38
 
 # Normality of residuals
+tiff("../figures/Chapter 6 - Figure F.tiff", units="in", width=6, height=4, res=300)
 hist(residuals(lca_mean_me_lv), main = "Grade: Histogram of residuals", xlab = "Residual value") # Looks good
+dev.off()
+
 qqnorm(residuals(lca_mean_me_lv))
 
 # Cook's distance: absence of influential data points
@@ -827,6 +840,9 @@ plot(lca$Cook, ylab = "Cook's distance")
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
 # Are the random coefficients normally distributed?
+tiff("../figures/Chapter 6 - Figure G.tiff", units="in", width=9, height=4, res=300)
+par(mfrow=c(1,2))
+
 subject_intercepts <- ranef(lca_mean_me_lv)[[1]]
 subject_intercepts <- as.vector(subject_intercepts$`(Intercept)`)
 hist(subject_intercepts, main = "Grade: Histogram of subject intercepts", xlab = "Subject intercept")
@@ -834,6 +850,8 @@ hist(subject_intercepts, main = "Grade: Histogram of subject intercepts", xlab =
 course_intercepts <- ranef(lca_mean_me_lv)[[2]]
 course_int_vec <- as.vector(course_intercepts$`(Intercept)`)
 hist(course_int_vec, main = "Grade: Histogram of course intercepts", xlab = "Course intercept")
+dev.off()
+par(mfrow=c(1,1))
 
 ## Robust mixed-effects model
 lca_mean_rme_null <- rlmer(Grade ~ 1 + Group + (1|SubjectCode) + (1|Course), data = lr_long, REML = FALSE); summary(lca_mean_rme_null)
