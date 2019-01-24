@@ -55,7 +55,7 @@ lca_long$Grade <- ifelse(lca_long$Exam == "1 (Oct)", lca_data$grade_oct[match(lc
                   ifelse(lca_long$Exam == "3 (Apr)", lca_data$grade_apr[match(lca_long$SubjectCode, lca_data$SubjectCode)], NA)))
   
 # Remove unused dataframes
-rm(list=ls(pattern="_melted"))
+#rm(list=ls(pattern="_melted"))
 
 
 ### -----------------------------------------
