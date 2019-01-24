@@ -278,7 +278,7 @@ anova(ec_null, ec_group)
 ## Check assumptions of mixed-effects models
 
 # Binned residual plot (see Gelman & Hill, 2007)
-tiff("../figures/Chapter 6 - Figure A.tiff", units="in", width=6, height=4, res=300)
+tiff("../figures/Chapter 6 - Figure A.tiff", units="in", width=6, height=6, res=300)
 binnedplot(fitted(ec_group), resid(ec_group), cex.pts=1, col.int="black", xlab = "Predicted values")
 dev.off()
 
@@ -718,7 +718,7 @@ anova(lca_passed_me_group, lca_passed_me_ld, lca_passed_me_ls, lca_passed_me_lv)
 # Check assumptions
 
 # Binned residual plot (see Gelman & Hill, 2007)
-tiff("../figures/Chapter 6 - Figure D.tiff", units="in", width=6, height=4, res=300)
+tiff("../figures/Chapter 6 - Figure D.tiff", units="in", width=6, height=6, res=300)
 binnedplot(fitted(lca_passed_me_lv), resid(lca_passed_me_lv), cex.pts=1, col.int="black", xlab = "Predicted values")
 dev.off()
 
