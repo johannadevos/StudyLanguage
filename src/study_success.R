@@ -840,7 +840,7 @@ plot(lca$Cook, ylab = "Cook's distance")
 # Or, it shouldn't be >4/n (assumption not met, but no real outliers)
 
 # Are the random coefficients normally distributed?
-tiff("../figures/Chapter 6 - Figure G.tiff", units="in", width=9, height=4, res=300)
+tiff("../figures/Chapter 6 - Figure G.tiff", units="in", width=11, height=4, res=300)
 par(mfrow=c(1,2))
 
 subject_intercepts <- ranef(lca_mean_me_lv)[[1]]
