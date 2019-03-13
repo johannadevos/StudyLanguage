@@ -150,7 +150,7 @@ ld <- ggplot(ld_melted, aes(x = Exam, y = LD, linetype = Track, colour = Nationa
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nExam", y = "Lexical Density\n") +
+  labs(x = "\nExam", y = "Lexical density\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1)); ld
@@ -163,7 +163,7 @@ ls <- ggplot(ls_melted, aes(x = Exam, y = LS, linetype = Track, colour = Nationa
   stat_summary(fun.y = mean, geom = "line", size = 2) +
   stat_summary(fun.data = mean_cl_boot, geom = "errorbar", linetype = "solid", alpha = 0.75, size = 1, width = 0.5, position = position_dodge(width = 0.05)) +
   theme(text = element_text(size = 20), axis.text.y = element_text(size = 18), axis.text.x = element_text(size = 18), strip.text = element_text(size=18)) +
-  labs(x = "\nExam", y = "Lexical Sophistication\n") +
+  labs(x = "\nExam", y = "Lexical sophistication\n") +
   scale_color_manual(values=c("orange", "steelblue3")) +
   guides(linetype=guide_legend(keywidth = 2, keyheight = 1),
          colour=guide_legend(keywidth = 2, keyheight = 1)); ls
